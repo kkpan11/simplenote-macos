@@ -12,7 +12,7 @@ XCODE_WORKSPACE = 'Simplenote.xcworkspace'
 XCODE_SCHEME = 'Simplenote'
 XCODE_CONFIGURATION = 'Debug'
 PROJECT_DIR = __dir__
-LOCAL_PATH = "vendor/bundle"
+LOCAL_PATH = 'vendor/bundle'
 
 task default: %w[test]
 
