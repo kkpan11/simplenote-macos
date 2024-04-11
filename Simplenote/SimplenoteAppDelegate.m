@@ -251,6 +251,8 @@
     [self.crashLogging clearCachedUser];
 
     [self.noteEditorMetadataCache removeAll];
+
+    [[CSSearchableIndex defaultSearchableIndex] deleteAllSearchableItemsWithCompletionHandler:nil];
 }
 
 - (void)simperium:(Simperium *)simperium didFailWithError:(NSError *)error

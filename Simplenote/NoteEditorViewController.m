@@ -406,6 +406,7 @@ static NSString * const SPMarkdownPreferencesKey        = @"kMarkdownPreferences
         [SPTracker trackEditorNoteDeleted];
         noteToDelete.deleted = YES;
         [self.noteActionsDelegate editorController:self deletedNoteWithSimperiumKey:noteToDelete.simperiumKey];
+        [[CSSearchableIndex defaultSearchableIndex] deleteSearchableNote:noteToDelete];
     }
 
     [self save];

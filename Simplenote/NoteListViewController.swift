@@ -812,6 +812,7 @@ extension NoteListViewController {
         for note in selectedNotes {
             SPTracker.trackListNoteDeleted()
             note.deleted = true
+            CSSearchableIndex.default().deleteSearchableNote(note)
         }
 
         simperium.save()
