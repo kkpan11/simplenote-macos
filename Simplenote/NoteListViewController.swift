@@ -1,5 +1,6 @@
 import Foundation
 import SimplenoteSearch
+import CoreSpotlight
 
 // MARK: - NotesControllerDelegate
 //
@@ -865,6 +866,7 @@ extension NoteListViewController {
         note.deleted = false
         simperium.save()
 
+        CSSearchableIndex.default().indexSearchableNote(note)
         SPTracker.trackListNoteRestored()
     }
 }

@@ -286,6 +286,13 @@
                 }
 
                 [self.noteEditorMetadataCache didUpdateNote:note];
+
+                if (note && !note.deleted) {
+                    [[CSSearchableIndex defaultSearchableIndex] indexSearchableNote:note];
+                } else {
+                    [[CSSearchableIndex defaultSearchableIndex] deleteSearchableItemsWithIdentifiers:@[key] completionHandler:nil];
+                }
+                
                 break;
             }
             

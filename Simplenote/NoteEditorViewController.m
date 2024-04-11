@@ -148,6 +148,8 @@ static NSString * const SPMarkdownPreferencesKey        = @"kMarkdownPreferences
 	[self.saveTimer invalidate];
 	self.saveTimer = nil;
 
+    [[CSSearchableIndex defaultSearchableIndex] indexSearchableNote:self.note];
+
     if (editorHasFocus) {
         [[NSApp keyWindow] makeFirstResponder:self.noteEditor];
 
