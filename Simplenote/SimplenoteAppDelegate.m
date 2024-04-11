@@ -232,6 +232,10 @@
     [self.aboutWindowController showWindow:self];
 }
 
+- (BOOL)application:(NSApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<NSUserActivityRestoring>> * _Nonnull))restorationHandler
+{
+    [self handleUserActivity:userActivity];
+}
 
 #pragma mark - Simperium Delegates
 
