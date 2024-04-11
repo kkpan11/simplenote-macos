@@ -123,6 +123,8 @@
     [self cleanupTags];
     [self startListeningForThemeNotifications];
 
+    [self indexSpotlightItemsIfNeeded];
+
     [SPTracker trackApplicationLaunched];
 }
 
@@ -568,6 +570,45 @@
 - (NSUndoManager *)windowWillReturnUndoManager:(NSWindow *)window
 {
     return [[self managedObjectContext] undoManager];
+}
+
+
+#pragma mark ================================================================================
+#pragma mark Spotlight
+#pragma mark ================================================================================
+
+- (void)indexSpotlightItemsIfNeeded
+{
+    // This process should be executed *just once*, and only if the user is already logged in (AKA "Upgrade")
+    NSString *kSpotlightDidRunKey = @"SpotlightDidRunKey";
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    if ([defaults boolForKey:kSpotlightDidRunKey] == true) {
+        return;
+    }
+
+    [defaults setBool:true forKey:kSpotlightDidRunKey];
+    [defaults synchronize];
+
+    if (self.simperium.user.authenticated == false) {
+        return;
+    }
+
+    [self indexSpotlightItems];
+}
+
+- (void)indexSpotlightItems
+{
+    NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    [context setParentContext:self.simperium.managedObjectContext];
+
+    [context performBlock:^{
+        NSArray *deleted = [context fetchObjectsForEntityName:@"Note" withPredicate:[NSPredicate predicateWithFormat:@"deleted == YES"] error:nil];
+        [[CSSearchableIndex defaultSearchableIndex] deleteSearchableNotes:deleted];
+
+        NSArray *notes = [context fetchObjectsForEntityName:@"Note" withPredicate:[NSPredicate predicateWithFormat:@"deleted == NO"] error:nil];
+        [[CSSearchableIndex defaultSearchableIndex] indexSearchableNotes:notes];
+    }];
 }
 
 @end
