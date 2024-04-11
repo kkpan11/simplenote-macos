@@ -236,7 +236,7 @@
 
 - (BOOL)application:(NSApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<NSUserActivityRestoring>> * _Nonnull))restorationHandler
 {
-    [self handleUserActivity:userActivity];
+    return [self handleUserActivity:userActivity];
 }
 
 #pragma mark - Simperium Delegates

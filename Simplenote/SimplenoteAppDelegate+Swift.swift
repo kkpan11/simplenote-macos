@@ -240,11 +240,13 @@ extension SimplenoteAppDelegate {
     }
 
     @objc
-    func handleUserActivity(_ userActivity: NSUserActivity) {
+    func handleUserActivity(_ userActivity: NSUserActivity) -> Bool {
         if userActivity.activityType == "com.apple.corespotlightitem" {
             presentNote(for: userActivity)
-            return
+            return true
         }
+
+        return false
     }
 
     func presentNote(for userActivity: NSUserActivity) {
