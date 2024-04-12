@@ -483,6 +483,8 @@
 		BAF1B0C02BC9B1A800B55F73 /* NoteWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF1B0BE2BC9B1A800B55F73 /* NoteWindowController.swift */; };
 		BAF1B0C22BC9B1C500B55F73 /* NoteWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF1B0C12BC9B1C500B55F73 /* NoteWindow.swift */; };
 		BAF1B0C32BC9B1C500B55F73 /* NoteWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF1B0C12BC9B1C500B55F73 /* NoteWindow.swift */; };
+		BAF1B0C52BC9B25600B55F73 /* NoteWindowsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF1B0C42BC9B25600B55F73 /* NoteWindowsManager.swift */; };
+		BAF1B0C62BC9B25600B55F73 /* NoteWindowsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF1B0C42BC9B25600B55F73 /* NoteWindowsManager.swift */; };
 		BAF8D5DC26AE3BE800CA9383 /* markdown-light.css in Resources */ = {isa = PBXBuildFile; fileRef = BAF8D5DB26AE3BE800CA9383 /* markdown-light.css */; };
 		BAFB545026CCA7F1006E037C /* NSProgressIndicator+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFB544F26CCA7F1006E037C /* NSProgressIndicator+Simplenote.swift */; };
 		BAFB545126CCA7F1006E037C /* NSProgressIndicator+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFB544F26CCA7F1006E037C /* NSProgressIndicator+Simplenote.swift */; };
@@ -882,6 +884,7 @@
 		BAA4854925D5E22000F3BDB9 /* SearchQuery+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchQuery+Simplenote.swift"; sourceTree = "<group>"; };
 		BAF1B0BE2BC9B1A800B55F73 /* NoteWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteWindowController.swift; sourceTree = "<group>"; };
 		BAF1B0C12BC9B1C500B55F73 /* NoteWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteWindow.swift; sourceTree = "<group>"; };
+		BAF1B0C42BC9B25600B55F73 /* NoteWindowsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteWindowsManager.swift; sourceTree = "<group>"; };
 		BAF8D5DB26AE3BE800CA9383 /* markdown-light.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "markdown-light.css"; sourceTree = "<group>"; };
 		BAFB544F26CCA7F1006E037C /* NSProgressIndicator+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSProgressIndicator+Simplenote.swift"; sourceTree = "<group>"; };
 		F998F3EA22853C29008C2B59 /* CrashLogging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashLogging.swift; sourceTree = "<group>"; };
@@ -1449,6 +1452,7 @@
 				B58BBD3C2523FF160025135F /* PopoverWindow.swift */,
 				BAF1B0BE2BC9B1A800B55F73 /* NoteWindowController.swift */,
 				BAF1B0C12BC9B1C500B55F73 /* NoteWindow.swift */,
+				BAF1B0C42BC9B25600B55F73 /* NoteWindowsManager.swift */,
 			);
 			name = Windows;
 			sourceTree = "<group>";
@@ -2160,6 +2164,7 @@
 				B5F807CC2481982B0048CBD7 /* Note+Simplenote.swift in Sources */,
 				B5132FA823C4B9760065DD80 /* NSTextStorage+Simplenote.swift in Sources */,
 				A6BF918F25E4EB44003C2018 /* FileStorage.swift in Sources */,
+				BAF1B0C52BC9B25600B55F73 /* NoteWindowsManager.swift in Sources */,
 				714BA66E14D4AE6300A6CCC1 /* DateTransformer.m in Sources */,
 				B59EA98124AA5EFA008ABE4B /* NoteMetrics.swift in Sources */,
 				B5EDF338258A8F1B0066D91D /* TagListFilter.swift in Sources */,
@@ -2354,6 +2359,7 @@
 				375D294321E033D1007AB25A /* html5_blocks.c in Sources */,
 				B51AFE7725D36CDD00A196DF /* NSFont+Simplenote.swift in Sources */,
 				375D293D21E033D1007AB25A /* hash.c in Sources */,
+				BAF1B0C62BC9B25600B55F73 /* NoteWindowsManager.swift in Sources */,
 				B574CA74242D552100F8D02F /* TextViewInputHandler.swift in Sources */,
 				B5F807CD2481982B0048CBD7 /* Note+Simplenote.swift in Sources */,
 				A6C1E21525E010140076ADF7 /* SPApplication.swift in Sources */,
