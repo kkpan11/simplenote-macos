@@ -27,11 +27,7 @@ class NoteWindow: NSWindow {
 
     private func setupWindow() {
         contentViewController = editor
-
-        let documentsDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
-        let fileURL = URL(fileURLWithPath: documentsDirectory, isDirectory: true).appendingPathComponent(".editor-metadata-cache")
-        let editorCache = NoteEditorMetadataCache(storage: FileStorage(fileURL: fileURL))
-        editor.metadataCache = editorCache
+        editor.metadataCache = SimplenoteAppDelegate.shared().noteEditorMetadataCache
     }
 
     // MARK: Show Note
