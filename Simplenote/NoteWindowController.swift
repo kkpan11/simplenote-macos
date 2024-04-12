@@ -9,7 +9,8 @@
 import Foundation
 
 class NoteWindowController: NSWindowController {
-    let editor: NoteEditorViewController
+    private let editor: NoteEditorViewController
+    private let editorCache: NoteEditorMetadataCache
 
     init() {
         let storyboard = NSStoryboard(name: .main, bundle: nil)
@@ -17,9 +18,9 @@ class NoteWindowController: NSWindowController {
 
         let documentsDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
         let fileURL = URL(fileURLWithPath: documentsDirectory, isDirectory: true).appendingPathComponent(".editor-metadata-cache")
-        let noteEditorMetadataCache = NoteEditorMetadataCache(storage: FileStorage(fileURL: fileURL))
+        self.editorCache = NoteEditorMetadataCache(storage: FileStorage(fileURL: fileURL))
 
-        noteEditor.metadataCache = noteEditorMetadataCache
+        noteEditor.metadataCache = editorCache
 
         let window = NoteWindow(contentViewController: noteEditor)
 
