@@ -184,6 +184,8 @@ private extension NoteListViewController {
         tableView.selectionHighlightStyle = .regular
         tableView.backgroundColor = .clear
 
+        tableView.doubleAction = #selector(noteWasDoubleTapped)
+
         tableView.ensureStyleIsFullWidth()
     }
 
@@ -866,5 +868,16 @@ extension NoteListViewController {
         simperium.save()
 
         SPTracker.trackListNoteRestored()
+    }
+
+    @objc
+    func noteWasDoubleTapped() {
+        guard let note = listController.note(at: tableView.selectedRow) else {
+            return
+        }
+        let windowController = NoteWindowController()
+        SimplenoteAppDelegate.shared().noteWindowsManager.windowControllers.append(windowController)
+
+        windowController.show(note)
     }
 }
