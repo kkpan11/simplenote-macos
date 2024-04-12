@@ -90,11 +90,6 @@ extension SimplenoteAppDelegate {
     }
 
     @objc
-    func configureNoteWindowsManager() {
-        noteWindowsManager = NoteWindowsManager()
-    }
-
-    @objc
     func configureEditorMetadataCache() {
         let documentsDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
         let fileURL = URL(fileURLWithPath: documentsDirectory, isDirectory: true).appendingPathComponent(Constants.noteEditorMetadataCacheFilename)
@@ -471,8 +466,13 @@ extension SimplenoteAppDelegate: NotesControllerDelegate {
     }
 
     func notesController(_ controller: NoteListViewController, didSelect note: Note) {
-        breadcrumbsViewController.notesControllerDidSelectNote(note)
-        noteEditorViewController.displayNote(note)
+        if let noteWindow = noteWindow(for: note) {
+            notesControllerDidSelectZeroNotes(controller)
+            noteWindow.makeKeyAndOrderFront(nil)
+        } else {
+            breadcrumbsViewController.notesControllerDidSelectNote(note)
+            noteEditorViewController.displayNote(note)
+        }
     }
 
     func notesController(_ controller: NoteListViewController, didSelect notes: [Note]) {
@@ -513,6 +513,22 @@ extension SimplenoteAppDelegate {
         }
 
         signOut()
+    }
+}
+
+// MARK: - Window management
+//
+extension SimplenoteAppDelegate {
+    var windows: [NSWindow] {
+        NSApplication.shared.windows
+    }
+
+    var noteWindows: [NoteWindow] {
+        windows.compactMap({ $0 as? NoteWindow })
+    }
+
+    func noteWindow(for note: Note) -> NoteWindow? {
+        noteWindows.first(where: { $0.selectedNoteID == note.simperiumKey })
     }
 }
 

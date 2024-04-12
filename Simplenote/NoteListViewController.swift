@@ -875,9 +875,12 @@ extension NoteListViewController {
         guard let note = listController.note(at: tableView.selectedRow) else {
             return
         }
-        let windowController = NoteWindowController()
-        SimplenoteAppDelegate.shared().noteWindowsManager.windowControllers.append(windowController)
+        let window = NoteWindow()
+        let windowController = NSWindowController(window: window)
 
-        windowController.show(note)
+        window.show(note)
+
+        tableView.deselectRow(tableView.selectedRow)
+        refreshPresentedNote()
     }
 }

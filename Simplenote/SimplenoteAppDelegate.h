@@ -20,7 +20,6 @@
 @class VersionsController;
 @class NoteEditorMetadataCache;
 @class AccountDeletionController;
-@class NoteWindowsManager;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -51,7 +50,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NoteEditorMetadataCache                       *noteEditorMetadataCache;
 
 @property (nullable, strong, nonatomic) NSWindowController                  *preferencesWindowController;
-@property (strong, nonatomic) NoteWindowsManager                            *noteWindowsManager;
 
 + (SimplenoteAppDelegate *)sharedDelegate;
 

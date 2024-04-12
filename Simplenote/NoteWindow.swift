@@ -9,7 +9,11 @@
 import Foundation
 
 class NoteWindow: NSWindow {
-    private let editor: NoteEditorViewController
+    let editor: NoteEditorViewController
+
+    var selectedNoteID: String? {
+        editor.note?.simperiumKey
+    }
 
     init() {
         let storyboard = NSStoryboard(name: .main, bundle: nil)
@@ -30,23 +34,13 @@ class NoteWindow: NSWindow {
         editor.metadataCache = editorCache
     }
 
-    // The note windows are stored in the windows manager and need to be removed when they close
-    // This override cleans up the windows in the manager
-    override func close() {
-        super.close()
-        let noteWindowsManager = SimplenoteAppDelegate.shared().noteWindowsManager
-        if let controller = windowController,
-           let index = noteWindowsManager.windowControllers.firstIndex(of: controller) {
-            noteWindowsManager.windowControllers.remove(at: index)
-        }
-    }
-
-
-    //MARK: Show Note
+    // MARK: Show Note
     //
     func show(_ note: Note) {
         editor.toolbarView.sidebarButton.isHidden = true
         editor.displayNote(note)
         title = note.titlePreview
+
+        windowController?.showWindow(self)
     }
 }
