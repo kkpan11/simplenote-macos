@@ -97,6 +97,7 @@
     [self configureTagsController];
     [self configureNotesController];
     [self configureEditorController];
+    [self configureNoteWindowsManager];
     [self configureVerificationCoordinator];
     [self configureVersionsController];
     [self configureAccountDeletionController];

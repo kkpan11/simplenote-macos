@@ -90,6 +90,11 @@ extension SimplenoteAppDelegate {
     }
 
     @objc
+    func configureNoteWindowsManager() {
+        noteWindowsManager = NoteWindowsManager()
+    }
+
+    @objc
     func configureEditorMetadataCache() {
         let documentsDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
         let fileURL = URL(fileURLWithPath: documentsDirectory, isDirectory: true).appendingPathComponent(Constants.noteEditorMetadataCacheFilename)
