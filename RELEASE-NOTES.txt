@@ -1,6 +1,6 @@
 2.21
 -----
-
+- Added spotlight search support for notes
 
 2.20
 -----
