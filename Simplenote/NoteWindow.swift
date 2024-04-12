@@ -36,7 +36,5 @@ class NoteWindow: NSWindow {
         editor.toolbarView.sidebarButton.isHidden = true
         editor.displayNote(note)
         title = note.titlePreview
-
-        windowController?.showWindow(self)
     }
 }

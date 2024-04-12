@@ -875,11 +875,14 @@ extension NoteListViewController {
         guard let note = listController.note(at: tableView.selectedRow) else {
             return
         }
+
         let window = NoteWindow()
         let windowController = NSWindowController(window: window)
-
         window.show(note)
+        windowController.showWindow(window)
 
+        // We don't want to be able to display the note in more than one editor at a time
+        // So when double tapped we open into a new window and close the editor in the main window
         tableView.deselectRow(tableView.selectedRow)
         refreshPresentedNote()
     }
