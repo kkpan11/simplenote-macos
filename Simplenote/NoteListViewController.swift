@@ -876,10 +876,8 @@ extension NoteListViewController {
             return
         }
 
-        let window = NoteWindow()
-        let windowController = NSWindowController(window: window)
-        window.show(note)
-        windowController.showWindow(window)
+        let controller = SimplenoteAppDelegate.shared().noteWindowManager.prepareWindowController(for: note)
+        controller.showWindow(nil)
 
         // We don't want to be able to display the note in more than one editor at a time
         // So when double tapped we open into a new window and close the editor in the main window

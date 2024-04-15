@@ -116,6 +116,11 @@ extension SimplenoteAppDelegate {
     }
 
     @objc
+    func configureNoteWindowManager() {
+        noteWindowManager = NoteWindowManager()
+    }
+
+    @objc
     var window: Window {
         // TODO: Temporary workaround. Let's get rid of this? please? 🔥🔥🔥
         mainWindowController.window as! Window

@@ -15,6 +15,11 @@ class NoteWindow: NSWindow {
         editor.note?.simperiumKey
     }
 
+    convenience init(note: Note) {
+        self.init()
+        load(note)
+    }
+
     init() {
         let storyboard = NSStoryboard(name: .main, bundle: nil)
         self.editor = storyboard.instantiateViewController(ofType: NoteEditorViewController.self)
@@ -28,12 +33,12 @@ class NoteWindow: NSWindow {
     private func setupWindow() {
         contentViewController = editor
         editor.metadataCache = SimplenoteAppDelegate.shared().noteEditorMetadataCache
+        editor.toolbarView.sidebarButton.isHidden = true
     }
 
     // MARK: Show Note
     //
-    func show(_ note: Note) {
-        editor.toolbarView.sidebarButton.isHidden = true
+    func load(_ note: Note) {
         editor.displayNote(note)
         title = note.titlePreview
     }

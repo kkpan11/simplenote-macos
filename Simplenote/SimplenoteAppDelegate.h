@@ -20,6 +20,7 @@
 @class VersionsController;
 @class NoteEditorMetadataCache;
 @class AccountDeletionController;
+@class NoteWindowManager;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -48,6 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, strong, nonatomic) AccountDeletionController           *accountDeletionController;
 
 @property (strong, nonatomic) NoteEditorMetadataCache                       *noteEditorMetadataCache;
+@property (strong, nonatomic, nonnull) NoteWindowManager *noteWindowManager;
 
 @property (nullable, strong, nonatomic) NSWindowController                  *preferencesWindowController;
 

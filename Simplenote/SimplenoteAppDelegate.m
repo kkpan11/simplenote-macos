@@ -100,6 +100,7 @@
     [self configureVerificationCoordinator];
     [self configureVersionsController];
     [self configureAccountDeletionController];
+    [self configureNoteWindowManager];
 
     [self refreshStatusController];
 
