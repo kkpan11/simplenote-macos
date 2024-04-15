@@ -579,9 +579,6 @@
 
 - (void)indexSpotlightItemsIfNeeded
 {
-    if ([[Options shared] indexNotesForSpotlight] == NO) {
-        return;
-    }
     // This process should be executed *just once*, and only if the user is already logged in (AKA "Upgrade")
     NSString *kSpotlightDidRunKey = @"SpotlightDidRunKey";
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
