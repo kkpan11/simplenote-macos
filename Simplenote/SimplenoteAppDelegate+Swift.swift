@@ -241,7 +241,7 @@ extension SimplenoteAppDelegate {
 
     @objc
     func handleUserActivity(_ userActivity: NSUserActivity) -> Bool {
-        if userActivity.activityType == "com.apple.corespotlightitem" {
+        if userActivity.activityType == CSSearchableItemActionType {
             presentNote(for: userActivity)
             return true
         }
