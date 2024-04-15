@@ -1,4 +1,5 @@
 import Cocoa
+import CoreSpotlight
 
 class PreferencesViewController: NSViewController {
     private var simperium: Simperium {
@@ -32,7 +33,8 @@ class PreferencesViewController: NSViewController {
     @IBOutlet private var themePopUp: NSPopUpButton!
     @IBOutlet private var textSizeSlider: NSSlider!
     @IBOutlet private var shareAnalyticsCheckbox: NSButton!
-
+    @IBOutlet weak var indexNotesButton: NSButtonCell!
+    
     // MARK: Background Views
     @IBOutlet private var accountSectionBackground: BackgroundView!
     @IBOutlet private var layoutSectionBackground: BackgroundView!
@@ -65,6 +67,7 @@ class PreferencesViewController: NSViewController {
         updateLineLength()
         updateCondensedNoteListCheckBox()
         updateSortTagsAlphabeticallyCheckbox()
+        updateIndexNotesCheckbox()
 
         updateSelectedTheme()
 
@@ -168,6 +171,10 @@ class PreferencesViewController: NSViewController {
 
     private func updateSortTagsAlphabeticallyCheckbox() {
         sortTagsAlphabeticallyCheckbox.state = Options.shared.alphabeticallySortTags ? .on : .off
+    }
+
+    private func updateIndexNotesCheckbox() {
+        indexNotesButton.state = Options.shared.indexNotesForSpotlight ? .on : .off
     }
 
     @objc
@@ -292,6 +299,19 @@ class PreferencesViewController: NSViewController {
 
         let isEnabled = sender.state == .on
         Options.shared.analyticsEnabled = isEnabled
+    }
+
+    @IBAction func indexNotesWasPressed(_ sender: Any) {
+        Options.shared.indexNotesForSpotlight.toggle()
+
+        if Options.shared.indexNotesForSpotlight {
+            let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+            context.parent = SimplenoteAppDelegate.shared().simperium.managedObjectContext()
+
+            CSSearchableIndex.default().indexSpotlightItems(in: context)
+        } else {
+            CSSearchableIndex.default().deleteAllSearchableItems()
+        }
     }
 }
 
