@@ -14,6 +14,7 @@ extension UserDefaults {
         case statusBarHidden
         case themeName = "VSThemeManagerThemePrefKey"
         case fontSize = "kFontSizePreferencesKey"
+        case indexNotesForSpotlight
     }
 }
 

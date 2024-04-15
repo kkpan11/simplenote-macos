@@ -579,6 +579,9 @@
 
 - (void)indexSpotlightItemsIfNeeded
 {
+    if ([[Options shared] indexNotesForSpotlight] == NO) {
+        return;
+    }
     // This process should be executed *just once*, and only if the user is already logged in (AKA "Upgrade")
     NSString *kSpotlightDidRunKey = @"SpotlightDidRunKey";
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -602,13 +605,7 @@
     NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     [context setParentContext:self.simperium.managedObjectContext];
 
-    [context performBlock:^{
-        NSArray *deleted = [context fetchObjectsForEntityName:@"Note" withPredicate:[NSPredicate predicateWithFormat:@"deleted == YES"] error:nil];
-        [[CSSearchableIndex defaultSearchableIndex] deleteSearchableNotes:deleted];
-
-        NSArray *notes = [context fetchObjectsForEntityName:@"Note" withPredicate:[NSPredicate predicateWithFormat:@"deleted == NO"] error:nil];
-        [[CSSearchableIndex defaultSearchableIndex] indexSearchableNotes:notes];
-    }];
+    [[CSSearchableIndex defaultSearchableIndex] indexSpotlightItemsIn:context];
 }
 
 @end
