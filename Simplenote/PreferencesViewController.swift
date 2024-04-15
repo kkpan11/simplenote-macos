@@ -34,7 +34,7 @@ class PreferencesViewController: NSViewController {
     @IBOutlet private var textSizeSlider: NSSlider!
     @IBOutlet private var shareAnalyticsCheckbox: NSButton!
     @IBOutlet weak var indexNotesButton: NSButtonCell!
-    
+
     // MARK: Background Views
     @IBOutlet private var accountSectionBackground: BackgroundView!
     @IBOutlet private var layoutSectionBackground: BackgroundView!
