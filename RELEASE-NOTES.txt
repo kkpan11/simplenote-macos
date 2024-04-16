@@ -1,6 +1,6 @@
 2.21
 -----
-
+- Added multiple window support for editing notes
 
 2.20
 -----
