@@ -876,7 +876,7 @@ extension NoteListViewController {
             return
         }
 
-        let controller = SimplenoteAppDelegate.shared().noteWindowManager.prepareWindowController(for: note)
+        let controller = SimplenoteAppDelegate.shared().noteWindowControllersManager.prepareWindowController(for: note)
         controller.showWindow(nil)
 
         // We don't want to be able to display the note in more than one editor at a time

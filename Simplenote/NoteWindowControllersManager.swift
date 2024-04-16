@@ -1,5 +1,5 @@
 //
-//  NoteWindowManager.swift
+//  NoteWindowControllersManager.swift
 //  Simplenote
 //
 //  Created by Charlie Scheer on 4/15/24.
@@ -19,7 +19,7 @@ class NoteWindowController: NSWindowController {
     }
 }
 
-class NoteWindowManager: NSObject {
+class NoteWindowControllersManager: NSObject {
     private(set) var controllers = Set<NSWindowController>()
 
     private var windows: [NoteWindow] {
@@ -40,7 +40,7 @@ class NoteWindowManager: NSObject {
     }
 }
 
-extension NoteWindowManager: NSWindowDelegate {
+extension NoteWindowControllersManager: NSWindowDelegate {
     func windowWillClose(_ notification: Notification) {
         if let window = notification.object as? NSWindow,
            let controller = window.windowController {

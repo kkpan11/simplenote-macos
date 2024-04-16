@@ -116,8 +116,8 @@ extension SimplenoteAppDelegate {
     }
 
     @objc
-    func configureNoteWindowManager() {
-        noteWindowManager = NoteWindowManager()
+    func configureNoteWindowControllersManager() {
+        noteWindowControllersManager = NoteWindowControllersManager()
     }
 
     @objc
@@ -471,7 +471,7 @@ extension SimplenoteAppDelegate: NotesControllerDelegate {
     }
 
     func notesController(_ controller: NoteListViewController, didSelect note: Note) {
-        if let noteWindow = noteWindowManager.window(for: note) {
+        if let noteWindow = noteWindowControllersManager.window(for: note) {
             notesControllerDidSelectZeroNotes(controller)
             noteWindow.makeKeyAndOrderFront(nil)
         } else {
