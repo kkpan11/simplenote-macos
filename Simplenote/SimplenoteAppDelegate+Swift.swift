@@ -471,7 +471,7 @@ extension SimplenoteAppDelegate: NotesControllerDelegate {
     }
 
     func notesController(_ controller: NoteListViewController, didSelect note: Note) {
-        if let noteWindow = noteWindow(for: note) {
+        if let noteWindow = noteWindowManager.window(for: note) {
             notesControllerDidSelectZeroNotes(controller)
             noteWindow.makeKeyAndOrderFront(nil)
         } else {
@@ -518,22 +518,6 @@ extension SimplenoteAppDelegate {
         }
 
         signOut()
-    }
-}
-
-// MARK: - Window management
-//
-extension SimplenoteAppDelegate {
-    var windows: [NSWindow] {
-        NSApplication.shared.windows
-    }
-
-    var noteWindows: [NoteWindow] {
-        windows.compactMap({ $0 as? NoteWindow })
-    }
-
-    func noteWindow(for note: Note) -> NoteWindow? {
-        noteWindows.first(where: { $0.selectedNoteID == note.simperiumKey })
     }
 }
 

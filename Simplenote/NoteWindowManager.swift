@@ -20,7 +20,11 @@ class NoteWindowController: NSWindowController {
 }
 
 class NoteWindowManager: NSObject {
-    var controllers = Set<NSWindowController>()
+    private(set) var controllers = Set<NSWindowController>()
+
+    private var windows: [NoteWindow] {
+        controllers.compactMap({ $0.window as? NoteWindow })
+    }
 
     func prepareWindowController(for note: Note) -> NSWindowController {
         let windowController = NoteWindowController(note: note)
@@ -29,6 +33,10 @@ class NoteWindowManager: NSObject {
         controllers.insert(windowController)
 
         return windowController
+    }
+
+    func window(for note: Note) -> NoteWindow? {
+        windows.first(where: { $0.selectedNoteID == note.simperiumKey })
     }
 }
 
