@@ -482,6 +482,7 @@
 		BAF1B0C22BC9B1C500B55F73 /* NoteWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF1B0C12BC9B1C500B55F73 /* NoteWindow.swift */; };
 		BAF1B0C32BC9B1C500B55F73 /* NoteWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF1B0C12BC9B1C500B55F73 /* NoteWindow.swift */; };
 		BAF1B0C82BCDDA9600B55F73 /* NoteWindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF1B0C72BCDDA9600B55F73 /* NoteWindowManager.swift */; };
+		BAF1B0C92BCEDFD400B55F73 /* NoteWindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF1B0C72BCDDA9600B55F73 /* NoteWindowManager.swift */; };
 		BAF8D5DC26AE3BE800CA9383 /* markdown-light.css in Resources */ = {isa = PBXBuildFile; fileRef = BAF8D5DB26AE3BE800CA9383 /* markdown-light.css */; };
 		BAFB545026CCA7F1006E037C /* NSProgressIndicator+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFB544F26CCA7F1006E037C /* NSProgressIndicator+Simplenote.swift */; };
 		BAFB545126CCA7F1006E037C /* NSProgressIndicator+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFB544F26CCA7F1006E037C /* NSProgressIndicator+Simplenote.swift */; };
@@ -2329,6 +2330,7 @@
 				3F07D7B225DD1CDD00D680D0 /* SearchQuery+Simplenote.swift in Sources */,
 				466FFEAC17CC10A800399652 /* Simplenote.xcdatamodeld in Sources */,
 				B5009938242130F70037A431 /* UnicodeScalar+Simplenote.swift in Sources */,
+				BAF1B0C92BCEDFD400B55F73 /* NoteWindowManager.swift in Sources */,
 				B5177CBC25EEB01600A8D834 /* AuthViewController+Swift.swift in Sources */,
 				B5A9FE282576C40B0084F176 /* SplitItemMetrics.swift in Sources */,
 				B58BBD3E2523FF160025135F /* PopoverWindow.swift in Sources */,
