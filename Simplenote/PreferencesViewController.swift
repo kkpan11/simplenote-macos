@@ -302,9 +302,14 @@ class PreferencesViewController: NSViewController {
     }
 
     @IBAction func indexNotesWasPressed(_ sender: Any) {
-        Options.shared.indexNotesForSpotlight.toggle()
+        guard let sender = sender as? NSButton else {
+            return
+        }
 
-        if Options.shared.indexNotesForSpotlight {
+        let isEnabled = sender.state == .on
+        Options.shared.indexNotesForSpotlight = isEnabled
+
+        if isEnabled {
             let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
             context.parent = SimplenoteAppDelegate.shared().simperium.managedObjectContext()
 
