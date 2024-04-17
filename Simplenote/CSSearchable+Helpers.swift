@@ -83,9 +83,7 @@ extension CSSearchableIndex {
     }
 
     @objc func deleteSearchableNotes(_ notes: [Note]) {
-        let ids = notes.map {
-            return $0.simperiumKey!
-        }
+        let ids = notes.compactMap({ $0.simperiumKey })
 
         deleteSearchableItems(withIdentifiers: ids) { error in
             if let error = error {
