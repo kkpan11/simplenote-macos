@@ -246,20 +246,13 @@ extension SimplenoteAppDelegate {
 
     @objc
     func handleUserActivity(_ userActivity: NSUserActivity) -> Bool {
-        if userActivity.activityType == CSSearchableItemActionType {
-            presentNote(for: userActivity)
+        if userActivity.activityType == CSSearchableItemActionType,
+           let simperiumKey = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
+            displayNote(simperiumKey: simperiumKey)
             return true
         }
 
         return false
-    }
-
-    func presentNote(for userActivity: NSUserActivity) {
-        guard let uniqueIdentifier = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String else {
-            return
-        }
-
-        displayNote(simperiumKey: uniqueIdentifier)
     }
 }
 
