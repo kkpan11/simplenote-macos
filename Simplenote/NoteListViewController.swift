@@ -185,6 +185,8 @@ private extension NoteListViewController {
         tableView.selectionHighlightStyle = .regular
         tableView.backgroundColor = .clear
 
+        tableView.doubleAction = #selector(noteWasDoubleTapped)
+
         tableView.ensureStyleIsFullWidth()
     }
 
@@ -869,5 +871,20 @@ extension NoteListViewController {
 
         CSSearchableIndex.default().indexSearchableNote(note)
         SPTracker.trackListNoteRestored()
+    }
+
+    @objc
+    func noteWasDoubleTapped() {
+        guard let note = listController.note(at: tableView.selectedRow) else {
+            return
+        }
+
+        let controller = SimplenoteAppDelegate.shared().noteWindowControllersManager.prepareWindowController(for: note)
+        controller.showWindow(nil)
+
+        // We don't want to be able to display the note in more than one editor at a time
+        // So when double tapped we open into a new window and close the editor in the main window
+        tableView.deselectRow(tableView.selectedRow)
+        refreshPresentedNote()
     }
 }

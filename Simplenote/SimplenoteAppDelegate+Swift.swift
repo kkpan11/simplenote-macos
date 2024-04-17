@@ -117,6 +117,11 @@ extension SimplenoteAppDelegate {
     }
 
     @objc
+    func configureNoteWindowControllersManager() {
+        noteWindowControllersManager = NoteWindowControllersManager()
+    }
+
+    @objc
     var window: Window {
         // TODO: Temporary workaround. Let's get rid of this? please? 🔥🔥🔥
         mainWindowController.window as! Window
@@ -485,8 +490,13 @@ extension SimplenoteAppDelegate: NotesControllerDelegate {
     }
 
     func notesController(_ controller: NoteListViewController, didSelect note: Note) {
-        breadcrumbsViewController.notesControllerDidSelectNote(note)
-        noteEditorViewController.displayNote(note)
+        if let noteWindow = noteWindowControllersManager.window(for: note) {
+            notesControllerDidSelectZeroNotes(controller)
+            noteWindow.makeKeyAndOrderFront(nil)
+        } else {
+            breadcrumbsViewController.notesControllerDidSelectNote(note)
+            noteEditorViewController.displayNote(note)
+        }
     }
 
     func notesController(_ controller: NoteListViewController, didSelect notes: [Note]) {
