@@ -140,6 +140,19 @@ extension Options {
             NotificationCenter.default.post(name: .FontSizeDidChange, object: nil)
         }
     }
+
+    /// Index notes for spotlight
+    ///
+    @objc
+    var indexNotesForSpotlight: Bool {
+        get {
+            defaults.bool(forKey: .indexNotesForSpotlight)
+        }
+
+        set {
+            defaults.set(newValue, forKey: .indexNotesForSpotlight)
+        }
+    }
 }
 
 // MARK: - Migrations

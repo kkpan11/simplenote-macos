@@ -148,6 +148,8 @@ static NSString * const SPMarkdownPreferencesKey        = @"kMarkdownPreferences
 	[self.saveTimer invalidate];
 	self.saveTimer = nil;
 
+    [[CSSearchableIndex defaultSearchableIndex] indexSearchableNote:self.note];
+
     if (editorHasFocus) {
         [[NSApp keyWindow] makeFirstResponder:self.noteEditor];
 
@@ -404,6 +406,7 @@ static NSString * const SPMarkdownPreferencesKey        = @"kMarkdownPreferences
         [SPTracker trackEditorNoteDeleted];
         noteToDelete.deleted = YES;
         [self.noteActionsDelegate editorController:self deletedNoteWithSimperiumKey:noteToDelete.simperiumKey];
+        [[CSSearchableIndex defaultSearchableIndex] deleteSearchableNote:noteToDelete];
     }
 
     [self save];

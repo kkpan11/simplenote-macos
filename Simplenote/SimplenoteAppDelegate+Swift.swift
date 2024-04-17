@@ -1,6 +1,7 @@
 import Foundation
 import SimplenoteSearch
 import Simperium_OSX
+import CoreSpotlight
 
 // MARK: - Initialization
 //
@@ -241,6 +242,17 @@ extension SimplenoteAppDelegate {
         refreshStatusController()
 
         SPTracker.trackSettingsStatusBarDisplayMode(hidden: Options.shared.statusBarHidden)
+    }
+
+    @objc
+    func handleUserActivity(_ userActivity: NSUserActivity) -> Bool {
+        if userActivity.activityType == CSSearchableItemActionType,
+           let simperiumKey = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
+            displayNote(simperiumKey: simperiumKey)
+            return true
+        }
+
+        return false
     }
 }
 

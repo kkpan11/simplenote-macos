@@ -462,10 +462,14 @@
 		BA2C65CF26FE996A00FA84E1 /* NSButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C65CA26FE996100FA84E1 /* NSButton+Extensions.swift */; };
 		BA4C6D16264CA8C000B723A7 /* SignupRemoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C6D15264CA8C000B723A7 /* SignupRemoteTests.swift */; };
 		BA4C6D18264CAAF800B723A7 /* URLRequest+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C6D17264CAAF800B723A7 /* URLRequest+Simplenote.swift */; };
+		BA52005B2BC878F1003F1B75 /* CSSearchable+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA52005A2BC878F1003F1B75 /* CSSearchable+Helpers.swift */; };
+		BA52005D2BC88397003F1B75 /* NSManagedObjectContext+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA52005C2BC88397003F1B75 /* NSManagedObjectContext+Simplenote.swift */; };
 		BA553F0827065E20007737E9 /* FontSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA553F0727065E20007737E9 /* FontSettings.swift */; };
 		BA553F0927065E20007737E9 /* FontSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA553F0727065E20007737E9 /* FontSettings.swift */; };
 		BA5F020526BB57F000581E92 /* NSAlert+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5F020426BB57F000581E92 /* NSAlert+Simplenote.swift */; };
 		BA5F020626BB57F000581E92 /* NSAlert+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5F020426BB57F000581E92 /* NSAlert+Simplenote.swift */; };
+		BA71EC242BC88FD000F42CB1 /* CSSearchable+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA52005A2BC878F1003F1B75 /* CSSearchable+Helpers.swift */; };
+		BA71EC252BC88FFC00F42CB1 /* NSManagedObjectContext+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA52005C2BC88397003F1B75 /* NSManagedObjectContext+Simplenote.swift */; };
 		BA78AF6F2B5B2BBA00DCF896 /* AutomatticTracks in Frameworks */ = {isa = PBXBuildFile; productRef = BA78AF6E2B5B2BBA00DCF896 /* AutomatticTracks */; };
 		BA78AF712B5B2BC300DCF896 /* AutomatticTracks in Frameworks */ = {isa = PBXBuildFile; productRef = BA78AF702B5B2BC300DCF896 /* AutomatticTracks */; };
 		BA938CEC26ACFF4A00BE5A1D /* Remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA938CEB26ACFF4A00BE5A1D /* Remote.swift */; };
@@ -872,6 +876,8 @@
 		BA2C65CA26FE996100FA84E1 /* NSButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSButton+Extensions.swift"; sourceTree = "<group>"; };
 		BA4C6D15264CA8C000B723A7 /* SignupRemoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRemoteTests.swift; sourceTree = "<group>"; };
 		BA4C6D17264CAAF800B723A7 /* URLRequest+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Simplenote.swift"; sourceTree = "<group>"; };
+		BA52005A2BC878F1003F1B75 /* CSSearchable+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CSSearchable+Helpers.swift"; sourceTree = "<group>"; };
+		BA52005C2BC88397003F1B75 /* NSManagedObjectContext+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Simplenote.swift"; sourceTree = "<group>"; };
 		BA553F0727065E20007737E9 /* FontSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSettings.swift; sourceTree = "<group>"; };
 		BA5F020426BB57F000581E92 /* NSAlert+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAlert+Simplenote.swift"; sourceTree = "<group>"; };
 		BA938CEB26ACFF4A00BE5A1D /* Remote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remote.swift; sourceTree = "<group>"; };
@@ -1257,6 +1263,7 @@
 			children = (
 				B5D21CB624881EF600D57A34 /* Array+Simplenote.swift */,
 				B57CB87D244DED2300BA7969 /* Bundle+Simplenote.swift */,
+				BA52005A2BC878F1003F1B75 /* CSSearchable+Helpers.swift */,
 				B53BF19B24ABDE7C00938C34 /* DateFormatter+Simplenote.swift */,
 				B5C620AA257ED4CF008359A9 /* NSAnimationContext+Simplenote.swift */,
 				B56FA79A2437D2E0002CB9FF /* NSAppearance+Simplenote.swift */,
@@ -1303,6 +1310,7 @@
 				BA5F020426BB57F000581E92 /* NSAlert+Simplenote.swift */,
 				BAFB544F26CCA7F1006E037C /* NSProgressIndicator+Simplenote.swift */,
 				BA2C65CA26FE996100FA84E1 /* NSButton+Extensions.swift */,
+				BA52005C2BC88397003F1B75 /* NSManagedObjectContext+Simplenote.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -2130,6 +2138,7 @@
 				BA2C65CB26FE996100FA84E1 /* NSButton+Extensions.swift in Sources */,
 				B58117E225B9E5D200927E0C /* AccountVerificationController.swift in Sources */,
 				B5009937242130F70037A431 /* UnicodeScalar+Simplenote.swift in Sources */,
+				BA52005B2BC878F1003F1B75 /* CSSearchable+Helpers.swift in Sources */,
 				B5985AD5242950B40044EDE9 /* NSColor+Simplenote.swift in Sources */,
 				B5C7DD3D243E1F1900BEE354 /* VersionsViewController.swift in Sources */,
 				B58BBD3D2523FF160025135F /* PopoverWindow.swift in Sources */,
@@ -2166,6 +2175,7 @@
 				B59EA98124AA5EFA008ABE4B /* NoteMetrics.swift in Sources */,
 				B5EDF338258A8F1B0066D91D /* TagListFilter.swift in Sources */,
 				375D293621E033D1007AB25A /* document.c in Sources */,
+				BA52005D2BC88397003F1B75 /* NSManagedObjectContext+Simplenote.swift in Sources */,
 				B5609AEC24EEE7200097777A /* SPBucket+Simplenote.swift in Sources */,
 				B56FA7902437C672002CB9FF /* ColorStudio.swift in Sources */,
 				B5177CD025EEEEFB00A8D834 /* NSWindow+Transitions.swift in Sources */,
@@ -2324,6 +2334,7 @@
 				BA2C65CF26FE996A00FA84E1 /* NSButton+Extensions.swift in Sources */,
 				375D294121E033D1007AB25A /* html_smartypants.c in Sources */,
 				B5E061782450AEDA0076111A /* ToolbarView.swift in Sources */,
+				BA71EC242BC88FD000F42CB1 /* CSSearchable+Helpers.swift in Sources */,
 				B502C1DE25BA2EB700145D6C /* AccountRemote.swift in Sources */,
 				F998F3EC22853C49008C2B59 /* CrashLogging.swift in Sources */,
 				B5919365245A7AD300A70C0C /* NSScreen+Simplenote.swift in Sources */,
@@ -2360,6 +2371,7 @@
 				B5F807CD2481982B0048CBD7 /* Note+Simplenote.swift in Sources */,
 				A6C1E21525E010140076ADF7 /* SPApplication.swift in Sources */,
 				466FFEB417CC10A800399652 /* DateTransformer.m in Sources */,
+				BA71EC252BC88FFC00F42CB1 /* NSManagedObjectContext+Simplenote.swift in Sources */,
 				B5132FA923C4B9760065DD80 /* NSTextStorage+Simplenote.swift in Sources */,
 				375D293721E033D1007AB25A /* document.c in Sources */,
 				376EE3EC202B748E00E3812E /* SPAboutTextField.swift in Sources */,
