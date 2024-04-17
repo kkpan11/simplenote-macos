@@ -1782,7 +1782,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1530;
 				ORGANIZATIONNAME = Simperium;
 				TargetAttributes = {
 					26F72A8714032D2A00A7935E = {
@@ -1984,6 +1984,7 @@
 		};
 		3C6F268E2B8D16F900A66FDB /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);

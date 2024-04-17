@@ -383,7 +383,7 @@ extension TagListViewController {
         let coordinator = context.persistentStoreCoordinator
 
         // Collect manged objects with URIs
-        var draggedObjects: Array<Tag> = objectURIs.compactMap({
+        let draggedObjects: Array<Tag> = objectURIs.compactMap({
             guard let objectID = coordinator?.managedObjectID(forURIRepresentation: $0 as URL) else {
                 return nil
             }
@@ -416,13 +416,13 @@ extension TagListViewController {
         allObjects.remove(NSNull())
 
         var counter = 0
-        for object in allObjects {
+        allObjects.forEach({ _ in
             guard let tag = allObjects[counter] as? Tag else {
-                continue
+                return
             }
             tag.index = NSNumber(integerLiteral: counter)
             counter += 1
-        }
+        })
 
         // Reload data
         loadTags()
