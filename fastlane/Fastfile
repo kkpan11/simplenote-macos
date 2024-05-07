@@ -23,6 +23,8 @@ VERSION_FILE_PATH = File.join(PROJECT_FOLDER, 'config', 'Version.Public.xcconfig
 DEFAULT_BRANCH = 'trunk'
 GITHUB_REPO = 'Automattic/simplenote-macos'
 
+Dotenv.load(USER_ENV_FILE_PATH)
+
 APPLE_TEAM_ID = 'PZYM8XX95Q'
 # Generate the App Store Connect API key to download code signing certificates and profiles with `app_store_code_signing`
 APPLE_API_KEY = app_store_connect_api_key(
@@ -34,7 +36,6 @@ APPLE_API_KEY = app_store_connect_api_key(
 ########################################################################
 # Environment
 ########################################################################
-Dotenv.load(USER_ENV_FILE_PATH)
 ENV['PROJECT_NAME'] = 'Simplenote'
 ENV['PROJECT_ROOT_FOLDER'] = './'
 ENV['APP_STORE_STRINGS_FILE_NAME'] = 'AppStoreStrings.pot'
