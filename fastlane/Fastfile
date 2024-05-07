@@ -515,6 +515,7 @@ lane :app_store_code_signing do |options|
   match(
     storage_mode: 's3',
     s3_bucket: 'a8c-fastlane-match',
+    s3_region: 'us-east-2',
     s3_access_key: access_key,
     s3_secret_access_key: secret_access_key,
     team_id: APPLE_TEAM_ID,
