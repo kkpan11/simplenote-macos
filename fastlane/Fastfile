@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-default_platform(:ios)
+default_platform(:mac)
 fastlane_require 'dotenv'
 fastlane_require 'shellwords' # used for shell-escaping paths
 
@@ -11,16 +11,23 @@ WORKSPACE = 'Simplenote.xcworkspace'
 INTERNAL_SCHEME = 'Simplenote'
 APP_STORE_SCHEME = 'Simplenote-AppStore'
 BUILD_FOLDER = 'build'
-APP_STORE_CONNECT_API_KEY_PATH = File.join(Dir.home, '.configure', 'simplenote-macos', 'secrets', 'app_store_connect_fastlane_api_key.json')
 APP_STORE_BUNDLE_IDENTIFIER = 'com.automattic.SimplenoteMac'
 VERSION_FILE_PATH = File.join(PROJECT_FOLDER, 'config', 'Version.Public.xcconfig')
 DEFAULT_BRANCH = 'trunk'
 GITHUB_REPO = 'Automattic/simplenote-macos'
 
+APPLE_TEAM_ID = 'PZYM8XX95Q'
+# Generate the App Store Connect API key to download code signing certificates and profiles with `app_store_code_signing`
+APPLE_API_KEY = app_store_connect_api_key(
+  key_id: get_required_env('APP_STORE_CONNECT_API_PZYM8XX95Q_KEY_ID'),
+  issuer_id: get_required_env('APP_STORE_CONNECT_API_PZYM8XX95Q_ISSUER_ID'),
+  key_content: get_required_env('APP_STORE_CONNECT_API_PZYM8XX95Q_KEY_CONTENT')
+)
+
 ########################################################################
 # Environment
 ########################################################################
-Dotenv.load('~/.simplenotemacos-env.default')
+Dotenv.load(USER_ENV_FILE_PATH)
 ENV['PROJECT_NAME'] = 'Simplenote'
 ENV['PROJECT_ROOT_FOLDER'] = './'
 ENV['APP_STORE_STRINGS_FILE_NAME'] = 'AppStoreStrings.pot'
@@ -44,6 +51,22 @@ def get_required_env(key)
   ENV.fetch(key)
 end
 
+before_all do
+  # Ensure we use the latest version of the Release Toolkit
+  check_for_toolkit_updates unless is_ci || ENV['FASTLANE_SKIP_TOOLKIT_UPDATE_CHECK']
+
+  # Check that the env files exist
+  unless is_ci || File.file?(USER_ENV_FILE_PATH)
+    error_message = <<~ERROR
+      #{USER_ENV_FILE_PATH} not found. Please copy env/user.env-example to #{USER_ENV_FILE_PATH} and fill in the values") using the following command:
+      \tcp #{PROJECT_ROOT_FOLDER}/fastlane/env/user.env-example #{USER_ENV_FILE_PATH}
+    ERROR
+    UI.user_error!(error_message)
+  end
+
+  setup_ci # Fixes weird Keychain bugs on CI
+end
+
 # Helper function to DRY the code to build the app
 def build_simplenote(codesign:, archive_path: nil)
   if codesign
@@ -62,20 +85,13 @@ def build_simplenote(codesign:, archive_path: nil)
     output_directory: BUILD_FOLDER,
     archive_path: archive_path,
     skip_archive: skip_archive,
-    export_team_id: CredentialsManager::AppfileConfig.try_fetch_value(:team_id),
+    export_team_id: APPLE_TEAM_ID,
     xcargs: xcargs,
     export_options: {
       method: 'app-store',
       manageAppVersionAndBuildNumber: false
     }
   )
-end
-
-before_all do
-  # Check that the env files exist
-  unless is_ci || File.file?(USER_ENV_FILE_PATH)
-    UI.user_error!("~/.simplenotemacos-env.default not found: Please copy fastlane/env/user.env-example to #{USER_ENV_FILE_PATH} and fill in the values")
-  end
 end
 
 desc 'Runs the unit tests for the project'
@@ -322,7 +338,7 @@ lane :update_metadata_on_app_store_connect do |options|
     overwrite_screenshots: true, # won't have effect if `skip_screenshots` is true
     phased_release: true,
     precheck_include_in_app_purchases: false,
-    api_key_path: APP_STORE_CONNECT_API_KEY_PATH
+    api_key: APPLE_API_KEY
   )
 end
 
@@ -405,7 +421,7 @@ lane :build_and_upload_app_store do |options|
     zip(path: archive_path, output_path: archive_zip_path)
 
     create_release(
-      repository: GHHELPER_REPO,
+      repository: GITHUB_REPO,
       version: ios_get_app_version(public_version_xcconfig_file: VERSION_FILE_PATH),
       release_notes_file_path: 'Simplenote/Resources/release_notes.txt',
       release_assets: [archive_zip_path],
@@ -413,7 +429,7 @@ lane :build_and_upload_app_store do |options|
     )
   end
 
-  upload_to_testflight(api_key_path: APP_STORE_CONNECT_API_KEY_PATH)
+  upload_to_testflight(api_key: APPLE_API_KEY)
 end
 
 #############################################################################
@@ -500,13 +516,13 @@ lane :app_store_code_signing do |options|
     s3_bucket: 'a8c-fastlane-match',
     s3_access_key: access_key,
     s3_secret_access_key: secret_access_key,
-    team_id: 'PZYM8XX95Q',
+    team_id: APPLE_TEAM_ID,
     type: 'appstore',
     platform: 'macos',
     # This Mac app also needs a Mac Installer Distribution certificate
     additional_cert_types: 'mac_installer_distribution',
     readonly: options.fetch(:readonly, true),
-    app_identifier: 'com.automattic.SimplenoteMac',
-    api_key_path: APP_STORE_CONNECT_API_KEY_PATH
+    app_identifier: APP_STORE_BUNDLE_IDENTIFIER,
+    api_key: APPLE_API_KEY
   )
 end
