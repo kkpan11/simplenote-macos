@@ -4,12 +4,7 @@ default_platform(:mac)
 fastlane_require 'dotenv'
 fastlane_require 'shellwords' # used for shell-escaping paths
 
-# Use this instead of getting values from ENV directly
-# It will throw an error if the requested value is missing
-def get_required_env(key)
-  UI.user_error!("Environment variable '#{key}' is not set. Have you setup #{USER_ENV_FILE_PATH} correctly?") unless ENV.key?(key)
-  ENV.fetch(key)
-end
+UI.user_error!('Please run fastlane via `bundle exec`') unless FastlaneCore::Helper.bundler?
 
 # Constants
 USER_ENV_FILE_PATH = File.join(Dir.home, '.simplenotemacos-env.default')
@@ -22,20 +17,25 @@ APP_STORE_BUNDLE_IDENTIFIER = 'com.automattic.SimplenoteMac'
 VERSION_FILE_PATH = File.join(PROJECT_FOLDER, 'config', 'Version.Public.xcconfig')
 DEFAULT_BRANCH = 'trunk'
 GITHUB_REPO = 'Automattic/simplenote-macos'
-
-Dotenv.load(USER_ENV_FILE_PATH)
-
 APPLE_TEAM_ID = 'PZYM8XX95Q'
 
 ########################################################################
 # Environment
 ########################################################################
+Dotenv.load(USER_ENV_FILE_PATH)
 ENV['PROJECT_NAME'] = 'Simplenote'
 ENV['PROJECT_ROOT_FOLDER'] = './'
 ENV['APP_STORE_STRINGS_FILE_NAME'] = 'AppStoreStrings.pot'
 ENV['PUBLIC_CONFIG_FILE'] = './config/Version.public.xcconfig'
 ENV['DOWNLOAD_METADATA'] = './fastlane/download_metadata.swift'
 ENV['FL_RELEASE_TOOLKIT_DEFAULT_BRANCH'] = 'trunk'
+
+# Use this instead of getting values from ENV directly
+# It will throw an error if the requested value is missing
+def get_required_env(key)
+  UI.user_error!("Environment variable '#{key}' is not set. Have you setup #{USER_ENV_FILE_PATH} correctly?") unless ENV.key?(key)
+  ENV.fetch(key)
+end
 
 # On CI, it's useful to skip code signing unless necessary to avoid spending
 # time syncing the certificates and profiles with match. And while not
@@ -54,7 +54,7 @@ before_all do
   unless is_ci || File.file?(USER_ENV_FILE_PATH)
     error_message = <<~ERROR
       #{USER_ENV_FILE_PATH} not found. Please copy env/user.env-example to #{USER_ENV_FILE_PATH} and fill in the values") using the following command:
-      \tcp #{PROJECT_ROOT_FOLDER}/fastlane/env/user.env-example #{USER_ENV_FILE_PATH}
+      \tcp #{PROJECT_FOLDER}/fastlane/env/user.env-example #{USER_ENV_FILE_PATH}
     ERROR
     UI.user_error!(error_message)
   end
