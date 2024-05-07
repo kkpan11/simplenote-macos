@@ -26,12 +26,6 @@ GITHUB_REPO = 'Automattic/simplenote-macos'
 Dotenv.load(USER_ENV_FILE_PATH)
 
 APPLE_TEAM_ID = 'PZYM8XX95Q'
-# Generate the App Store Connect API key to download code signing certificates and profiles with `app_store_code_signing`
-APPLE_API_KEY = app_store_connect_api_key(
-  key_id: get_required_env('APP_STORE_CONNECT_API_PZYM8XX95Q_KEY_ID'),
-  issuer_id: get_required_env('APP_STORE_CONNECT_API_PZYM8XX95Q_ISSUER_ID'),
-  key_content: get_required_env('APP_STORE_CONNECT_API_PZYM8XX95Q_KEY_CONTENT')
-)
 
 ########################################################################
 # Environment
@@ -339,7 +333,7 @@ lane :update_metadata_on_app_store_connect do |options|
     overwrite_screenshots: true, # won't have effect if `skip_screenshots` is true
     phased_release: true,
     precheck_include_in_app_purchases: false,
-    api_key: APPLE_API_KEY
+    api_key: app_store_connect_api_key
   )
 end
 
@@ -430,7 +424,7 @@ lane :build_and_upload_app_store do |options|
     )
   end
 
-  upload_to_testflight(api_key: APPLE_API_KEY)
+  upload_to_testflight(api_key: app_store_connect_api_key)
 end
 
 #############################################################################
@@ -525,6 +519,6 @@ lane :app_store_code_signing do |options|
     additional_cert_types: 'mac_installer_distribution',
     readonly: options.fetch(:readonly, true),
     app_identifier: APP_STORE_BUNDLE_IDENTIFIER,
-    api_key: APPLE_API_KEY
+    api_key: app_store_connect_api_key
   )
 end
