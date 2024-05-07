@@ -506,7 +506,7 @@ lane :app_store_code_signing do |options|
   access_key = get_required_env('MATCH_S3_ACCESS_KEY')
   secret_access_key = get_required_env('MATCH_S3_SECRET_ACCESS_KEY')
 
-  match(
+  sync_code_signing(
     storage_mode: 's3',
     s3_bucket: 'a8c-fastlane-match',
     s3_region: 'us-east-2',
