@@ -14,6 +14,7 @@ INTERNAL_SCHEME = 'Simplenote'
 APP_STORE_SCHEME = 'Simplenote-AppStore'
 BUILD_FOLDER = 'build'
 APP_STORE_BUNDLE_IDENTIFIER = 'com.automattic.SimplenoteMac'
+APP_STORE_BUNDLE_IDENTIFIER_INTENTS = "#{APP_STORE_BUNDLE_IDENTIFIER}.Intents".freeze
 VERSION_FILE_PATH = File.join(PROJECT_FOLDER, 'config', 'Version.Public.xcconfig')
 DEFAULT_BRANCH = 'trunk'
 GITHUB_REPO = 'Automattic/simplenote-macos'
@@ -518,7 +519,10 @@ lane :app_store_code_signing do |options|
     # This Mac app also needs a Mac Installer Distribution certificate
     additional_cert_types: 'mac_installer_distribution',
     readonly: options.fetch(:readonly, true),
-    app_identifier: APP_STORE_BUNDLE_IDENTIFIER,
+    app_identifier: [
+      APP_STORE_BUNDLE_IDENTIFIER,
+      APP_STORE_BUNDLE_IDENTIFIER_INTENTS
+    ],
     api_key: app_store_connect_api_key
   )
 end
