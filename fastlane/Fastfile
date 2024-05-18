@@ -328,6 +328,8 @@ lane :update_metadata_on_app_store_connect do |options|
     app_identifier: APP_STORE_BUNDLE_IDENTIFIER,
     app_version: ios_get_app_version(public_version_xcconfig_file: VERSION_FILE_PATH),
     skip_binary_upload: true,
+    platform: 'osx',
+    metadata_path: File.join(PROJECT_FOLDER, 'fastlane', 'metadata'),
     screenshots_path: './screenshots/',
     skip_screenshots: skip_screenshots,
     overwrite_screenshots: true, # won't have effect if `skip_screenshots` is true

@@ -1,10 +1,7 @@
-2.21
+2.20
 -----
 - Added spotlight search support for notes
 - Added multiple window support for editing notes
-
-2.20
------
 - [Internal] Updated release-toolkit to 9.1.0
 
 2.19
