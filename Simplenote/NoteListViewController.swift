@@ -1,6 +1,6 @@
 import Foundation
 import SimplenoteSearch
-
+import CoreSpotlight
 
 // MARK: - NotesControllerDelegate
 //
@@ -10,7 +10,6 @@ protocol NotesControllerDelegate: AnyObject {
     func notesController(_ controller: NoteListViewController, didSelect notes: [Note])
     func notesControllerDidSelectZeroNotes(_ controller: NoteListViewController)
 }
-
 
 // MARK: - NoteListViewController
 //
@@ -59,7 +58,6 @@ class NoteListViewController: NSViewController {
     ///
     weak var delegate: NotesControllerDelegate?
 
-
     var isActive: Bool = false {
         didSet {
             if isActive && searchField.currentEditor() != nil {
@@ -73,7 +71,6 @@ class NoteListViewController: NSViewController {
             tableView.refreshRows(isActive: isActive)
         }
     }
-
 
     // MARK: - ViewController Lifecycle
 
@@ -126,7 +123,6 @@ class NoteListViewController: NSViewController {
     }
 }
 
-
 // MARK: - Keyboard Shortcuts
 //
 extension NoteListViewController {
@@ -145,7 +141,6 @@ extension NoteListViewController {
         SimplenoteAppDelegate.shared().focusOnTheTags()
     }
 }
-
 
 // MARK: - Public
 //
@@ -173,7 +168,6 @@ extension NoteListViewController {
     }
 }
 
-
 // MARK: - Interface Initialization
 //
 private extension NoteListViewController {
@@ -190,6 +184,8 @@ private extension NoteListViewController {
         tableView.rowHeight = NoteTableCellView.rowHeight
         tableView.selectionHighlightStyle = .regular
         tableView.backgroundColor = .clear
+
+        tableView.doubleAction = #selector(noteWasDoubleTapped)
 
         tableView.ensureStyleIsFullWidth()
     }
@@ -222,7 +218,6 @@ private extension NoteListViewController {
     }
 }
 
-
 // MARK: - Skinning
 //
 extension NoteListViewController {
@@ -241,7 +236,6 @@ extension NoteListViewController {
         tableView.reloadAndPreserveSelection()
     }
 }
-
 
 // MARK: - Layout
 //
@@ -291,7 +285,6 @@ extension NoteListViewController {
     }
 }
 
-
 // MARK: - Dynamic Properties
 //
 private extension NoteListViewController {
@@ -320,7 +313,6 @@ private extension NoteListViewController {
         listController.filter == .deleted
     }
 }
-
 
 // MARK: - ListController API(s) 🤟
 //
@@ -356,7 +348,6 @@ private extension NoteListViewController {
         }
     }
 }
-
 
 // MARK: - Refreshing
 //
@@ -433,7 +424,6 @@ private extension NoteListViewController {
     }
 }
 
-
 // MARK: - Filtering
 //
 private extension NoteListViewController {
@@ -457,7 +447,6 @@ private extension NoteListViewController {
         }
     }
 }
-
 
 // MARK: - Row Selection API(s)
 //
@@ -514,7 +503,6 @@ extension NoteListViewController {
     }
 }
 
-
 // MARK: - Header
 //
 private extension NoteListViewController {
@@ -531,7 +519,6 @@ private extension NoteListViewController {
         return min(max(contentOffSetY / SplitItemMetrics.headerMaximumAlphaGradientOffset, 0), 1)
     }
 }
-
 
 // MARK: - NSTableViewDelegate
 //
@@ -580,7 +567,6 @@ extension NoteListViewController: SPTableViewDelegate {
     }
 }
 
-
 // MARK: - NSTableViewDataSource
 //
 extension NoteListViewController: NSTableViewDataSource {
@@ -599,7 +585,6 @@ extension NoteListViewController: NSTableViewDataSource {
         return true
     }
 }
-
 
 // MARK: - NSTableViewDelegate Helpers
 //
@@ -632,7 +617,6 @@ private extension NoteListViewController {
     }
 }
 
-
 // MARK: - EditorControllerNoteActionsDelegate
 //
 extension NoteListViewController: EditorControllerNoteActionsDelegate {
@@ -655,7 +639,6 @@ extension NoteListViewController: EditorControllerNoteActionsDelegate {
     }
 }
 
-
 // MARK: - Public Search API
 //
 extension NoteListViewController {
@@ -676,7 +659,6 @@ extension NoteListViewController {
     }
 }
 
-
 // MARK: - Search Action
 //
 extension NoteListViewController {
@@ -688,7 +670,6 @@ extension NoteListViewController {
         SPTracker.trackListNotesSearched()
     }
 }
-
 
 // MARK: - MenuItem(s) Validation
 //
@@ -767,7 +748,6 @@ extension NoteListViewController: NSMenuItemValidation {
     }
 }
 
-
 // MARK: - Notifications
 //
 extension NoteListViewController {
@@ -815,7 +795,6 @@ extension NoteListViewController {
     }
 }
 
-
 // MARK: - Actions
 //
 extension NoteListViewController {
@@ -835,6 +814,7 @@ extension NoteListViewController {
         for note in selectedNotes {
             SPTracker.trackListNoteDeleted()
             note.deleted = true
+            CSSearchableIndex.default().deleteSearchableNote(note)
         }
 
         simperium.save()
@@ -889,6 +869,22 @@ extension NoteListViewController {
         note.deleted = false
         simperium.save()
 
+        CSSearchableIndex.default().indexSearchableNote(note)
         SPTracker.trackListNoteRestored()
+    }
+
+    @objc
+    func noteWasDoubleTapped() {
+        guard let note = listController.note(at: tableView.selectedRow) else {
+            return
+        }
+
+        let controller = SimplenoteAppDelegate.shared().noteWindowControllersManager.prepareWindowController(for: note)
+        controller.showWindow(nil)
+
+        // We don't want to be able to display the note in more than one editor at a time
+        // So when double tapped we open into a new window and close the editor in the main window
+        tableView.deselectRow(tableView.selectedRow)
+        refreshPresentedNote()
     }
 }

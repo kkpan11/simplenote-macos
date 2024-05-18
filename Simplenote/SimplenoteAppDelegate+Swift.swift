@@ -1,7 +1,7 @@
 import Foundation
 import SimplenoteSearch
 import Simperium_OSX
-
+import CoreSpotlight
 
 // MARK: - Initialization
 //
@@ -117,12 +117,16 @@ extension SimplenoteAppDelegate {
     }
 
     @objc
+    func configureNoteWindowControllersManager() {
+        noteWindowControllersManager = NoteWindowControllersManager()
+    }
+
+    @objc
     var window: Window {
         // TODO: Temporary workaround. Let's get rid of this? please? 🔥🔥🔥
         mainWindowController.window as! Window
     }
 }
-
 
 // MARK: - Public API
 //
@@ -154,7 +158,6 @@ extension SimplenoteAppDelegate {
         splitViewController.refreshSplitViewItem(ofKind: .notes, collapsed: false)
     }
 }
-
 
 // MARK: - Actions!
 //
@@ -240,8 +243,18 @@ extension SimplenoteAppDelegate {
 
         SPTracker.trackSettingsStatusBarDisplayMode(hidden: Options.shared.statusBarHidden)
     }
-}
 
+    @objc
+    func handleUserActivity(_ userActivity: NSUserActivity) -> Bool {
+        if userActivity.activityType == CSSearchableItemActionType,
+           let simperiumKey = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
+            displayNote(simperiumKey: simperiumKey)
+            return true
+        }
+
+        return false
+    }
+}
 
 // MARK: - URL Handlers
 //
@@ -281,7 +294,6 @@ extension SimplenoteAppDelegate {
     }
 }
 
-
 // MARK: - SPBucketDelegate
 //
 extension SimplenoteAppDelegate: SPBucketDelegate {
@@ -310,7 +322,6 @@ extension SimplenoteAppDelegate: SPBucketDelegate {
         }
     }
 }
-
 
 // MARK: - MenuItem(s) Validation
 //
@@ -440,7 +451,6 @@ extension SimplenoteAppDelegate {
     }
 }
 
-
 // MARK: - TagListActionsDelegate Conformance
 //
 extension SimplenoteAppDelegate: TagsControllerDelegate {
@@ -465,7 +475,6 @@ extension SimplenoteAppDelegate: TagsControllerDelegate {
     }
 }
 
-
 extension SimplenoteAppDelegate: NotesControllerDelegate {
 
     func notesController(_ controller: NoteListViewController, didSearch query: SearchQuery?) {
@@ -474,8 +483,13 @@ extension SimplenoteAppDelegate: NotesControllerDelegate {
     }
 
     func notesController(_ controller: NoteListViewController, didSelect note: Note) {
-        breadcrumbsViewController.notesControllerDidSelectNote(note)
-        noteEditorViewController.displayNote(note)
+        if let noteWindow = noteWindowControllersManager.window(for: note) {
+            notesControllerDidSelectZeroNotes(controller)
+            noteWindow.makeKeyAndOrderFront(nil)
+        } else {
+            breadcrumbsViewController.notesControllerDidSelectNote(note)
+            noteEditorViewController.displayNote(note)
+        }
     }
 
     func notesController(_ controller: NoteListViewController, didSelect notes: [Note]) {
@@ -505,7 +519,7 @@ extension SimplenoteAppDelegate {
             return
         }
 
-        simperium.authenticateIfNecessary() 
+        simperium.authenticateIfNecessary()
     }
 
     @objc
@@ -518,8 +532,6 @@ extension SimplenoteAppDelegate {
         signOut()
     }
 }
-
-
 
 // MARK: - Constants
 //

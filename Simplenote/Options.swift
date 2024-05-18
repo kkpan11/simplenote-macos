@@ -1,6 +1,5 @@
 import Foundation
 
-
 // MARK: - Wraps access to all of the UserDefault Values
 //
 @objcMembers
@@ -13,7 +12,6 @@ class Options: NSObject {
     /// User Defaults: Convenience
     ///
     private let defaults: UserDefaults
-
 
     /// Designated Initializer
     ///
@@ -31,7 +29,6 @@ class Options: NSObject {
         defaults.removeObject(forKey: .analyticsEnabled)
     }
 }
-
 
 // MARK: - Actual Options!
 //
@@ -143,8 +140,20 @@ extension Options {
             NotificationCenter.default.post(name: .FontSizeDidChange, object: nil)
         }
     }
-}
 
+    /// Index notes for spotlight
+    ///
+    @objc
+    var indexNotesForSpotlight: Bool {
+        get {
+            defaults.bool(forKey: .indexNotesForSpotlight)
+        }
+
+        set {
+            defaults.set(newValue, forKey: .indexNotesForSpotlight)
+        }
+    }
+}
 
 // MARK: - Migrations
 //

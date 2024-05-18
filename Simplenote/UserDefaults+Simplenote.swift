@@ -1,6 +1,5 @@
 import Foundation
 
-
 // MARK: - Simplenote UserDefaults Keys
 //
 extension UserDefaults {
@@ -15,9 +14,9 @@ extension UserDefaults {
         case statusBarHidden
         case themeName = "VSThemeManagerThemePrefKey"
         case fontSize = "kFontSizePreferencesKey"
+        case indexNotesForSpotlight
     }
 }
-
 
 // MARK: - Convenience Methods
 //

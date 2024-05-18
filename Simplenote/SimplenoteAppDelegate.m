@@ -100,6 +100,7 @@
     [self configureVerificationCoordinator];
     [self configureVersionsController];
     [self configureAccountDeletionController];
+    [self configureNoteWindowControllersManager];
 
     [self refreshStatusController];
 
@@ -232,6 +233,10 @@
     [self.aboutWindowController showWindow:self];
 }
 
+- (BOOL)application:(NSApplication *)application continueUserActivity:(NSUserActivity *)userActivity restorationHandler:(void (^)(NSArray<id<NSUserActivityRestoring>> * _Nonnull))restorationHandler
+{
+    return [self handleUserActivity:userActivity];
+}
 
 #pragma mark - Simperium Delegates
 
@@ -251,6 +256,8 @@
     [self.crashLogging clearCachedUser];
 
     [self.noteEditorMetadataCache removeAll];
+
+    [[CSSearchableIndex defaultSearchableIndex] deleteAllSearchableItemsWithCompletionHandler:nil];
 }
 
 - (void)simperium:(Simperium *)simperium didFailWithError:(NSError *)error
@@ -286,6 +293,13 @@
                 }
 
                 [self.noteEditorMetadataCache didUpdateNote:note];
+
+                if (note && !note.deleted) {
+                    [[CSSearchableIndex defaultSearchableIndex] indexSearchableNote:note];
+                } else {
+                    [[CSSearchableIndex defaultSearchableIndex] deleteSearchableItemsWithIdentifiers:@[key] completionHandler:nil];
+                }
+                
                 break;
             }
             

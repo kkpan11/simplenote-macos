@@ -1,4 +1,5 @@
 import Cocoa
+import CoreSpotlight
 
 class PreferencesViewController: NSViewController {
     private var simperium: Simperium {
@@ -8,7 +9,7 @@ class PreferencesViewController: NSViewController {
     @IBOutlet private var backgroundview: BackgroundView!
 
     // MARK: Labels
-    
+
     @IBOutlet private var emailLabel: NSTextField!
     @IBOutlet private var accountTitleLabel: NSTextField!
     @IBOutlet private var sortOrderLabel: NSTextField!
@@ -32,13 +33,13 @@ class PreferencesViewController: NSViewController {
     @IBOutlet private var themePopUp: NSPopUpButton!
     @IBOutlet private var textSizeSlider: NSSlider!
     @IBOutlet private var shareAnalyticsCheckbox: NSButton!
+    @IBOutlet weak var indexNotesButton: NSButtonCell!
 
-    // Mark: Background Views
+    // MARK: Background Views
     @IBOutlet private var accountSectionBackground: BackgroundView!
     @IBOutlet private var layoutSectionBackground: BackgroundView!
     @IBOutlet private var themeSectionBackground: BackgroundView!
     @IBOutlet private var textSectionBackground: BackgroundView!
-
 
     // MARK: View Life Cycle
 
@@ -66,6 +67,7 @@ class PreferencesViewController: NSViewController {
         updateLineLength()
         updateCondensedNoteListCheckBox()
         updateSortTagsAlphabeticallyCheckbox()
+        updateIndexNotesCheckbox()
 
         updateSelectedTheme()
 
@@ -78,12 +80,12 @@ class PreferencesViewController: NSViewController {
     private func refreshStyle() {
         backgroundview.fillColor = .simplenoteStatusBarBackgroundColor
 
-        let allBackgrounds = [accountSectionBackground, layoutSectionBackground, themeSectionBackground,textSectionBackground]
+        let allBackgrounds = [accountSectionBackground, layoutSectionBackground, themeSectionBackground, textSectionBackground]
         allBackgrounds.forEach {
             $0?.drawsBottomBorder = true
             $0?.borderColor = .simplenotePreferencesDividerColor
         }
-        
+
         let allLabels = [emailLabel, accountTitleLabel, sortOrderLabel, lineLengthLabel, themeLabel, textSizeLabel, littleALabel, bigALabel, analyticsDescriptionLabel, privacyLinkLabel]
         allLabels.forEach { $0?.textColor = NSColor.simplenoteTextColor }
 
@@ -169,6 +171,10 @@ class PreferencesViewController: NSViewController {
 
     private func updateSortTagsAlphabeticallyCheckbox() {
         sortTagsAlphabeticallyCheckbox.state = Options.shared.alphabeticallySortTags ? .on : .off
+    }
+
+    private func updateIndexNotesCheckbox() {
+        indexNotesButton.state = Options.shared.indexNotesForSpotlight ? .on : .off
     }
 
     @objc
@@ -284,7 +290,6 @@ class PreferencesViewController: NSViewController {
         Options.shared.fontSize = CGFloat(sender.floatValue)
     }
 
-
     // MARK: Analytics Settings
 
     @IBAction private func shareAnalyticsWasPressed(_ sender: Any) {
@@ -294,6 +299,24 @@ class PreferencesViewController: NSViewController {
 
         let isEnabled = sender.state == .on
         Options.shared.analyticsEnabled = isEnabled
+    }
+
+    @IBAction func indexNotesWasPressed(_ sender: Any) {
+        guard let sender = sender as? NSButton else {
+            return
+        }
+
+        let isEnabled = sender.state == .on
+        Options.shared.indexNotesForSpotlight = isEnabled
+
+        if isEnabled {
+            let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+            context.parent = SimplenoteAppDelegate.shared().simperium.managedObjectContext()
+
+            CSSearchableIndex.default().indexSpotlightItems(in: context)
+        } else {
+            CSSearchableIndex.default().deleteAllSearchableItems()
+        }
     }
 }
 
@@ -322,8 +345,8 @@ private struct Strings {
         let link = NSMutableAttributedString(string: linkText)
 
         link.addAttributes([
-            .link : "https://automattic.com/privacy/",
-            .font : NSFont.systemFont(ofSize: 13)
+            .link: "https://automattic.com/privacy/",
+            .font: NSFont.systemFont(ofSize: 13)
         ], range: link.fullRange)
 
         return link

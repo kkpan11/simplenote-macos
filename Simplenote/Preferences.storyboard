@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19455"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22689"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -38,14 +38,14 @@
             <objects>
                 <viewController id="ReV-pG-fyt" customClass="PreferencesViewController" customModule="Simplenote" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="dpg-9k-XwW" customClass="BackgroundView" customModule="Simplenote" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="586" height="532"/>
+                        <rect key="frame" x="0.0" y="0.0" width="586" height="561"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D3n-a2-skK">
-                                <rect key="frame" x="20" y="0.0" width="546" height="532"/>
+                                <rect key="frame" x="20" y="0.0" width="546" height="561"/>
                                 <subviews>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="Yoe-6O-zlp" customClass="BackgroundView" customModule="Simplenote" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="443" width="546" height="89"/>
+                                        <rect key="frame" x="0.0" y="472" width="546" height="89"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tMt-d6-VMG">
                                                 <rect key="frame" x="65" y="54" width="58" height="16"/>
@@ -97,10 +97,10 @@
                                         </constraints>
                                     </customView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="h39-Ga-h8l" customClass="BackgroundView" customModule="Simplenote" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="294" width="546" height="149"/>
+                                        <rect key="frame" x="0.0" y="294" width="546" height="178"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="J0b-De-aS5">
-                                                <rect key="frame" x="29" y="110" width="101" height="16"/>
+                                                <rect key="frame" x="29" y="139" width="101" height="16"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Note sort order:" id="OyD-gF-dLa">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -108,7 +108,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Oy-Hc-uVh">
-                                                <rect key="frame" x="26" y="79" width="104" height="16"/>
+                                                <rect key="frame" x="26" y="108" width="104" height="16"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Note line length:" id="vRW-QM-Yad">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -116,7 +116,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ug2-qE-z2S">
-                                                <rect key="frame" x="175" y="104" width="375" height="25"/>
+                                                <rect key="frame" x="175" y="133" width="375" height="25"/>
                                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="xK5-q2-is2">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="menu"/>
@@ -127,7 +127,7 @@
                                                 </connections>
                                             </popUpButton>
                                             <button identifier="lineFullButton" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AHv-TO-sDj">
-                                                <rect key="frame" x="176" y="78" width="48" height="18"/>
+                                                <rect key="frame" x="176" y="107" width="48" height="18"/>
                                                 <buttonCell key="cell" type="radio" title="Full" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="SyX-h2-BBn">
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -137,7 +137,7 @@
                                                 </connections>
                                             </button>
                                             <button identifier="noteDisplayCondensedButton" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mMH-Pp-tjv">
-                                                <rect key="frame" x="176" y="48" width="154" height="18"/>
+                                                <rect key="frame" x="176" y="77" width="154" height="18"/>
                                                 <buttonCell key="cell" type="check" title="Condensed Note List" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="IU7-9R-R65">
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -147,7 +147,7 @@
                                                 </connections>
                                             </button>
                                             <button identifier="lineNarrowButton" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g1z-1g-qip">
-                                                <rect key="frame" x="234" y="78" width="70" height="18"/>
+                                                <rect key="frame" x="234" y="107" width="70" height="18"/>
                                                 <buttonCell key="cell" type="radio" title="Narrow" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="ahc-Xw-WLx">
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -157,7 +157,7 @@
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BmD-nr-cLR">
-                                                <rect key="frame" x="176" y="19" width="173" height="18"/>
+                                                <rect key="frame" x="176" y="48" width="173" height="18"/>
                                                 <buttonCell key="cell" type="check" title="Sort Tags Alphabetically" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="agd-zA-CF3">
                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -166,10 +166,21 @@
                                                     <action selector="sortTagsAlphabeticallyPressed:" target="ReV-pG-fyt" id="YMh-gb-3rn"/>
                                                 </connections>
                                             </button>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wte-3r-Hh8">
+                                                <rect key="frame" x="176" y="19" width="171" height="18"/>
+                                                <buttonCell key="cell" type="check" title="Index Notes in Spotlight" bezelStyle="regularSquare" imagePosition="left" inset="2" id="fOY-Cb-mPJ">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="indexNotesWasPressed:" target="ReV-pG-fyt" id="k81-bu-aiI"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="mMH-Pp-tjv" firstAttribute="top" secondItem="AHv-TO-sDj" secondAttribute="bottom" constant="14" id="3ug-RH-CL7"/>
                                             <constraint firstItem="BmD-nr-cLR" firstAttribute="leading" secondItem="mMH-Pp-tjv" secondAttribute="leading" id="7s0-Nx-E7g"/>
+                                            <constraint firstItem="wte-3r-Hh8" firstAttribute="leading" secondItem="BmD-nr-cLR" secondAttribute="leading" id="AB6-6H-s4c"/>
                                             <constraint firstItem="AHv-TO-sDj" firstAttribute="leading" secondItem="ug2-qE-z2S" secondAttribute="leading" id="Gvb-60-nb9"/>
                                             <constraint firstItem="g1z-1g-qip" firstAttribute="centerY" secondItem="AHv-TO-sDj" secondAttribute="centerY" id="HF2-Nc-5sj"/>
                                             <constraint firstItem="AHv-TO-sDj" firstAttribute="centerY" secondItem="8Oy-Hc-uVh" secondAttribute="centerY" id="J1D-9n-DMU"/>
@@ -178,12 +189,13 @@
                                             <constraint firstAttribute="trailing" secondItem="ug2-qE-z2S" secondAttribute="leading" constant="368" id="PDv-8k-5PR"/>
                                             <constraint firstItem="ug2-qE-z2S" firstAttribute="centerY" secondItem="J0b-De-aS5" secondAttribute="centerY" id="U5X-Ro-IK2"/>
                                             <constraint firstItem="8Oy-Hc-uVh" firstAttribute="trailing" secondItem="J0b-De-aS5" secondAttribute="trailing" id="btn-b2-XKC"/>
-                                            <constraint firstAttribute="bottom" secondItem="BmD-nr-cLR" secondAttribute="bottom" constant="20" id="eX9-7Z-3dO"/>
+                                            <constraint firstItem="wte-3r-Hh8" firstAttribute="top" secondItem="BmD-nr-cLR" secondAttribute="bottom" constant="13" id="eX9-7Z-3dO"/>
                                             <constraint firstItem="mMH-Pp-tjv" firstAttribute="leading" secondItem="AHv-TO-sDj" secondAttribute="leading" id="jIv-ok-dPn"/>
                                             <constraint firstAttribute="trailing" secondItem="ug2-qE-z2S" secondAttribute="trailing" id="mZ3-E3-auo"/>
                                             <constraint firstItem="BmD-nr-cLR" firstAttribute="top" secondItem="mMH-Pp-tjv" secondAttribute="bottom" constant="13" id="nst-sw-Av4"/>
                                             <constraint firstItem="g1z-1g-qip" firstAttribute="leading" secondItem="AHv-TO-sDj" secondAttribute="trailing" constant="12" id="qqZ-Uk-tMa"/>
                                             <constraint firstItem="8Oy-Hc-uVh" firstAttribute="top" secondItem="J0b-De-aS5" secondAttribute="bottom" constant="15" id="y71-0M-WCU"/>
+                                            <constraint firstAttribute="bottom" secondItem="wte-3r-Hh8" secondAttribute="bottom" constant="20" id="ypH-mO-HAj"/>
                                         </constraints>
                                     </customView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="cxa-pV-CY8" customClass="BackgroundView" customModule="Simplenote" customModuleProvider="target">
@@ -353,6 +365,7 @@
                         <outlet property="condensedNoteListCheckbox" destination="mMH-Pp-tjv" id="x3n-d7-9dd"/>
                         <outlet property="deleteAccountButton" destination="Fm6-Vq-xaX" id="adK-5g-NFp"/>
                         <outlet property="emailLabel" destination="ZUw-Xc-VSa" id="W3l-aV-uA0"/>
+                        <outlet property="indexNotesButton" destination="fOY-Cb-mPJ" id="YXT-qy-Gcn"/>
                         <outlet property="layoutSectionBackground" destination="h39-Ga-h8l" id="0c9-Mb-LQZ"/>
                         <outlet property="lineLengthFullRadio" destination="AHv-TO-sDj" id="C3F-jP-GsT"/>
                         <outlet property="lineLengthLabel" destination="8Oy-Hc-uVh" id="HSi-IK-9sD"/>
