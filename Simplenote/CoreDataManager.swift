@@ -9,6 +9,23 @@
 import Foundation
 import CoreData
 
+enum CoreDataManagerError: Error {
+    case couldNotBuildModel
+    case noApplicationFilesDirectoryURL
+    case foundNotDirectoryAtFilesDirectoryURL
+
+    var description: String {
+        switch self {
+        case .couldNotBuildModel:
+            return "Could not build model from URL"
+        case .noApplicationFilesDirectoryURL:
+            return "No url found for the application files directory"
+        case .foundNotDirectoryAtFilesDirectoryURL:
+            return "Item at applications files url is not a directory"
+        }
+    }
+}
+
 @objcMembers
 class CoreDataManager: NSObject {
     private(set) var managedObjectModel: NSManagedObjectModel
@@ -18,7 +35,7 @@ class CoreDataManager: NSObject {
     init(storageSettings: StorageSettings = StorageSettings()) throws {
         guard let modelURL = storageSettings.modelURL,
               let mom = NSManagedObjectModel(contentsOf: modelURL) else {
-            throw NSError(domain: "CoreDataManager", code: 1)
+            throw CoreDataManagerError.couldNotBuildModel
         }
 
         let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
@@ -31,7 +48,7 @@ class CoreDataManager: NSObject {
 
     static private func preparePSC(with storageSettings: StorageSettings, model: NSManagedObjectModel) throws -> NSPersistentStoreCoordinator {
         guard let applicationFilesDirectory = storageSettings.applicationFilesDirectory else {
-            throw NSError(domain: "CoreDataManager", code: 1)
+            throw CoreDataManagerError.noApplicationFilesDirectoryURL
         }
 
         // Validate the directory for the store DB
@@ -57,11 +74,7 @@ class CoreDataManager: NSObject {
         let properties = try url.resourceValues(forKeys: [URLResourceKey.isDirectoryKey])
 
         if properties.isDirectory != true {
-            let failureDescription = String(format: "Expected a folder to store application data, found a file (%@).", url.path)
-            var dict: [String: Any] = [:]
-            dict[NSLocalizedDescriptionKey] = failureDescription
-            let error = NSError(domain: "YOUR_ERROR_DOMAIN", code: 101, userInfo: dict)
-            throw error
+            throw CoreDataManagerError.foundNotDirectoryAtFilesDirectoryURL
         }
     }
 
