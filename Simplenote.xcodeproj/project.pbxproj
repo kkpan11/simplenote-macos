@@ -267,6 +267,8 @@
 		BAB261632BFFD0AF009A98D7 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA8CF21B2BFD20770087F33D /* Intents.framework */; };
 		BAB261662BFFD0AF009A98D7 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB261652BFFD0AF009A98D7 /* IntentHandler.swift */; };
 		BAB2616B2BFFD0AF009A98D7 /* IntentsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BAB261622BFFD0AF009A98D7 /* IntentsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BAB261712BFFD0F4009A98D7 /* ShortcutIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BAB261702BFFD0F4009A98D7 /* ShortcutIntents.intentdefinition */; };
+		BAB261722BFFD0F4009A98D7 /* ShortcutIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BAB261702BFFD0F4009A98D7 /* ShortcutIntents.intentdefinition */; };
 		BAD4ECC026E6FC0A00881CC4 /* markdown-light.css in Resources */ = {isa = PBXBuildFile; fileRef = BAF8D5DB26AE3BE800CA9383 /* markdown-light.css */; };
 		BAE66CAA26AF647500398FF3 /* Remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA938CEB26ACFF4A00BE5A1D /* Remote.swift */; };
 		BAF1B0C32BC9B1C500B55F73 /* NoteWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF1B0C12BC9B1C500B55F73 /* NoteWindow.swift */; };
@@ -664,6 +666,7 @@
 		BAB261652BFFD0AF009A98D7 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
 		BAB261672BFFD0AF009A98D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BAB261682BFFD0AF009A98D7 /* IntentsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IntentsExtension.entitlements; sourceTree = "<group>"; };
+		BAB261702BFFD0F4009A98D7 /* ShortcutIntents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = ShortcutIntents.intentdefinition; sourceTree = "<group>"; };
 		BAF1B0C12BC9B1C500B55F73 /* NoteWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteWindow.swift; sourceTree = "<group>"; };
 		BAF1B0C72BCDDA9600B55F73 /* NoteWindowControllersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteWindowControllersManager.swift; sourceTree = "<group>"; };
 		BAF8D5DB26AE3BE800CA9383 /* markdown-light.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "markdown-light.css"; sourceTree = "<group>"; };
@@ -816,6 +819,7 @@
 				26F72A9814032D2A00A7935E /* main.m */,
 				26F72A9A14032D2A00A7935E /* Simplenote-Prefix.pch */,
 				26F72A9B14032D2A00A7935E /* Credits.rtf */,
+				BAB261702BFFD0F4009A98D7 /* ShortcutIntents.intentdefinition */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1815,6 +1819,7 @@
 				B5919365245A7AD300A70C0C /* NSScreen+Simplenote.swift in Sources */,
 				B5C620AC257ED4CF008359A9 /* NSAnimationContext+Simplenote.swift in Sources */,
 				3F07D7B225DD1CDD00D680D0 /* SearchQuery+Simplenote.swift in Sources */,
+				BAB261712BFFD0F4009A98D7 /* ShortcutIntents.intentdefinition in Sources */,
 				466FFEAC17CC10A800399652 /* Simplenote.xcdatamodeld in Sources */,
 				B5009938242130F70037A431 /* UnicodeScalar+Simplenote.swift in Sources */,
 				BAF1B0C92BCEDFD400B55F73 /* NoteWindowControllersManager.swift in Sources */,
@@ -2006,6 +2011,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAB261722BFFD0F4009A98D7 /* ShortcutIntents.intentdefinition in Sources */,
 				BAB261662BFFD0AF009A98D7 /* IntentHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
