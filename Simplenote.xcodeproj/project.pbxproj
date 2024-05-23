@@ -472,6 +472,8 @@
 		BA71EC252BC88FFC00F42CB1 /* NSManagedObjectContext+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA52005C2BC88397003F1B75 /* NSManagedObjectContext+Simplenote.swift */; };
 		BA78AF6F2B5B2BBA00DCF896 /* AutomatticTracks in Frameworks */ = {isa = PBXBuildFile; productRef = BA78AF6E2B5B2BBA00DCF896 /* AutomatticTracks */; };
 		BA78AF712B5B2BC300DCF896 /* AutomatticTracks in Frameworks */ = {isa = PBXBuildFile; productRef = BA78AF702B5B2BC300DCF896 /* AutomatticTracks */; };
+		BA8CF21C2BFD20770087F33D /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA8CF21B2BFD20770087F33D /* Intents.framework */; };
+		BA8CF21F2BFD20780087F33D /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8CF21E2BFD20780087F33D /* IntentHandler.swift */; };
 		BA938CEC26ACFF4A00BE5A1D /* Remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA938CEB26ACFF4A00BE5A1D /* Remote.swift */; };
 		BA938CEE26AD055400BE5A1D /* AccountVerificationController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA938CED26AD055400BE5A1D /* AccountVerificationController+TestHelpers.swift */; };
 		BAA0A87A26B9F0B50006260E /* RemoteError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A87926B9F0B50006260E /* RemoteError.swift */; };
@@ -517,6 +519,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 26F72A8714032D2A00A7935E;
 			remoteInfo = Simplenote;
+		};
+		BA8CF2242BFD21560087F33D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 26F72A7F14032D2900A7935E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BA8CF2192BFD20770087F33D;
+			remoteInfo = SimplenoteIntents;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -880,6 +889,10 @@
 		BA52005C2BC88397003F1B75 /* NSManagedObjectContext+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Simplenote.swift"; sourceTree = "<group>"; };
 		BA553F0727065E20007737E9 /* FontSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSettings.swift; sourceTree = "<group>"; };
 		BA5F020426BB57F000581E92 /* NSAlert+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAlert+Simplenote.swift"; sourceTree = "<group>"; };
+		BA8CF21A2BFD20770087F33D /* SimplenoteIntents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SimplenoteIntents.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA8CF21B2BFD20770087F33D /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
+		BA8CF21E2BFD20780087F33D /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		BA8CF2202BFD20780087F33D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA938CEB26ACFF4A00BE5A1D /* Remote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remote.swift; sourceTree = "<group>"; };
 		BA938CED26AD055400BE5A1D /* AccountVerificationController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountVerificationController+TestHelpers.swift"; sourceTree = "<group>"; };
 		BAA0A87926B9F0B50006260E /* RemoteError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteError.swift; sourceTree = "<group>"; };
@@ -938,6 +951,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BA8CF2172BFD20770087F33D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA8CF21C2BFD20770087F33D /* Intents.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -958,6 +979,7 @@
 				26F72A9214032D2A00A7935E /* Simplenote */,
 				B5CBB06A241976230003C271 /* SimplenoteTests */,
 				26DBB1F61405A6E600186392 /* External */,
+				BA8CF21D2BFD20770087F33D /* SimplenoteIntents */,
 				26F72A8914032D2A00A7935E /* Products */,
 				26F72A8B14032D2A00A7935E /* Frameworks */,
 				8343BE2DC268495E77AD67DF /* Pods */,
@@ -971,6 +993,7 @@
 				26F72A8814032D2A00A7935E /* Simplenote.app */,
 				466FFF2F17CC10A800399652 /* Simplenote.app */,
 				B5CBB069241976230003C271 /* SimplenoteTests.xctest */,
+				BA8CF21A2BFD20770087F33D /* SimplenoteIntents.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -991,6 +1014,7 @@
 				0F7AA366214AF89DB7A1C687 /* Pods_Automattic_Simplenote.framework */,
 				86F72E095CFE66DE228AE8CA /* Pods_Automattic_Simplenote_AppStore.framework */,
 				22D95A169BF4BF7DEABC4021 /* Pods_Automattic_SimplenoteTests.framework */,
+				BA8CF21B2BFD20770087F33D /* Intents.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1703,6 +1727,15 @@
 			name = Preferences;
 			sourceTree = "<group>";
 		};
+		BA8CF21D2BFD20770087F33D /* SimplenoteIntents */ = {
+			isa = PBXGroup;
+			children = (
+				BA8CF21E2BFD20780087F33D /* IntentHandler.swift */,
+				BA8CF2202BFD20780087F33D /* Info.plist */,
+			);
+			path = SimplenoteIntents;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1722,6 +1755,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				BA8CF2252BFD21560087F33D /* PBXTargetDependency */,
 				B52D0ECD230DCEA8003F799D /* PBXTargetDependency */,
 			);
 			name = Simplenote;
@@ -1782,6 +1816,25 @@
 			productReference = B5CBB069241976230003C271 /* SimplenoteTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		BA8CF2192BFD20770087F33D /* SimplenoteIntents */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA8CF2232BFD20780087F33D /* Build configuration list for PBXNativeTarget "SimplenoteIntents" */;
+			buildPhases = (
+				BA8CF2162BFD20770087F33D /* Sources */,
+				BA8CF2172BFD20770087F33D /* Frameworks */,
+				BA8CF2182BFD20770087F33D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SimplenoteIntents;
+			packageProductDependencies = (
+			);
+			productName = SimplenoteIntents;
+			productReference = BA8CF21A2BFD20770087F33D /* SimplenoteIntents.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1789,7 +1842,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastSwiftUpdateCheck = 1130;
+				LastSwiftUpdateCheck = 1530;
 				LastUpgradeCheck = 1530;
 				ORGANIZATIONNAME = Simperium;
 				TargetAttributes = {
@@ -1811,6 +1864,9 @@
 						CreatedOnToolsVersion = 11.3.1;
 						ProvisioningStyle = Manual;
 						TestTargetID = 26F72A8714032D2A00A7935E;
+					};
+					BA8CF2192BFD20770087F33D = {
+						CreatedOnToolsVersion = 15.3;
 					};
 				};
 			};
@@ -1856,6 +1912,7 @@
 				466FFEA617CC10A800399652 /* Simplenote-AppStore */,
 				B52D0EC5230DCAD7003F799D /* SimplenoteSecrets */,
 				B5CBB068241976230003C271 /* SimplenoteTests */,
+				BA8CF2192BFD20770087F33D /* SimplenoteIntents */,
 			);
 		};
 /* End PBXProject section */
@@ -1920,6 +1977,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B5CBB067241976230003C271 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA8CF2182BFD20770087F33D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2527,6 +2591,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BA8CF2162BFD20770087F33D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BA8CF21F2BFD20780087F33D /* IntentHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -2544,6 +2616,11 @@
 			isa = PBXTargetDependency;
 			target = 26F72A8714032D2A00A7935E /* Simplenote */;
 			targetProxy = B5CBB06E241976230003C271 /* PBXContainerItemProxy */;
+		};
+		BA8CF2252BFD21560087F33D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BA8CF2192BFD20770087F33D /* SimplenoteIntents */;
+			targetProxy = BA8CF2242BFD21560087F33D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -3055,6 +3132,119 @@
 			};
 			name = Release;
 		};
+		BA8CF2212BFD20780087F33D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = PZYM8XX95Q;
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = PZYM8XX95Q;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SimplenoteIntents/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SimplenoteIntents;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 Simperium. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.SimplenoteMac.IntentsExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Simplenote Mac Development Intents";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Simplenote Mac Development Intents";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BA8CF2222BFD20780087F33D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = PZYM8XX95Q;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SimplenoteIntents/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SimplenoteIntents;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 Simperium. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.SimplenoteMac.IntentsExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Simplenote Mac Development Intents";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -3099,6 +3289,15 @@
 			buildConfigurations = (
 				B5CBB071241976230003C271 /* Debug */,
 				B5CBB072241976230003C271 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA8CF2232BFD20780087F33D /* Build configuration list for PBXNativeTarget "SimplenoteIntents" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BA8CF2212BFD20780087F33D /* Debug */,
+				BA8CF2222BFD20780087F33D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
