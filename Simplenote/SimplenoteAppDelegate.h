@@ -21,6 +21,7 @@
 @class NoteEditorMetadataCache;
 @class AccountDeletionController;
 @class NoteWindowControllersManager;
+@class CoreDataManager;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -30,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SimplenoteAppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate, SimperiumDelegate>
 
+@property (strong, nonatomic, readonly) CoreDataManager                     *coreDataManager;
 @property (strong, nonatomic, readonly) NSPersistentStoreCoordinator        *persistentStoreCoordinator;
 @property (strong, nonatomic, readonly) NSManagedObjectModel                *managedObjectModel;
 @property (strong, nonatomic, readonly) NSManagedObjectContext              *managedObjectContext;

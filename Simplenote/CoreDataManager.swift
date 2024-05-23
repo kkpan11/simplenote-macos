@@ -58,7 +58,6 @@ class CoreDataManager: NSObject {
             try handleDirectoryError((error as NSError), directoryURL: applicationFilesDirectory)
         }
 
-
         let options = [
             NSMigratePersistentStoresAutomaticallyOption: true,
             NSInferMappingModelAutomaticallyOption: true
