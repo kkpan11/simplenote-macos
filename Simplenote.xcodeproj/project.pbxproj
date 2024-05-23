@@ -1441,9 +1441,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		466FFEA617CC10A800399652 /* Simplenote-AppStore */ = {
+		466FFEA617CC10A800399652 /* Simplenote */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 466FFF2C17CC10A800399652 /* Build configuration list for PBXNativeTarget "Simplenote-AppStore" */;
+			buildConfigurationList = 466FFF2C17CC10A800399652 /* Build configuration list for PBXNativeTarget "Simplenote" */;
 			buildPhases = (
 				33B84E0AFB91551B9B931E47 /* [CP] Check Pods Manifest.lock */,
 				466FFEA717CC10A800399652 /* Sources */,
@@ -1457,7 +1457,7 @@
 			dependencies = (
 				B52D0ECF230DCEAC003F799D /* PBXTargetDependency */,
 			);
-			name = "Simplenote-AppStore";
+			name = Simplenote;
 			packageProductDependencies = (
 				B5609AE724EEC9860097777A /* SimplenoteSearch */,
 				B5609AEF24EF171D0097777A /* SimplenoteFoundation */,
@@ -1499,7 +1499,6 @@
 				ORGANIZATIONNAME = Simperium;
 				TargetAttributes = {
 					466FFEA617CC10A800399652 = {
-						DevelopmentTeam = PZYM8XX95Q;
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Manual;
 					};
@@ -1552,7 +1551,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				466FFEA617CC10A800399652 /* Simplenote-AppStore */,
+				466FFEA617CC10A800399652 /* Simplenote */,
 				B52D0EC5230DCAD7003F799D /* SimplenoteSecrets */,
 				B5CBB068241976230003C271 /* SimplenoteTests */,
 			);
@@ -2349,7 +2348,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		466FFF2C17CC10A800399652 /* Build configuration list for PBXNativeTarget "Simplenote-AppStore" */ = {
+		466FFF2C17CC10A800399652 /* Build configuration list for PBXNativeTarget "Simplenote" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				466FFF2D17CC10A800399652 /* Debug */,

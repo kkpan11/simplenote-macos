@@ -1,12 +1,13 @@
 {
+  "originHash" : "1f66ac352dc04da5870abacba5f42306bd560111ad295c7c60a13a7af5c25ec8",
   "pins" : [
     {
       "identity" : "automattic-tracks-ios",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Automattic/Automattic-Tracks-iOS",
       "state" : {
-        "revision" : "b6979ef69b4b094c8809ba83661222dcd0d7667e",
-        "version" : "3.2.0"
+        "revision" : "cc3200463d9b97d2c58d839d1534e77e5bfa66c3",
+        "version" : "3.4.1"
       }
     },
     {
@@ -14,8 +15,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/getsentry/sentry-cocoa",
       "state" : {
-        "revision" : "3b9a8e69ca296bd8cd0e317ad7a448e5daf4a342",
-        "version" : "8.18.0"
+        "revision" : "7fc7ca43967e2980d8691a8e017c118a84133aac",
+        "version" : "8.26.0"
       }
     },
     {
@@ -64,5 +65,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }
