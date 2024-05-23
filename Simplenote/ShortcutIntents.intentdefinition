@@ -2,11 +2,74 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-  <key>INIntents</key>
-  <array>
-  </array>
-  <key>INEnums</key>
-  <array>
-  </array>
+	<key>INEnums</key>
+	<array/>
+	<key>INIntentDefinitionModelVersion</key>
+	<string>1.2</string>
+	<key>INIntentDefinitionNamespace</key>
+	<string>ihfyvu</string>
+	<key>INIntentDefinitionSystemVersion</key>
+	<string>23E214</string>
+	<key>INIntentDefinitionToolsBuildVersion</key>
+	<string>15F31d</string>
+	<key>INIntentDefinitionToolsVersion</key>
+	<string>15.4</string>
+	<key>INIntents</key>
+	<array>
+		<dict>
+			<key>INIntentCategory</key>
+			<string>information</string>
+			<key>INIntentConfigurable</key>
+			<true/>
+			<key>INIntentDescription</key>
+			<string>Open Simplenote and create a new note</string>
+			<key>INIntentDescriptionID</key>
+			<string>DasQmf</string>
+			<key>INIntentIneligibleForSuggestions</key>
+			<true/>
+			<key>INIntentManagedParameterCombinations</key>
+			<dict>
+				<key></key>
+				<dict>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Open a new note in Simplenote</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>1njn3I</string>
+					<key>INIntentParameterCombinationUpdatesLinked</key>
+					<true/>
+				</dict>
+			</dict>
+			<key>INIntentName</key>
+			<string>OpenNewNote</string>
+			<key>INIntentResponse</key>
+			<dict>
+				<key>INIntentResponseCodes</key>
+				<array>
+					<dict>
+						<key>INIntentResponseCodeName</key>
+						<string>success</string>
+						<key>INIntentResponseCodeSuccess</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
+					</dict>
+				</array>
+			</dict>
+			<key>INIntentTitle</key>
+			<string>Open New Note</string>
+			<key>INIntentTitleID</key>
+			<string>3SWPX6</string>
+			<key>INIntentType</key>
+			<string>Custom</string>
+			<key>INIntentVerb</key>
+			<string>Open</string>
+		</dict>
+	</array>
+	<key>INTypes</key>
+	<array/>
 </dict>
 </plist>
