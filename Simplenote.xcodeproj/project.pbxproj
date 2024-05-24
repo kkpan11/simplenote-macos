@@ -1477,6 +1477,14 @@
 			name = Preferences;
 			sourceTree = "<group>";
 		};
+		BA188D2D2C01113200787855 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				86F72E095CFE66DE228AE8CA /* Pods_Automattic_Simplenote_AppStore.framework */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		BAB261642BFFD0AF009A98D7 /* IntentsExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -1485,14 +1493,6 @@
 				BAB261682BFFD0AF009A98D7 /* IntentsExtension.entitlements */,
 			);
 			path = IntentsExtension;
-			sourceTree = "<group>";
-		};
-		BA188D2D2C01113200787855 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				86F72E095CFE66DE228AE8CA /* Pods_Automattic_Simplenote_AppStore.framework */,
-			);
-			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2463,7 +2463,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = PZYM8XX95Q;
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = "PZYM8XX95Q";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -2483,10 +2483,10 @@
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.SimplenoteMac.IntentsExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.SimplenoteMac.debug.IntentsExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Simplenote Mac Development Intents";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
