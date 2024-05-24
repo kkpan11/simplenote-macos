@@ -21,8 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		24CB911B2B75601F00C9490F /* Pods_Automattic_Simplenote_AppStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86F72E095CFE66DE228AE8CA /* Pods_Automattic_Simplenote_AppStore.framework */; };
-		24CB911C2B75601F00C9490F /* Pods_Automattic_Simplenote_AppStore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 86F72E095CFE66DE228AE8CA /* Pods_Automattic_Simplenote_AppStore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		12FDC872D726DADDBE206EC4 /* Pods_Automattic_Simplenote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F7AA366214AF89DB7A1C687 /* Pods_Automattic_Simplenote.framework */; };
 		3700E97721C1E390004771C9 /* SPTextAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3700E97521C1E390004771C9 /* SPTextAttachment.swift */; };
 		3712FC831FE1ACAA008544AC /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3712FC701FE1ACA9008544AC /* Storage.swift */; };
 		3712FC871FE1ACAA008544AC /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3712FC721FE1ACA9008544AC /* Element.swift */; };
@@ -252,6 +251,7 @@
 		B5F807D02481A2010048CBD7 /* Simperium+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F807CE2481A2010048CBD7 /* Simperium+Simplenote.swift */; };
 		BA0B43CA26F2FCFC00B44A8C /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0B43C826F2FCFC00B44A8C /* PreferencesViewController.swift */; };
 		BA0B43D626F2FEA200B44A8C /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA0B43D426F2FEA200B44A8C /* Preferences.storyboard */; };
+		BA188D2E2C01117200787855 /* Pods_Automattic_Simplenote.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0F7AA366214AF89DB7A1C687 /* Pods_Automattic_Simplenote.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BA2C65CF26FE996A00FA84E1 /* NSButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C65CA26FE996100FA84E1 /* NSButton+Extensions.swift */; };
 		BA4C6D16264CA8C000B723A7 /* SignupRemoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C6D15264CA8C000B723A7 /* SignupRemoteTests.swift */; };
 		BA4C6D18264CAAF800B723A7 /* URLRequest+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C6D17264CAAF800B723A7 /* URLRequest+Simplenote.swift */; };
@@ -302,7 +302,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				24CB911C2B75601F00C9490F /* Pods_Automattic_Simplenote_AppStore.framework in Embed Frameworks */,
+				BA188D2E2C01117200787855 /* Pods_Automattic_Simplenote.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -687,9 +687,9 @@
 				466FFEE117CC10A800399652 /* Cocoa.framework in Frameworks */,
 				B55E98FD1BE03E3F0087CA48 /* Security.framework in Frameworks */,
 				B5609AE824EEC9860097777A /* SimplenoteSearch in Frameworks */,
-				24CB911B2B75601F00C9490F /* Pods_Automattic_Simplenote_AppStore.framework in Frameworks */,
 				BA78AF712B5B2BC300DCF896 /* AutomatticTracks in Frameworks */,
 				B5609AF024EF171D0097777A /* SimplenoteFoundation in Frameworks */,
+				12FDC872D726DADDBE206EC4 /* Pods_Automattic_Simplenote.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -734,6 +734,7 @@
 				26F72A8B14032D2A00A7935E /* Frameworks */,
 				8343BE2DC268495E77AD67DF /* Pods */,
 				B57F50B2231971670074D535 /* RELEASE-NOTES.txt */,
+				BA188D2D2C01113200787855 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -761,7 +762,6 @@
 				2614F1EE1405A14D0031AE94 /* libsqlite3.dylib */,
 				2614F1EC1405A1450031AE94 /* libz.dylib */,
 				0F7AA366214AF89DB7A1C687 /* Pods_Automattic_Simplenote.framework */,
-				86F72E095CFE66DE228AE8CA /* Pods_Automattic_Simplenote_AppStore.framework */,
 				22D95A169BF4BF7DEABC4021 /* Pods_Automattic_SimplenoteTests.framework */,
 				BA8CF21B2BFD20770087F33D /* Intents.framework */,
 			);
@@ -1487,6 +1487,14 @@
 			path = IntentsExtension;
 			sourceTree = "<group>";
 		};
+		BA188D2D2C01113200787855 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				86F72E095CFE66DE228AE8CA /* Pods_Automattic_Simplenote_AppStore.framework */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1709,7 +1717,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Automattic-Simplenote-AppStore-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Automattic-Simplenote-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1722,15 +1730,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Automattic-Simplenote-AppStore/Pods-Automattic-Simplenote-AppStore-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Automattic-Simplenote/Pods-Automattic-Simplenote-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Automattic-Simplenote-AppStore/Pods-Automattic-Simplenote-AppStore-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Automattic-Simplenote/Pods-Automattic-Simplenote-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Automattic-Simplenote-AppStore/Pods-Automattic-Simplenote-AppStore-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Automattic-Simplenote/Pods-Automattic-Simplenote-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5D570A1AB9A23CB9D29A17B9 /* [CP] Check Pods Manifest.lock */ = {
@@ -2219,7 +2227,7 @@
 		};
 		466FFF2D17CC10A800399652 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 12DA3C73E1DAA3D88413DAC5 /* Pods-Automattic-Simplenote-AppStore.debug.xcconfig */;
+			baseConfigurationReference = 07BC80F83FE6EE9EED13F79B /* Pods-Automattic-Simplenote.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2261,7 +2269,7 @@
 					"${inherited}",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.SimplenoteMac;
+				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.SimplenoteMac.debug;
 				PRODUCT_NAME = Simplenote;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2275,7 +2283,7 @@
 		};
 		466FFF2E17CC10A800399652 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9F3E61907F329B466EEE619E /* Pods-Automattic-Simplenote-AppStore.release.xcconfig */;
+			baseConfigurationReference = 39ACEAE8218A03C6C22DC662 /* Pods-Automattic-Simplenote.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
