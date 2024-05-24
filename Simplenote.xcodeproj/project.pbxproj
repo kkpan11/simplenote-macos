@@ -2174,7 +2174,7 @@
 					"${inherited}",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.SimplenoteMac;
+				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.SimplenoteMac.debug;
 				PRODUCT_NAME = Simplenote;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
