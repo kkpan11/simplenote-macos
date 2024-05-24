@@ -34,7 +34,6 @@ abstract_target 'Automattic' do
   # Main Target
   #
   target 'Simplenote'
-  target 'Simplenote-AppStore'
 
   # Testing Target
   #
