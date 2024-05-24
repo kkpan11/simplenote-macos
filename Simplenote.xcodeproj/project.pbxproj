@@ -22,7 +22,6 @@
 
 /* Begin PBXBuildFile section */
 		12FDC872D726DADDBE206EC4 /* Pods_Automattic_Simplenote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F7AA366214AF89DB7A1C687 /* Pods_Automattic_Simplenote.framework */; };
-		24CB911C2B75601F00C9490F /* Pods_Automattic_Simplenote_AppStore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 86F72E095CFE66DE228AE8CA /* Pods_Automattic_Simplenote_AppStore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3700E97721C1E390004771C9 /* SPTextAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3700E97521C1E390004771C9 /* SPTextAttachment.swift */; };
 		3712FC831FE1ACAA008544AC /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3712FC701FE1ACA9008544AC /* Storage.swift */; };
 		3712FC871FE1ACAA008544AC /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3712FC721FE1ACA9008544AC /* Element.swift */; };
@@ -252,6 +251,7 @@
 		B5F807D02481A2010048CBD7 /* Simperium+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F807CE2481A2010048CBD7 /* Simperium+Simplenote.swift */; };
 		BA0B43CA26F2FCFC00B44A8C /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0B43C826F2FCFC00B44A8C /* PreferencesViewController.swift */; };
 		BA0B43D626F2FEA200B44A8C /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA0B43D426F2FEA200B44A8C /* Preferences.storyboard */; };
+		BA188D2E2C01117200787855 /* Pods_Automattic_Simplenote.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0F7AA366214AF89DB7A1C687 /* Pods_Automattic_Simplenote.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BA2C65CF26FE996A00FA84E1 /* NSButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C65CA26FE996100FA84E1 /* NSButton+Extensions.swift */; };
 		BA4C6D16264CA8C000B723A7 /* SignupRemoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C6D15264CA8C000B723A7 /* SignupRemoteTests.swift */; };
 		BA4C6D18264CAAF800B723A7 /* URLRequest+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C6D17264CAAF800B723A7 /* URLRequest+Simplenote.swift */; };
@@ -290,7 +290,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				24CB911C2B75601F00C9490F /* Pods_Automattic_Simplenote_AppStore.framework in Embed Frameworks */,
+				BA188D2E2C01117200787855 /* Pods_Automattic_Simplenote.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -697,6 +697,7 @@
 				26F72A8B14032D2A00A7935E /* Frameworks */,
 				8343BE2DC268495E77AD67DF /* Pods */,
 				B57F50B2231971670074D535 /* RELEASE-NOTES.txt */,
+				BA188D2D2C01113200787855 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1435,6 +1436,14 @@
 				BA0B43D426F2FEA200B44A8C /* Preferences.storyboard */,
 			);
 			name = Preferences;
+			sourceTree = "<group>";
+		};
+		BA188D2D2C01113200787855 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				86F72E095CFE66DE228AE8CA /* Pods_Automattic_Simplenote_AppStore.framework */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
