@@ -13,6 +13,7 @@ enum CoreDataManagerError: Error {
     case couldNotBuildModel
     case noApplicationFilesDirectoryURL
     case foundNotDirectoryAtFilesDirectoryURL
+    case noStorageURL
 
     var description: String {
         switch self {
@@ -22,6 +23,8 @@ enum CoreDataManagerError: Error {
             return "No url found for the application files directory"
         case .foundNotDirectoryAtFilesDirectoryURL:
             return "Item at applications files url is not a directory"
+        case .noStorageURL:
+            return "Could not make storage url"
         }
     }
 }
@@ -39,8 +42,7 @@ class CoreDataManager: NSObject {
         }
 
         let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-        
-        try Self.validateUserLibraryDirectory(with: storageSettings)
+
         let psc = try Self.preparePSC(with: storageSettings, model: mom)
 
         self.managedObjectModel = mom
@@ -49,18 +51,20 @@ class CoreDataManager: NSObject {
     }
 
     static private func preparePSC(with storageSettings: StorageSettings, model: NSManagedObjectModel) throws -> NSPersistentStoreCoordinator {
+        let storageURL = try persistentStoreURL(with: storageSettings)
+
         let options = [
             NSMigratePersistentStoresAutomaticallyOption: true,
             NSInferMappingModelAutomaticallyOption: true
         ]
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
 
-        try coordinator.addPersistentStore(ofType: NSXMLStoreType, configurationName: nil, at: storageSettings.storageURL, options: options)
+        try coordinator.addPersistentStore(ofType: NSXMLStoreType, configurationName: nil, at: storageURL, options: options)
 
         return coordinator
     }
 
-    static private func validateUserLibraryDirectory(with storageSettings: StorageSettings) throws {
+    static private func persistentStoreURL(with storageSettings: StorageSettings) throws -> URL {
         guard let userLibraryDirectory = storageSettings.userLibraryDirectory else {
             throw CoreDataManagerError.noApplicationFilesDirectoryURL
         }
@@ -71,6 +75,12 @@ class CoreDataManager: NSObject {
         } catch {
             try handleDirectoryError((error as NSError), directoryURL: userLibraryDirectory)
         }
+
+        guard let storageURL = storageSettings.storageURL else {
+            throw CoreDataManagerError.noStorageURL
+        }
+
+        return storageURL
     }
 
     static private func validateResourceValueForDirectory(at url: URL) throws {
