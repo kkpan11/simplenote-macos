@@ -6,7 +6,7 @@ import CoreSpotlight
 // MARK: - Initialization
 //
 extension SimplenoteAppDelegate {
-    
+
     @objc
     func makeCoreDataManager() throws -> CoreDataManager {
         try CoreDataManager()
