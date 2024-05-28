@@ -14,11 +14,11 @@ class SharedStorageMigrator: NSObject {
     private let fileManager: FileManager
 
     private var legacyStorageURL: URL {
-        storageSettings.legacyStorageURL!
+        storageSettings.legacyStorageURL
     }
 
     private var sharedStorageURL: URL {
-        storageSettings.sharedStorageURL!
+        storageSettings.sharedStorageURL
     }
 
     init(storageSettings: StorageSettings = StorageSettings(), fileManager: FileManager = FileManager.default) {
@@ -54,7 +54,7 @@ class SharedStorageMigrator: NSObject {
 
     private func migrateCoreDataToAppGroup() -> MigrationResult {
         NSLog("Database needs migration to app group")
-        NSLog("Beginning database migration from: \(storageSettings.legacyStorageURL?.path ?? "") to: \(storageSettings.sharedStorageURL?.path ?? "")")
+        NSLog("Beginning database migration from: \(storageSettings.legacyStorageURL.path ?? "") to: \(storageSettings.sharedStorageURL.path ?? "")")
 
         //        do {
         //            try migrateCoreDataFiles()

@@ -43,16 +43,14 @@ class CoreDataManager: NSObject {
 
         let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
 
-        let psc = try Self.preparePSC(with: storageSettings, model: mom)
+        let psc = try Self.preparePSC(at: storageURL, model: mom)
 
         self.managedObjectModel = mom
         self.managedObjectContext = context
         self.persistentStoreCoordinator = psc
     }
 
-    static private func preparePSC(with storageSettings: StorageSettings, model: NSManagedObjectModel) throws -> NSPersistentStoreCoordinator {
-        let storageURL = try persistentStoreURL(with: storageSettings)
-
+    static private func preparePSC(at storageURL: URL, model: NSManagedObjectModel) throws -> NSPersistentStoreCoordinator {
         let options = [
             NSMigratePersistentStoresAutomaticallyOption: true,
             NSInferMappingModelAutomaticallyOption: true
@@ -62,32 +60,5 @@ class CoreDataManager: NSObject {
         try coordinator.addPersistentStore(ofType: NSXMLStoreType, configurationName: nil, at: storageURL, options: options)
 
         return coordinator
-    }
-
-    static private func persistentStoreURL(with storageSettings: StorageSettings) throws -> URL {
-        // Validate the directory for the store DB
-        do {
-            try Self.validateResourceValueForDirectory(at: storageSettings.userLibraryDirectory)
-        } catch {
-            try handleDirectoryError((error as NSError), directoryURL: storageSettings.userLibraryDirectory)
-        }
-
-        return storageSettings.legacyStorageURL
-    }
-
-    static private func validateResourceValueForDirectory(at url: URL) throws {
-        let properties = try url.resourceValues(forKeys: [URLResourceKey.isDirectoryKey])
-
-        if properties.isDirectory != true {
-            throw CoreDataManagerError.foundNotDirectoryAtFilesDirectoryURL
-        }
-    }
-
-    static private func handleDirectoryError(_ error: NSError, directoryURL: URL) throws {
-        if error.code == NSFileReadNoSuchFileError {
-            try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
-        } else {
-            throw error
-        }
     }
 }

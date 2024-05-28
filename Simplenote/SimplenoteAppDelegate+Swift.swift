@@ -23,9 +23,36 @@ extension SimplenoteAppDelegate {
 
         switch migrationResult {
         case .notNeeded, .success:
+            try validateStorageDirectory(at: settings.sharedUserLibraryDirectory)
             coreDataManager = try CoreDataManager(at: settings.sharedStorageURL)
         case .failed:
+            try validateStorageDirectory(at: settings.legacyUserLibraryDirectory)
             coreDataManager = try CoreDataManager(at: settings.legacyStorageURL)
+        }
+    }
+
+    private func validateStorageDirectory(at url: URL) throws {
+        // Validate the directory for the store DB
+        do {
+            try validateResourceValueForDirectory(at: url)
+        } catch {
+            try handleDirectoryError((error as NSError), directoryURL: url)
+        }
+    }
+
+    private func validateResourceValueForDirectory(at url: URL) throws {
+        let properties = try url.resourceValues(forKeys: [URLResourceKey.isDirectoryKey])
+
+        if properties.isDirectory != true {
+            throw CoreDataManagerError.foundNotDirectoryAtFilesDirectoryURL
+        }
+    }
+
+    private func handleDirectoryError(_ error: NSError, directoryURL: URL) throws {
+        if error.code == NSFileReadNoSuchFileError {
+            try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+        } else {
+            throw error
         }
     }
 

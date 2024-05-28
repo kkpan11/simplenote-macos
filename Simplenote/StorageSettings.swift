@@ -15,7 +15,7 @@ class StorageSettings {
         self.fileManager = fileManger
     }
 
-    var userLibraryDirectory: URL {
+    var legacyUserLibraryDirectory: URL {
         let libraryURL = fileManager.urls(for: .libraryDirectory, in: .userDomainMask).last!
         return libraryURL.appendingPathComponent(Constants.modelName)
     }
@@ -33,7 +33,7 @@ class StorageSettings {
     }
 
     var legacyStorageURL: URL {
-        userLibraryDirectory.appendingPathComponent("\(Constants.modelName).\(Constants.storeExtension)")
+        legacyUserLibraryDirectory.appendingPathComponent("\(Constants.modelName).\(Constants.storeExtension)")
     }
 
     var legacyBackupURL: URL {
