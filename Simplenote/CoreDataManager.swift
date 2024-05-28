@@ -76,7 +76,7 @@ class CoreDataManager: NSObject {
             try handleDirectoryError((error as NSError), directoryURL: userLibraryDirectory)
         }
 
-        guard let storageURL = storageSettings.storageURL else {
+        guard let storageURL = storageSettings.legacyStorageURL else {
             throw CoreDataManagerError.noStorageURL
         }
 

@@ -25,14 +25,14 @@ extension Bundle {
 
         return (Bundle(url: url)?.object(forInfoDictionaryKey: kCFBundleIdentifierKey as String) as? String) ?? Constants.defaultBundleID
     }
-    /*
-     static let sharedGroupDomain = "\(Bundle.main.teamIDPrefix ?? "PZYM8XX95Q")group.\(Bundle.main.rootBundleIdentifier ?? "com.codality.NotationalFlow")
 
-     var teamIDPrefix: String? {
-         object(forInfoDictionaryKey: Constants.teamIDPrefix) as? String
-     }
+    var sharedGroupDomain: String {
+        "\(teamIDPrefix ?? Constants.defaultTeamID)group.\(rootBundleIdentifier)"
+    }
 
-     */
+    var teamIDPrefix: String? {
+        object(forInfoDictionaryKey: Constants.teamIDPrefix) as? String
+    }
 }
 
 private extension Bundle {
@@ -49,6 +49,8 @@ private extension Bundle {
 private struct Constants {
     static let teamIDPrefix = "TeamIDPrefix"
     static let appSuffix = ".app"
+    static let defaultTeamID = "PZYM8XX95Q"
+
     static let defaultBundleID: String  = {
         var id = "com.automattic.SimplenoteMac"
         #if DEBUG

@@ -24,8 +24,20 @@ class StorageSettings {
         Bundle.main.url(forResource: Constants.modelName, withExtension: Constants.modelExtension)
     }
 
-    var storageURL: URL? {
+    var sharedUserLibraryDirectory: URL? {
+        fileManager.sharedContainerURL?.appendingPathComponent(Constants.dataDirectory)
+    }
+
+    var sharedStorageURL: URL? {
+        sharedUserLibraryDirectory?.appendingPathComponent("\(Constants.modelName).\(Constants.storeExtension)")
+    }
+
+    var legacyStorageURL: URL? {
         userLibraryDirectory?.appendingPathComponent("\(Constants.modelName).\(Constants.storeExtension)")
+    }
+
+    var legacyBackupURL: URL? {
+        legacyStorageURL?.appendingPathExtension(Constants.oldExtension)
     }
 }
 
@@ -33,4 +45,6 @@ private struct Constants {
     static let modelName = "Simplenote"
     static let modelExtension = "momd"
     static let storeExtension = "storedata"
+    static let oldExtension = "old"
+    static let dataDirectory = "Data"
 }
