@@ -39,6 +39,8 @@ class CoreDataManager: NSObject {
         }
 
         let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        
+        try Self.validateUserLibraryDirectory(with: storageSettings)
         let psc = try Self.preparePSC(with: storageSettings, model: mom)
 
         self.managedObjectModel = mom
@@ -47,17 +49,6 @@ class CoreDataManager: NSObject {
     }
 
     static private func preparePSC(with storageSettings: StorageSettings, model: NSManagedObjectModel) throws -> NSPersistentStoreCoordinator {
-        guard let applicationFilesDirectory = storageSettings.applicationFilesDirectory else {
-            throw CoreDataManagerError.noApplicationFilesDirectoryURL
-        }
-
-        // Validate the directory for the store DB
-        do {
-            try Self.validateResourceValueForDirectory(at: applicationFilesDirectory)
-        } catch {
-            try handleDirectoryError((error as NSError), directoryURL: applicationFilesDirectory)
-        }
-
         let options = [
             NSMigratePersistentStoresAutomaticallyOption: true,
             NSInferMappingModelAutomaticallyOption: true
@@ -67,6 +58,19 @@ class CoreDataManager: NSObject {
         try coordinator.addPersistentStore(ofType: NSXMLStoreType, configurationName: nil, at: storageSettings.storageURL, options: options)
 
         return coordinator
+    }
+
+    static private func validateUserLibraryDirectory(with storageSettings: StorageSettings) throws {
+        guard let userLibraryDirectory = storageSettings.userLibraryDirectory else {
+            throw CoreDataManagerError.noApplicationFilesDirectoryURL
+        }
+
+        // Validate the directory for the store DB
+        do {
+            try Self.validateResourceValueForDirectory(at: userLibraryDirectory)
+        } catch {
+            try handleDirectoryError((error as NSError), directoryURL: userLibraryDirectory)
+        }
     }
 
     static private func validateResourceValueForDirectory(at url: URL) throws {

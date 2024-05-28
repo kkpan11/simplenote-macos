@@ -15,7 +15,7 @@ class StorageSettings {
         self.fileManager = fileManger
     }
 
-    var applicationFilesDirectory: URL? {
+    var userLibraryDirectory: URL? {
         let libraryURL = fileManager.urls(for: .libraryDirectory, in: .userDomainMask).last
         return libraryURL?.appendingPathComponent(Constants.modelName)
     }
@@ -25,7 +25,7 @@ class StorageSettings {
     }
 
     var storageURL: URL? {
-        applicationFilesDirectory?.appendingPathComponent("\(Constants.modelName).\(Constants.storeExtension)")
+        userLibraryDirectory?.appendingPathComponent("\(Constants.modelName).\(Constants.storeExtension)")
     }
 }
 
