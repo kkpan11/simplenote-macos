@@ -35,7 +35,7 @@ class CoreDataManager: NSObject {
     private(set) var managedObjectContext: NSManagedObjectContext
     private(set) var persistentStoreCoordinator: NSPersistentStoreCoordinator
 
-    init(storageSettings: StorageSettings = StorageSettings()) throws {
+    init(at storageURL: URL, storageSettings: StorageSettings = StorageSettings()) throws {
         guard let modelURL = storageSettings.modelURL,
               let mom = NSManagedObjectModel(contentsOf: modelURL) else {
             throw CoreDataManagerError.couldNotBuildModel
@@ -65,22 +65,14 @@ class CoreDataManager: NSObject {
     }
 
     static private func persistentStoreURL(with storageSettings: StorageSettings) throws -> URL {
-        guard let userLibraryDirectory = storageSettings.userLibraryDirectory else {
-            throw CoreDataManagerError.noApplicationFilesDirectoryURL
-        }
-
         // Validate the directory for the store DB
         do {
-            try Self.validateResourceValueForDirectory(at: userLibraryDirectory)
+            try Self.validateResourceValueForDirectory(at: storageSettings.userLibraryDirectory)
         } catch {
-            try handleDirectoryError((error as NSError), directoryURL: userLibraryDirectory)
+            try handleDirectoryError((error as NSError), directoryURL: storageSettings.userLibraryDirectory)
         }
 
-        guard let storageURL = storageSettings.legacyStorageURL else {
-            throw CoreDataManagerError.noStorageURL
-        }
-
-        return storageURL
+        return storageSettings.legacyStorageURL
     }
 
     static private func validateResourceValueForDirectory(at url: URL) throws {

@@ -56,7 +56,20 @@ class SharedStorageMigrator: NSObject {
         NSLog("Database needs migration to app group")
         NSLog("Beginning database migration from: \(storageSettings.legacyStorageURL?.path ?? "") to: \(storageSettings.sharedStorageURL?.path ?? "")")
 
-
+        //        do {
+        //            try migrateCoreDataFiles()
+        //            try attemptCreationOfCoreDataStack()
+        //            NSLog("Database migration successful!!")
+        //            backupLegacyDatabase()
+        //            return .success
+        //        } catch {
+        //            NSLog("Could not migrate database to app group " + error.localizedDescription)
+        ////            CrashLogging.logError(error)
+        //
+        //            removeFailedMigrationFilesIfNeeded()
+        //            return .failed
+        //        }
+        
         return .failed
     }
 
