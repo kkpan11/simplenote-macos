@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+extension FileManager {
+    var sharedContainerURL: URL? {
+        containerURL(forSecurityApplicationGroupIdentifier: Bundle.main.rootBundleIdentifier)
+    }
+}
