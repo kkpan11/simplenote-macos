@@ -280,6 +280,8 @@
 		BAAA71E82C07A37700244C01 /* StorageSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB2617F2BFFDD97009A98D7 /* StorageSettings.swift */; };
 		BAAA71E92C07A39300244C01 /* FileManager+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC5DFB32C0691E6002AD7EF /* FileManager+Simplenote.swift */; };
 		BAAA71EA2C07A58100244C01 /* Simplenote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2614F1E21405A0C60031AE94 /* Simplenote.xcdatamodeld */; };
+		BAAA71ED2C07A69C00244C01 /* IntentNote+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAA71EC2C07A69C00244C01 /* IntentNote+Helpers.swift */; };
+		BAAA71EF2C07A6CF00244C01 /* IntentsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAA71EE2C07A6CF00244C01 /* IntentsError.swift */; };
 		BAB261632BFFD0AF009A98D7 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA8CF21B2BFD20770087F33D /* Intents.framework */; };
 		BAB261662BFFD0AF009A98D7 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB261652BFFD0AF009A98D7 /* IntentHandler.swift */; };
 		BAB2616B2BFFD0AF009A98D7 /* IntentsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BAB261622BFFD0AF009A98D7 /* IntentsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -694,6 +696,8 @@
 		BAAA71D62C07A11500244C01 /* Note+Widget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Note+Widget.swift"; sourceTree = "<group>"; };
 		BAAA71DC2C07A1DF00244C01 /* ExtensionResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionResultsController.swift; sourceTree = "<group>"; };
 		BAAA71E52C07A35F00244C01 /* ExtensionCoreDataWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionCoreDataWrapper.swift; sourceTree = "<group>"; };
+		BAAA71EC2C07A69C00244C01 /* IntentNote+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IntentNote+Helpers.swift"; sourceTree = "<group>"; };
+		BAAA71EE2C07A6CF00244C01 /* IntentsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentsError.swift; sourceTree = "<group>"; };
 		BAB261622BFFD0AF009A98D7 /* IntentsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = IntentsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAB261652BFFD0AF009A98D7 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
 		BAB261672BFFD0AF009A98D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1548,13 +1552,23 @@
 			children = (
 				BAAA71DC2C07A1DF00244C01 /* ExtensionResultsController.swift */,
 				BAAA71E52C07A35F00244C01 /* ExtensionCoreDataWrapper.swift */,
+				BAAA71EE2C07A6CF00244C01 /* IntentsError.swift */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		BAAA71EB2C07A69300244C01 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BAAA71EC2C07A69C00244C01 /* IntentNote+Helpers.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		BAB261642BFFD0AF009A98D7 /* IntentsExtension */ = {
 			isa = PBXGroup;
 			children = (
+				BAAA71EB2C07A69300244C01 /* Extensions */,
 				BAB261732BFFD2F6009A98D7 /* IntentHandlers */,
 				BAAA71D32C07A0F000244C01 /* Models */,
 				BAC5DFBB2C079F20002AD7EF /* Support Files */,
@@ -2118,6 +2132,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAAA71EF2C07A6CF00244C01 /* IntentsError.swift in Sources */,
 				BAAA71D92C07A14600244C01 /* String+Simplenote.swift in Sources */,
 				BAAA71E92C07A39300244C01 /* FileManager+Simplenote.swift in Sources */,
 				BAAA71E82C07A37700244C01 /* StorageSettings.swift in Sources */,
@@ -2137,6 +2152,7 @@
 				BAC5DFB92C079E5A002AD7EF /* OpenNoteIntentHandler.swift in Sources */,
 				BAAA71E72C07A37000244C01 /* CoreDataManager.swift in Sources */,
 				BAAA71D52C07A10E00244C01 /* SPManagedObject+Widget.swift in Sources */,
+				BAAA71ED2C07A69C00244C01 /* IntentNote+Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

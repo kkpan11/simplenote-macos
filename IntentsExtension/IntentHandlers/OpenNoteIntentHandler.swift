@@ -12,14 +12,12 @@ class OpenNoteIntentHandler: NSObject, OpenNoteIntentHandling {
     let coredataWrapper = ExtensionCoreDataWrapper()
 
     func provideNoteOptionsCollection(for intent: OpenNoteIntent, with completion: @escaping (INObjectCollection<IntentNote>?, (any Error)?) -> Void) {
-        guard let notes = coredataWrapper.resultsController()?.notes() else {
-            completion(nil, NSError(domain: "oops", code: 1))
-            return
+        do {
+            let intentNotes = try IntentNote.allNotes(in: coredataWrapper)
+            completion(INObjectCollection(items: intentNotes), nil)
+        } catch {
+            completion(nil, IntentsError.couldNotFetchNotes)
         }
-        let intentNotes = notes.compactMap({ IntentNote(identifier: $0.simperiumKey, display: $0.title) })
-        let collection = INObjectCollection(items: intentNotes)
-
-        completion(collection, nil)
     }
 
     func handle(intent: OpenNoteIntent, completion: @escaping (OpenNoteIntentResponse) -> Void) {
