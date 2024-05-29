@@ -64,9 +64,7 @@ class SharedStorageMigrator: NSObject {
                     return .success
                 } catch {
                     NSLog("Could not migrate database to app group " + error.localizedDescription)
-        ////            CrashLogging.logError(error)
-        //
-        //            removeFailedMigrationFilesIfNeeded()
+                    removeFailedMigrationFilesIfNeeded()
                     return .failed
                 }
     }
@@ -110,6 +108,18 @@ class SharedStorageMigrator: NSObject {
             try fileManager.moveItem(at: storageSettings.legacyStorageURL, to: storageSettings.legacyBackupURL)
         } catch {
             NSLog("Could not backup legacy storage database" + error.localizedDescription)
+        }
+    }
+
+    private func removeFailedMigrationFilesIfNeeded() {
+        guard sharedStorageExists else {
+            return
+        }
+
+        do {
+            try fileManager.removeItem(at: storageSettings.sharedStorageURL)
+        } catch {
+            NSLog("Could not delete files from failed migration " + error.localizedDescription)
         }
     }
 }
