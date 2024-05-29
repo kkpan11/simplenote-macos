@@ -279,6 +279,7 @@
 		BAAA71E72C07A37000244C01 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB2617D2BFFDD6B009A98D7 /* CoreDataManager.swift */; };
 		BAAA71E82C07A37700244C01 /* StorageSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB2617F2BFFDD97009A98D7 /* StorageSettings.swift */; };
 		BAAA71E92C07A39300244C01 /* FileManager+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC5DFB32C0691E6002AD7EF /* FileManager+Simplenote.swift */; };
+		BAAA71EA2C07A58100244C01 /* Simplenote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2614F1E21405A0C60031AE94 /* Simplenote.xcdatamodeld */; };
 		BAB261632BFFD0AF009A98D7 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA8CF21B2BFD20770087F33D /* Intents.framework */; };
 		BAB261662BFFD0AF009A98D7 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB261652BFFD0AF009A98D7 /* IntentHandler.swift */; };
 		BAB2616B2BFFD0AF009A98D7 /* IntentsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BAB261622BFFD0AF009A98D7 /* IntentsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -2129,6 +2130,7 @@
 				BAB261762BFFD319009A98D7 /* OpenNewNoteIntentHandler.swift in Sources */,
 				BAAA71D72C07A11500244C01 /* Note+Widget.swift in Sources */,
 				BAAA71D82C07A12F00244C01 /* NoteContentHelper.swift in Sources */,
+				BAAA71EA2C07A58100244C01 /* Simplenote.xcdatamodeld in Sources */,
 				BAB261662BFFD0AF009A98D7 /* IntentHandler.swift in Sources */,
 				BAC5DFB52C069568002AD7EF /* Bundle+Simplenote.swift in Sources */,
 				BAAA71DD2C07A1DF00244C01 /* ExtensionResultsController.swift in Sources */,
