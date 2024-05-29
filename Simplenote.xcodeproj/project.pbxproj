@@ -291,7 +291,6 @@
 		BAB261722BFFD0F4009A98D7 /* ShortcutIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BAB261702BFFD0F4009A98D7 /* ShortcutIntents.intentdefinition */; };
 		BAB261752BFFD319009A98D7 /* OpenNewNoteIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB261742BFFD319009A98D7 /* OpenNewNoteIntentHandler.swift */; };
 		BAB261762BFFD319009A98D7 /* OpenNewNoteIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB261742BFFD319009A98D7 /* OpenNewNoteIntentHandler.swift */; };
-		BAB261782BFFD38D009A98D7 /* ShortcutHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB261772BFFD38D009A98D7 /* ShortcutHandler.swift */; };
 		BAB2617B2BFFD40B009A98D7 /* ActivityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB2617A2BFFD40B009A98D7 /* ActivityType.swift */; };
 		BAB2617E2BFFDD6B009A98D7 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB2617D2BFFDD6B009A98D7 /* CoreDataManager.swift */; };
 		BAB261802BFFDD97009A98D7 /* StorageSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB2617F2BFFDD97009A98D7 /* StorageSettings.swift */; };
@@ -707,7 +706,6 @@
 		BAB261682BFFD0AF009A98D7 /* IntentsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IntentsExtension.entitlements; sourceTree = "<group>"; };
 		BAB261702BFFD0F4009A98D7 /* ShortcutIntents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = ShortcutIntents.intentdefinition; sourceTree = "<group>"; };
 		BAB261742BFFD319009A98D7 /* OpenNewNoteIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenNewNoteIntentHandler.swift; sourceTree = "<group>"; };
-		BAB261772BFFD38D009A98D7 /* ShortcutHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutHandler.swift; sourceTree = "<group>"; };
 		BAB2617A2BFFD40B009A98D7 /* ActivityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityType.swift; sourceTree = "<group>"; };
 		BAB2617D2BFFDD6B009A98D7 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		BAB2617F2BFFDD97009A98D7 /* StorageSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageSettings.swift; sourceTree = "<group>"; };
@@ -1256,7 +1254,6 @@
 			isa = PBXGroup;
 			children = (
 				B574CA72242D552100F8D02F /* TextViewInputHandler.swift */,
-				BAB261772BFFD38D009A98D7 /* ShortcutHandler.swift */,
 				BAB2617A2BFFD40B009A98D7 /* ActivityType.swift */,
 			);
 			name = Handlers;
@@ -1974,7 +1971,6 @@
 				BAB261752BFFD319009A98D7 /* OpenNewNoteIntentHandler.swift in Sources */,
 				B5132FA923C4B9760065DD80 /* NSTextStorage+Simplenote.swift in Sources */,
 				375D293721E033D1007AB25A /* document.c in Sources */,
-				BAB261782BFFD38D009A98D7 /* ShortcutHandler.swift in Sources */,
 				376EE3EC202B748E00E3812E /* SPAboutTextField.swift in Sources */,
 				B542FE5725D42EC700A3582D /* Storage.m in Sources */,
 				B59EA98224AA5EFA008ABE4B /* NoteMetrics.swift in Sources */,
