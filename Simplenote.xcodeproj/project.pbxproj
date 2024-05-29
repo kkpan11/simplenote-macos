@@ -1607,6 +1607,7 @@
 			buildConfigurationList = 466FFF2C17CC10A800399652 /* Build configuration list for PBXNativeTarget "Simplenote" */;
 			buildPhases = (
 				33B84E0AFB91551B9B931E47 /* [CP] Check Pods Manifest.lock */,
+				BAAA71F42C07B8BB00244C01 /* Swiftlint */,
 				466FFEA717CC10A800399652 /* Sources */,
 				466FFEDC17CC10A800399652 /* Frameworks */,
 				466FFEE517CC10A800399652 /* Resources */,
@@ -1889,6 +1890,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "${SRCROOT}/Scripts/Build-Phases/copy-secret.sh\n";
+		};
+		BAAA71F42C07B8BB00244C01 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "[ $CI ] && exit 0\n./Pods/SwiftLint/swiftlint\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
