@@ -12,6 +12,7 @@
 			<array/>
 			<key>IntentsSupported</key>
 			<array>
+				<string>CopyNoteContentIntent</string>
 				<string>FindNoteIntent</string>
 				<string>OpenNewNoteIntent</string>
 				<string>OpenNoteIntent</string>
