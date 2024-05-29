@@ -290,6 +290,31 @@
 						<string>failure</string>
 					</dict>
 				</array>
+				<key>INIntentResponseLastParameterTag</key>
+				<integer>2</integer>
+				<key>INIntentResponseOutput</key>
+				<string>note</string>
+				<key>INIntentResponseParameters</key>
+				<array>
+					<dict>
+						<key>INIntentResponseParameterDisplayName</key>
+						<string>Note</string>
+						<key>INIntentResponseParameterDisplayNameID</key>
+						<string>HIbqhe</string>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>1</integer>
+						<key>INIntentResponseParameterName</key>
+						<string>note</string>
+						<key>INIntentResponseParameterObjectType</key>
+						<string>IntentNote</string>
+						<key>INIntentResponseParameterObjectTypeNamespace</key>
+						<string>ihfyvu</string>
+						<key>INIntentResponseParameterTag</key>
+						<integer>2</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>Object</string>
+					</dict>
+				</array>
 			</dict>
 			<key>INIntentTitle</key>
 			<string>Find Note With Content</string>

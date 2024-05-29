@@ -252,6 +252,7 @@
 		BA0B43CA26F2FCFC00B44A8C /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0B43C826F2FCFC00B44A8C /* PreferencesViewController.swift */; };
 		BA0B43D626F2FEA200B44A8C /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA0B43D426F2FEA200B44A8C /* Preferences.storyboard */; };
 		BA188D2E2C01117200787855 /* Pods_Automattic_Simplenote.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0F7AA366214AF89DB7A1C687 /* Pods_Automattic_Simplenote.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BA2BF3402C07C75500A7C894 /* FindNoteIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2BF33F2C07C75500A7C894 /* FindNoteIntentHandler.swift */; };
 		BA2C65CF26FE996A00FA84E1 /* NSButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C65CA26FE996100FA84E1 /* NSButton+Extensions.swift */; };
 		BA4C6D16264CA8C000B723A7 /* SignupRemoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C6D15264CA8C000B723A7 /* SignupRemoteTests.swift */; };
 		BA4C6D18264CAAF800B723A7 /* URLRequest+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C6D17264CAAF800B723A7 /* URLRequest+Simplenote.swift */; };
@@ -678,6 +679,7 @@
 		B5F807CE2481A2010048CBD7 /* Simperium+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Simperium+Simplenote.swift"; sourceTree = "<group>"; };
 		BA0B43C826F2FCFC00B44A8C /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		BA0B43D426F2FEA200B44A8C /* Preferences.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
+		BA2BF33F2C07C75500A7C894 /* FindNoteIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindNoteIntentHandler.swift; sourceTree = "<group>"; };
 		BA2C65CA26FE996100FA84E1 /* NSButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSButton+Extensions.swift"; sourceTree = "<group>"; };
 		BA39C4542C0133F30004B2A9 /* SimplenoteDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SimplenoteDebug.entitlements; sourceTree = "<group>"; };
 		BA39C4552C0134180004B2A9 /* IntentsExtensionDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IntentsExtensionDebug.entitlements; sourceTree = "<group>"; };
@@ -1585,6 +1587,7 @@
 			children = (
 				BAB261742BFFD319009A98D7 /* OpenNewNoteIntentHandler.swift */,
 				BAC5DFB82C079E5A002AD7EF /* OpenNoteIntentHandler.swift */,
+				BA2BF33F2C07C75500A7C894 /* FindNoteIntentHandler.swift */,
 			);
 			path = IntentHandlers;
 			sourceTree = "<group>";
@@ -2167,6 +2170,7 @@
 				BAAA71E32C07A2C200244C01 /* SortMode.swift in Sources */,
 				BAAA71E42C07A2F900244C01 /* NSUserInterfaceItemIdentifier+Simplenote.swift in Sources */,
 				BAB261762BFFD319009A98D7 /* OpenNewNoteIntentHandler.swift in Sources */,
+				BA2BF3402C07C75500A7C894 /* FindNoteIntentHandler.swift in Sources */,
 				BAAA71D72C07A11500244C01 /* Note+Widget.swift in Sources */,
 				BAAA71D82C07A12F00244C01 /* NoteContentHelper.swift in Sources */,
 				BAAA71EA2C07A58100244C01 /* Simplenote.xcdatamodeld in Sources */,
