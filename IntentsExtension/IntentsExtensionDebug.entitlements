@@ -8,5 +8,9 @@
 	<array>
 		<string>$(TeamIdentifierPrefix)com.automattic.SimplenoteMac.Debug</string>
 	</array>
+	<key>keychain-access-groups</key>
+	<array>
+		<string>$(AppIdentifierPrefix)com.automattic.SimplenoteMac.Debug</string>
+	</array>
 </dict>
 </plist>
