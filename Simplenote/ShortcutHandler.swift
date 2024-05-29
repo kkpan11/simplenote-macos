@@ -30,6 +30,8 @@ class ShortcutsHandler: NSObject {
         switch type {
         case .newNoteShortcut:
             SimplenoteAppDelegate.shared().noteEditorViewController.createNote(from: nil)
+        case .openNoteShortcut:
+            print("open note")
         }
 
         return true

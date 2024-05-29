@@ -21,6 +21,14 @@ class OpenNoteIntentHandler: NSObject, OpenNoteIntentHandling {
     }
 
     func handle(intent: OpenNoteIntent, completion: @escaping (OpenNoteIntentResponse) -> Void) {
-        completion(OpenNoteIntentResponse.init(code: .continueInApp, userActivity: nil))
+        guard let identifier = intent.note?.identifier else {
+            completion(OpenNoteIntentResponse(code: .failure, userActivity: nil))
+            return
+        }
+
+        let activity = NSUserActivity(activityType: ActivityType.openNoteShortcut.rawValue)
+        activity.userInfo = [IntentsConstants.noteIdentifierKey: identifier]
+
+        completion(OpenNoteIntentResponse(code: .continueInApp, userActivity: activity))
     }
 }
