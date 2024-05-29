@@ -27,7 +27,7 @@ extension Bundle {
     }
 
     var sharedGroupDomain: String {
-        "\(teamIDPrefix ?? Constants.defaultTeamID)group.\(rootBundleIdentifier)"
+        "\(teamIDPrefix ?? Constants.defaultTeamID)\(rootBundleIdentifier)"
     }
 
     var teamIDPrefix: String? {

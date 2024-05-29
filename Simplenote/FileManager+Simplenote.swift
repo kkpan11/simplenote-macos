@@ -10,6 +10,6 @@ import Foundation
 
 extension FileManager {
     var sharedContainerURL: URL {
-        containerURL(forSecurityApplicationGroupIdentifier: Bundle.main.rootBundleIdentifier)!
+        containerURL(forSecurityApplicationGroupIdentifier: Bundle.main.sharedGroupDomain)!
     }
 }
