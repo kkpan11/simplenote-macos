@@ -45,7 +45,6 @@ private extension Bundle {
     }
 }
 
-
 private struct Constants {
     static let teamIDPrefix = "TeamIDPrefix"
     static let appSuffix = ".app"
