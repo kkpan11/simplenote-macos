@@ -1515,11 +1515,10 @@
 		BAB261642BFFD0AF009A98D7 /* IntentsExtension */ = {
 			isa = PBXGroup;
 			children = (
-				BA39C4552C0134180004B2A9 /* IntentsExtensionDebug.entitlements */,
+				BAC5DFBB2C079F20002AD7EF /* Support Files */,
+				BAC5DFBA2C079F15002AD7EF /* Tools */,
 				BAB261732BFFD2F6009A98D7 /* IntentHandlers */,
 				BAB261652BFFD0AF009A98D7 /* IntentHandler.swift */,
-				BAB261672BFFD0AF009A98D7 /* Info.plist */,
-				BAB261682BFFD0AF009A98D7 /* IntentsExtension.entitlements */,
 			);
 			path = IntentsExtension;
 			sourceTree = "<group>";
@@ -1531,6 +1530,23 @@
 				BAC5DFB82C079E5A002AD7EF /* OpenNoteIntentHandler.swift */,
 			);
 			path = IntentHandlers;
+			sourceTree = "<group>";
+		};
+		BAC5DFBA2C079F15002AD7EF /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		BAC5DFBB2C079F20002AD7EF /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				BA39C4552C0134180004B2A9 /* IntentsExtensionDebug.entitlements */,
+				BAB261682BFFD0AF009A98D7 /* IntentsExtension.entitlements */,
+				BAB261672BFFD0AF009A98D7 /* Info.plist */,
+			);
+			path = "Support Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2504,7 +2520,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = IntentsExtension/IntentsExtensionDebug.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "IntentsExtension/Support Files/IntentsExtensionDebug.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -2518,7 +2534,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = IntentsExtension/Info.plist;
+				INFOPLIST_FILE = "IntentsExtension/Support Files/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = IntentsExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 Simperium. All rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2559,7 +2575,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = IntentsExtension/IntentsExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "IntentsExtension/Support Files/IntentsExtension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Distribution";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -2574,7 +2590,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = IntentsExtension/Info.plist;
+				INFOPLIST_FILE = "IntentsExtension/Support Files/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = IntentsExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2024 Simperium. All rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
