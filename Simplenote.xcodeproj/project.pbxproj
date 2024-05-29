@@ -284,6 +284,7 @@
 		BAAA71EF2C07A6CF00244C01 /* IntentsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAA71EE2C07A6CF00244C01 /* IntentsError.swift */; };
 		BAAA71F02C07A7DB00244C01 /* ActivityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB2617A2BFFD40B009A98D7 /* ActivityType.swift */; };
 		BAAA71F22C07A7FD00244C01 /* IntentsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAA71F12C07A7FD00244C01 /* IntentsConstants.swift */; };
+		BAAA71F32C07AB8E00244C01 /* IntentsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAAA71F12C07A7FD00244C01 /* IntentsConstants.swift */; };
 		BAB261632BFFD0AF009A98D7 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA8CF21B2BFD20770087F33D /* Intents.framework */; };
 		BAB261662BFFD0AF009A98D7 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB261652BFFD0AF009A98D7 /* IntentHandler.swift */; };
 		BAB2616B2BFFD0AF009A98D7 /* IntentsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BAB261622BFFD0AF009A98D7 /* IntentsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -2006,6 +2007,7 @@
 				375D294521E033D1007AB25A /* html.c in Sources */,
 				B5E8E41224575C990098892B /* ToolbarState.swift in Sources */,
 				B5070E17245938D600715BCC /* NSUserInterfaceItemIdentifier+Simplenote.swift in Sources */,
+				BAAA71F32C07AB8E00244C01 /* IntentsConstants.swift in Sources */,
 				B5C6334A251E6E3200C8BF46 /* LinkTableCellView.swift in Sources */,
 				BAA0A88B26BA39150006260E /* Date+Simplenote.swift in Sources */,
 				B542FE4725D42E6D00A3582D /* SearchMapView.swift in Sources */,
