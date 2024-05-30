@@ -9,10 +9,11 @@ extension SimplenoteAppDelegate {
 
     @objc
     func setupStorage() {
-        let migrationResult = SharedStorageMigrator().performMigrationIfNeeded()
+        let storageSettings = SharedStorageMigrator().performMigrationIfNeeded()
 
         do {
-            try setupCoreData(migrationResult: migrationResult)
+            try validateStorageDirectory(at: storageSettings.storageDirectory)
+            coreDataManager = try CoreDataManager(at: storageSettings.storageURL)
         } catch {
             fatalError(error.localizedDescription)
         }

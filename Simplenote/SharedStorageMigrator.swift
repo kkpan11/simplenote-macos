@@ -38,21 +38,19 @@ class SharedStorageMigrator: NSObject {
     /// To be able to share data with app extensions, the CoreData database needs to be migrated to an app group
     /// Must run before Simperium is setup
 
-    func performMigrationIfNeeded() -> MigrationResult {
-        // Confirm if the app group DB exists
-        guard migrationNeeded else {
-            NSLog("Core Data Migration not required")
-            return .notNeeded
+    func performMigrationIfNeeded() -> StorageSettings {
+        if migrationNeeded {
+            migrateCoreDataToAppGroup()
         }
 
-        return migrateCoreDataToAppGroup()
+        return storageSettings
     }
 
     private var migrationNeeded: Bool {
         return legacyStorageExists
     }
 
-    private func migrateCoreDataToAppGroup() -> MigrationResult {
+    private func migrateCoreDataToAppGroup() {
         NSLog("Database needs migration to app group")
         NSLog("Beginning database migration from: \(storageSettings.legacyStorageURL.path) to: \(storageSettings.sharedStorageURL.path)")
 
@@ -61,11 +59,10 @@ class SharedStorageMigrator: NSObject {
             try attemptCreationOfCoreDataStack()
             NSLog("Database migration successful!!")
             backupLegacyDatabase()
-            return .success
         } catch {
             NSLog("Could not migrate database to app group " + error.localizedDescription)
+            storageSettings.setStorageLocation(to: .legacy)
             removeFailedMigrationFilesIfNeeded()
-            return .failed
         }
     }
 
