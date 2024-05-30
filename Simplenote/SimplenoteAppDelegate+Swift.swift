@@ -19,19 +19,6 @@ extension SimplenoteAppDelegate {
         }
     }
 
-    private func setupCoreData(migrationResult: MigrationResult) throws {
-        let settings = StorageSettings()
-
-        switch migrationResult {
-        case .notNeeded, .success:
-            try validateStorageDirectory(at: settings.sharedUserLibraryDirectory)
-            coreDataManager = try CoreDataManager(at: settings.sharedStorageURL)
-        case .failed:
-            try validateStorageDirectory(at: settings.legacyUserLibraryDirectory)
-            coreDataManager = try CoreDataManager(at: settings.legacyStorageURL)
-        }
-    }
-
     private func validateStorageDirectory(at url: URL) throws {
         // Validate the directory for the store DB
         if FileManager.default.directoryExistsAtURL(url) {
