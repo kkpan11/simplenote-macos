@@ -256,6 +256,9 @@
 		BA4C6D16264CA8C000B723A7 /* SignupRemoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C6D15264CA8C000B723A7 /* SignupRemoteTests.swift */; };
 		BA4C6D18264CAAF800B723A7 /* URLRequest+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C6D17264CAAF800B723A7 /* URLRequest+Simplenote.swift */; };
 		BA553F0927065E20007737E9 /* FontSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA553F0727065E20007737E9 /* FontSettings.swift */; };
+		BA5A658C2C090F4800F605A6 /* SharedStorageMigratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A658B2C090F4800F605A6 /* SharedStorageMigratorTests.swift */; };
+		BA5A658F2C090FEC00F605A6 /* FileManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A658E2C090FEC00F605A6 /* FileManagerProtocol.swift */; };
+		BA5A65912C09113400F605A6 /* MockFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A65902C09113400F605A6 /* MockFileManager.swift */; };
 		BA5F020626BB57F000581E92 /* NSAlert+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5F020426BB57F000581E92 /* NSAlert+Simplenote.swift */; };
 		BA71EC242BC88FD000F42CB1 /* CSSearchable+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA52005A2BC878F1003F1B75 /* CSSearchable+Helpers.swift */; };
 		BA71EC252BC88FFC00F42CB1 /* NSManagedObjectContext+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA52005C2BC88397003F1B75 /* NSManagedObjectContext+Simplenote.swift */; };
@@ -664,6 +667,9 @@
 		BA52005A2BC878F1003F1B75 /* CSSearchable+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CSSearchable+Helpers.swift"; sourceTree = "<group>"; };
 		BA52005C2BC88397003F1B75 /* NSManagedObjectContext+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Simplenote.swift"; sourceTree = "<group>"; };
 		BA553F0727065E20007737E9 /* FontSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSettings.swift; sourceTree = "<group>"; };
+		BA5A658B2C090F4800F605A6 /* SharedStorageMigratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedStorageMigratorTests.swift; sourceTree = "<group>"; };
+		BA5A658E2C090FEC00F605A6 /* FileManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerProtocol.swift; sourceTree = "<group>"; };
+		BA5A65902C09113400F605A6 /* MockFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFileManager.swift; sourceTree = "<group>"; };
 		BA5F020426BB57F000581E92 /* NSAlert+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAlert+Simplenote.swift"; sourceTree = "<group>"; };
 		BA8CF21B2BFD20770087F33D /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		BA938CEB26ACFF4A00BE5A1D /* Remote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remote.swift; sourceTree = "<group>"; };
@@ -798,6 +804,7 @@
 				B574CA71242D539400F8D02F /* Handlers */,
 				463774DB171F111600E2E333 /* Models */,
 				BA0B43B826F2FC2900B44A8C /* Preferences */,
+				BA5A658D2C090FDD00F605A6 /* Protocols */,
 				B502C1DB25BA2EA200145D6C /* Remote */,
 				B57CB879244DEBD500BA7969 /* Settings */,
 				B5C63355251E734100C8BF46 /* Storyboards */,
@@ -1350,6 +1357,7 @@
 			isa = PBXGroup;
 			children = (
 				B5B5F33C243244F100F31720 /* TextViewInputHandlerTests.swift */,
+				BA5A658B2C090F4800F605A6 /* SharedStorageMigratorTests.swift */,
 			);
 			name = Handlers;
 			sourceTree = "<group>";
@@ -1363,6 +1371,7 @@
 				B5EF32A7258D05640069EC7D /* MockStorage.swift */,
 				B5EF32CE258D08E70069EC7D /* MockStorage+Sample.swift */,
 				B5C1F0AB242E9A9800A627E3 /* MockTextView.swift */,
+				BA5A65902C09113400F605A6 /* MockFileManager.swift */,
 			);
 			name = Mocks;
 			sourceTree = "<group>";
@@ -1505,6 +1514,14 @@
 				86F72E095CFE66DE228AE8CA /* Pods_Automattic_Simplenote_AppStore.framework */,
 			);
 			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		BA5A658D2C090FDD00F605A6 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				BA5A658E2C090FEC00F605A6 /* FileManagerProtocol.swift */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 		BAB261642BFFD0AF009A98D7 /* IntentsExtension */ = {
@@ -1854,6 +1871,7 @@
 				B52EE32825927D5100347F2B /* NoteListViewController.swift in Sources */,
 				B542FE4B25D42E7B00A3582D /* NoteContentHelper.swift in Sources */,
 				B5177CC525EEBF6900A8D834 /* SignupVerificationViewController.swift in Sources */,
+				BA5A658F2C090FEC00F605A6 /* FileManagerProtocol.swift in Sources */,
 				466FFEAA17CC10A800399652 /* Note.m in Sources */,
 				B5985ACF24293E360044EDE9 /* NSRegularExpression+Simplenote.swift in Sources */,
 				BAF1B0C32BC9B1C500B55F73 /* NoteWindow.swift in Sources */,
@@ -2065,9 +2083,11 @@
 				B500993A242131410037A431 /* UnicodeScalarSimplenoteTests.swift in Sources */,
 				B5CBB073241976280003C271 /* NSAttributedStringToMarkdownConverterTests.swift in Sources */,
 				B518D37E2507C356006EA7F8 /* StringSimplenoteTests.swift in Sources */,
+				BA5A658C2C090F4800F605A6 /* SharedStorageMigratorTests.swift in Sources */,
 				B5B5F33D243244F100F31720 /* TextViewInputHandlerTests.swift in Sources */,
 				B5EF32CF258D08E70069EC7D /* MockStorage+Sample.swift in Sources */,
 				B574016925B7D3980058960E /* EmailVerificationTests.swift in Sources */,
+				BA5A65912C09113400F605A6 /* MockFileManager.swift in Sources */,
 				B5B17F362425641E00DD5B34 /* NSAttributedStringSimplenoteTests.swift in Sources */,
 				B500993F242140500037A431 /* NSStringSimplenoteTests.swift in Sources */,
 			);

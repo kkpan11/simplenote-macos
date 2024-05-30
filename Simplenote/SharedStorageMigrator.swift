@@ -11,7 +11,7 @@ import Foundation
 @objc
 class SharedStorageMigrator: NSObject {
     private let storageSettings: StorageSettings
-    private let fileManager: FileManager
+    private let fileManager: FileManagerProtocol
 
     private var legacyStorageURL: URL {
         storageSettings.legacyStorageURL
@@ -21,7 +21,7 @@ class SharedStorageMigrator: NSObject {
         storageSettings.sharedStorageURL
     }
 
-    init(storageSettings: StorageSettings = StorageSettings(), fileManager: FileManager = FileManager.default) {
+    init(storageSettings: StorageSettings = StorageSettings(), fileManager: FileManagerProtocol = FileManager.default) {
         self.storageSettings = storageSettings
         self.fileManager = fileManager
     }
