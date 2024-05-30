@@ -84,6 +84,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)didReceiveNewContent;
 - (void)willReceiveNewContent;
 - (void)fixChecklistColoring;
+- (void)createNoteFromNote:(nullable Note *)oldNote;
 - (IBAction)deleteAction:(id)sender;
 - (IBAction)printAction:(id)sender;
 - (IBAction)adjustFontSizeAction:(id)sender;

@@ -246,13 +246,35 @@ extension SimplenoteAppDelegate {
 
     @objc
     func handleUserActivity(_ userActivity: NSUserActivity) -> Bool {
-        if userActivity.activityType == CSSearchableItemActionType,
-           let simperiumKey = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
-            displayNote(simperiumKey: simperiumKey)
+        if handleSpotlightSearchActivity(userActivity) {
             return true
         }
 
-        return false
+        return handleShortcutActivity(userActivity)
+    }
+
+    private func handleSpotlightSearchActivity(_ userActivity: NSUserActivity) -> Bool {
+        guard userActivity.activityType == CSSearchableItemActionType,
+              let simperiumKey = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String else {
+            return false
+        }
+
+        displayNote(simperiumKey: simperiumKey)
+        return true
+    }
+
+    private func handleShortcutActivity(_ userActivity: NSUserActivity) -> Bool {
+        guard let type = ActivityType(rawValue: userActivity.activityType),
+              simperium.user?.authenticated() == true else {
+            return false
+        }
+
+        switch type {
+        case .newNoteShortcut:
+            noteEditorViewController.createNote(from: nil)
+        }
+
+        return true
     }
 }
 
