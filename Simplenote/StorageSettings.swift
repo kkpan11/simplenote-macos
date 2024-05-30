@@ -15,7 +15,7 @@ enum StorageLocation {
 
 class StorageSettings {
     private let fileManager: FileManager
-    private var storageLocation: StorageLocation
+    private(set) var storageLocation: StorageLocation
 
     init(fileManger: FileManager = .default, storageLocation: StorageLocation = .shared) {
         self.fileManager = fileManger

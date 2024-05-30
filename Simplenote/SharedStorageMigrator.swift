@@ -12,6 +12,7 @@ import Foundation
 class SharedStorageMigrator: NSObject {
     private let storageSettings: StorageSettings
     private let fileManager: FileManagerProtocol
+    private let storageValidator: CoreDataValidator
 
     private var legacyStorageURL: URL {
         storageSettings.legacyStorageURL
@@ -21,9 +22,11 @@ class SharedStorageMigrator: NSObject {
         storageSettings.sharedStorageURL
     }
 
-    init(storageSettings: StorageSettings = StorageSettings(), fileManager: FileManagerProtocol = FileManager.default) {
+    init(storageSettings: StorageSettings = StorageSettings(), fileManager: FileManagerProtocol = FileManager.default,
+         storageValidator: CoreDataValidator = CoreDataValidator()) {
         self.storageSettings = storageSettings
         self.fileManager = fileManager
+        self.storageValidator = storageValidator
     }
 
     private var legacyStorageExists: Bool {
@@ -75,29 +78,7 @@ class SharedStorageMigrator: NSObject {
 
     private func attemptCreationOfCoreDataStack() throws {
         NSLog("Confirming migrated database can be loaded at: \(storageSettings.sharedStorageURL)")
-        try loadPersistentStorage(at: storageSettings.sharedStorageURL)
-    }
-
-    private func loadPersistentStorage(at storageURL: URL) throws {
-        guard let mom = NSManagedObjectModel(contentsOf: storageSettings.modelURL!) else {
-            fatalError("Could not load Managed Object Model at path: \(storageURL.path)")
-        }
-        let psc = NSPersistentStoreCoordinator(managedObjectModel: mom)
-        let options = [
-            NSMigratePersistentStoresAutomaticallyOption: true,
-            NSInferMappingModelAutomaticallyOption: true
-        ]
-        try psc.addPersistentStore(ofType: NSXMLStoreType, configurationName: nil, at: storageURL, options: options)
-
-        // Remove the persistent store before exiting
-        // If removing fails, the migration can still continue so not throwing the errors
-        do {
-            for store in psc.persistentStores {
-                try psc.remove(store)
-            }
-        } catch {
-            NSLog("Could not remove temporary persistent Store " + error.localizedDescription)
-        }
+        try storageValidator.validateStorage(withModelURL: storageSettings.modelURL!, storageURL: storageSettings.sharedStorageURL)
     }
 
     private func backupLegacyDatabase() {
