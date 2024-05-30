@@ -12,6 +12,9 @@ import Foundation
 class MockFileManager: FileManagerProtocol {
 
     var migrationAttempted = false
+    var backupAttempted = false
+    var removeFilesAttempted = false
+
     var copyShouldSucceed = true
 
     var legacyStorageExists = true
@@ -40,17 +43,19 @@ class MockFileManager: FileManagerProtocol {
     func copyItem(at srcURL: URL, to dstURL: URL) throws {
         migrationAttempted = true
 
-        if !copyShouldSucceed {
+        if copyShouldSucceed {
+            sharedStorageExists = true
+        } else {
             throw NSError(domain: "testError", code: 1)
         }
     }
 
     func moveItem(at srcURL: URL, to dstURL: URL) throws {
-
+        backupAttempted = true
     }
 
     func removeItem(at URL: URL) throws {
-
+        removeFilesAttempted = true
     }
 
     func createDirectory(at url: URL, withIntermediateDirectories createIntermediates: Bool) throws {
