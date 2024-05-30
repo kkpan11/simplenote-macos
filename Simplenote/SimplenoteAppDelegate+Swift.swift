@@ -8,6 +8,11 @@ import CoreSpotlight
 extension SimplenoteAppDelegate {
 
     @objc
+    func makeCoreDataManager() throws -> CoreDataManager {
+        try CoreDataManager()
+    }
+
+    @objc
     func configureSimperium() {
         let simperium = Simperium(model: managedObjectModel, context: managedObjectContext, coordinator: persistentStoreCoordinator)
         simperium.delegate = self

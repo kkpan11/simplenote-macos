@@ -39,9 +39,7 @@
 @property (strong, nonatomic) NSWindowController                *aboutWindowController;
 @property (strong, nonatomic) NSWindowController                *privacyWindowController;
 
-@property (strong, nonatomic) NSPersistentStoreCoordinator      *persistentStoreCoordinator;
-@property (strong, nonatomic) NSManagedObjectModel              *managedObjectModel;
-@property (strong, nonatomic) NSManagedObjectContext            *managedObjectContext;
+@property (strong, nonatomic) CoreDataManager                   *coreDataManager;
 
 #if SPARKLE_OTA
 @property (strong, nonatomic) SPUStandardUpdaterController      *updaterController;
@@ -470,100 +468,37 @@
 
 #pragma mark - Core Data
 
-- (NSURL *)applicationFilesDirectory
+- (CoreDataManager *)coreDataManager
 {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSURL *libraryURL = [[fileManager URLsForDirectory:NSLibraryDirectory inDomains:NSUserDomainMask] lastObject];
-    return [libraryURL URLByAppendingPathComponent:@"Simplenote"];
+    if (_coreDataManager) {
+        return _coreDataManager;
+    }
+
+    NSError *error = nil;
+    _coreDataManager = [self makeCoreDataManagerAndReturnError:&error];
+
+    if (error) {
+        [[NSApplication sharedApplication] presentError:error];
+        return nil;
+    }
+
+    return _coreDataManager;
 }
+
 
 - (NSManagedObjectModel *)managedObjectModel
 {
-    if (_managedObjectModel) {
-        return _managedObjectModel;
-    }
-	
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Simplenote" withExtension:@"momd"];
-    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
-    return _managedObjectModel;
+    return self.coreDataManager.managedObjectModel;
 }
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator
 {
-    if (_persistentStoreCoordinator) {
-        return _persistentStoreCoordinator;
-    }
-
-    NSManagedObjectModel *mom = [self managedObjectModel];
-    if (!mom) {
-        NSLog(@"%@:%@ No model to generate a store from", [self class], NSStringFromSelector(_cmd));
-        return nil;
-    }
-
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSURL *applicationFilesDirectory = [self applicationFilesDirectory];
-    NSError *error = nil;
-    
-    NSDictionary *properties = [applicationFilesDirectory resourceValuesForKeys:[NSArray arrayWithObject:NSURLIsDirectoryKey] error:&error];
-        
-    if (!properties) {
-        BOOL ok = NO;
-        if ([error code] == NSFileReadNoSuchFileError) {
-            ok = [fileManager createDirectoryAtPath:[applicationFilesDirectory path] withIntermediateDirectories:YES attributes:nil error:&error];
-        }
-        if (!ok) {
-            [[NSApplication sharedApplication] presentError:error];
-            return nil;
-        }
-    }
-    else {
-        if ([[properties objectForKey:NSURLIsDirectoryKey] boolValue] != YES) {
-            // Customize and localize this error.
-            NSString *failureDescription = [NSString stringWithFormat:@"Expected a folder to store application data, found a file (%@).", [applicationFilesDirectory path]]; 
-            
-            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-            [dict setValue:failureDescription forKey:NSLocalizedDescriptionKey];
-            error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:101 userInfo:dict];
-            
-            [[NSApplication sharedApplication] presentError:error];
-            return nil;
-        }
-    }
-
-    NSDictionary *options = @{
-      NSMigratePersistentStoresAutomaticallyOption: @(YES),
-      NSInferMappingModelAutomaticallyOption: @(YES)
-    };
-
-    NSURL *url = [applicationFilesDirectory URLByAppendingPathComponent:@"Simplenote.storedata"];
-    NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:mom];
-    if (![coordinator addPersistentStoreWithType:NSXMLStoreType configuration:nil URL:url options:options error:&error]) {
-        [[NSApplication sharedApplication] presentError:error];
-        return nil;
-    }
-    _persistentStoreCoordinator = coordinator;
-
-    return _persistentStoreCoordinator;
+    return  self.coreDataManager.persistentStoreCoordinator;
 }
 
 - (NSManagedObjectContext *)managedObjectContext
 {
-    if (_managedObjectContext) {
-        return _managedObjectContext;
-    }
-
-    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-    if (!coordinator) {
-        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-        [dict setValue:@"Failed to initialize the store" forKey:NSLocalizedDescriptionKey];
-        [dict setValue:@"There was an error building up the data file." forKey:NSLocalizedFailureReasonErrorKey];
-        NSError *error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:9999 userInfo:dict];
-        [[NSApplication sharedApplication] presentError:error];
-        return nil;
-    }
-    _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-
-    return _managedObjectContext;
+    return self.coreDataManager.managedObjectContext;
 }
 
 - (NSUndoManager *)windowWillReturnUndoManager:(NSWindow *)window
