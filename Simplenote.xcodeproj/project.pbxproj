@@ -271,7 +271,6 @@
 		BAB261722BFFD0F4009A98D7 /* ShortcutIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BAB261702BFFD0F4009A98D7 /* ShortcutIntents.intentdefinition */; };
 		BAB261752BFFD319009A98D7 /* OpenNewNoteIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB261742BFFD319009A98D7 /* OpenNewNoteIntentHandler.swift */; };
 		BAB261762BFFD319009A98D7 /* OpenNewNoteIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB261742BFFD319009A98D7 /* OpenNewNoteIntentHandler.swift */; };
-		BAB261782BFFD38D009A98D7 /* ShortcutHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB261772BFFD38D009A98D7 /* ShortcutHandler.swift */; };
 		BAB2617B2BFFD40B009A98D7 /* ActivityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB2617A2BFFD40B009A98D7 /* ActivityType.swift */; };
 		BAB2617E2BFFDD6B009A98D7 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB2617D2BFFDD6B009A98D7 /* CoreDataManager.swift */; };
 		BAB261802BFFDD97009A98D7 /* StorageSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB2617F2BFFDD97009A98D7 /* StorageSettings.swift */; };
@@ -676,7 +675,6 @@
 		BAB261682BFFD0AF009A98D7 /* IntentsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IntentsExtension.entitlements; sourceTree = "<group>"; };
 		BAB261702BFFD0F4009A98D7 /* ShortcutIntents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = ShortcutIntents.intentdefinition; sourceTree = "<group>"; };
 		BAB261742BFFD319009A98D7 /* OpenNewNoteIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenNewNoteIntentHandler.swift; sourceTree = "<group>"; };
-		BAB261772BFFD38D009A98D7 /* ShortcutHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutHandler.swift; sourceTree = "<group>"; };
 		BAB2617A2BFFD40B009A98D7 /* ActivityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityType.swift; sourceTree = "<group>"; };
 		BAB2617D2BFFDD6B009A98D7 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		BAB2617F2BFFDD97009A98D7 /* StorageSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageSettings.swift; sourceTree = "<group>"; };
@@ -1218,7 +1216,6 @@
 			isa = PBXGroup;
 			children = (
 				B574CA72242D552100F8D02F /* TextViewInputHandler.swift */,
-				BAB261772BFFD38D009A98D7 /* ShortcutHandler.swift */,
 				BAB2617A2BFFD40B009A98D7 /* ActivityType.swift */,
 			);
 			name = Handlers;
@@ -1531,6 +1528,7 @@
 			buildConfigurationList = 466FFF2C17CC10A800399652 /* Build configuration list for PBXNativeTarget "Simplenote" */;
 			buildPhases = (
 				33B84E0AFB91551B9B931E47 /* [CP] Check Pods Manifest.lock */,
+				BAAA71F42C07B8BB00244C01 /* Swiftlint */,
 				466FFEA717CC10A800399652 /* Sources */,
 				466FFEDC17CC10A800399652 /* Frameworks */,
 				466FFEE517CC10A800399652 /* Resources */,
@@ -1810,6 +1808,25 @@
 			shellPath = /bin/sh;
 			shellScript = "${SRCROOT}/Scripts/Build-Phases/copy-secret.sh\n";
 		};
+		BAAA71F42C07B8BB00244C01 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "[ $CI ] && exit 0\n./Pods/SwiftLint/swiftlint\n\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1891,7 +1908,6 @@
 				BAB261752BFFD319009A98D7 /* OpenNewNoteIntentHandler.swift in Sources */,
 				B5132FA923C4B9760065DD80 /* NSTextStorage+Simplenote.swift in Sources */,
 				375D293721E033D1007AB25A /* document.c in Sources */,
-				BAB261782BFFD38D009A98D7 /* ShortcutHandler.swift in Sources */,
 				376EE3EC202B748E00E3812E /* SPAboutTextField.swift in Sources */,
 				B542FE5725D42EC700A3582D /* Storage.m in Sources */,
 				B59EA98224AA5EFA008ABE4B /* NoteMetrics.swift in Sources */,
@@ -2303,11 +2319,11 @@
 					"${inherited}",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.SimplenoteMac.Debug;
+				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.SimplenoteMac.Development;
 				PRODUCT_NAME = Simplenote;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Simplenote Mac - Development";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2517,10 +2533,10 @@
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.SimplenoteMac.Debug.IntentsExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.SimplenoteMac.Development.IntentsExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Simplenote Mac Intents Extension - Development";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
