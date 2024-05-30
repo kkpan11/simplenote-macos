@@ -49,7 +49,7 @@ class SharedStorageMigrator: NSObject {
     }
 
     private var migrationNeeded: Bool {
-        return legacyStorageExists && !sharedStorageExists
+        return legacyStorageExists
     }
 
     private func migrateCoreDataToAppGroup() -> MigrationResult {
