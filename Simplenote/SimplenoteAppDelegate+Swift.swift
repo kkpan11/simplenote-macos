@@ -33,27 +33,11 @@ extension SimplenoteAppDelegate {
 
     private func validateStorageDirectory(at url: URL) throws {
         // Validate the directory for the store DB
-        do {
-            try validateResourceValueForDirectory(at: url)
-        } catch {
-            try handleDirectoryError((error as NSError), directoryURL: url)
+        if FileManager.default.directoryExistsAtURL(url) {
+            return
         }
-    }
 
-    private func validateResourceValueForDirectory(at url: URL) throws {
-        let properties = try url.resourceValues(forKeys: [URLResourceKey.isDirectoryKey])
-
-        if properties.isDirectory != true {
-            throw CoreDataManagerError.foundNotDirectoryAtFilesDirectoryURL
-        }
-    }
-
-    private func handleDirectoryError(_ error: NSError, directoryURL: URL) throws {
-        if error.code == NSFileReadNoSuchFileError {
-            try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
-        } else {
-            throw error
-        }
+        try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
     }
 
     @objc
