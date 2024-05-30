@@ -101,9 +101,3 @@ class SharedStorageMigrator: NSObject {
         }
     }
 }
-
-enum MigrationResult {
-    case success
-    case notNeeded
-    case failed
-}

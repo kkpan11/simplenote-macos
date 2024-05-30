@@ -10,7 +10,9 @@ import Foundation
 @testable import Simplenote
 
 class MockFileManager: FileManagerProtocol {
+
     var migrationAttempted = false
+    var copyShouldSucceed = true
 
     var legacyStorageExists = true
     var sharedStorageExists = false
@@ -37,6 +39,10 @@ class MockFileManager: FileManagerProtocol {
 
     func copyItem(at srcURL: URL, to dstURL: URL) throws {
         migrationAttempted = true
+
+        if !copyShouldSucceed {
+            throw NSError(domain: "testError", code: 1)
+        }
     }
 
     func moveItem(at srcURL: URL, to dstURL: URL) throws {
