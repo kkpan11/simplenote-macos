@@ -271,7 +271,7 @@ extension SimplenoteAppDelegate {
 
         switch type {
         case .newNoteShortcut:
-            SimplenoteAppDelegate.shared().noteEditorViewController.createNote(from: nil)
+            noteEditorViewController.createNote(from: nil)
         }
 
         return true
