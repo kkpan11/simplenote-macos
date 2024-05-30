@@ -13,7 +13,7 @@ extension SimplenoteAppDelegate {
 
         do {
             try validateStorageDirectory(at: storageSettings.storageDirectory)
-            coreDataManager = try CoreDataManager(at: storageSettings.storageURL)
+            coreDataManager = try CoreDataManager(storageSettings: storageSettings)
         } catch {
             fatalError(error.localizedDescription)
         }
