@@ -51,10 +51,10 @@ private struct Constants {
     static let defaultTeamID = "PZYM8XX95Q"
 
     static let defaultBundleID: String  = {
-        var id = "com.automattic.SimplenoteMac"
         #if DEBUG
-        id.append(".Debug")
+        "com.automattic.SimplenoteMac.Debug"
+        #else
+        "com.automattic.SimplenoteMac"
         #endif
-        return id
     }()
 }
