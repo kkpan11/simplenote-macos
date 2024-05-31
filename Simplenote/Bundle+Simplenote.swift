@@ -19,7 +19,11 @@ extension Bundle {
         }
 
         var url = bundleURL
-        while !url.lastPathComponent.hasSuffix(Constants.appSuffix) {
+
+        for component in url.pathComponents.reversed() {
+            guard !component.hasSuffix(Constants.appSuffix) else {
+                break
+            }
             url.deleteLastPathComponent()
         }
 
