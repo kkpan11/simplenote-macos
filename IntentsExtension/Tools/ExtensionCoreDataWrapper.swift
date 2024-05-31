@@ -12,7 +12,7 @@ import CoreData
 class ExtensionCoreDataWrapper {
     private lazy var coreDataManager: CoreDataManager = {
         do {
-            return try CoreDataManager(at: StorageSettings().sharedStorageURL, for: .intents)
+            return try CoreDataManager(storageSettings: StorageSettings(), for: .intents)
         } catch {
             fatalError()
         }

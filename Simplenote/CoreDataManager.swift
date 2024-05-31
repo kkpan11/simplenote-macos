@@ -32,7 +32,7 @@ class CoreDataManager: NSObject {
     private(set) var managedObjectContext: NSManagedObjectContext
     private(set) var persistentStoreCoordinator: NSPersistentStoreCoordinator
 
-    init(at storageURL: URL, storageSettings: StorageSettings = StorageSettings(), for usageType: CoreDataUsageType = .standard) throws {
+    init(storageSettings: StorageSettings, for usageType: CoreDataUsageType = .standard) throws {
         guard let modelURL = storageSettings.modelURL,
               let mom = NSManagedObjectModel(contentsOf: modelURL) else {
             throw CoreDataManagerError.couldNotBuildModel
