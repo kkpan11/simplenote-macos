@@ -307,6 +307,7 @@ extension SimplenoteAppDelegate {
         }
 
         noteListViewController.displayAndSelectNote(with: uniqueIdentifier)
+        _ = window.makeFirstResponder(noteEditorViewController.noteEditor)
     }
 }
 
