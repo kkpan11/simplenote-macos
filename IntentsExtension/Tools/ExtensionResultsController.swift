@@ -1,11 +1,3 @@
-//
-//  ExtensionResultsController.swift
-//  IntentsExtension
-//
-//  Created by Charlie Scheer on 5/29/24.
-//  Copyright © 2024 Simperium. All rights reserved.
-//
-
 import Foundation
 import CoreData
 import SimplenoteSearch
@@ -24,7 +16,7 @@ class ExtensionResultsController {
     }
 
     // MARK: - Notes
-
+    //
     /// Fetch notes with given tag and limit
     /// If no tag is specified, will fetch notes that are not deleted. If there is no limit specified it will fetch all of the notes
     ///
@@ -54,8 +46,21 @@ class ExtensionResultsController {
         return fetchRequest
     }
 
-    // MARK: Fetching
+    // MARK: - Tags
+    //
+    func tags() -> [Tag]? {
+        performFetch(from: fetchRequestForTags())
+    }
 
+    private func fetchRequestForTags() -> NSFetchRequest<Tag> {
+        let fetchRequest = NSFetchRequest<Tag>(entityName: Tag.entityName)
+        fetchRequest.sortDescriptors = [NSSortDescriptor.descriptorForTags()]
+
+        return fetchRequest
+    }
+
+    // MARK: Fetching
+    //
     private func performFetch<T: NSManagedObject>(from request: NSFetchRequest<T>) -> [T]? {
         do {
             let objects = try managedObjectContext.fetch(request)
