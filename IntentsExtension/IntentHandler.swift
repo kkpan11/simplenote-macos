@@ -15,6 +15,8 @@ class IntentHandler: INExtension {
             return OpenNewNoteIntentHandler()
         case is OpenNoteIntent:
             return OpenNoteIntentHandler()
+        case is FindNoteIntent:
+            return FindNoteIntentHandler()
         default:
             return self
         }
