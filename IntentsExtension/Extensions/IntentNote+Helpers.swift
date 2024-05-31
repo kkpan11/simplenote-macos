@@ -10,7 +10,7 @@ import Intents
 
 extension IntentNote {
     static func allNotes(in coreDataWrapper: ExtensionCoreDataWrapper) throws -> [IntentNote] {
-        guard let notes = coreDataWrapper.resultsController()?.notes() else {
+        guard let notes = coreDataWrapper.resultsController?.notes() else {
             throw IntentsError.couldNotFetchNotes
         }
 
