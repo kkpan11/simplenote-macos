@@ -7,10 +7,10 @@ class CoreDataValidator {
             fatalError("Could not load Managed Object Model at path: \(storageURL.path)")
         }
 
-        try loadPersistentStorage(with: mom, at: storageURL)
+        try validatePersistentStorage(with: mom, at: storageURL)
     }
 
-    func loadPersistentStorage(with mom: NSManagedObjectModel, at storageURL: URL) throws {
+    func validatePersistentStorage(with mom: NSManagedObjectModel, at storageURL: URL) throws {
         let psc = NSPersistentStoreCoordinator(managedObjectModel: mom)
         let options = [
             NSMigratePersistentStoresAutomaticallyOption: true,
