@@ -39,8 +39,6 @@
 @property (strong, nonatomic) NSWindowController                *aboutWindowController;
 @property (strong, nonatomic) NSWindowController                *privacyWindowController;
 
-@property (strong, nonatomic) CoreDataManager                   *coreDataManager;
-
 #if SPARKLE_OTA
 @property (strong, nonatomic) SPUStandardUpdaterController      *updaterController;
 #endif
@@ -83,6 +81,7 @@
 
 - (void)applicationWillFinishLaunching:(NSNotification *)notification
 {
+    [self setupStorage];
     [self configureSimperium];
     [self configureSimperiumAuth];
     [self configureSimperiumBuckets];
@@ -467,24 +466,6 @@
 
 
 #pragma mark - Core Data
-
-- (CoreDataManager *)coreDataManager
-{
-    if (_coreDataManager) {
-        return _coreDataManager;
-    }
-
-    NSError *error = nil;
-    _coreDataManager = [self makeCoreDataManagerAndReturnError:&error];
-
-    if (error) {
-        [[NSApplication sharedApplication] presentError:error];
-        return nil;
-    }
-
-    return _coreDataManager;
-}
-
 
 - (NSManagedObjectModel *)managedObjectModel
 {

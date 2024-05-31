@@ -58,5 +58,7 @@
 	<array>
 		<string>OpenNewNoteIntent</string>
 	</array>
+    <key>TeamIDPrefix</key>
+    <string>$(TeamIdentifierPrefix)</string>
 </dict>
 </plist>

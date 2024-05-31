@@ -8,8 +8,25 @@ import CoreSpotlight
 extension SimplenoteAppDelegate {
 
     @objc
-    func makeCoreDataManager() throws -> CoreDataManager {
-        try CoreDataManager()
+    func setupStorage() {
+        SharedStorageMigrator().performMigrationIfNeeded()
+        let storageSettings = StorageSettings()
+
+        do {
+            try validateStorageDirectory(at: storageSettings.storageDirectory)
+            coreDataManager = try CoreDataManager(storageSettings: storageSettings)
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+    }
+
+    private func validateStorageDirectory(at url: URL) throws {
+        // Validate the directory for the store DB
+        if FileManager.default.directoryExistsAtURL(url) {
+            return
+        }
+
+        try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
     }
 
     @objc
