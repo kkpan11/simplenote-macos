@@ -308,6 +308,9 @@
 		BAC5DFB52C069568002AD7EF /* Bundle+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57CB87D244DED2300BA7969 /* Bundle+Simplenote.swift */; };
 		BAC5DFB72C069993002AD7EF /* SharedStorageMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC5DFB62C069993002AD7EF /* SharedStorageMigrator.swift */; };
 		BAC5DFB92C079E5A002AD7EF /* OpenNoteIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC5DFB82C079E5A002AD7EF /* OpenNoteIntentHandler.swift */; };
+		BACA686F2C0A6E2F005409C1 /* FindNoteWithTagIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACA686E2C0A6E2F005409C1 /* FindNoteWithTagIntentHandler.swift */; };
+		BACA68712C0A7027005409C1 /* IntentTag+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACA68702C0A7027005409C1 /* IntentTag+Helpers.swift */; };
+		BACA68732C0A70B0005409C1 /* Tag+Intents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACA68722C0A70B0005409C1 /* Tag+Intents.swift */; };
 		BAD4ECC026E6FC0A00881CC4 /* markdown-light.css in Resources */ = {isa = PBXBuildFile; fileRef = BAF8D5DB26AE3BE800CA9383 /* markdown-light.css */; };
 		BAE66CAA26AF647500398FF3 /* Remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA938CEB26ACFF4A00BE5A1D /* Remote.swift */; };
 		BAF1B0C32BC9B1C500B55F73 /* NoteWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF1B0C12BC9B1C500B55F73 /* NoteWindow.swift */; };
@@ -730,6 +733,9 @@
 		BAC5DFB32C0691E6002AD7EF /* FileManager+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Simplenote.swift"; sourceTree = "<group>"; };
 		BAC5DFB62C069993002AD7EF /* SharedStorageMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedStorageMigrator.swift; sourceTree = "<group>"; };
 		BAC5DFB82C079E5A002AD7EF /* OpenNoteIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenNoteIntentHandler.swift; sourceTree = "<group>"; };
+		BACA686E2C0A6E2F005409C1 /* FindNoteWithTagIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindNoteWithTagIntentHandler.swift; sourceTree = "<group>"; };
+		BACA68702C0A7027005409C1 /* IntentTag+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IntentTag+Helpers.swift"; sourceTree = "<group>"; };
+		BACA68722C0A70B0005409C1 /* Tag+Intents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tag+Intents.swift"; sourceTree = "<group>"; };
 		BAF1B0C12BC9B1C500B55F73 /* NoteWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteWindow.swift; sourceTree = "<group>"; };
 		BAF1B0C72BCDDA9600B55F73 /* NoteWindowControllersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteWindowControllersManager.swift; sourceTree = "<group>"; };
 		BAF8D5DB26AE3BE800CA9383 /* markdown-light.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "markdown-light.css"; sourceTree = "<group>"; };
@@ -1575,6 +1581,7 @@
 			children = (
 				BAAA71D62C07A11500244C01 /* Note+Intents.swift */,
 				BAAA71D42C07A10E00244C01 /* SPManagedObject+Intents.swift */,
+				BACA68722C0A70B0005409C1 /* Tag+Intents.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1595,6 +1602,7 @@
 			children = (
 				BAAA71EC2C07A69C00244C01 /* IntentNote+Helpers.swift */,
 				BAAD56482C0A42E40047E024 /* FileManager+Intents.swift */,
+				BACA68702C0A7027005409C1 /* IntentTag+Helpers.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1618,6 +1626,7 @@
 				BAB261742BFFD319009A98D7 /* OpenNewNoteIntentHandler.swift */,
 				BAC5DFB82C079E5A002AD7EF /* OpenNoteIntentHandler.swift */,
 				BA2BF33F2C07C75500A7C894 /* FindNoteIntentHandler.swift */,
+				BACA686E2C0A6E2F005409C1 /* FindNoteWithTagIntentHandler.swift */,
 			);
 			path = IntentHandlers;
 			sourceTree = "<group>";
@@ -2204,6 +2213,7 @@
 				BAAA71DA2C07A18200244C01 /* ContentSlice.swift in Sources */,
 				BAAD56492C0A42E40047E024 /* FileManager+Intents.swift in Sources */,
 				BAAA71F02C07A7DB00244C01 /* ActivityType.swift in Sources */,
+				BACA686F2C0A6E2F005409C1 /* FindNoteWithTagIntentHandler.swift in Sources */,
 				BAAA71E32C07A2C200244C01 /* SortMode.swift in Sources */,
 				BAAA71E42C07A2F900244C01 /* NSUserInterfaceItemIdentifier+Simplenote.swift in Sources */,
 				BAB261762BFFD319009A98D7 /* OpenNewNoteIntentHandler.swift in Sources */,
@@ -2214,8 +2224,10 @@
 				BAB261662BFFD0AF009A98D7 /* IntentHandler.swift in Sources */,
 				BAAD56472C0A42000047E024 /* FileManagerProtocol.swift in Sources */,
 				BAC5DFB52C069568002AD7EF /* Bundle+Simplenote.swift in Sources */,
+				BACA68712C0A7027005409C1 /* IntentTag+Helpers.swift in Sources */,
 				BAAA71DD2C07A1DF00244C01 /* ExtensionResultsController.swift in Sources */,
 				BAC5DFB92C079E5A002AD7EF /* OpenNoteIntentHandler.swift in Sources */,
+				BACA68732C0A70B0005409C1 /* Tag+Intents.swift in Sources */,
 				BAAA71E72C07A37000244C01 /* CoreDataManager.swift in Sources */,
 				BAAA71D52C07A10E00244C01 /* SPManagedObject+Intents.swift in Sources */,
 				BAAA71ED2C07A69C00244C01 /* IntentNote+Helpers.swift in Sources */,
