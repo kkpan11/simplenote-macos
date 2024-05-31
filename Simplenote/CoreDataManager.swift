@@ -1,11 +1,3 @@
-//
-//  CoreDataManager.swift
-//  Simplenote
-//
-//  Created by Charlie Scheer on 5/23/24.
-//  Copyright © 2024 Simperium. All rights reserved.
-//
-
 import Foundation
 import CoreData
 
@@ -40,7 +32,7 @@ class CoreDataManager: NSObject {
     private(set) var managedObjectContext: NSManagedObjectContext
     private(set) var persistentStoreCoordinator: NSPersistentStoreCoordinator
 
-    init(at storageURL: URL, storageSettings: StorageSettings = StorageSettings(), for usageType: CoreDataUsageType = .standard) throws {
+    init(storageSettings: StorageSettings, for usageType: CoreDataUsageType = .standard) throws {
         guard let modelURL = storageSettings.modelURL,
               let mom = NSManagedObjectModel(contentsOf: modelURL) else {
             throw CoreDataManagerError.couldNotBuildModel
@@ -48,7 +40,7 @@ class CoreDataManager: NSObject {
 
         let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
 
-        let psc = try Self.preparePSC(at: storageURL, model: mom)
+        let psc = try Self.preparePSC(at: storageSettings.storageURL, model: mom)
 
         self.managedObjectModel = mom
         self.managedObjectContext = context

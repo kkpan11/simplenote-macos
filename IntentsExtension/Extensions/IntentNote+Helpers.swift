@@ -15,7 +15,7 @@ extension IntentNoteResolutionResult {
             return IntentNoteResolutionResult.needsValue()
         }
 
-        guard coreDataWrapper.resultsController()?.noteExists(forSimperiumKey: identifier) == true else {
+        guard coreDataWrapper.resultsController?.noteExists(forSimperiumKey: identifier) == true else {
             return IntentNoteResolutionResult.unsupported()
         }
 
@@ -23,7 +23,7 @@ extension IntentNoteResolutionResult {
     }
 
     static func resolveIntentNote(for content: String, in coreDataWrapper: ExtensionCoreDataWrapper) -> IntentNoteResolutionResult {
-        guard let notes = coreDataWrapper.resultsController()?.notes() else {
+        guard let notes = coreDataWrapper.resultsController?.notes() else {
             return IntentNoteResolutionResult.unsupported()
         }
         let filteredNotes = notes.filter({ $0.content?.contains(content) == true })
@@ -48,7 +48,7 @@ extension IntentNoteResolutionResult {
 
 extension IntentNote {
     static func allNotes(in coreDataWrapper: ExtensionCoreDataWrapper) throws -> [IntentNote] {
-        guard let notes = coreDataWrapper.resultsController()?.notes() else {
+        guard let notes = coreDataWrapper.resultsController?.notes() else {
             throw IntentsError.couldNotFetchNotes
         }
 
