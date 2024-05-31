@@ -27,7 +27,7 @@ class CopyNoteContentIntentHandler: NSObject, CopyNoteContentIntentHandling {
         }
 
         guard let identifier = note.identifier,
-              let content = coreDataWrapper.resultsController()?.note(forSimperiumKey: identifier)?.content else {
+              let content = coreDataWrapper.resultsController?.note(forSimperiumKey: identifier)?.content else {
             completion(CopyNoteContentIntentResponse(code: .failure, userActivity: nil))
             return
         }
