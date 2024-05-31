@@ -256,6 +256,12 @@
 		BA4C6D16264CA8C000B723A7 /* SignupRemoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C6D15264CA8C000B723A7 /* SignupRemoteTests.swift */; };
 		BA4C6D18264CAAF800B723A7 /* URLRequest+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C6D17264CAAF800B723A7 /* URLRequest+Simplenote.swift */; };
 		BA553F0927065E20007737E9 /* FontSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA553F0727065E20007737E9 /* FontSettings.swift */; };
+		BA5A658C2C090F4800F605A6 /* SharedStorageMigratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A658B2C090F4800F605A6 /* SharedStorageMigratorTests.swift */; };
+		BA5A658F2C090FEC00F605A6 /* FileManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A658E2C090FEC00F605A6 /* FileManagerProtocol.swift */; };
+		BA5A65912C09113400F605A6 /* MockFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A65902C09113400F605A6 /* MockFileManager.swift */; };
+		BA5A65952C09164100F605A6 /* MockStorageSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A65942C09164100F605A6 /* MockStorageSettings.swift */; };
+		BA5A65972C091D0600F605A6 /* CoreDataValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A65962C091D0600F605A6 /* CoreDataValidator.swift */; };
+		BA5A65992C091E6000F605A6 /* MockStorageValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A65982C091E6000F605A6 /* MockStorageValidator.swift */; };
 		BA5F020626BB57F000581E92 /* NSAlert+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5F020426BB57F000581E92 /* NSAlert+Simplenote.swift */; };
 		BA71EC242BC88FD000F42CB1 /* CSSearchable+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA52005A2BC878F1003F1B75 /* CSSearchable+Helpers.swift */; };
 		BA71EC252BC88FFC00F42CB1 /* NSManagedObjectContext+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA52005C2BC88397003F1B75 /* NSManagedObjectContext+Simplenote.swift */; };
@@ -686,6 +692,12 @@
 		BA52005A2BC878F1003F1B75 /* CSSearchable+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CSSearchable+Helpers.swift"; sourceTree = "<group>"; };
 		BA52005C2BC88397003F1B75 /* NSManagedObjectContext+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Simplenote.swift"; sourceTree = "<group>"; };
 		BA553F0727065E20007737E9 /* FontSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSettings.swift; sourceTree = "<group>"; };
+		BA5A658B2C090F4800F605A6 /* SharedStorageMigratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedStorageMigratorTests.swift; sourceTree = "<group>"; };
+		BA5A658E2C090FEC00F605A6 /* FileManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerProtocol.swift; sourceTree = "<group>"; };
+		BA5A65902C09113400F605A6 /* MockFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFileManager.swift; sourceTree = "<group>"; };
+		BA5A65942C09164100F605A6 /* MockStorageSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStorageSettings.swift; sourceTree = "<group>"; };
+		BA5A65962C091D0600F605A6 /* CoreDataValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataValidator.swift; sourceTree = "<group>"; };
+		BA5A65982C091E6000F605A6 /* MockStorageValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStorageValidator.swift; sourceTree = "<group>"; };
 		BA5F020426BB57F000581E92 /* NSAlert+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAlert+Simplenote.swift"; sourceTree = "<group>"; };
 		BA8CF21B2BFD20770087F33D /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		BA938CEB26ACFF4A00BE5A1D /* Remote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remote.swift; sourceTree = "<group>"; };
@@ -830,6 +842,7 @@
 				B574CA71242D539400F8D02F /* Handlers */,
 				463774DB171F111600E2E333 /* Models */,
 				BA0B43B826F2FC2900B44A8C /* Preferences */,
+				BA5A658D2C090FDD00F605A6 /* Protocols */,
 				B502C1DB25BA2EA200145D6C /* Remote */,
 				B57CB879244DEBD500BA7969 /* Settings */,
 				B5C63355251E734100C8BF46 /* Storyboards */,
@@ -943,6 +956,7 @@
 				37D4DD6920B3574C00C225EA /* WPAuthHandler.h */,
 				37D4DD6820B3574C00C225EA /* WPAuthHandler.m */,
 				BAB2617D2BFFDD6B009A98D7 /* CoreDataManager.swift */,
+				BA5A65962C091D0600F605A6 /* CoreDataValidator.swift */,
 				BAB2617F2BFFDD97009A98D7 /* StorageSettings.swift */,
 				BAC5DFB32C0691E6002AD7EF /* FileManager+Simplenote.swift */,
 				BAC5DFB62C069993002AD7EF /* SharedStorageMigrator.swift */,
@@ -1382,6 +1396,7 @@
 			isa = PBXGroup;
 			children = (
 				B5B5F33C243244F100F31720 /* TextViewInputHandlerTests.swift */,
+				BA5A658B2C090F4800F605A6 /* SharedStorageMigratorTests.swift */,
 			);
 			name = Handlers;
 			sourceTree = "<group>";
@@ -1395,6 +1410,9 @@
 				B5EF32A7258D05640069EC7D /* MockStorage.swift */,
 				B5EF32CE258D08E70069EC7D /* MockStorage+Sample.swift */,
 				B5C1F0AB242E9A9800A627E3 /* MockTextView.swift */,
+				BA5A65902C09113400F605A6 /* MockFileManager.swift */,
+				BA5A65942C09164100F605A6 /* MockStorageSettings.swift */,
+				BA5A65982C091E6000F605A6 /* MockStorageValidator.swift */,
 			);
 			name = Mocks;
 			sourceTree = "<group>";
@@ -1539,6 +1557,14 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		BA5A658D2C090FDD00F605A6 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				BA5A658E2C090FEC00F605A6 /* FileManagerProtocol.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
 		BAAA71D32C07A0F000244C01 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -1607,6 +1633,7 @@
 			buildConfigurationList = 466FFF2C17CC10A800399652 /* Build configuration list for PBXNativeTarget "Simplenote" */;
 			buildPhases = (
 				33B84E0AFB91551B9B931E47 /* [CP] Check Pods Manifest.lock */,
+				BAAA71F42C07B8BB00244C01 /* Swiftlint */,
 				466FFEA717CC10A800399652 /* Sources */,
 				466FFEDC17CC10A800399652 /* Frameworks */,
 				466FFEE517CC10A800399652 /* Resources */,
@@ -1890,6 +1917,25 @@
 			shellPath = /bin/sh;
 			shellScript = "${SRCROOT}/Scripts/Build-Phases/copy-secret.sh\n";
 		};
+		BAAA71F42C07B8BB00244C01 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "[ $CI ] && exit 0\n./Pods/SwiftLint/swiftlint\n\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1910,6 +1956,7 @@
 				B52EE32825927D5100347F2B /* NoteListViewController.swift in Sources */,
 				B542FE4B25D42E7B00A3582D /* NoteContentHelper.swift in Sources */,
 				B5177CC525EEBF6900A8D834 /* SignupVerificationViewController.swift in Sources */,
+				BA5A658F2C090FEC00F605A6 /* FileManagerProtocol.swift in Sources */,
 				466FFEAA17CC10A800399652 /* Note.m in Sources */,
 				B5985ACF24293E360044EDE9 /* NSRegularExpression+Simplenote.swift in Sources */,
 				BAF1B0C32BC9B1C500B55F73 /* NoteWindow.swift in Sources */,
@@ -2048,6 +2095,7 @@
 				B51AFE6E25D30A1800A196DF /* SearchField.swift in Sources */,
 				B51E9FE222E615FA004F16B4 /* SPExporter.swift in Sources */,
 				B5562436253E328400836E20 /* ReferenceTableViewCell.swift in Sources */,
+				BA5A65972C091D0600F605A6 /* CoreDataValidator.swift in Sources */,
 				466FFECF17CC10A800399652 /* TagListViewController.m in Sources */,
 				B52F8FDA24644DD00062B8ED /* NSFont+Theme.swift in Sources */,
 				B511799C242036BD005F8936 /* NSTextView+Simplenote.swift in Sources */,
@@ -2114,6 +2162,7 @@
 				BA938CEE26AD055400BE5A1D /* AccountVerificationController+TestHelpers.swift in Sources */,
 				B502C22325BA345700145D6C /* AccountVerificationControllerTests.swift in Sources */,
 				BA4C6D18264CAAF800B723A7 /* URLRequest+Simplenote.swift in Sources */,
+				BA5A65952C09164100F605A6 /* MockStorageSettings.swift in Sources */,
 				B5C1F0AC242E9A9800A627E3 /* MockTextView.swift in Sources */,
 				B502C22B25BA347700145D6C /* MockAccountVerificationRemote.swift in Sources */,
 				B5469FE225880181007ED7BE /* NSUserDefaults+Tests.swift in Sources */,
@@ -2122,9 +2171,12 @@
 				B500993A242131410037A431 /* UnicodeScalarSimplenoteTests.swift in Sources */,
 				B5CBB073241976280003C271 /* NSAttributedStringToMarkdownConverterTests.swift in Sources */,
 				B518D37E2507C356006EA7F8 /* StringSimplenoteTests.swift in Sources */,
+				BA5A65992C091E6000F605A6 /* MockStorageValidator.swift in Sources */,
+				BA5A658C2C090F4800F605A6 /* SharedStorageMigratorTests.swift in Sources */,
 				B5B5F33D243244F100F31720 /* TextViewInputHandlerTests.swift in Sources */,
 				B5EF32CF258D08E70069EC7D /* MockStorage+Sample.swift in Sources */,
 				B574016925B7D3980058960E /* EmailVerificationTests.swift in Sources */,
+				BA5A65912C09113400F605A6 /* MockFileManager.swift in Sources */,
 				B5B17F362425641E00DD5B34 /* NSAttributedStringSimplenoteTests.swift in Sources */,
 				B500993F242140500037A431 /* NSStringSimplenoteTests.swift in Sources */,
 			);
@@ -2405,11 +2457,11 @@
 					"${inherited}",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.SimplenoteMac.Debug;
+				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.SimplenoteMac.Development;
 				PRODUCT_NAME = Simplenote;
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Simplenote Mac - Development";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2619,10 +2671,10 @@
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.SimplenoteMac.Debug.IntentsExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.SimplenoteMac.Development.IntentsExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Simplenote Mac Intents Extension - Development";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited) APP_EXTENSION";
 				SWIFT_EMIT_LOC_STRINGS = YES;

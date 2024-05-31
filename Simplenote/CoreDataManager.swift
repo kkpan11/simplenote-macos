@@ -1,11 +1,3 @@
-//
-//  CoreDataManager.swift
-//  Simplenote
-//
-//  Created by Charlie Scheer on 5/23/24.
-//  Copyright © 2024 Simperium. All rights reserved.
-//
-
 import Foundation
 import CoreData
 
@@ -48,7 +40,7 @@ class CoreDataManager: NSObject {
 
         let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
 
-        let psc = try Self.preparePSC(at: storageURL, model: mom)
+        let psc = try Self.preparePSC(at: storageSettings.storageURL, model: mom)
 
         self.managedObjectModel = mom
         self.managedObjectContext = context
