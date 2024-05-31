@@ -1,17 +1,10 @@
-//
-//  SharedStorageMigrator.swift
-//  Simplenote
-//
-//  Created by Charlie Scheer on 5/28/24.
-//  Copyright © 2024 Simperium. All rights reserved.
-//
-
 import Foundation
 
 @objc
 class SharedStorageMigrator: NSObject {
     private let storageSettings: StorageSettings
-    private let fileManager: FileManager
+    private let fileManager: FileManagerProtocol
+    private let storageValidator: CoreDataValidator
 
     private var legacyStorageURL: URL {
         storageSettings.legacyStorageURL
@@ -21,9 +14,11 @@ class SharedStorageMigrator: NSObject {
         storageSettings.sharedStorageURL
     }
 
-    init(storageSettings: StorageSettings = StorageSettings(), fileManager: FileManager = FileManager.default) {
+    init(storageSettings: StorageSettings = StorageSettings(), fileManager: FileManagerProtocol = FileManager.default,
+         storageValidator: CoreDataValidator = CoreDataValidator()) {
         self.storageSettings = storageSettings
         self.fileManager = fileManager
+        self.storageValidator = storageValidator
     }
 
     private var legacyStorageExists: Bool {
@@ -38,35 +33,29 @@ class SharedStorageMigrator: NSObject {
     /// To be able to share data with app extensions, the CoreData database needs to be migrated to an app group
     /// Must run before Simperium is setup
 
-    func performMigrationIfNeeded() -> MigrationResult {
-        // Confirm if the app group DB exists
-        guard migrationNeeded else {
-            NSLog("Core Data Migration not required")
-            return .notNeeded
+    func performMigrationIfNeeded() {
+        if migrationNeeded {
+            migrateCoreDataToAppGroup()
         }
-
-        return migrateCoreDataToAppGroup()
     }
 
     private var migrationNeeded: Bool {
-        return legacyStorageExists && !sharedStorageExists
+        return legacyStorageExists
     }
 
-    private func migrateCoreDataToAppGroup() -> MigrationResult {
+    private func migrateCoreDataToAppGroup() {
         NSLog("Database needs migration to app group")
         NSLog("Beginning database migration from: \(storageSettings.legacyStorageURL.path) to: \(storageSettings.sharedStorageURL.path)")
 
-                do {
-                    try migrateCoreDataFiles()
-                    try attemptCreationOfCoreDataStack()
-                    NSLog("Database migration successful!!")
-                    backupLegacyDatabase()
-                    return .success
-                } catch {
-                    NSLog("Could not migrate database to app group " + error.localizedDescription)
-                    removeFailedMigrationFilesIfNeeded()
-                    return .failed
-                }
+        do {
+            try migrateCoreDataFiles()
+            try attemptCreationOfCoreDataStack()
+            NSLog("Database migration successful!!")
+            backupLegacyDatabase()
+        } catch {
+            NSLog("Could not migrate database to app group " + error.localizedDescription)
+            removeFailedMigrationFilesIfNeeded()
+        }
     }
 
     private func migrateCoreDataFiles() throws {
@@ -78,29 +67,7 @@ class SharedStorageMigrator: NSObject {
 
     private func attemptCreationOfCoreDataStack() throws {
         NSLog("Confirming migrated database can be loaded at: \(storageSettings.sharedStorageURL)")
-        try loadPersistentStorage(at: storageSettings.sharedStorageURL)
-    }
-
-    private func loadPersistentStorage(at storageURL: URL) throws {
-        guard let mom = NSManagedObjectModel(contentsOf: storageSettings.modelURL!) else {
-            fatalError("Could not load Managed Object Model at path: \(storageURL.path)")
-        }
-        let psc = NSPersistentStoreCoordinator(managedObjectModel: mom)
-        let options = [
-            NSMigratePersistentStoresAutomaticallyOption: true,
-            NSInferMappingModelAutomaticallyOption: true
-        ]
-        try psc.addPersistentStore(ofType: NSXMLStoreType, configurationName: nil, at: storageURL, options: options)
-
-        // Remove the persistent store before exiting
-        // If removing fails, the migration can still continue so not throwing the errors
-        do {
-            for store in psc.persistentStores {
-                try psc.remove(store)
-            }
-        } catch {
-            NSLog("Could not remove temporary persistent Store " + error.localizedDescription)
-        }
+        try storageValidator.validateStorage(withModelURL: storageSettings.modelURL!, storageURL: storageSettings.sharedStorageURL)
     }
 
     private func backupLegacyDatabase() {
@@ -122,10 +89,4 @@ class SharedStorageMigrator: NSObject {
             NSLog("Could not delete files from failed migration " + error.localizedDescription)
         }
     }
-}
-
-enum MigrationResult {
-    case success
-    case notNeeded
-    case failed
 }
