@@ -56,7 +56,7 @@ private struct Constants {
 
     static let defaultBundleID: String  = {
         #if DEBUG
-        "com.automattic.SimplenoteMac.Debug"
+        "com.automattic.SimplenoteMac.Development"
         #else
         "com.automattic.SimplenoteMac"
         #endif

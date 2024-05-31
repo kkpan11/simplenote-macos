@@ -13,6 +13,8 @@ class IntentHandler: INExtension {
         switch intent {
         case is OpenNewNoteIntent:
             return OpenNewNoteIntentHandler()
+        case is OpenNoteIntent:
+            return OpenNoteIntentHandler()
         default:
             return self
         }

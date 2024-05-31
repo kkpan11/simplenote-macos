@@ -294,9 +294,20 @@ extension SimplenoteAppDelegate {
         switch type {
         case .newNoteShortcut:
             noteEditorViewController.createNote(from: nil)
+        case .openNoteShortcut:
+            presentNote(for: userActivity)
         }
 
         return true
+    }
+
+    func presentNote(for userActivity: NSUserActivity) {
+        guard let uniqueIdentifier = userActivity.userInfo?[IntentsConstants.noteIdentifierKey] as? String else {
+            return
+        }
+
+        noteListViewController.displayAndSelectNote(with: uniqueIdentifier)
+        _ = window.makeFirstResponder(noteEditorViewController.noteEditor)
     }
 }
 

@@ -57,8 +57,9 @@
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>OpenNewNoteIntent</string>
+		<string>OpenNoteIntent</string>
 	</array>
-    <key>TeamIDPrefix</key>
-    <string>$(TeamIdentifierPrefix)</string>
+	<key>TeamIDPrefix</key>
+	<string>$(TeamIdentifierPrefix)</string>
 </dict>
 </plist>

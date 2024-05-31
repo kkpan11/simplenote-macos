@@ -21,13 +21,18 @@ enum CoreDataManagerError: Error {
     }
 }
 
+enum CoreDataUsageType {
+    case standard
+    case intents
+}
+
 @objcMembers
 class CoreDataManager: NSObject {
     private(set) var managedObjectModel: NSManagedObjectModel
     private(set) var managedObjectContext: NSManagedObjectContext
     private(set) var persistentStoreCoordinator: NSPersistentStoreCoordinator
 
-    init(storageSettings: StorageSettings) throws {
+    init(storageSettings: StorageSettings, for usageType: CoreDataUsageType = .standard) throws {
         guard let modelURL = storageSettings.modelURL,
               let mom = NSManagedObjectModel(contentsOf: modelURL) else {
             throw CoreDataManagerError.couldNotBuildModel
@@ -40,6 +45,9 @@ class CoreDataManager: NSObject {
         self.managedObjectModel = mom
         self.managedObjectContext = context
         self.persistentStoreCoordinator = psc
+
+        super.init()
+        setupCoreDataStackIfNeeded(usage: usageType)
     }
 
     static private func preparePSC(at storageURL: URL, model: NSManagedObjectModel) throws -> NSPersistentStoreCoordinator {
@@ -52,5 +60,13 @@ class CoreDataManager: NSObject {
         try coordinator.addPersistentStore(ofType: NSXMLStoreType, configurationName: nil, at: storageURL, options: options)
 
         return coordinator
+    }
+
+    private func setupCoreDataStackIfNeeded(usage: CoreDataUsageType) {
+        guard usage != .standard else {
+            return
+        }
+
+        managedObjectContext.persistentStoreCoordinator = persistentStoreCoordinator
     }
 }

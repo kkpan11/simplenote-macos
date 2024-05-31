@@ -10,4 +10,5 @@ import Foundation
 
 enum ActivityType: String {
     case newNoteShortcut = "OpenNewNoteIntent"
+    case openNoteShortcut = "OpenNoteIntent"
 }
