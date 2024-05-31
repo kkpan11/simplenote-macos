@@ -9,7 +9,8 @@ extension SimplenoteAppDelegate {
 
     @objc
     func setupStorage() {
-        let storageSettings = SharedStorageMigrator().performMigrationIfNeeded()
+        SharedStorageMigrator().performMigrationIfNeeded()
+        let storageSettings = StorageSettings()
 
         do {
             try validateStorageDirectory(at: storageSettings.storageDirectory)

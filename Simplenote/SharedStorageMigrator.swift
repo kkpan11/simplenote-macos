@@ -33,12 +33,10 @@ class SharedStorageMigrator: NSObject {
     /// To be able to share data with app extensions, the CoreData database needs to be migrated to an app group
     /// Must run before Simperium is setup
 
-    func performMigrationIfNeeded() -> StorageSettings {
+    func performMigrationIfNeeded() {
         if migrationNeeded {
             migrateCoreDataToAppGroup()
         }
-
-        return storageSettings
     }
 
     private var migrationNeeded: Bool {
