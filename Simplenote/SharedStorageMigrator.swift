@@ -56,7 +56,6 @@ class SharedStorageMigrator: NSObject {
             backupLegacyDatabase()
         } catch {
             NSLog("Could not migrate database to app group " + error.localizedDescription)
-            storageSettings.setStorageLocation(to: .legacy)
             removeFailedMigrationFilesIfNeeded()
         }
     }

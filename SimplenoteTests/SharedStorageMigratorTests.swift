@@ -39,38 +39,27 @@ class SharedStorageMigratorTests: XCTestCase {
         XCTAssertFalse(fileManager.migrationAttempted)
     }
 
-    func testStorageLocationIsSharedIfCopySuccessful() {
+    func testCopyAttemptedIfShouldSucceed() {
         fileManager.legacyStorageExists = true
         fileManager.copyShouldSucceed = true
 
         _ = migrator.performMigrationIfNeeded()
 
         XCTAssertTrue(fileManager.migrationAttempted)
-        XCTAssertEqual(storageSettings.storageURL, MockStorageSettings().sharedStorageURL)
+        XCTAssertTrue(fileManager.copyAttempted)
     }
 
-    func testStorageLocationIsLegacyIfCopyFails() {
+    func testCopyNotAttemptedIfShouldFail() {
         fileManager.legacyStorageExists = true
         fileManager.copyShouldSucceed = false
 
         _ = migrator.performMigrationIfNeeded()
 
         XCTAssertTrue(fileManager.migrationAttempted)
-        XCTAssertEqual(storageSettings.storageURL, MockStorageSettings().legacyStorageURL)
+        XCTAssertFalse(fileManager.copyAttempted)
     }
 
-    func testStorageLocationIsSharedIfStorageValidationSucceeds() {
-        storageValidator.validationShouldSucceed = true
-        fileManager.legacyStorageExists = true
-        fileManager.copyShouldSucceed = true
-
-        _ = migrator.performMigrationIfNeeded()
-
-        XCTAssertTrue(fileManager.migrationAttempted)
-        XCTAssertEqual(storageSettings.storageURL, MockStorageSettings().sharedStorageURL)
-    }
-
-    func testStorageLocationIsSharedIfStorageValidationFails() {
+    func testNoBackupAndFilesRemovedIfValidationFails() {
         storageValidator.validationShouldSucceed = false
         fileManager.legacyStorageExists = true
         fileManager.copyShouldSucceed = true
@@ -78,7 +67,9 @@ class SharedStorageMigratorTests: XCTestCase {
         _ = migrator.performMigrationIfNeeded()
 
         XCTAssertTrue(fileManager.migrationAttempted)
-        XCTAssertEqual(storageSettings.storageURL, MockStorageSettings().legacyStorageURL)
+        XCTAssertTrue(fileManager.copyAttempted)
+        XCTAssertFalse(fileManager.backupAttempted)
+        XCTAssertTrue(fileManager.removeFilesAttempted)
     }
 
     func testConfirmLegacyDBBackUpAttemptedOnSuccess() {
@@ -90,7 +81,6 @@ class SharedStorageMigratorTests: XCTestCase {
 
         XCTAssertTrue(fileManager.backupAttempted)
         XCTAssertTrue(fileManager.migrationAttempted)
-        XCTAssertEqual(storageSettings.storageURL, MockStorageSettings().sharedStorageURL)
     }
 
     func testConfirmSharedFilesRemoveAttemptedOnFailer() {
@@ -102,6 +92,5 @@ class SharedStorageMigratorTests: XCTestCase {
 
         XCTAssertTrue(fileManager.removeFilesAttempted)
         XCTAssertTrue(fileManager.migrationAttempted)
-        XCTAssertEqual(storageSettings.storageURL, MockStorageSettings().legacyStorageURL)
     }
 }

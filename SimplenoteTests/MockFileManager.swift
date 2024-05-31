@@ -4,6 +4,7 @@ import Foundation
 class MockFileManager: FileManagerProtocol {
 
     var migrationAttempted = false
+    var copyAttempted = false
     var backupAttempted = false
     var removeFilesAttempted = false
 
@@ -37,6 +38,8 @@ class MockFileManager: FileManagerProtocol {
 
         if copyShouldSucceed {
             sharedStorageExists = true
+            legacyStorageExists = false
+            copyAttempted = true
         } else {
             throw NSError(domain: "testError", code: 1)
         }

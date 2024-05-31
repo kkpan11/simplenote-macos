@@ -1,39 +1,34 @@
 import Foundation
 
-enum StorageLocation {
-    case shared
-    case legacy
-}
-
 class StorageSettings {
     private let fileManager: FileManager
-    private(set) var storageLocation: StorageLocation
 
-    init(fileManger: FileManager = .default, storageLocation: StorageLocation = .shared) {
+    init(fileManger: FileManager = .default) {
         self.fileManager = fileManger
-        self.storageLocation = storageLocation
     }
 
     var modelURL: URL? {
         Bundle.main.url(forResource: Constants.modelName, withExtension: Constants.modelExtension)
     }
 
+    private var sharedStorageExists: Bool {
+        fileManager.fileExists(atPath: sharedStorageURL.path)
+    }
+
     var storageDirectory: URL {
-        switch storageLocation {
-        case .shared:
-            return sharedUserLibraryDirectory
-        case .legacy:
+        guard sharedStorageExists else {
             return legacyUserLibraryDirectory
         }
+
+        return sharedUserLibraryDirectory
     }
 
     var storageURL: URL {
-        switch storageLocation {
-        case .shared:
-            return sharedStorageURL
-        case .legacy:
+        guard sharedStorageExists else {
             return legacyStorageURL
         }
+
+        return sharedStorageURL
     }
 
     var legacyBackupURL: URL {
@@ -55,10 +50,6 @@ class StorageSettings {
 
     var legacyStorageURL: URL {
         legacyUserLibraryDirectory.appendingPathComponent("\(Constants.modelName).\(Constants.storeExtension)")
-    }
-
-    func setStorageLocation(to newLocation: StorageLocation) {
-        storageLocation = newLocation
     }
 }
 
