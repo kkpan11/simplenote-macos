@@ -244,6 +244,7 @@
     [self.verificationCoordinator processDidLoginWithEmail:user.email];
     [SPTracker refreshMetadataWithEmail:user.email];
     [self.crashLogging cacheUser: simperium.user];
+    [self saveTokenFor:user];
 }
 
 - (void)simperiumDidLogout:(Simperium *)simperium
@@ -255,6 +256,7 @@
     [self.noteEditorMetadataCache removeAll];
 
     [[CSSearchableIndex defaultSearchableIndex] deleteAllSearchableItemsWithCompletionHandler:nil];
+    [self removeExtensionToken];
 }
 
 - (void)simperium:(Simperium *)simperium didFailWithError:(NSError *)error

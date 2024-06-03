@@ -308,6 +308,10 @@
 		BAC5DFB52C069568002AD7EF /* Bundle+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57CB87D244DED2300BA7969 /* Bundle+Simplenote.swift */; };
 		BAC5DFB72C069993002AD7EF /* SharedStorageMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC5DFB62C069993002AD7EF /* SharedStorageMigrator.swift */; };
 		BAC5DFB92C079E5A002AD7EF /* OpenNoteIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC5DFB82C079E5A002AD7EF /* OpenNoteIntentHandler.swift */; };
+		BACA68782C0A7537005409C1 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACA68772C0A7537005409C1 /* KeychainManager.swift */; };
+		BACA68792C0A7608005409C1 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACA68772C0A7537005409C1 /* KeychainManager.swift */; };
+		BACA687B2C0A7634005409C1 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACA687A2C0A7634005409C1 /* KeychainPasswordItem.swift */; };
+		BACA687C2C0A764C005409C1 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACA687A2C0A7634005409C1 /* KeychainPasswordItem.swift */; };
 		BAD4ECC026E6FC0A00881CC4 /* markdown-light.css in Resources */ = {isa = PBXBuildFile; fileRef = BAF8D5DB26AE3BE800CA9383 /* markdown-light.css */; };
 		BAE66CAA26AF647500398FF3 /* Remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA938CEB26ACFF4A00BE5A1D /* Remote.swift */; };
 		BAF1B0C32BC9B1C500B55F73 /* NoteWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF1B0C12BC9B1C500B55F73 /* NoteWindow.swift */; };
@@ -730,6 +734,8 @@
 		BAC5DFB32C0691E6002AD7EF /* FileManager+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Simplenote.swift"; sourceTree = "<group>"; };
 		BAC5DFB62C069993002AD7EF /* SharedStorageMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedStorageMigrator.swift; sourceTree = "<group>"; };
 		BAC5DFB82C079E5A002AD7EF /* OpenNoteIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenNoteIntentHandler.swift; sourceTree = "<group>"; };
+		BACA68772C0A7537005409C1 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		BACA687A2C0A7634005409C1 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
 		BAF1B0C12BC9B1C500B55F73 /* NoteWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteWindow.swift; sourceTree = "<group>"; };
 		BAF1B0C72BCDDA9600B55F73 /* NoteWindowControllersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteWindowControllersManager.swift; sourceTree = "<group>"; };
 		BAF8D5DB26AE3BE800CA9383 /* markdown-light.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "markdown-light.css"; sourceTree = "<group>"; };
@@ -965,6 +971,8 @@
 				BAB2617F2BFFDD97009A98D7 /* StorageSettings.swift */,
 				BAC5DFB32C0691E6002AD7EF /* FileManager+Simplenote.swift */,
 				BAC5DFB62C069993002AD7EF /* SharedStorageMigrator.swift */,
+				BACA68772C0A7537005409C1 /* KeychainManager.swift */,
+				BACA687A2C0A7634005409C1 /* KeychainPasswordItem.swift */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -2015,6 +2023,7 @@
 				BAC5DFB72C069993002AD7EF /* SharedStorageMigrator.swift in Sources */,
 				375D293B21E033D1007AB25A /* stack.c in Sources */,
 				B57CB878244DEBCE00BA7969 /* UserDefaults+Simplenote.swift in Sources */,
+				BACA687B2C0A7634005409C1 /* KeychainPasswordItem.swift in Sources */,
 				375D294321E033D1007AB25A /* html5_blocks.c in Sources */,
 				B51AFE7725D36CDD00A196DF /* NSFont+Simplenote.swift in Sources */,
 				375D293D21E033D1007AB25A /* hash.c in Sources */,
@@ -2029,6 +2038,7 @@
 				376EE3EC202B748E00E3812E /* SPAboutTextField.swift in Sources */,
 				B542FE5725D42EC700A3582D /* Storage.m in Sources */,
 				B59EA98224AA5EFA008ABE4B /* NoteMetrics.swift in Sources */,
+				BACA68782C0A7537005409C1 /* KeychainManager.swift in Sources */,
 				B56FA7912437C672002CB9FF /* ColorStudio.swift in Sources */,
 				B5609AED24EEE7200097777A /* SPBucket+Simplenote.swift in Sources */,
 				B5F50916247319360042FA1D /* SplitView.swift in Sources */,
@@ -2196,6 +2206,7 @@
 				BAAA71EF2C07A6CF00244C01 /* IntentsError.swift in Sources */,
 				BAAA71F22C07A7FD00244C01 /* IntentsConstants.swift in Sources */,
 				BAAA71D92C07A14600244C01 /* String+Simplenote.swift in Sources */,
+				BACA687C2C0A764C005409C1 /* KeychainPasswordItem.swift in Sources */,
 				BAAA71E92C07A39300244C01 /* FileManager+Simplenote.swift in Sources */,
 				BAAA71E82C07A37700244C01 /* StorageSettings.swift in Sources */,
 				BAAA71E22C07A2BA00244C01 /* NSSortDescriptor+Simplenote.swift in Sources */,
@@ -2206,6 +2217,7 @@
 				BAAA71F02C07A7DB00244C01 /* ActivityType.swift in Sources */,
 				BAAA71E32C07A2C200244C01 /* SortMode.swift in Sources */,
 				BAAA71E42C07A2F900244C01 /* NSUserInterfaceItemIdentifier+Simplenote.swift in Sources */,
+				BACA68792C0A7608005409C1 /* KeychainManager.swift in Sources */,
 				BAB261762BFFD319009A98D7 /* OpenNewNoteIntentHandler.swift in Sources */,
 				BA2BF3402C07C75500A7C894 /* FindNoteIntentHandler.swift in Sources */,
 				BAAA71D72C07A11500244C01 /* Note+Intents.swift in Sources */,
