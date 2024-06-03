@@ -1,3 +1,7 @@
+2.21
+-----
+- Added shortcuts to Simplenote Mac!!
+
 2.20
 -----
 - Added spotlight search support for notes
