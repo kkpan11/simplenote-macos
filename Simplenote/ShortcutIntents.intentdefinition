@@ -424,26 +424,6 @@
 							<key>INIntentParameterPromptDialogType</key>
 							<string>Primary</string>
 						</dict>
-						<dict>
-							<key>INIntentParameterPromptDialogCustom</key>
-							<true/>
-							<key>INIntentParameterPromptDialogFormatString</key>
-							<string>There are ${count} options matching ‘${tag}’.</string>
-							<key>INIntentParameterPromptDialogFormatStringID</key>
-							<string>LCm837</string>
-							<key>INIntentParameterPromptDialogType</key>
-							<string>DisambiguationIntroduction</string>
-						</dict>
-						<dict>
-							<key>INIntentParameterPromptDialogCustom</key>
-							<true/>
-							<key>INIntentParameterPromptDialogFormatString</key>
-							<string>Just to confirm, you wanted ‘${tag}’?</string>
-							<key>INIntentParameterPromptDialogFormatStringID</key>
-							<string>QPxVDU</string>
-							<key>INIntentParameterPromptDialogType</key>
-							<string>Confirmation</string>
-						</dict>
 					</array>
 					<key>INIntentParameterSupportsDynamicEnumeration</key>
 					<true/>
@@ -470,6 +450,8 @@
 				</array>
 				<key>INIntentResponseLastParameterTag</key>
 				<integer>2</integer>
+				<key>INIntentResponseOutput</key>
+				<string>note</string>
 				<key>INIntentResponseParameters</key>
 				<array>
 					<dict>
@@ -562,26 +544,6 @@
 							<true/>
 							<key>INIntentParameterPromptDialogType</key>
 							<string>Primary</string>
-						</dict>
-						<dict>
-							<key>INIntentParameterPromptDialogCustom</key>
-							<true/>
-							<key>INIntentParameterPromptDialogFormatString</key>
-							<string>There are ${count} options matching ‘${note}’.</string>
-							<key>INIntentParameterPromptDialogFormatStringID</key>
-							<string>jr7M0N</string>
-							<key>INIntentParameterPromptDialogType</key>
-							<string>DisambiguationIntroduction</string>
-						</dict>
-						<dict>
-							<key>INIntentParameterPromptDialogCustom</key>
-							<true/>
-							<key>INIntentParameterPromptDialogFormatString</key>
-							<string>Just to confirm, you wanted ‘${note}’?</string>
-							<key>INIntentParameterPromptDialogFormatStringID</key>
-							<string>YU4Kd7</string>
-							<key>INIntentParameterPromptDialogType</key>
-							<string>Confirmation</string>
 						</dict>
 					</array>
 					<key>INIntentParameterSupportsDynamicEnumeration</key>
