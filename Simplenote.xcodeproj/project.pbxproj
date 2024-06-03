@@ -263,6 +263,7 @@
 		BA5A65952C09164100F605A6 /* MockStorageSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A65942C09164100F605A6 /* MockStorageSettings.swift */; };
 		BA5A65972C091D0600F605A6 /* CoreDataValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A65962C091D0600F605A6 /* CoreDataValidator.swift */; };
 		BA5A65992C091E6000F605A6 /* MockStorageValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A65982C091E6000F605A6 /* MockStorageValidator.swift */; };
+		BA5A658A2C07CD0B00F605A6 /* CopyNoteContentIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A65892C07CD0B00F605A6 /* CopyNoteContentIntentHandler.swift */; };
 		BA5F020626BB57F000581E92 /* NSAlert+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5F020426BB57F000581E92 /* NSAlert+Simplenote.swift */; };
 		BA71EC242BC88FD000F42CB1 /* CSSearchable+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA52005A2BC878F1003F1B75 /* CSSearchable+Helpers.swift */; };
 		BA71EC252BC88FFC00F42CB1 /* NSManagedObjectContext+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA52005C2BC88397003F1B75 /* NSManagedObjectContext+Simplenote.swift */; };
@@ -706,6 +707,7 @@
 		BA5A65942C09164100F605A6 /* MockStorageSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStorageSettings.swift; sourceTree = "<group>"; };
 		BA5A65962C091D0600F605A6 /* CoreDataValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataValidator.swift; sourceTree = "<group>"; };
 		BA5A65982C091E6000F605A6 /* MockStorageValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStorageValidator.swift; sourceTree = "<group>"; };
+		BA5A65892C07CD0B00F605A6 /* CopyNoteContentIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyNoteContentIntentHandler.swift; sourceTree = "<group>"; };
 		BA5F020426BB57F000581E92 /* NSAlert+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAlert+Simplenote.swift"; sourceTree = "<group>"; };
 		BA8CF21B2BFD20770087F33D /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		BA938CEB26ACFF4A00BE5A1D /* Remote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remote.swift; sourceTree = "<group>"; };
@@ -1630,6 +1632,7 @@
 				BAC5DFB82C079E5A002AD7EF /* OpenNoteIntentHandler.swift */,
 				BA2BF33F2C07C75500A7C894 /* FindNoteIntentHandler.swift */,
 				BACA686E2C0A6E2F005409C1 /* FindNoteWithTagIntentHandler.swift */,
+				BA5A65892C07CD0B00F605A6 /* CopyNoteContentIntentHandler.swift */,
 			);
 			path = IntentHandlers;
 			sourceTree = "<group>";
@@ -2205,6 +2208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA5A658A2C07CD0B00F605A6 /* CopyNoteContentIntentHandler.swift in Sources */,
 				BAAA71EF2C07A6CF00244C01 /* IntentsError.swift in Sources */,
 				BACA68762C0A72F3005409C1 /* NSString+Intents.swift in Sources */,
 				BAAA71F22C07A7FD00244C01 /* IntentsConstants.swift in Sources */,
