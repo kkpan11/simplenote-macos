@@ -10,4 +10,6 @@ import Foundation
 
 struct IntentsConstants {
     static let noteIdentifierKey = "OpenNoteIntentHandlerIdentifierKey"
+    static let extensionGroupName = Bundle.main.sharedGroupDomain
+    static let simperiumAppID = "chalk-bump-f49"
 }

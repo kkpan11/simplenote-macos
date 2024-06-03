@@ -268,6 +268,8 @@
 		BA71EC252BC88FFC00F42CB1 /* NSManagedObjectContext+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA52005C2BC88397003F1B75 /* NSManagedObjectContext+Simplenote.swift */; };
 		BA78AF712B5B2BC300DCF896 /* AutomatticTracks in Frameworks */ = {isa = PBXBuildFile; productRef = BA78AF702B5B2BC300DCF896 /* AutomatticTracks */; };
 		BA938CEE26AD055400BE5A1D /* AccountVerificationController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA938CED26AD055400BE5A1D /* AccountVerificationController+TestHelpers.swift */; };
+		BA94CB652C0E46CC00B34EA7 /* Uploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA94CB642C0E46CC00B34EA7 /* Uploader.swift */; };
+		BA94CB682C0E47DD00B34EA7 /* NSURLSessionConfiguration+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA94CB672C0E47DD00B34EA7 /* NSURLSessionConfiguration+Extensions.swift */; };
 		BAA0A88B26BA39150006260E /* Date+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A88626B9F8B40006260E /* Date+Simplenote.swift */; };
 		BAA0A88F26BA39200006260E /* AccountDeletionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A88126B9F8970006260E /* AccountDeletionController.swift */; };
 		BAA0A89326BA39260006260E /* RemoteError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A87926B9F0B50006260E /* RemoteError.swift */; };
@@ -710,6 +712,9 @@
 		BA8CF21B2BFD20770087F33D /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		BA938CEB26ACFF4A00BE5A1D /* Remote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remote.swift; sourceTree = "<group>"; };
 		BA938CED26AD055400BE5A1D /* AccountVerificationController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountVerificationController+TestHelpers.swift"; sourceTree = "<group>"; };
+		BA94CB642C0E46CC00B34EA7 /* Uploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Uploader.swift; sourceTree = "<group>"; };
+		BA94CB672C0E47DD00B34EA7 /* NSURLSessionConfiguration+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSURLSessionConfiguration+Extensions.swift"; sourceTree = "<group>"; };
+		BA94CB6B2C0E4A6100B34EA7 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		BAA0A87926B9F0B50006260E /* RemoteError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteError.swift; sourceTree = "<group>"; };
 		BAA0A88126B9F8970006260E /* AccountDeletionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDeletionController.swift; sourceTree = "<group>"; };
 		BAA0A88626B9F8B40006260E /* Date+Simplenote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Simplenote.swift"; sourceTree = "<group>"; };
@@ -822,6 +827,7 @@
 		26F72A8B14032D2A00A7935E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BA94CB6B2C0E4A6100B34EA7 /* CoreFoundation.framework */,
 				26F72A8F14032D2A00A7935E /* AppKit.framework */,
 				26F72A8C14032D2A00A7935E /* Cocoa.framework */,
 				26F72A9014032D2A00A7935E /* CoreData.framework */,
@@ -1594,6 +1600,7 @@
 				BAAA71E52C07A35F00244C01 /* ExtensionCoreDataWrapper.swift */,
 				BAAA71EE2C07A6CF00244C01 /* IntentsError.swift */,
 				BAAA71F12C07A7FD00244C01 /* IntentsConstants.swift */,
+				BA94CB642C0E46CC00B34EA7 /* Uploader.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -1603,6 +1610,7 @@
 			children = (
 				BAAA71EC2C07A69C00244C01 /* IntentNote+Helpers.swift */,
 				BAAD56482C0A42E40047E024 /* FileManager+Intents.swift */,
+				BA94CB672C0E47DD00B34EA7 /* NSURLSessionConfiguration+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2207,6 +2215,7 @@
 				BAAA71F22C07A7FD00244C01 /* IntentsConstants.swift in Sources */,
 				BAAA71D92C07A14600244C01 /* String+Simplenote.swift in Sources */,
 				BACA687C2C0A764C005409C1 /* KeychainPasswordItem.swift in Sources */,
+				BA94CB652C0E46CC00B34EA7 /* Uploader.swift in Sources */,
 				BAAA71E92C07A39300244C01 /* FileManager+Simplenote.swift in Sources */,
 				BAAA71E82C07A37700244C01 /* StorageSettings.swift in Sources */,
 				BAAA71E22C07A2BA00244C01 /* NSSortDescriptor+Simplenote.swift in Sources */,
@@ -2231,6 +2240,7 @@
 				BAAA71E72C07A37000244C01 /* CoreDataManager.swift in Sources */,
 				BAAA71D52C07A10E00244C01 /* SPManagedObject+Intents.swift in Sources */,
 				BAAA71ED2C07A69C00244C01 /* IntentNote+Helpers.swift in Sources */,
+				BA94CB682C0E47DD00B34EA7 /* NSURLSessionConfiguration+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
