@@ -270,6 +270,7 @@
 		BA938CEE26AD055400BE5A1D /* AccountVerificationController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA938CED26AD055400BE5A1D /* AccountVerificationController+TestHelpers.swift */; };
 		BA94CB652C0E46CC00B34EA7 /* Uploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA94CB642C0E46CC00B34EA7 /* Uploader.swift */; };
 		BA94CB682C0E47DD00B34EA7 /* NSURLSessionConfiguration+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA94CB672C0E47DD00B34EA7 /* NSURLSessionConfiguration+Extensions.swift */; };
+		BA94CB6F2C0E4AFA00B34EA7 /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA94CB6E2C0E4AFA00B34EA7 /* Downloader.swift */; };
 		BAA0A88B26BA39150006260E /* Date+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A88626B9F8B40006260E /* Date+Simplenote.swift */; };
 		BAA0A88F26BA39200006260E /* AccountDeletionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A88126B9F8970006260E /* AccountDeletionController.swift */; };
 		BAA0A89326BA39260006260E /* RemoteError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA0A87926B9F0B50006260E /* RemoteError.swift */; };
@@ -715,6 +716,7 @@
 		BA94CB642C0E46CC00B34EA7 /* Uploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Uploader.swift; sourceTree = "<group>"; };
 		BA94CB672C0E47DD00B34EA7 /* NSURLSessionConfiguration+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSURLSessionConfiguration+Extensions.swift"; sourceTree = "<group>"; };
 		BA94CB6B2C0E4A6100B34EA7 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		BA94CB6E2C0E4AFA00B34EA7 /* Downloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 		BAA0A87926B9F0B50006260E /* RemoteError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteError.swift; sourceTree = "<group>"; };
 		BAA0A88126B9F8970006260E /* AccountDeletionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDeletionController.swift; sourceTree = "<group>"; };
 		BAA0A88626B9F8B40006260E /* Date+Simplenote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Simplenote.swift"; sourceTree = "<group>"; };
@@ -1601,6 +1603,7 @@
 				BAAA71EE2C07A6CF00244C01 /* IntentsError.swift */,
 				BAAA71F12C07A7FD00244C01 /* IntentsConstants.swift */,
 				BA94CB642C0E46CC00B34EA7 /* Uploader.swift */,
+				BA94CB6E2C0E4AFA00B34EA7 /* Downloader.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -2218,6 +2221,7 @@
 				BA94CB652C0E46CC00B34EA7 /* Uploader.swift in Sources */,
 				BAAA71E92C07A39300244C01 /* FileManager+Simplenote.swift in Sources */,
 				BAAA71E82C07A37700244C01 /* StorageSettings.swift in Sources */,
+				BA94CB6F2C0E4AFA00B34EA7 /* Downloader.swift in Sources */,
 				BAAA71E22C07A2BA00244C01 /* NSSortDescriptor+Simplenote.swift in Sources */,
 				BAAA71E62C07A35F00244C01 /* ExtensionCoreDataWrapper.swift in Sources */,
 				BAB261722BFFD0F4009A98D7 /* ShortcutIntents.intentdefinition in Sources */,
