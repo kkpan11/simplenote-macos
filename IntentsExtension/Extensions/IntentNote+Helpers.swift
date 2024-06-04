@@ -1,11 +1,3 @@
-//
-//  IntentNote.swift
-//  IntentsExtension
-//
-//  Created by Charlie Scheer on 5/29/24.
-//  Copyright © 2024 Simperium. All rights reserved.
-//
-
 import Intents
 
 extension IntentNoteResolutionResult {
@@ -28,6 +20,16 @@ extension IntentNoteResolutionResult {
         }
         let filteredNotes = notes.filter({ $0.content?.contains(content) == true })
         let intentNotes = IntentNote.makeIntentNotes(from: filteredNotes)
+
+        return resolve(intentNotes)
+    }
+
+    static func resolveIntentNote(forTag tag: IntentTag, in coreDataWrapper: ExtensionCoreDataWrapper) -> IntentNoteResolutionResult {
+        guard let notesForTag = coreDataWrapper.resultsController?.notes(filteredBy: .tag(tag.displayString)) else {
+            return IntentNoteResolutionResult.unsupported()
+        }
+
+        let intentNotes = IntentNote.makeIntentNotes(from: notesForTag)
 
         return resolve(intentNotes)
     }
