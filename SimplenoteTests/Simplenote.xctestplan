@@ -1,0 +1,30 @@
+{
+  "configurations" : [
+    {
+      "id" : "4B8E5E02-932F-4AEF-8E24-E62BF97BAC99",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Simplenote.xcodeproj",
+      "identifier" : "466FFEA617CC10A800399652",
+      "name" : "Simplenote"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Simplenote.xcodeproj",
+        "identifier" : "B5CBB068241976230003C271",
+        "name" : "SimplenoteTests"
+      }
+    }
+  ],
+  "version" : 1
+}
