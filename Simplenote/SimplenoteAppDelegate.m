@@ -244,7 +244,7 @@
     [self.verificationCoordinator processDidLoginWithEmail:user.email];
     [SPTracker refreshMetadataWithEmail:user.email];
     [self.crashLogging cacheUser: simperium.user];
-    [self saveTokenFor:user];
+    [self saveTokenForUser:user];
 }
 
 - (void)simperiumDidLogout:(Simperium *)simperium
