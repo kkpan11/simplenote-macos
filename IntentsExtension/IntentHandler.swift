@@ -17,6 +17,10 @@ class IntentHandler: INExtension {
             return OpenNoteIntentHandler()
         case is FindNoteIntent:
             return FindNoteIntentHandler()
+        case is FindNoteWithTagIntent:
+            return FindNoteWithTagIntentHandler()
+        case is CopyNoteContentIntent:
+            return CopyNoteContentIntentHandler()
         default:
             return self
         }
