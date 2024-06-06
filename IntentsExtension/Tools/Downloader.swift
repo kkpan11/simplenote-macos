@@ -21,15 +21,14 @@ class Downloader: NSObject {
         request.httpMethod = Settings.httpMethodGet
         request.setValue(token, forHTTPHeaderField: Settings.authHeader)
 
-        let sc = URLSessionConfiguration.default
-        let session = Foundation.URLSession(configuration: sc, delegate: nil, delegateQueue: .main)
+        let session = Foundation.URLSession(configuration: .default, delegate: nil, delegateQueue: .main)
 
         let downloadedData = try await session.data(for: request)
 
         return try extractNoteContent(from: downloadedData.0)
     }
 
-    func extractNoteContent(from data: Data) throws -> String? {
+    private func extractNoteContent(from data: Data) throws -> String? {
         let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any]
         return jsonObject?["content"] as? String
     }
