@@ -73,7 +73,7 @@ extension Note {
 
     var systemTagsArray: [String] {
         guard let systemTagsString = systemTags,
-              let array = systemTagsString.objectFromJSONString as? [String] else {
+              let array = systemTagsString.objectFromJSONString() as? [String] else {
             return []
         }
 
