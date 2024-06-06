@@ -591,7 +591,7 @@ extension SimplenoteAppDelegate {
 // MARK: - Keychain
 //
 extension SimplenoteAppDelegate {
-    @objc
+    @objc(saveTokenForUser:)
     func saveToken(for user: SPUser?) {
         KeychainManager.extensionToken = user?.authToken
     }

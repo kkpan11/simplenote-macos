@@ -1,7 +1,7 @@
 {
   "project_name": "simplenote-macos",
   "branch": "trunk",
-  "pinned_hash": "10b3b20df4c34c0309c77931d57e7937b4fc1528",
+  "pinned_hash": "bfac58335805e9a8295412734b3492fa6ce7a008",
   "files_to_copy": [
     {
       "file": "macOS/simplenote/SPCredentials.swift",
