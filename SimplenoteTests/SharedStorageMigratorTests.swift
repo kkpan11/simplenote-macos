@@ -26,7 +26,7 @@ class SharedStorageMigratorTests: XCTestCase {
     func testMigrationRunsIfNeeded() {
         fileManager.legacyStorageExists = true
 
-        _ = migrator.performMigrationIfNeeded()
+        migrator.performMigrationIfNeeded()
 
         XCTAssertTrue(fileManager.migrationAttempted)
     }
@@ -34,7 +34,7 @@ class SharedStorageMigratorTests: XCTestCase {
     func testMigrationDoesNotRunIfNotNeeded() {
         fileManager.legacyStorageExists = false
 
-        _ = migrator.performMigrationIfNeeded()
+        migrator.performMigrationIfNeeded()
 
         XCTAssertFalse(fileManager.migrationAttempted)
     }
@@ -43,7 +43,7 @@ class SharedStorageMigratorTests: XCTestCase {
         fileManager.legacyStorageExists = true
         fileManager.copyShouldSucceed = true
 
-        _ = migrator.performMigrationIfNeeded()
+        migrator.performMigrationIfNeeded()
 
         XCTAssertTrue(fileManager.migrationAttempted)
         XCTAssertTrue(fileManager.copyAttempted)
@@ -53,7 +53,7 @@ class SharedStorageMigratorTests: XCTestCase {
         fileManager.legacyStorageExists = true
         fileManager.copyShouldSucceed = false
 
-        _ = migrator.performMigrationIfNeeded()
+        migrator.performMigrationIfNeeded()
 
         XCTAssertTrue(fileManager.migrationAttempted)
         XCTAssertFalse(fileManager.copyAttempted)
@@ -64,7 +64,7 @@ class SharedStorageMigratorTests: XCTestCase {
         fileManager.legacyStorageExists = true
         fileManager.copyShouldSucceed = true
 
-        _ = migrator.performMigrationIfNeeded()
+        migrator.performMigrationIfNeeded()
 
         XCTAssertTrue(fileManager.migrationAttempted)
         XCTAssertTrue(fileManager.copyAttempted)
@@ -77,7 +77,7 @@ class SharedStorageMigratorTests: XCTestCase {
         fileManager.legacyStorageExists = true
         fileManager.copyShouldSucceed = true
 
-        _ = migrator.performMigrationIfNeeded()
+        migrator.performMigrationIfNeeded()
 
         XCTAssertTrue(fileManager.backupAttempted)
         XCTAssertTrue(fileManager.migrationAttempted)
@@ -88,7 +88,7 @@ class SharedStorageMigratorTests: XCTestCase {
         fileManager.legacyStorageExists = true
         fileManager.copyShouldSucceed = true
 
-        _ = migrator.performMigrationIfNeeded()
+        migrator.performMigrationIfNeeded()
 
         XCTAssertTrue(fileManager.removeFilesAttempted)
         XCTAssertTrue(fileManager.migrationAttempted)
