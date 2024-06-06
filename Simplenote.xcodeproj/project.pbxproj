@@ -256,6 +256,7 @@
 		BA2C65CF26FE996A00FA84E1 /* NSButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C65CA26FE996100FA84E1 /* NSButton+Extensions.swift */; };
 		BA4C6D16264CA8C000B723A7 /* SignupRemoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C6D15264CA8C000B723A7 /* SignupRemoteTests.swift */; };
 		BA4C6D18264CAAF800B723A7 /* URLRequest+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C6D17264CAAF800B723A7 /* URLRequest+Simplenote.swift */; };
+		BA4F223E2C1255A500144EDA /* SPCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E196C0230F5F5300F5658A /* SPCredentials.swift */; };
 		BA54F2462C0E63C700DBCE9D /* AppendNoteIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA54F2452C0E63C700DBCE9D /* AppendNoteIntentHandler.swift */; };
 		BA553F0927065E20007737E9 /* FontSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA553F0727065E20007737E9 /* FontSettings.swift */; };
 		BA5A658C2C090F4800F605A6 /* SharedStorageMigratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A658B2C090F4800F605A6 /* SharedStorageMigratorTests.swift */; };
@@ -2221,6 +2222,7 @@
 				BAAA71F22C07A7FD00244C01 /* IntentsConstants.swift in Sources */,
 				BAAA71D92C07A14600244C01 /* String+Simplenote.swift in Sources */,
 				BACA687C2C0A764C005409C1 /* KeychainPasswordItem.swift in Sources */,
+				BA4F223E2C1255A500144EDA /* SPCredentials.swift in Sources */,
 				BA94CB652C0E46CC00B34EA7 /* Uploader.swift in Sources */,
 				BAAA71E92C07A39300244C01 /* FileManager+Simplenote.swift in Sources */,
 				BAAA71E82C07A37700244C01 /* StorageSettings.swift in Sources */,

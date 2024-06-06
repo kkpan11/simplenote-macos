@@ -13,7 +13,7 @@ class Downloader: NSObject {
     }
 
     func getNoteContent(for simperiumKey: String) async throws -> String? {
-        let endpoint = String(format: "%@/%@/%@/i/%@", IntentsConstants.simperiumBaseURL, IntentsConstants.simperiumAppID, Settings.bucketName, simperiumKey)
+        let endpoint = String(format: "%@/%@/%@/i/%@", IntentsConstants.simperiumBaseURL, SPCredentials.simperiumAppID, Settings.bucketName, simperiumKey)
         let targetURL = URL(string: endpoint.lowercased())!
 
         // Request

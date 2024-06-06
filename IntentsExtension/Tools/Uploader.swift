@@ -18,7 +18,7 @@ class Uploader: NSObject {
     // MARK: - Public Methods
     func send(_ note: Note) {
         // Build the targetURL
-        let endpoint = String(format: "%@/%@/%@/i/%@", IntentsConstants.simperiumBaseURL, IntentsConstants.simperiumAppID, Settings.bucketName, note.simperiumKey)
+        let endpoint = String(format: "%@/%@/%@/i/%@", IntentsConstants.simperiumBaseURL, SPCredentials.simperiumAppID, Settings.bucketName, note.simperiumKey)
         let targetURL = URL(string: endpoint.lowercased())!
 
         // Request
