@@ -12,7 +12,7 @@ class Downloader: NSObject {
         token = simperiumToken
     }
 
-    func getNoteContent(for simperiumKey: String) async throws -> String? {
+    func getNoteContent(for simperiumKey: String) async throws -> String {
         let endpoint = String(format: "%@/%@/%@/i/%@", IntentsConstants.simperiumBaseURL, SPCredentials.simperiumAppID, Settings.bucketName, simperiumKey)
         let targetURL = URL(string: endpoint.lowercased())!
 
@@ -28,9 +28,14 @@ class Downloader: NSObject {
         return try extractNoteContent(from: downloadedData.0)
     }
 
-    private func extractNoteContent(from data: Data) throws -> String? {
+    private func extractNoteContent(from data: Data) throws -> String {
         let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any]
-        return jsonObject?["content"] as? String
+
+        guard let content = jsonObject?["content"] as? String else {
+            throw IntentsError.countNotFetchNoteContent
+        }
+
+        return content
     }
 }
 
