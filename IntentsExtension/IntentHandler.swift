@@ -23,6 +23,8 @@ class IntentHandler: INExtension {
             return CopyNoteContentIntentHandler()
         case is AppendNoteIntent:
             return AppendNoteIntentHandler()
+        case is CreateNewNoteIntent:
+            return CreateNewNoteIntentHandler()
         default:
             return self
         }

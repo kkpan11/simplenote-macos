@@ -58,6 +58,7 @@
 	<array>
 		<string>CopyNoteContentIntent</string>
 		<string>AppendNoteIntent</string>
+		<string>CreateNewNoteIntent</string>
 		<string>FindNoteIntent</string>
 		<string>FindNoteWithTagIntent</string>
 		<string>OpenNewNoteIntent</string>
