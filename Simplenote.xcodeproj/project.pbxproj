@@ -256,6 +256,7 @@
 		BA2C65CF26FE996A00FA84E1 /* NSButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C65CA26FE996100FA84E1 /* NSButton+Extensions.swift */; };
 		BA4C6D16264CA8C000B723A7 /* SignupRemoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C6D15264CA8C000B723A7 /* SignupRemoteTests.swift */; };
 		BA4C6D18264CAAF800B723A7 /* URLRequest+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C6D17264CAAF800B723A7 /* URLRequest+Simplenote.swift */; };
+		BA4F223D2C1117E500144EDA /* SPCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E196C0230F5F5300F5658A /* SPCredentials.swift */; };
 		BA553F0927065E20007737E9 /* FontSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA553F0727065E20007737E9 /* FontSettings.swift */; };
 		BA5A658A2C07CD0B00F605A6 /* CopyNoteContentIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A65892C07CD0B00F605A6 /* CopyNoteContentIntentHandler.swift */; };
 		BA5A658C2C090F4800F605A6 /* SharedStorageMigratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A658B2C090F4800F605A6 /* SharedStorageMigratorTests.swift */; };
@@ -313,6 +314,10 @@
 		BACA68712C0A7027005409C1 /* IntentTag+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACA68702C0A7027005409C1 /* IntentTag+Helpers.swift */; };
 		BACA68732C0A70B0005409C1 /* Tag+Intents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACA68722C0A70B0005409C1 /* Tag+Intents.swift */; };
 		BACA68762C0A72F3005409C1 /* NSString+Intents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACA68752C0A72F3005409C1 /* NSString+Intents.swift */; };
+		BACA68782C0A7537005409C1 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACA68772C0A7537005409C1 /* KeychainManager.swift */; };
+		BACA68792C0A7608005409C1 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACA68772C0A7537005409C1 /* KeychainManager.swift */; };
+		BACA687B2C0A7634005409C1 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACA687A2C0A7634005409C1 /* KeychainPasswordItem.swift */; };
+		BACA687C2C0A764C005409C1 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACA687A2C0A7634005409C1 /* KeychainPasswordItem.swift */; };
 		BAD4ECC026E6FC0A00881CC4 /* markdown-light.css in Resources */ = {isa = PBXBuildFile; fileRef = BAF8D5DB26AE3BE800CA9383 /* markdown-light.css */; };
 		BAE66CAA26AF647500398FF3 /* Remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA938CEB26ACFF4A00BE5A1D /* Remote.swift */; };
 		BAF1B0C32BC9B1C500B55F73 /* NoteWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF1B0C12BC9B1C500B55F73 /* NoteWindow.swift */; };
@@ -741,6 +746,8 @@
 		BACA68702C0A7027005409C1 /* IntentTag+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IntentTag+Helpers.swift"; sourceTree = "<group>"; };
 		BACA68722C0A70B0005409C1 /* Tag+Intents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tag+Intents.swift"; sourceTree = "<group>"; };
 		BACA68752C0A72F3005409C1 /* NSString+Intents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSString+Intents.swift"; sourceTree = "<group>"; };
+		BACA68772C0A7537005409C1 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		BACA687A2C0A7634005409C1 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
 		BAF1B0C12BC9B1C500B55F73 /* NoteWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteWindow.swift; sourceTree = "<group>"; };
 		BAF1B0C72BCDDA9600B55F73 /* NoteWindowControllersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteWindowControllersManager.swift; sourceTree = "<group>"; };
 		BAF8D5DB26AE3BE800CA9383 /* markdown-light.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "markdown-light.css"; sourceTree = "<group>"; };
@@ -976,6 +983,8 @@
 				BAB2617F2BFFDD97009A98D7 /* StorageSettings.swift */,
 				BAC5DFB32C0691E6002AD7EF /* FileManager+Simplenote.swift */,
 				BAC5DFB62C069993002AD7EF /* SharedStorageMigrator.swift */,
+				BACA68772C0A7537005409C1 /* KeychainManager.swift */,
+				BACA687A2C0A7634005409C1 /* KeychainPasswordItem.swift */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -1924,6 +1933,7 @@
 		};
 		B52D0EC9230DCB15003F799D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -2032,6 +2042,7 @@
 				BAC5DFB72C069993002AD7EF /* SharedStorageMigrator.swift in Sources */,
 				375D293B21E033D1007AB25A /* stack.c in Sources */,
 				B57CB878244DEBCE00BA7969 /* UserDefaults+Simplenote.swift in Sources */,
+				BACA687B2C0A7634005409C1 /* KeychainPasswordItem.swift in Sources */,
 				375D294321E033D1007AB25A /* html5_blocks.c in Sources */,
 				B51AFE7725D36CDD00A196DF /* NSFont+Simplenote.swift in Sources */,
 				375D293D21E033D1007AB25A /* hash.c in Sources */,
@@ -2046,6 +2057,7 @@
 				376EE3EC202B748E00E3812E /* SPAboutTextField.swift in Sources */,
 				B542FE5725D42EC700A3582D /* Storage.m in Sources */,
 				B59EA98224AA5EFA008ABE4B /* NoteMetrics.swift in Sources */,
+				BACA68782C0A7537005409C1 /* KeychainManager.swift in Sources */,
 				B56FA7912437C672002CB9FF /* ColorStudio.swift in Sources */,
 				B5609AED24EEE7200097777A /* SPBucket+Simplenote.swift in Sources */,
 				B5F50916247319360042FA1D /* SplitView.swift in Sources */,
@@ -2215,6 +2227,7 @@
 				BACA68762C0A72F3005409C1 /* NSString+Intents.swift in Sources */,
 				BAAA71F22C07A7FD00244C01 /* IntentsConstants.swift in Sources */,
 				BAAA71D92C07A14600244C01 /* String+Simplenote.swift in Sources */,
+				BACA687C2C0A764C005409C1 /* KeychainPasswordItem.swift in Sources */,
 				BAAA71E92C07A39300244C01 /* FileManager+Simplenote.swift in Sources */,
 				BAAA71E82C07A37700244C01 /* StorageSettings.swift in Sources */,
 				BAAA71E22C07A2BA00244C01 /* NSSortDescriptor+Simplenote.swift in Sources */,
@@ -2226,6 +2239,8 @@
 				BACA686F2C0A6E2F005409C1 /* FindNoteWithTagIntentHandler.swift in Sources */,
 				BAAA71E32C07A2C200244C01 /* SortMode.swift in Sources */,
 				BAAA71E42C07A2F900244C01 /* NSUserInterfaceItemIdentifier+Simplenote.swift in Sources */,
+				BA4F223D2C1117E500144EDA /* SPCredentials.swift in Sources */,
+				BACA68792C0A7608005409C1 /* KeychainManager.swift in Sources */,
 				BAB261762BFFD319009A98D7 /* OpenNewNoteIntentHandler.swift in Sources */,
 				BA2BF3402C07C75500A7C894 /* FindNoteIntentHandler.swift in Sources */,
 				BAAA71D72C07A11500244C01 /* Note+Intents.swift in Sources */,

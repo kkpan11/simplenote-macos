@@ -588,6 +588,20 @@ extension SimplenoteAppDelegate {
     }
 }
 
+// MARK: - Keychain
+//
+extension SimplenoteAppDelegate {
+    @objc(saveTokenForUser:)
+    func saveToken(for user: SPUser?) {
+        KeychainManager.extensionToken = user?.authToken
+    }
+
+    @objc
+    func removeExtensionToken() {
+        KeychainManager.extensionToken = nil
+    }
+}
+
 // MARK: - Constants
 //
 private struct Constants {
