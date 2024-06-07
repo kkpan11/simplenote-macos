@@ -10,8 +10,12 @@ class CreateNewNoteIntentHandler: NSObject, CreateNewNoteIntentHandling {
             return CreateNewNoteIntentResponse(code: .failure, userActivity: nil)
         }
 
-        Uploader(simperiumToken: token).send(note)
-        return CreateNewNoteIntentResponse(code: .success, userActivity: nil)
+        do {
+            _ = try await Uploader(simperiumToken: token).send(note)
+            return CreateNewNoteIntentResponse(code: .success, userActivity: nil)
+        } catch {
+            return CreateNewNoteIntentResponse.failure(failureReason: error.localizedDescription)
+        }
     }
 
     private func note(with content: String) -> Note? {
