@@ -1,5 +1,8 @@
 /// Simplenote API Demo Credentials
 ///
+
+import Foundation
+
 @objcMembers
 class SPCredentials: NSObject {
 

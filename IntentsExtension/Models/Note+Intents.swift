@@ -64,7 +64,7 @@ extension Note {
 
     var tagsArray: [String] {
         guard let tagsString = tags,
-              let array = objectFromJSONString(tagsString) as? [String] else {
+              let array = tagsString.objectFromJSONString() as? [String] else {
             return []
         }
 
@@ -73,7 +73,7 @@ extension Note {
 
     var systemTagsArray: [String] {
         guard let systemTagsString = systemTags,
-              let array = objectFromJSONString(systemTagsString) as? [String] else {
+              let array = systemTagsString.objectFromJSONString() as? [String] else {
             return []
         }
 

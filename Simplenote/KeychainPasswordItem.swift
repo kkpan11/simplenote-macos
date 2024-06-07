@@ -173,75 +173,9 @@ struct KeychainPasswordItem {
 
         if let accessGroup = accessGroup {
             query[kSecUseDataProtectionKeychain as String] = true as AnyObject?
-            query[kSecAttrAccessGroup as String] = Bundle.main.sharedGroupDomain as AnyObject?
-
+            query[kSecAttrAccessGroup as String] = accessGroup as AnyObject?
         }
 
         return query
     }
-}
-
-/// Creates an access object with the system default configuration which has an altered ACL
-/// to allow access for all applications.
-///
-/// - Parameter descriptor: The name of the item as it should appear in security dialogs.
-/// - Parameter accessRef: The pointer to the new access object.
-/// - Returns: A result code.
-func SecAccessCreateForAllApplications(
-    descriptor: CFString,
-    accessRef outerAccessRef: UnsafeMutablePointer<SecAccess?>
-) -> OSStatus {
-    var accessRef: SecAccess?
-
-    // Create an access object with access granted to no application (2nd parameter).
-    // It comes configured with 3 default ACLs.
-    let accessCreateStatus = SecAccessCreate(
-        descriptor,
-        [] as CFArray, // No application has access
-        &accessRef
-    )
-
-    guard accessCreateStatus == errSecSuccess else { return accessCreateStatus }
-    guard let access = accessRef else { return accessCreateStatus }
-
-    // Extract the default ACLs from the created access object for the *decrypt* authorization tag.
-    guard let aclList = SecAccessCopyMatchingACLList(
-        access,
-        kSecACLAuthorizationDecrypt
-    ) as? [SecACL] else { return errSecInvalidACL }
-
-    // There should be exactly one ACL for the *decrypt* authorization tag.
-    guard aclList.count == 1 else { return errSecInvalidACL }
-    guard let decryptACL = aclList.first else { return errSecInvalidACL }
-
-    // Extract all authorizations from the default ACL for the *decrypt* authorization tag.
-    let allAuthorizations = SecACLCopyAuthorizations(decryptACL)
-
-    // Remove the default ACL for the *decrypt* authorization tag from the access object.
-    let aclRemoveStatus = SecACLRemove(decryptACL)
-
-    guard aclRemoveStatus == errSecSuccess else { return aclRemoveStatus }
-
-    // Create a new ACL with access for all applications and add it to the access object.
-    var newDecryptACLRef: SecACL?
-    let aclCreateStatus = SecACLCreateWithSimpleContents(
-        access,
-        nil, // All applications have access
-        descriptor,
-        [], // Empty prompt selector
-        &newDecryptACLRef
-    )
-
-    guard aclCreateStatus == errSecSuccess else { return aclCreateStatus }
-    guard let newDecryptACL = newDecryptACLRef else { return aclCreateStatus }
-
-    // Set the authorizations extracted from the default ACL to the newly created ACL.
-    let aclUpdateAuthorizationStatus = SecACLUpdateAuthorizations(newDecryptACL, allAuthorizations)
-
-    guard aclUpdateAuthorizationStatus == errSecSuccess else { return aclUpdateAuthorizationStatus }
-
-    // Finally, write the access to the outer pointer.
-    outerAccessRef.initialize(to: access)
-
-    return errSecSuccess
 }

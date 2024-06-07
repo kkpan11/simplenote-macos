@@ -256,9 +256,11 @@
 		BA2C65CF26FE996A00FA84E1 /* NSButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C65CA26FE996100FA84E1 /* NSButton+Extensions.swift */; };
 		BA4C6D16264CA8C000B723A7 /* SignupRemoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C6D15264CA8C000B723A7 /* SignupRemoteTests.swift */; };
 		BA4C6D18264CAAF800B723A7 /* URLRequest+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C6D17264CAAF800B723A7 /* URLRequest+Simplenote.swift */; };
+		BA4F223E2C1255A500144EDA /* SPCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E196C0230F5F5300F5658A /* SPCredentials.swift */; };
 		BA54F2462C0E63C700DBCE9D /* AppendNoteIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA54F2452C0E63C700DBCE9D /* AppendNoteIntentHandler.swift */; };
 		BA54F2482C0E6A6900DBCE9D /* CreateNewNoteIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA54F2472C0E6A6900DBCE9D /* CreateNewNoteIntentHandler.swift */; };
 		BA553F0927065E20007737E9 /* FontSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA553F0727065E20007737E9 /* FontSettings.swift */; };
+		BA5A658A2C07CD0B00F605A6 /* CopyNoteContentIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A65892C07CD0B00F605A6 /* CopyNoteContentIntentHandler.swift */; };
 		BA5A658C2C090F4800F605A6 /* SharedStorageMigratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A658B2C090F4800F605A6 /* SharedStorageMigratorTests.swift */; };
 		BA5A658F2C090FEC00F605A6 /* FileManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A658E2C090FEC00F605A6 /* FileManagerProtocol.swift */; };
 		BA5A65912C09113400F605A6 /* MockFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A65902C09113400F605A6 /* MockFileManager.swift */; };
@@ -313,6 +315,10 @@
 		BAC5DFB52C069568002AD7EF /* Bundle+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57CB87D244DED2300BA7969 /* Bundle+Simplenote.swift */; };
 		BAC5DFB72C069993002AD7EF /* SharedStorageMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC5DFB62C069993002AD7EF /* SharedStorageMigrator.swift */; };
 		BAC5DFB92C079E5A002AD7EF /* OpenNoteIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC5DFB82C079E5A002AD7EF /* OpenNoteIntentHandler.swift */; };
+		BACA686F2C0A6E2F005409C1 /* FindNoteWithTagIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACA686E2C0A6E2F005409C1 /* FindNoteWithTagIntentHandler.swift */; };
+		BACA68712C0A7027005409C1 /* IntentTag+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACA68702C0A7027005409C1 /* IntentTag+Helpers.swift */; };
+		BACA68732C0A70B0005409C1 /* Tag+Intents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACA68722C0A70B0005409C1 /* Tag+Intents.swift */; };
+		BACA68762C0A72F3005409C1 /* NSString+Intents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACA68752C0A72F3005409C1 /* NSString+Intents.swift */; };
 		BACA68782C0A7537005409C1 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACA68772C0A7537005409C1 /* KeychainManager.swift */; };
 		BACA68792C0A7608005409C1 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACA68772C0A7537005409C1 /* KeychainManager.swift */; };
 		BACA687B2C0A7634005409C1 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACA687A2C0A7634005409C1 /* KeychainPasswordItem.swift */; };
@@ -435,6 +441,7 @@
 		37D4DD6920B3574C00C225EA /* WPAuthHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPAuthHandler.h; sourceTree = "<group>"; };
 		37F742EA202A382400A47D3A /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		39ACEAE8218A03C6C22DC662 /* Pods-Automattic-Simplenote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Automattic-Simplenote.release.xcconfig"; path = "Target Support Files/Pods-Automattic-Simplenote/Pods-Automattic-Simplenote.release.xcconfig"; sourceTree = "<group>"; };
+		3F1FC4212C0EBEF10066B187 /* Simplenote.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Simplenote.xctestplan; sourceTree = "<group>"; };
 		466FFF2F17CC10A800399652 /* Simplenote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Simplenote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		469512CB17CD23100014A2BF /* Simplenote-Info-Hockey.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Simplenote-Info-Hockey.plist"; sourceTree = "<group>"; };
 		46A0BEB8175BFD540050E864 /* Simplenote.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Simplenote.entitlements; sourceTree = SOURCE_ROOT; };
@@ -707,6 +714,7 @@
 		BA54F2452C0E63C700DBCE9D /* AppendNoteIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppendNoteIntentHandler.swift; sourceTree = "<group>"; };
 		BA54F2472C0E6A6900DBCE9D /* CreateNewNoteIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewNoteIntentHandler.swift; sourceTree = "<group>"; };
 		BA553F0727065E20007737E9 /* FontSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontSettings.swift; sourceTree = "<group>"; };
+		BA5A65892C07CD0B00F605A6 /* CopyNoteContentIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyNoteContentIntentHandler.swift; sourceTree = "<group>"; };
 		BA5A658B2C090F4800F605A6 /* SharedStorageMigratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedStorageMigratorTests.swift; sourceTree = "<group>"; };
 		BA5A658E2C090FEC00F605A6 /* FileManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerProtocol.swift; sourceTree = "<group>"; };
 		BA5A65902C09113400F605A6 /* MockFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFileManager.swift; sourceTree = "<group>"; };
@@ -745,6 +753,10 @@
 		BAC5DFB32C0691E6002AD7EF /* FileManager+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Simplenote.swift"; sourceTree = "<group>"; };
 		BAC5DFB62C069993002AD7EF /* SharedStorageMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedStorageMigrator.swift; sourceTree = "<group>"; };
 		BAC5DFB82C079E5A002AD7EF /* OpenNoteIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenNoteIntentHandler.swift; sourceTree = "<group>"; };
+		BACA686E2C0A6E2F005409C1 /* FindNoteWithTagIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindNoteWithTagIntentHandler.swift; sourceTree = "<group>"; };
+		BACA68702C0A7027005409C1 /* IntentTag+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IntentTag+Helpers.swift"; sourceTree = "<group>"; };
+		BACA68722C0A70B0005409C1 /* Tag+Intents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tag+Intents.swift"; sourceTree = "<group>"; };
+		BACA68752C0A72F3005409C1 /* NSString+Intents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSString+Intents.swift"; sourceTree = "<group>"; };
 		BACA68772C0A7537005409C1 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		BACA687A2C0A7634005409C1 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
 		BAF1B0C12BC9B1C500B55F73 /* NoteWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteWindow.swift; sourceTree = "<group>"; };
@@ -1508,6 +1520,7 @@
 		B5CBB06A241976230003C271 /* SimplenoteTests */ = {
 			isa = PBXGroup;
 			children = (
+				3F1FC4212C0EBEF10066B187 /* Simplenote.xctestplan */,
 				B53FF5482476F94B0014E928 /* Helpers */,
 				B5EF32AF258D07420069EC7D /* Controllers */,
 				B5985AD3242949C30044EDE9 /* Converters */,
@@ -1595,6 +1608,7 @@
 			children = (
 				BAAA71D62C07A11500244C01 /* Note+Intents.swift */,
 				BAAA71D42C07A10E00244C01 /* SPManagedObject+Intents.swift */,
+				BACA68722C0A70B0005409C1 /* Tag+Intents.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1618,6 +1632,8 @@
 				BAAA71EC2C07A69C00244C01 /* IntentNote+Helpers.swift */,
 				BAAD56482C0A42E40047E024 /* FileManager+Intents.swift */,
 				BA94CB672C0E47DD00B34EA7 /* NSURLSessionConfiguration+Extensions.swift */,
+				BACA68702C0A7027005409C1 /* IntentTag+Helpers.swift */,
+				BACA68752C0A72F3005409C1 /* NSString+Intents.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1643,6 +1659,8 @@
 				BA2BF33F2C07C75500A7C894 /* FindNoteIntentHandler.swift */,
 				BA54F2452C0E63C700DBCE9D /* AppendNoteIntentHandler.swift */,
 				BA54F2472C0E6A6900DBCE9D /* CreateNewNoteIntentHandler.swift */,
+				BACA686E2C0A6E2F005409C1 /* FindNoteWithTagIntentHandler.swift */,
+				BA5A65892C07CD0B00F605A6 /* CopyNoteContentIntentHandler.swift */,
 			);
 			path = IntentHandlers;
 			sourceTree = "<group>";
@@ -1932,6 +1950,7 @@
 		};
 		B52D0EC9230DCB15003F799D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -2220,10 +2239,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA5A658A2C07CD0B00F605A6 /* CopyNoteContentIntentHandler.swift in Sources */,
 				BAAA71EF2C07A6CF00244C01 /* IntentsError.swift in Sources */,
+				BACA68762C0A72F3005409C1 /* NSString+Intents.swift in Sources */,
 				BAAA71F22C07A7FD00244C01 /* IntentsConstants.swift in Sources */,
 				BAAA71D92C07A14600244C01 /* String+Simplenote.swift in Sources */,
 				BACA687C2C0A764C005409C1 /* KeychainPasswordItem.swift in Sources */,
+				BA4F223E2C1255A500144EDA /* SPCredentials.swift in Sources */,
 				BA94CB652C0E46CC00B34EA7 /* Uploader.swift in Sources */,
 				BAAA71E92C07A39300244C01 /* FileManager+Simplenote.swift in Sources */,
 				BAAA71E82C07A37700244C01 /* StorageSettings.swift in Sources */,
@@ -2234,8 +2256,10 @@
 				BAAA71DA2C07A18200244C01 /* ContentSlice.swift in Sources */,
 				BAAD56492C0A42E40047E024 /* FileManager+Intents.swift in Sources */,
 				BAAA71F02C07A7DB00244C01 /* ActivityType.swift in Sources */,
+				BACA686F2C0A6E2F005409C1 /* FindNoteWithTagIntentHandler.swift in Sources */,
 				BAAA71E32C07A2C200244C01 /* SortMode.swift in Sources */,
 				BAAA71E42C07A2F900244C01 /* NSUserInterfaceItemIdentifier+Simplenote.swift in Sources */,
+				BA4F223D2C1117E500144EDA /* SPCredentials.swift in Sources */,
 				BACA68792C0A7608005409C1 /* KeychainManager.swift in Sources */,
 				BAB261762BFFD319009A98D7 /* OpenNewNoteIntentHandler.swift in Sources */,
 				BA2BF3402C07C75500A7C894 /* FindNoteIntentHandler.swift in Sources */,
@@ -2247,8 +2271,10 @@
 				BAB261662BFFD0AF009A98D7 /* IntentHandler.swift in Sources */,
 				BAAD56472C0A42000047E024 /* FileManagerProtocol.swift in Sources */,
 				BAC5DFB52C069568002AD7EF /* Bundle+Simplenote.swift in Sources */,
+				BACA68712C0A7027005409C1 /* IntentTag+Helpers.swift in Sources */,
 				BAAA71DD2C07A1DF00244C01 /* ExtensionResultsController.swift in Sources */,
 				BAC5DFB92C079E5A002AD7EF /* OpenNoteIntentHandler.swift in Sources */,
+				BACA68732C0A70B0005409C1 /* Tag+Intents.swift in Sources */,
 				BAAA71E72C07A37000244C01 /* CoreDataManager.swift in Sources */,
 				BAAA71D52C07A10E00244C01 /* SPManagedObject+Intents.swift in Sources */,
 				BAAA71ED2C07A69C00244C01 /* IntentNote+Helpers.swift in Sources */,
@@ -2466,8 +2492,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Beta";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Simplenote/SimplenoteDebug.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
@@ -2523,7 +2548,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Simplenote.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Distribution";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Distribution";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
@@ -2601,7 +2625,6 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
@@ -2646,7 +2669,6 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -2689,10 +2711,9 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = "IntentsExtension/Support Files/IntentsExtensionDebug.entitlements";
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = $BUILD_NUMBER;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=macosx*]" = PZYM8XX95Q;
@@ -2712,7 +2733,7 @@
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = $VERSION_SHORT;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.SimplenoteMac.Development.IntentsExtension;
@@ -2745,10 +2766,9 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_ENTITLEMENTS = "IntentsExtension/Support Files/IntentsExtension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Distribution";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = $BUILD_NUMBER;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=macosx*]" = PZYM8XX95Q;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -2768,7 +2788,7 @@
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = $VERSION_SHORT;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.SimplenoteMac.IntentsExtension;
