@@ -57,6 +57,7 @@
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>CopyNoteContentIntent</string>
+		<string>AppendNoteIntent</string>
 		<string>FindNoteIntent</string>
 		<string>FindNoteWithTagIntent</string>
 		<string>OpenNewNoteIntent</string>

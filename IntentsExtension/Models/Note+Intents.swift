@@ -53,6 +53,55 @@ extension Note {
         let result = String(content[range])
         return result.droppingPrefix(Constants.titleMarkdownPrefix)
     }
+
+    private func objectFromJSONString(_ json: String) -> Any? {
+        guard let data = json.data(using: .utf8) else {
+            return nil
+        }
+
+        return try? JSONSerialization.jsonObject(with: data)
+    }
+
+    var tagsArray: [String] {
+        guard let tagsString = tags,
+              let array = tagsString.objectFromJSONString() as? [String] else {
+            return []
+        }
+
+        return array
+    }
+
+    var systemTagsArray: [String] {
+        guard let systemTagsString = systemTags,
+              let array = systemTagsString.objectFromJSONString() as? [String] else {
+            return []
+        }
+
+        return array
+    }
+
+    func toDictionary() -> [String: Any] {
+
+        return [
+            "tags": tagsArray,
+            "deleted": 0,
+            "shareURL": shareURL ?? String(),
+            "publishURL": publishURL ?? String(),
+            "content": content ?? "",
+            "systemTags": systemTagsArray,
+            "creationDate": (creationDate ?? .now).timeIntervalSince1970,
+            "modificationDate": (modificationDate ?? .now).timeIntervalSince1970
+        ]
+    }
+
+    func toJsonData() -> Data? {
+        do {
+            return try JSONSerialization.data(withJSONObject: toDictionary(), options: .prettyPrinted)
+        } catch {
+            print("Error converting Note to JSON: \(error)")
+            return nil
+        }
+    }
 }
 
 private struct Constants {

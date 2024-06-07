@@ -90,6 +90,14 @@ extension String {
     func replacingNewlinesWithSpaces() -> String {
         split(whereSeparator: { $0.isNewline }).joined(separator: " ")
     }
+
+    func objectFromJSONString() -> Any? {
+        guard let data = self.data(using: .utf8) else {
+            return nil
+        }
+
+        return try? JSONSerialization.jsonObject(with: data)
+    }
 }
 
 // MARK: - Searching for the first / last characters

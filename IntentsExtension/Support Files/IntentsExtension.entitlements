@@ -8,6 +8,10 @@
 	<array>
 		<string>$(TeamIdentifierPrefix)com.automattic.SimplenoteMac</string>
 	</array>
+	<key>com.apple.security.files.user-selected.read-write</key>
+	<true/>
+	<key>com.apple.security.network.client</key>
+	<true/>
 	<key>keychain-access-groups</key>
 	<array>
 		<string>$(AppIdentifierPrefix)com.automattic.SimplenoteMac</string>
