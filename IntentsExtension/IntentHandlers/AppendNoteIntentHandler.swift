@@ -31,7 +31,7 @@ class AppendNoteIntentHandler: NSObject, AppendNoteIntentHandling {
             let existingContent = try await Downloader(simperiumToken: token).getNoteContent(for: identifier)
             note.content = existingContent + "\n\(content)"
         } catch {
-            return AppendNoteIntentResponse.failure(failureReason: error.localizedDescription)
+            return handleFailure(with: error, content: content)
         }
 
         let uploader = Uploader(simperiumToken: token)
@@ -39,7 +39,12 @@ class AppendNoteIntentHandler: NSObject, AppendNoteIntentHandling {
             _ = try await uploader.send(note)
             return AppendNoteIntentResponse(code: .success, userActivity: nil)
         } catch {
-            return AppendNoteIntentResponse.failure(failureReason: error.localizedDescription)
+            return handleFailure(with: error, content: content)
         }
+    }
+
+    private func handleFailure(with error: Error, content: String) -> AppendNoteIntentResponse {
+        ContentRecoveryManager().archiveContent(content)
+        return AppendNoteIntentResponse.failure(failureReason: error.localizedDescription)
     }
 }

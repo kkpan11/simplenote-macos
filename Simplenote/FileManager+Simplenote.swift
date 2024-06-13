@@ -4,6 +4,10 @@ extension FileManager {
     var sharedContainerURL: URL {
         containerURL(forSecurityApplicationGroupIdentifier: Bundle.main.sharedGroupDomain)!
     }
+
+    var recoveryDirectoryURL: URL {
+        sharedContainerURL.appendingPathComponent(Constants.recoveryDir)
+    }
 }
 
 extension FileManager: FileManagerProtocol {
@@ -11,4 +15,8 @@ extension FileManager: FileManagerProtocol {
     func createDirectory(at url: URL, withIntermediateDirectories createIntermediates: Bool) throws {
         try createDirectory(at: url, withIntermediateDirectories: createIntermediates, attributes: nil)
     }
+}
+
+private struct Constants {
+    static let recoveryDir = "Recovery"
 }

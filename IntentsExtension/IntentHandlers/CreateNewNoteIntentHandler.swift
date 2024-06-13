@@ -14,6 +14,7 @@ class CreateNewNoteIntentHandler: NSObject, CreateNewNoteIntentHandling {
             _ = try await Uploader(simperiumToken: token).send(note)
             return CreateNewNoteIntentResponse(code: .success, userActivity: nil)
         } catch {
+            ContentRecoveryManager().archiveContent(content)
             return CreateNewNoteIntentResponse.failure(failureReason: error.localizedDescription)
         }
     }

@@ -148,6 +148,28 @@ extension SimplenoteAppDelegate {
         // TODO: Temporary workaround. Let's get rid of this? please? 🔥🔥🔥
         mainWindowController.window as! Window
     }
+
+    @objc
+    func attemptContentRecoveryIfNeeded() {
+        let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        context.persistentStoreCoordinator = coreDataManager.persistentStoreCoordinator
+
+        Task {
+            let restoredContent = await ContentRecoveryManager().prepareRecoveredNoteContentIfNeeded(in: context)
+            restoredContent.forEach({ insertNote(with: $0) })
+        }
+    }
+
+    private func insertNote(with content: String) {
+        guard let note = simperium.notesBucket.insertNewObject() as? Note else {
+            return
+        }
+        note.modificationDate = Date()
+        note.creationDate = Date()
+        note.content = content
+        note.markdown = UserDefaults.standard.bool(forKey: "kMarkdownPreferencesKey")
+        simperium.save()
+    }
 }
 
 // MARK: - Public API

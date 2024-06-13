@@ -100,6 +100,7 @@
     [self configureNoteWindowControllersManager];
 
     [self refreshStatusController];
+    [self attemptContentRecoveryIfNeeded];
 
     [self.simperium authenticateWithAppID:SPCredentials.simperiumAppID APIKey:SPCredentials.simperiumApiKey window:self.window];
 }
