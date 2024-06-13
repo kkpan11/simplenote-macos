@@ -56,9 +56,13 @@ public class ContentRecoveryManager {
 
     private func prepareNoteContent(at url: URL, in context: NSManagedObjectContext) -> String? {
         guard let data = fileManager.contents(atPath: url.path),
-              let content = String(data: data, encoding: .utf8) else {
+              let recoveredContent = String(data: data, encoding: .utf8) else {
             return nil
         }
+
+        var content = Constants.recoveredContentHeader
+        content += "\n\n"
+        content += recoveredContent
         return content
     }
 
@@ -72,4 +76,5 @@ public class ContentRecoveryManager {
 private struct Constants {
     static let recoveredContent = "recoveredContent"
     static let richTextKey = "richText"
+    static let recoveredContentHeader = NSLocalizedString("Recovered Note Cotent - ", comment: "Header to put on any files that need to be recovered")
 }

@@ -32,7 +32,7 @@ class Downloader: NSObject {
         let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any]
 
         guard let content = jsonObject?["content"] as? String else {
-            throw IntentsError.countNotFetchNoteContent
+            throw IntentsError.couldNotFetchNoteContent
         }
 
         return content
