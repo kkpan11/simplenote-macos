@@ -252,6 +252,8 @@
 		BA0B43CA26F2FCFC00B44A8C /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0B43C826F2FCFC00B44A8C /* PreferencesViewController.swift */; };
 		BA0B43D626F2FEA200B44A8C /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA0B43D426F2FEA200B44A8C /* Preferences.storyboard */; };
 		BA188D2E2C01117200787855 /* Pods_Automattic_Simplenote.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0F7AA366214AF89DB7A1C687 /* Pods_Automattic_Simplenote.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BA19D0DC2C13BE65001C8084 /* ShortcutIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BA19D0DB2C13BE65001C8084 /* ShortcutIntents.intentdefinition */; };
+		BA19D0DD2C13BE65001C8084 /* ShortcutIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BA19D0DB2C13BE65001C8084 /* ShortcutIntents.intentdefinition */; };
 		BA2BF3402C07C75500A7C894 /* FindNoteIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2BF33F2C07C75500A7C894 /* FindNoteIntentHandler.swift */; };
 		BA2C65CF26FE996A00FA84E1 /* NSButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C65CA26FE996100FA84E1 /* NSButton+Extensions.swift */; };
 		BA4C6D16264CA8C000B723A7 /* SignupRemoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C6D15264CA8C000B723A7 /* SignupRemoteTests.swift */; };
@@ -304,8 +306,6 @@
 		BAB261632BFFD0AF009A98D7 /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA8CF21B2BFD20770087F33D /* Intents.framework */; };
 		BAB261662BFFD0AF009A98D7 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB261652BFFD0AF009A98D7 /* IntentHandler.swift */; };
 		BAB2616B2BFFD0AF009A98D7 /* IntentsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BAB261622BFFD0AF009A98D7 /* IntentsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		BAB261712BFFD0F4009A98D7 /* ShortcutIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BAB261702BFFD0F4009A98D7 /* ShortcutIntents.intentdefinition */; };
-		BAB261722BFFD0F4009A98D7 /* ShortcutIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BAB261702BFFD0F4009A98D7 /* ShortcutIntents.intentdefinition */; };
 		BAB261752BFFD319009A98D7 /* OpenNewNoteIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB261742BFFD319009A98D7 /* OpenNewNoteIntentHandler.swift */; };
 		BAB261762BFFD319009A98D7 /* OpenNewNoteIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB261742BFFD319009A98D7 /* OpenNewNoteIntentHandler.swift */; };
 		BAB2617B2BFFD40B009A98D7 /* ActivityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB2617A2BFFD40B009A98D7 /* ActivityType.swift */; };
@@ -703,6 +703,27 @@
 		B5F807CE2481A2010048CBD7 /* Simperium+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Simperium+Simplenote.swift"; sourceTree = "<group>"; };
 		BA0B43C826F2FCFC00B44A8C /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		BA0B43D426F2FEA200B44A8C /* Preferences.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
+		BA19D0DA2C13BE65001C8084 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/ShortcutIntents.intentdefinition; sourceTree = "<group>"; };
+		BA19D0DF2C13BE67001C8084 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ShortcutIntents.strings; sourceTree = "<group>"; };
+		BA19D0E12C13BE68001C8084 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/ShortcutIntents.strings; sourceTree = "<group>"; };
+		BA19D0E32C13BE68001C8084 /* zh-Hans-CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans-CN"; path = "zh-Hans-CN.lproj/ShortcutIntents.strings"; sourceTree = "<group>"; };
+		BA19D0E52C13BE68001C8084 /* zh-Hant-TW */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant-TW"; path = "zh-Hant-TW.lproj/ShortcutIntents.strings"; sourceTree = "<group>"; };
+		BA19D0E72C13BE69001C8084 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/ShortcutIntents.strings; sourceTree = "<group>"; };
+		BA19D0E92C13BE69001C8084 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ShortcutIntents.strings; sourceTree = "<group>"; };
+		BA19D0EB2C13BE6A001C8084 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ShortcutIntents.strings; sourceTree = "<group>"; };
+		BA19D0ED2C13BE6A001C8084 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/ShortcutIntents.strings; sourceTree = "<group>"; };
+		BA19D0EF2C13BE6B001C8084 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/ShortcutIntents.strings; sourceTree = "<group>"; };
+		BA19D0F12C13BE6B001C8084 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/ShortcutIntents.strings; sourceTree = "<group>"; };
+		BA19D0F32C13BE6C001C8084 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ShortcutIntents.strings; sourceTree = "<group>"; };
+		BA19D0F52C13BE6D001C8084 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/ShortcutIntents.strings; sourceTree = "<group>"; };
+		BA19D0F72C13BE6D001C8084 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/ShortcutIntents.strings; sourceTree = "<group>"; };
+		BA19D0F92C13BE6E001C8084 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/ShortcutIntents.strings"; sourceTree = "<group>"; };
+		BA19D0FB2C13BE6E001C8084 /* fa */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fa; path = fa.lproj/ShortcutIntents.strings; sourceTree = "<group>"; };
+		BA19D0FD2C13BE6F001C8084 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/ShortcutIntents.strings; sourceTree = "<group>"; };
+		BA19D0FF2C13BE6F001C8084 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/ShortcutIntents.strings; sourceTree = "<group>"; };
+		BA19D1012C13BE70001C8084 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/ShortcutIntents.strings; sourceTree = "<group>"; };
+		BA19D1032C13BE70001C8084 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/ShortcutIntents.strings; sourceTree = "<group>"; };
+		BA19D1052C13BE71001C8084 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/ShortcutIntents.strings; sourceTree = "<group>"; };
 		BA2BF33F2C07C75500A7C894 /* FindNoteIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindNoteIntentHandler.swift; sourceTree = "<group>"; };
 		BA2C65CA26FE996100FA84E1 /* NSButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSButton+Extensions.swift"; sourceTree = "<group>"; };
 		BA39C4542C0133F30004B2A9 /* SimplenoteDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SimplenoteDebug.entitlements; sourceTree = "<group>"; };
@@ -745,7 +766,6 @@
 		BAB261652BFFD0AF009A98D7 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
 		BAB261672BFFD0AF009A98D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BAB261682BFFD0AF009A98D7 /* IntentsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IntentsExtension.entitlements; sourceTree = "<group>"; };
-		BAB261702BFFD0F4009A98D7 /* ShortcutIntents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = ShortcutIntents.intentdefinition; sourceTree = "<group>"; };
 		BAB261742BFFD319009A98D7 /* OpenNewNoteIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenNewNoteIntentHandler.swift; sourceTree = "<group>"; };
 		BAB2617A2BFFD40B009A98D7 /* ActivityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityType.swift; sourceTree = "<group>"; };
 		BAB2617D2BFFDD6B009A98D7 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -916,7 +936,7 @@
 				26F72A9814032D2A00A7935E /* main.m */,
 				26F72A9A14032D2A00A7935E /* Simplenote-Prefix.pch */,
 				26F72A9B14032D2A00A7935E /* Credits.rtf */,
-				BAB261702BFFD0F4009A98D7 /* ShortcutIntents.intentdefinition */,
+				BA19D0DB2C13BE65001C8084 /* ShortcutIntents.intentdefinition */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2033,7 +2053,7 @@
 				B5919365245A7AD300A70C0C /* NSScreen+Simplenote.swift in Sources */,
 				B5C620AC257ED4CF008359A9 /* NSAnimationContext+Simplenote.swift in Sources */,
 				3F07D7B225DD1CDD00D680D0 /* SearchQuery+Simplenote.swift in Sources */,
-				BAB261712BFFD0F4009A98D7 /* ShortcutIntents.intentdefinition in Sources */,
+				BA19D0DC2C13BE65001C8084 /* ShortcutIntents.intentdefinition in Sources */,
 				466FFEAC17CC10A800399652 /* Simplenote.xcdatamodeld in Sources */,
 				B5009938242130F70037A431 /* UnicodeScalar+Simplenote.swift in Sources */,
 				BAF1B0C92BCEDFD400B55F73 /* NoteWindowControllersManager.swift in Sources */,
@@ -2252,14 +2272,13 @@
 				BA94CB6F2C0E4AFA00B34EA7 /* Downloader.swift in Sources */,
 				BAAA71E22C07A2BA00244C01 /* NSSortDescriptor+Simplenote.swift in Sources */,
 				BAAA71E62C07A35F00244C01 /* ExtensionCoreDataWrapper.swift in Sources */,
-				BAB261722BFFD0F4009A98D7 /* ShortcutIntents.intentdefinition in Sources */,
+				BA19D0DD2C13BE65001C8084 /* ShortcutIntents.intentdefinition in Sources */,
 				BAAA71DA2C07A18200244C01 /* ContentSlice.swift in Sources */,
 				BAAD56492C0A42E40047E024 /* FileManager+Intents.swift in Sources */,
 				BAAA71F02C07A7DB00244C01 /* ActivityType.swift in Sources */,
 				BACA686F2C0A6E2F005409C1 /* FindNoteWithTagIntentHandler.swift in Sources */,
 				BAAA71E32C07A2C200244C01 /* SortMode.swift in Sources */,
 				BAAA71E42C07A2F900244C01 /* NSUserInterfaceItemIdentifier+Simplenote.swift in Sources */,
-				BA4F223D2C1117E500144EDA /* SPCredentials.swift in Sources */,
 				BACA68792C0A7608005409C1 /* KeychainManager.swift in Sources */,
 				BAB261762BFFD319009A98D7 /* OpenNewNoteIntentHandler.swift in Sources */,
 				BA2BF3402C07C75500A7C894 /* FindNoteIntentHandler.swift in Sources */,
@@ -2367,6 +2386,34 @@
 				B58D399D24BF9E82008E4ABC /* zh-Hant-TW */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		BA19D0DB2C13BE65001C8084 /* ShortcutIntents.intentdefinition */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BA19D0DA2C13BE65001C8084 /* Base */,
+				BA19D0DF2C13BE67001C8084 /* en */,
+				BA19D0E12C13BE68001C8084 /* ar */,
+				BA19D0E32C13BE68001C8084 /* zh-Hans-CN */,
+				BA19D0E52C13BE68001C8084 /* zh-Hant-TW */,
+				BA19D0E72C13BE69001C8084 /* nl */,
+				BA19D0E92C13BE69001C8084 /* fr */,
+				BA19D0EB2C13BE6A001C8084 /* de */,
+				BA19D0ED2C13BE6A001C8084 /* he */,
+				BA19D0EF2C13BE6B001C8084 /* el */,
+				BA19D0F12C13BE6B001C8084 /* id */,
+				BA19D0F32C13BE6C001C8084 /* ja */,
+				BA19D0F52C13BE6D001C8084 /* it */,
+				BA19D0F72C13BE6D001C8084 /* ko */,
+				BA19D0F92C13BE6E001C8084 /* pt-BR */,
+				BA19D0FB2C13BE6E001C8084 /* fa */,
+				BA19D0FD2C13BE6F001C8084 /* ru */,
+				BA19D0FF2C13BE6F001C8084 /* es */,
+				BA19D1012C13BE70001C8084 /* sv */,
+				BA19D1032C13BE70001C8084 /* tr */,
+				BA19D1052C13BE71001C8084 /* cy */,
+			);
+			name = ShortcutIntents.intentdefinition;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
