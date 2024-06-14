@@ -255,7 +255,6 @@
 		BA19D0DC2C13BE65001C8084 /* ShortcutIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BA19D0DB2C13BE65001C8084 /* ShortcutIntents.intentdefinition */; };
 		BA19D0DD2C13BE65001C8084 /* ShortcutIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BA19D0DB2C13BE65001C8084 /* ShortcutIntents.intentdefinition */; };
 		BA19D1072C13C93C001C8084 /* RecoveryUnarchiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA19D1062C13C93C001C8084 /* RecoveryUnarchiver.swift */; };
-		BA19D1082C13C947001C8084 /* RecoveryUnarchiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA19D1062C13C93C001C8084 /* RecoveryUnarchiver.swift */; };
 		BA1B70122C1CD8D5008282D7 /* RecoveryArchiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1B70112C1CD8D5008282D7 /* RecoveryArchiver.swift */; };
 		BA2BF3402C07C75500A7C894 /* FindNoteIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2BF33F2C07C75500A7C894 /* FindNoteIntentHandler.swift */; };
 		BA2C65CF26FE996A00FA84E1 /* NSButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C65CA26FE996100FA84E1 /* NSButton+Extensions.swift */; };
@@ -2304,7 +2303,6 @@
 				BAC5DFB92C079E5A002AD7EF /* OpenNoteIntentHandler.swift in Sources */,
 				BACA68732C0A70B0005409C1 /* Tag+Intents.swift in Sources */,
 				BAAA71E72C07A37000244C01 /* CoreDataManager.swift in Sources */,
-				BA19D1082C13C947001C8084 /* RecoveryUnarchiver.swift in Sources */,
 				BAAA71D52C07A10E00244C01 /* SPManagedObject+Intents.swift in Sources */,
 				BAAA71ED2C07A69C00244C01 /* IntentNote+Helpers.swift in Sources */,
 				BA94CB682C0E47DD00B34EA7 /* NSURLSessionConfiguration+Extensions.swift in Sources */,

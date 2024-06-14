@@ -37,7 +37,6 @@ public class RecoveryUnarchiver {
         }
     }
 
-
     private func insertNote(from url: URL) {
         guard let note = simperium.notesBucket.insertNewObject() as? Note,
               let data = fileManager.contents(atPath: url.path),
@@ -52,7 +51,7 @@ public class RecoveryUnarchiver {
 
         note.modificationDate = Date()
         note.creationDate = Date()
-        note.markdown = UserDefaults.standard.bool(forKey: "kMarkdownPreferencesKey")
+        note.markdown = UserDefaults.standard.bool(forKey: SPMarkdownPreferencesKey)
         simperium.save()
     }
 
