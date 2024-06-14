@@ -151,7 +151,7 @@ extension SimplenoteAppDelegate {
 
     @objc
     func attemptContentRecoveryIfNeeded() {
-        RecoveryUnarchiver().insertNotesFromRecoveryFilesIfNeeded()
+        RecoveryUnarchiver(simperium: simperium).insertNotesFromRecoveryFilesIfNeeded()
     }
 }
 
