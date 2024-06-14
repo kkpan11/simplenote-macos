@@ -155,7 +155,7 @@ extension SimplenoteAppDelegate {
         context.persistentStoreCoordinator = coreDataManager.persistentStoreCoordinator
 
         Task {
-            let restoredContent = await ContentRecoveryManager().prepareRecoveredNoteContentIfNeeded(in: context)
+            let restoredContent = await RecoveryUnarchiver().prepareRecoveredNoteContentIfNeeded(in: context)
             restoredContent.forEach({ insertNote(with: $0) })
         }
     }
