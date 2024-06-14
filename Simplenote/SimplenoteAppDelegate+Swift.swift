@@ -148,6 +148,11 @@ extension SimplenoteAppDelegate {
         // TODO: Temporary workaround. Let's get rid of this? please? 🔥🔥🔥
         mainWindowController.window as! Window
     }
+
+    @objc
+    func attemptContentRecoveryIfNeeded() {
+        RecoveryUnarchiver(simperium: simperium).insertNotesFromRecoveryFilesIfNeeded()
+    }
 }
 
 // MARK: - Public API

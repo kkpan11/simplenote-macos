@@ -16,7 +16,7 @@ class Uploader: NSObject {
     }
 
     // MARK: - Public Methods
-    func send(_ note: Note) {
+    func send(_ note: Note) async throws -> (URL, URLResponse) {
         // Build the targetURL
         let endpoint = String(format: "%@/%@/%@/i/%@", IntentsConstants.simperiumBaseURL, SPCredentials.simperiumAppID, Settings.bucketName, note.simperiumKey)
         let targetURL = URL(string: endpoint.lowercased())!
@@ -28,11 +28,8 @@ class Uploader: NSObject {
         request.setValue(token, forHTTPHeaderField: Settings.authHeader)
 
         // Task!
-        let sc = URLSessionConfiguration.backgroundSessionConfigurationWithRandomizedIdentifier()
-
-        let session = Foundation.URLSession(configuration: sc, delegate: self, delegateQueue: .main)
-        let task = session.downloadTask(with: request)
-        task.resume()
+        let session = Foundation.URLSession(configuration: .default, delegate: self, delegateQueue: .main)
+        return try await session.download(for: request)
     }
 }
 

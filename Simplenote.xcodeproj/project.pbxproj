@@ -254,6 +254,8 @@
 		BA188D2E2C01117200787855 /* Pods_Automattic_Simplenote.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0F7AA366214AF89DB7A1C687 /* Pods_Automattic_Simplenote.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BA19D0DC2C13BE65001C8084 /* ShortcutIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BA19D0DB2C13BE65001C8084 /* ShortcutIntents.intentdefinition */; };
 		BA19D0DD2C13BE65001C8084 /* ShortcutIntents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BA19D0DB2C13BE65001C8084 /* ShortcutIntents.intentdefinition */; };
+		BA19D1072C13C93C001C8084 /* RecoveryUnarchiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA19D1062C13C93C001C8084 /* RecoveryUnarchiver.swift */; };
+		BA1B70122C1CD8D5008282D7 /* RecoveryArchiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1B70112C1CD8D5008282D7 /* RecoveryArchiver.swift */; };
 		BA2BF3402C07C75500A7C894 /* FindNoteIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2BF33F2C07C75500A7C894 /* FindNoteIntentHandler.swift */; };
 		BA2C65CF26FE996A00FA84E1 /* NSButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA2C65CA26FE996100FA84E1 /* NSButton+Extensions.swift */; };
 		BA4C6D16264CA8C000B723A7 /* SignupRemoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4C6D15264CA8C000B723A7 /* SignupRemoteTests.swift */; };
@@ -724,6 +726,8 @@
 		BA19D1012C13BE70001C8084 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/ShortcutIntents.strings; sourceTree = "<group>"; };
 		BA19D1032C13BE70001C8084 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/ShortcutIntents.strings; sourceTree = "<group>"; };
 		BA19D1052C13BE71001C8084 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/ShortcutIntents.strings; sourceTree = "<group>"; };
+		BA19D1062C13C93C001C8084 /* RecoveryUnarchiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryUnarchiver.swift; sourceTree = "<group>"; };
+		BA1B70112C1CD8D5008282D7 /* RecoveryArchiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoveryArchiver.swift; sourceTree = "<group>"; };
 		BA2BF33F2C07C75500A7C894 /* FindNoteIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindNoteIntentHandler.swift; sourceTree = "<group>"; };
 		BA2C65CA26FE996100FA84E1 /* NSButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSButton+Extensions.swift"; sourceTree = "<group>"; };
 		BA39C4542C0133F30004B2A9 /* SimplenoteDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SimplenoteDebug.entitlements; sourceTree = "<group>"; };
@@ -1017,6 +1021,7 @@
 				BAC5DFB62C069993002AD7EF /* SharedStorageMigrator.swift */,
 				BACA68772C0A7537005409C1 /* KeychainManager.swift */,
 				BACA687A2C0A7634005409C1 /* KeychainPasswordItem.swift */,
+				BA19D1062C13C93C001C8084 /* RecoveryUnarchiver.swift */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -1642,6 +1647,7 @@
 				BAAA71F12C07A7FD00244C01 /* IntentsConstants.swift */,
 				BA94CB642C0E46CC00B34EA7 /* Uploader.swift */,
 				BA94CB6E2C0E4AFA00B34EA7 /* Downloader.swift */,
+				BA1B70112C1CD8D5008282D7 /* RecoveryArchiver.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -2094,6 +2100,7 @@
 				376EE3EC202B748E00E3812E /* SPAboutTextField.swift in Sources */,
 				B542FE5725D42EC700A3582D /* Storage.m in Sources */,
 				B59EA98224AA5EFA008ABE4B /* NoteMetrics.swift in Sources */,
+				BA19D1072C13C93C001C8084 /* RecoveryUnarchiver.swift in Sources */,
 				BACA68782C0A7537005409C1 /* KeychainManager.swift in Sources */,
 				B56FA7912437C672002CB9FF /* ColorStudio.swift in Sources */,
 				B5609AED24EEE7200097777A /* SPBucket+Simplenote.swift in Sources */,
@@ -2264,6 +2271,7 @@
 				BACA68762C0A72F3005409C1 /* NSString+Intents.swift in Sources */,
 				BAAA71F22C07A7FD00244C01 /* IntentsConstants.swift in Sources */,
 				BAAA71D92C07A14600244C01 /* String+Simplenote.swift in Sources */,
+				BA1B70122C1CD8D5008282D7 /* RecoveryArchiver.swift in Sources */,
 				BACA687C2C0A764C005409C1 /* KeychainPasswordItem.swift in Sources */,
 				BA4F223E2C1255A500144EDA /* SPCredentials.swift in Sources */,
 				BA94CB652C0E46CC00B34EA7 /* Uploader.swift in Sources */,
@@ -2779,7 +2787,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = $VERSION_SHORT;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -2834,7 +2842,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 14.4;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = $VERSION_SHORT;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

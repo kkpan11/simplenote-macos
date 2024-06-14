@@ -16,6 +16,7 @@
 #import "SPConstants.h"
 #import "SPMarkdownParser.h"
 #import "SPTracker.h"
+#import "SPConstants.h"
 
 #import "Simplenote-Swift.h"
 
@@ -26,7 +27,6 @@
 #pragma mark - Constants
 
 static NSString * const SPTextViewPreferencesKey        = @"kTextViewPreferencesKey";
-static NSString * const SPMarkdownPreferencesKey        = @"kMarkdownPreferencesKey";
 
 
 

@@ -662,26 +662,6 @@
 							<key>INIntentParameterPromptDialogType</key>
 							<string>Primary</string>
 						</dict>
-						<dict>
-							<key>INIntentParameterPromptDialogCustom</key>
-							<true/>
-							<key>INIntentParameterPromptDialogFormatString</key>
-							<string>There are ${count} options matching ‘${note}’.</string>
-							<key>INIntentParameterPromptDialogFormatStringID</key>
-							<string>cWzR46</string>
-							<key>INIntentParameterPromptDialogType</key>
-							<string>DisambiguationIntroduction</string>
-						</dict>
-						<dict>
-							<key>INIntentParameterPromptDialogCustom</key>
-							<true/>
-							<key>INIntentParameterPromptDialogFormatString</key>
-							<string>Just to confirm, you wanted ‘${note}’?</string>
-							<key>INIntentParameterPromptDialogFormatStringID</key>
-							<string>lDws53</string>
-							<key>INIntentParameterPromptDialogType</key>
-							<string>Confirmation</string>
-						</dict>
 					</array>
 					<key>INIntentParameterSupportsDynamicEnumeration</key>
 					<true/>
@@ -748,8 +728,31 @@
 						<true/>
 					</dict>
 					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>${failureReason}</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>Yan2yc</string>
 						<key>INIntentResponseCodeName</key>
 						<string>failure</string>
+					</dict>
+				</array>
+				<key>INIntentResponseLastParameterTag</key>
+				<integer>1</integer>
+				<key>INIntentResponseParameters</key>
+				<array>
+					<dict>
+						<key>INIntentResponseParameterDisplayName</key>
+						<string>Failure Reason</string>
+						<key>INIntentResponseParameterDisplayNameID</key>
+						<string>4yGwRS</string>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>1</integer>
+						<key>INIntentResponseParameterName</key>
+						<string>failureReason</string>
+						<key>INIntentResponseParameterTag</key>
+						<integer>1</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>String</string>
 					</dict>
 				</array>
 			</dict>
@@ -845,8 +848,31 @@
 						<true/>
 					</dict>
 					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>${failureReason}</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>kkb8PD</string>
 						<key>INIntentResponseCodeName</key>
 						<string>failure</string>
+					</dict>
+				</array>
+				<key>INIntentResponseLastParameterTag</key>
+				<integer>1</integer>
+				<key>INIntentResponseParameters</key>
+				<array>
+					<dict>
+						<key>INIntentResponseParameterDisplayName</key>
+						<string>Failure Reason</string>
+						<key>INIntentResponseParameterDisplayNameID</key>
+						<string>ORRThS</string>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>1</integer>
+						<key>INIntentResponseParameterName</key>
+						<string>failureReason</string>
+						<key>INIntentResponseParameterTag</key>
+						<integer>1</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>String</string>
 					</dict>
 				</array>
 			</dict>

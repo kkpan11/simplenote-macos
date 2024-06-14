@@ -25,6 +25,7 @@ NSString * const SPWPSignInAuthURL                  = @"https://public-api.wordp
 NSString * const SPHelpURL                          = @"https://simplenote.com/help";
 NSString * const SPContactUsURL                     = @"https://simplenote.com/contact";
 NSString * const SPTwitterURL                       = @"https://twitter.com/simplenoteapp";
+NSString * const SPMarkdownPreferencesKey           = @"kMarkdownPreferencesKey";
 
 #if APP_STORE_BUILD
 NSString * const SPBuildType                       = @"app-store";

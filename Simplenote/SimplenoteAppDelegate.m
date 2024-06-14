@@ -460,6 +460,11 @@
     [self authenticateIfAccountDeletionRequested];
 }
 
+- (void)applicationDidBecomeActive:(NSNotification *)notification
+{
+    [self attemptContentRecoveryIfNeeded];
+}
+
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
 {
     [SPTracker trackApplicationTerminated];

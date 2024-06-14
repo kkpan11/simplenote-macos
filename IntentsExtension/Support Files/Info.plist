@@ -12,8 +12,8 @@
 			<array/>
 			<key>IntentsSupported</key>
 			<array>
-				<string>CopyNoteContentIntent</string>
 				<string>AppendNoteIntent</string>
+				<string>CopyNoteContentIntent</string>
 				<string>CreateNewNoteIntent</string>
 				<string>FindNoteIntent</string>
 				<string>FindNoteWithTagIntent</string>

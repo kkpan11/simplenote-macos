@@ -27,5 +27,6 @@ extern NSString * const SPWPSignInAuthURL;
 extern NSString * const SPHelpURL;
 extern NSString * const SPContactUsURL;
 extern NSString * const SPTwitterURL;
+extern NSString * const SPMarkdownPreferencesKey;
 
 extern NSString * const SPBuildType;
