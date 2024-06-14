@@ -13,20 +13,12 @@ public class RecoveryUnarchiver {
         SimplenoteAppDelegate.shared().simperium
     }
 
-    private func createRecoveryDirIfNeeded() {
-        guard !fileManager.directoryExistsAtURL(fileManager.recoveryDirectoryURL) else {
-            return
-        }
-
-        try? fileManager.createDirectory(at: fileManager.recoveryDirectoryURL, withIntermediateDirectories: true)
-    }
-
     // MARK: Restore
     //
     public func insertNotesFromRecoveryFilesIfNeeded() {
-        createRecoveryDirIfNeeded()
 
-        guard let recoveryFiles = try? fileManager.contentsOfDirectory(at: fileManager.recoveryDirectoryURL, includingPropertiesForKeys: nil),
+        guard let recoveryDirURL = fileManager.recoveryDirectoryURL(),
+              let recoveryFiles = try? fileManager.contentsOfDirectory(at: recoveryDirURL, includingPropertiesForKeys: nil),
         !recoveryFiles.isEmpty else {
             return
         }
