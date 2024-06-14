@@ -151,13 +151,7 @@ extension SimplenoteAppDelegate {
 
     @objc
     func attemptContentRecoveryIfNeeded() {
-        let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-        context.persistentStoreCoordinator = coreDataManager.persistentStoreCoordinator
-
-        Task {
-            let restoredContent = await RecoveryUnarchiver().prepareRecoveredNoteContentIfNeeded(in: context)
-            restoredContent.forEach({ insertNote(with: $0) })
-        }
+        RecoveryUnarchiver().insertNotesFromRecoveryFilesIfNeeded()
     }
 
     private func insertNote(with content: String) {

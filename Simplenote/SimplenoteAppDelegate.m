@@ -100,7 +100,6 @@
     [self configureNoteWindowControllersManager];
 
     [self refreshStatusController];
-    [self attemptContentRecoveryIfNeeded];
 
     [self.simperium authenticateWithAppID:SPCredentials.simperiumAppID APIKey:SPCredentials.simperiumApiKey window:self.window];
 }
@@ -459,6 +458,11 @@
 - (void)applicationWillBecomeActive:(NSNotification *)notification
 {
     [self authenticateIfAccountDeletionRequested];
+}
+
+- (void)applicationDidBecomeActive:(NSNotification *)notification
+{
+    [self attemptContentRecoveryIfNeeded];
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender

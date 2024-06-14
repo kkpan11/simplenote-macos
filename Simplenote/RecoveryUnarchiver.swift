@@ -9,6 +9,10 @@ public class RecoveryUnarchiver {
         self.fileManager = fileManager
     }
 
+    var simperium: Simperium {
+        SimplenoteAppDelegate.shared().simperium
+    }
+
     private func createRecoveryDirIfNeeded() {
         guard !fileManager.directoryExistsAtURL(fileManager.recoveryDirectoryURL) else {
             return
@@ -19,34 +23,37 @@ public class RecoveryUnarchiver {
 
     // MARK: Restore
     //
-    public func prepareRecoveredNoteContentIfNeeded(in context: NSManagedObjectContext) async -> [String] {
+    public func insertNotesFromRecoveryFilesIfNeeded() {
         createRecoveryDirIfNeeded()
 
         guard let recoveryFiles = try? fileManager.contentsOfDirectory(at: fileManager.recoveryDirectoryURL, includingPropertiesForKeys: nil),
         !recoveryFiles.isEmpty else {
-            return []
+            return
         }
 
-        return recoveryFiles.compactMap { url in
-            guard let content =  prepareNoteContent(at: url, in: context) else {
-                return nil
-            }
-
+        recoveryFiles.forEach { url in
+            insertNote(from: url)
             try? fileManager.removeItem(at: url)
-            return content
         }
     }
 
-    private func prepareNoteContent(at url: URL, in context: NSManagedObjectContext) -> String? {
-        guard let data = fileManager.contents(atPath: url.path),
+
+    private func insertNote(from url: URL) {
+        guard let note = simperium.notesBucket.insertNewObject() as? Note,
+              let data = fileManager.contents(atPath: url.path),
               let recoveredContent = String(data: data, encoding: .utf8) else {
-            return nil
+            return
         }
 
         var content = Constants.recoveredContentHeader
         content += "\n\n"
         content += recoveredContent
-        return content
+        note.content = content
+
+        note.modificationDate = Date()
+        note.creationDate = Date()
+        note.markdown = UserDefaults.standard.bool(forKey: "kMarkdownPreferencesKey")
+        simperium.save()
     }
 
     private func identifier(from url: URL) -> String? {
