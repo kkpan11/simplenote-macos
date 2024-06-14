@@ -153,17 +153,6 @@ extension SimplenoteAppDelegate {
     func attemptContentRecoveryIfNeeded() {
         RecoveryUnarchiver().insertNotesFromRecoveryFilesIfNeeded()
     }
-
-    private func insertNote(with content: String) {
-        guard let note = simperium.notesBucket.insertNewObject() as? Note else {
-            return
-        }
-        note.modificationDate = Date()
-        note.creationDate = Date()
-        note.content = content
-        note.markdown = UserDefaults.standard.bool(forKey: "kMarkdownPreferencesKey")
-        simperium.save()
-    }
 }
 
 // MARK: - Public API
