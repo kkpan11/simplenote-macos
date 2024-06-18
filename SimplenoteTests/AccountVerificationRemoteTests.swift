@@ -21,10 +21,10 @@ class AccountVerificationRemoteTests: XCTestCase {
     }
 
     func testFailureWhenNoResponse() {
-        test(withStatusCode: .zero, expectedResult: Result.failure(RemoteError.network))
+        test(withStatusCode: nil, expectedResult: Result.failure(RemoteError.network))
     }
 
-    private func test(withStatusCode statusCode: Int, expectedResult: Result<Data?, RemoteError>) {
+    private func test(withStatusCode statusCode: Int?, expectedResult: Result<Data?, RemoteError>) {
         urlSession.data = (nil,
                            response(with: statusCode),
                            nil)
