@@ -6,6 +6,18 @@ enum RemoteError: Error {
 }
 
 extension RemoteError {
+    
+    init?(statusCode: Int, error: Error? = nil) {
+        if statusCode / 100 == 2 {
+            return nil
+        }
+
+        self = statusCode > 0 ? .requestError(statusCode, error) : .network
+    }
+}
+
+
+extension RemoteError {
     var statusCode: Int {
         switch self {
         case .requestError(let statusCode, _):
