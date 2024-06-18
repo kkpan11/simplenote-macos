@@ -3,7 +3,13 @@ import Foundation
 // MARK: - MagicLinkAuthenticator
 //
 struct MagicLinkAuthenticator {
-    let authenticator: SPAuthenticator
+    let authenticator: SimperiumAuthenticatorProtocol
+    let loginRemote: LoginRemoteProtocol
+    
+    init(authenticator: SimperiumAuthenticatorProtocol, loginRemote: LoginRemoteProtocol = LoginRemote()) {
+        self.authenticator = authenticator
+        self.loginRemote = loginRemote
+    }
 
     func handle(url: URL) -> Bool {
         guard url.host == Constants.host else {
@@ -51,8 +57,7 @@ private extension MagicLinkAuthenticator {
         
         Task {
             do {
-                let remote = LoginRemote()
-                let confirmation = try await remote.requestLoginConfirmation(authKey: authKey, authCode: authCode)
+                let confirmation = try await loginRemote.requestLoginConfirmation(authKey: authKey, authCode: authCode)
                 
                 Task { @MainActor in
                     NSLog("[MagicLinkAuthenticator] Should auth with token \(confirmation.syncToken)")
