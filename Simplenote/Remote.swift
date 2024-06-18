@@ -1,9 +1,10 @@
 import Foundation
 
-class Remote {
-    private let urlSession: URLSession
 
-    init(urlSession: URLSession = URLSession.shared) {
+class Remote {
+    private let urlSession: URLSessionProtocol
+
+    init(urlSession: URLSessionProtocol = URLSession.shared) {
         self.urlSession = urlSession
     }
 
@@ -30,7 +31,7 @@ class Remote {
     ///
     @discardableResult
     func performDataTask(with request: URLRequest) async throws -> Data {
-        let (data, response) = try await urlSession.data(for: request)
+        let (data, response) = try await urlSession.data(for: request, delegate: nil)
 
         if let error = RemoteError(statusCode: response.responseStatusCode) {
             throw error

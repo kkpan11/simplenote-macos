@@ -1,21 +1,34 @@
 import Foundation
+@testable import Simplenote
 
 // MARK: - MockURLSession
 //
-class MockURLSession: URLSession {
+class MockURLSession: URLSessionProtocol {
     var data: (Data?, URLResponse?, Error?)?
     var lastRequest: URLRequest?
 
     /// URLSession has deprecated its initializers. We must implement our own!
     ///
-    override init() {
+    init() {
         // NO-OP
     }
 
-    override func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
+    func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
         lastRequest = request
         return MockURLSessionDataTask {
             completionHandler(self.data?.0, self.data?.1, self.data?.2)
         }
+    }
+    
+    func data(for request: URLRequest, delegate: (any URLSessionTaskDelegate)?) async throws -> (Data, URLResponse) {
+        if let error = data?.2 {
+            throw error
+        }
+        
+        if let responseData = data?.0, let urlResponse = data?.1 {
+            return (responseData, urlResponse)
+        }
+        
+        throw RemoteError.network
     }
 }
