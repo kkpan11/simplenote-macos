@@ -21,6 +21,8 @@ class MockURLSession: URLSessionProtocol {
     }
     
     func data(for request: URLRequest, delegate: (any URLSessionTaskDelegate)?) async throws -> (Data, URLResponse) {
+        lastRequest = request
+
         if let error = data?.2 {
             throw error
         }
