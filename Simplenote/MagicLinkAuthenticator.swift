@@ -6,18 +6,65 @@ struct MagicLinkAuthenticator {
     let authenticator: SPAuthenticator
 
     func handle(url: URL) -> Bool {
-        guard
-            url.host == RequestSignupURL.host,
-            let queryItems = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems,
-            let email = queryItems.base64DecodedValue(for: RequestSignupURL.emailField),
-            let token = queryItems.value(for: RequestSignupURL.tokenField),
-            !email.isEmpty,
-            !token.isEmpty
-        else {
+        guard url.host == Constants.host else {
+            return false
+        }
+
+        guard let queryItems = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems else {
+            return false
+        }
+
+        if attemptLoginWithToken(queryItems: queryItems) {
+            return true
+        }
+
+        return attemptLoginWithAuthCode(queryItems: queryItems)
+    }
+}
+
+// MARK: - Private API(s)
+//
+private extension MagicLinkAuthenticator {
+
+    @discardableResult
+    func attemptLoginWithToken(queryItems: [URLQueryItem]) -> Bool {
+        guard let email = queryItems.base64DecodedValue(for: Constants.emailField),
+              let token = queryItems.value(for: Constants.tokenField),
+              !email.isEmpty, !token.isEmpty else {
             return false
         }
 
         authenticator.authenticate(withUsername: email, token: token)
+        return true
+    }
+
+    @discardableResult
+    func attemptLoginWithAuthCode(queryItems: [URLQueryItem]) -> Bool {
+        guard let authKey = queryItems.value(for: Constants.authKeyField),
+              let authCode = queryItems.value(for: Constants.authCodeField),
+              !authKey.isEmpty, !authCode.isEmpty
+        else {
+            return false
+        }
+
+        NSLog("[MagicLinkAuthenticator] Requesting SyncToken for \(authKey) and \(authCode)")
+        
+        Task {
+            do {
+                let remote = LoginRemote()
+                let confirmation = try await remote.requestLoginConfirmation(authKey: authKey, authCode: authCode)
+                
+                Task { @MainActor in
+                    NSLog("[MagicLinkAuthenticator] Should auth with token \(confirmation.syncToken)")
+                    authenticator.authenticate(withUsername: confirmation.username, token: confirmation.syncToken)
+                    SPTracker.trackUserConfirmedLoginLink()
+                }
+
+            } catch {
+                NSLog("[MagicLinkAuthenticator] Magic Link TokenExchange Error: \(error)")
+            }
+        }
+
         return true
     }
 }
@@ -41,8 +88,10 @@ private extension Array where Element == URLQueryItem {
 
 // MARK: - Constants
 //
-private struct RequestSignupURL {
+private struct Constants {
     static let host = "login"
     static let emailField = "email"
     static let tokenField = "token"
+    static let authKeyField = "auth_key"
+    static let authCodeField = "auth_code"
 }
