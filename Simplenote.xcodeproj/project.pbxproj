@@ -1309,10 +1309,10 @@
 				B5177CBA25EEB01600A8D834 /* AuthViewController+Swift.swift */,
 				B597429225E97ADC0063DDD2 /* AuthViewController.xib */,
 				B545DDD12C2313BA00A8FD89 /* AuthenticationMode.swift */,
-				B5177CC325EEBF6900A8D834 /* SignupVerificationViewController.swift */,
-				B5177CC925EEBF8200A8D834 /* SignupVerificationViewController.xib */,
 				B5D586C72C235F0600F3ADCC /* MagicLinkConfirmationViewController.swift */,
 				B5D586C92C235F8700F3ADCC /* MagicLinkConfirmationViewController.xib */,
+				B5177CC325EEBF6900A8D834 /* SignupVerificationViewController.swift */,
+				B5177CC925EEBF8200A8D834 /* SignupVerificationViewController.xib */,
 			);
 			name = Authentication;
 			sourceTree = "<group>";

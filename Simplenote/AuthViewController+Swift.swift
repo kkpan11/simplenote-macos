@@ -212,9 +212,12 @@ extension AuthViewController {
         setInterfaceEnabled(false)
 
         do {
+            let email = usernameText
             let remote = LoginRemote()
-            try await remote.requestLoginEmail(email: self.usernameText)
-// TODO: Verification Success
+            try await remote.requestLoginEmail(email: email)
+
+            presentMagicLinkConfirmationView(email: email)
+            
         } catch {
             let statusCode = (error as? RemoteError)?.statusCode ?? .zero
             self.showAuthenticationError(forCode: statusCode, responseString: nil)
@@ -260,6 +263,11 @@ extension AuthViewController {
     func presentSignupVerification(email: String) {
         let vc = SignupVerificationViewController(email: email, authenticator: authenticator)
         view.window?.transition(to: vc)
+    }
+    
+    func presentMagicLinkConfirmationView(email: String) {
+        let viewController = MagicLinkConfirmationViewController(email: email, authenticator: authenticator)
+        view.window?.transition(to: viewController)
     }
 }
 
