@@ -17,8 +17,8 @@ extension AuthViewController {
         passwordField.placeholderString = Localization.passwordPlaceholder
         passwordField.delegate = self
 
-        // Forgot Password!
-        forgotPasswordButton.contentTintColor = .simplenoteBrandColor
+        // Secondary Action
+        secondaryActionButton.contentTintColor = .simplenoteBrandColor
 
         // Toggle Signup: Tip
         switchTipField.textColor = .simplenoteTertiaryTextColor
@@ -62,7 +62,7 @@ extension AuthViewController {
 
     func refreshButtonTitles() {
         actionButton.title          = mode.primaryActionText
-        forgotPasswordButton.title  = mode.secondaryActionText?.uppercased() ?? ""
+        secondaryActionButton.title = mode.secondaryActionText?.uppercased() ?? ""
         switchTipField.stringValue  = mode.switchActionTip.uppercased()
         switchActionButton.title    = mode.switchActionText.uppercased()
     }
@@ -70,9 +70,9 @@ extension AuthViewController {
     /// Makes sure unused components (in the current mode) are effectively disabled
     ///
     func refreshEnabledComponents() {
-        passwordField.isEnabled = mode.isPasswordVisible
-        forgotPasswordButton.isEnabled = mode.isSecondaryActionVisible
-        wordPressSSOButton.isEnabled = mode.isWordPressVisible
+        passwordField.isEnabled         = mode.isPasswordVisible
+        secondaryActionButton.isEnabled = mode.isSecondaryActionVisible
+        wordPressSSOButton.isEnabled    = mode.isWordPressVisible
     }
 
     /// Shows / Hides relevant components, based on the specified state
@@ -91,12 +91,12 @@ extension AuthViewController {
     ///
     func refreshVisibleComponentsWithoutAnimation() {
         passwordFieldHeightConstraint.constant  = mode.passwordFieldHeight
-        forgotPasswordHeightConstraint.constant = mode.secondaryActionFieldHeight
+        secondaryActionHeightConstraint.constant = mode.secondaryActionFieldHeight
         wordPressSSOHeightConstraint.constant   = mode.wordPressSSOFieldHeight
 
-        passwordField.alphaValue        = mode.passwordFieldAlpha
-        forgotPasswordButton.alphaValue = mode.secondaryActionFieldAlpha
-        wordPressSSOButton.alphaValue   = mode.wordPressSSOFieldAlpha
+        passwordField.alphaValue                = mode.passwordFieldAlpha
+        secondaryActionButton.alphaValue        = mode.secondaryActionFieldAlpha
+        wordPressSSOButton.alphaValue           = mode.wordPressSSOFieldAlpha
     }
 
     /// Animates Visible / Invisible components, based on the specified state
@@ -106,12 +106,12 @@ extension AuthViewController {
             context.duration = AppKitConstants.duration0_2
 
             passwordFieldHeightConstraint.animator().constant   = mode.passwordFieldHeight
-            forgotPasswordHeightConstraint.animator().constant  = mode.secondaryActionFieldHeight
+            secondaryActionHeightConstraint.animator().constant = mode.secondaryActionFieldHeight
             wordPressSSOHeightConstraint.animator().constant    = mode.wordPressSSOFieldHeight
 
-            passwordField.alphaValue        = mode.passwordFieldAlpha
-            forgotPasswordButton.alphaValue = mode.secondaryActionFieldAlpha
-            wordPressSSOButton.alphaValue   = mode.wordPressSSOFieldAlpha
+            passwordField.alphaValue            = mode.passwordFieldAlpha
+            secondaryActionButton.alphaValue    = mode.secondaryActionFieldAlpha
+            wordPressSSOButton.alphaValue       = mode.wordPressSSOFieldAlpha
             
             view.layoutSubtreeIfNeeded()
         }
@@ -234,7 +234,6 @@ extension AuthViewController {
 private enum Localization {
     static let emailPlaceholder = NSLocalizedString("Email", comment: "Placeholder text for login field")
     static let passwordPlaceholder = NSLocalizedString("Password", comment: "Placeholder text for password field")
-    
     static let dotcomSSOAction = NSLocalizedString("Log in with WordPress.com", comment: "button title for wp.com sign in button")
     static let compromisedPasswordAlert = NSLocalizedString("Compromised Password", comment: "Compromised passsword alert title")
     static let compromisedPasswordMessage = NSLocalizedString("This password has appeared in a data breach, which puts your account at high risk of compromise. To protect your data, you'll need to update your password before being able to log in again.", comment: "Compromised password alert message")

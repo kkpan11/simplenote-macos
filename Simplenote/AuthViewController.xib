@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22690"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -11,11 +11,11 @@
                 <outlet property="actionButton" destination="Lid-6Q-zHR" id="k1R-7A-0Fc"/>
                 <outlet property="actionProgress" destination="GMB-3v-AEQ" id="Qv3-0X-3xO"/>
                 <outlet property="errorField" destination="lwM-mh-i3o" id="hCf-XY-GKI"/>
-                <outlet property="forgotPasswordButton" destination="y1M-Np-v9m" id="wMf-VC-rpx"/>
-                <outlet property="forgotPasswordHeightConstraint" destination="HrL-ss-QSd" id="grM-HB-9fi"/>
                 <outlet property="logoImageView" destination="W9h-HS-WbG" id="GV7-vy-NaT"/>
                 <outlet property="passwordField" destination="2bk-bk-VfG" id="JQn-Xi-XNs"/>
                 <outlet property="passwordFieldHeightConstraint" destination="Cah-V8-aCS" id="saQ-Mz-zu6"/>
+                <outlet property="secondaryActionButton" destination="y1M-Np-v9m" id="z7i-Qa-Tye"/>
+                <outlet property="secondaryActionHeightConstraint" destination="HrL-ss-QSd" id="Vg3-A9-yCH"/>
                 <outlet property="stackView" destination="PWa-EY-51O" id="jUJ-sH-HgC"/>
                 <outlet property="switchActionButton" destination="5np-Xn-oop" id="KYi-sy-yoJ"/>
                 <outlet property="switchTipField" destination="0yP-IQ-Unz" id="jvk-lr-cHO"/>
@@ -42,7 +42,7 @@
                             </constraints>
                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="icon_simplenote_login" id="2Fh-2C-hTH"/>
                         </imageView>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lwM-mh-i3o">
+                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lwM-mh-i3o">
                             <rect key="frame" x="-2" y="368" width="324" height="16"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="16" id="Pcu-pb-Ma8"/>
@@ -73,13 +73,13 @@
                             <subviews>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lid-6Q-zHR" userLabel="Main Action Button" customClass="SPAuthenticationButton">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="40" id="UVW-gz-8cN"/>
-                                    </constraints>
                                     <buttonCell key="cell" type="bevel" title="[Main Action]" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="2il-zd-A17" customClass="SPAuthenticationButtonCell">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="UVW-gz-8cN"/>
+                                    </constraints>
                                     <connections>
                                         <action selector="performMainAction:" target="-2" id="oQR-Zg-shZ"/>
                                     </connections>
@@ -99,13 +99,13 @@
                         </customView>
                         <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="y1M-Np-v9m" userLabel="Forgot Button">
                             <rect key="frame" x="0.0" y="154" width="320" height="20"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="20" id="HrL-ss-QSd"/>
-                            </constraints>
                             <buttonCell key="cell" type="bevel" title="[Forgot Action]" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="zjo-dD-vux">
                                 <behavior key="behavior" lightByContents="YES"/>
                                 <font key="font" metaFont="systemMedium" size="13"/>
                             </buttonCell>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="HrL-ss-QSd"/>
+                            </constraints>
                             <connections>
                                 <action selector="forgotPassword:" target="-2" id="pEz-hB-6Tz"/>
                             </connections>
@@ -113,7 +113,7 @@
                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="mRM-75-7tv" userLabel="Switch View">
                             <rect key="frame" x="0.0" y="84" width="320" height="58"/>
                             <subviews>
-                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0yP-IQ-Unz" userLabel="Switch Tip">
+                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0yP-IQ-Unz" userLabel="Switch Tip">
                                     <rect key="frame" x="-2" y="20" width="324" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="5GW-OX-wF2"/>
@@ -127,14 +127,14 @@
                                 </textField>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5np-Xn-oop" userLabel="Switch Button">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="320" id="3N3-wW-P6F"/>
-                                        <constraint firstAttribute="height" constant="20" id="3pI-cn-CI2"/>
-                                    </constraints>
                                     <buttonCell key="cell" type="bevel" title="[Switch Action]" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="nb6-bt-sFC">
                                         <behavior key="behavior" lightByContents="YES"/>
                                         <font key="font" metaFont="systemSemibold" size="13"/>
                                     </buttonCell>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="320" id="3N3-wW-P6F"/>
+                                        <constraint firstAttribute="height" constant="20" id="3pI-cn-CI2"/>
+                                    </constraints>
                                     <connections>
                                         <action selector="toggleAuthenticationMode:" target="-2" id="MRn-Y7-TWp"/>
                                     </connections>
@@ -155,13 +155,13 @@
                             <subviews>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sc9-DH-ug9" userLabel="WordPress SSO Button">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" priority="999" constant="40" id="ynU-1V-xiN"/>
-                                    </constraints>
                                     <buttonCell key="cell" type="bevel" title="[WordPress SSO]" bezelStyle="rounded" image="icon_wp" imagePosition="left" alignment="center" imageScaling="proportionallyDown" inset="2" id="Mzh-LI-XpK">
                                         <behavior key="behavior" lightByContents="YES"/>
                                         <font key="font" metaFont="system" size="16"/>
                                     </buttonCell>
+                                    <constraints>
+                                        <constraint firstAttribute="height" priority="999" constant="40" id="ynU-1V-xiN"/>
+                                    </constraints>
                                     <connections>
                                         <action selector="wpccSignInAction:" target="-2" id="XuG-cb-poD"/>
                                     </connections>

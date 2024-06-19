@@ -16,14 +16,14 @@
 @property (nonatomic, strong) IBOutlet SPAuthenticationTextField    *passwordField;
 @property (nonatomic, strong) IBOutlet NSButton                     *actionButton;
 @property (nonatomic, strong) IBOutlet NSProgressIndicator          *actionProgress;
-@property (nonatomic, strong) IBOutlet NSButton                     *forgotPasswordButton;
+@property (nonatomic, strong) IBOutlet NSButton                     *secondaryActionButton;
 @property (nonatomic, strong) IBOutlet NSTextField                  *switchTipField;
 @property (nonatomic, strong) IBOutlet NSButton                     *switchActionButton;
 @property (nonatomic, strong) IBOutlet NSView                       *wordPressSSOContainerView;
 @property (nonatomic, strong) IBOutlet NSButton                     *wordPressSSOButton;
 
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint           *passwordFieldHeightConstraint;
-@property (nonatomic, strong) IBOutlet NSLayoutConstraint           *forgotPasswordHeightConstraint;
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint           *secondaryActionHeightConstraint;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint           *wordPressSSOHeightConstraint;
 
 @property (nonatomic, strong) SPAuthenticator                       *authenticator;

@@ -86,7 +86,7 @@ extension AuthenticationMode {
                            secondaryActionText: MagicLinkStrings.secondaryAction,
                            switchActionText: MagicLinkStrings.switchAction,
                            switchActionTip: MagicLinkStrings.switchTip,
-                           switchTargetMode: { .loginWithPassword },
+                           switchTargetMode: { .signup },
                            isPasswordVisible: false,
                            isSecondaryActionVisible: true,
                            isWordPressVisible: true)
