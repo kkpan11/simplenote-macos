@@ -228,30 +228,13 @@ extension AuthViewController {
     }
 }
 
-// MARK: - Metrics
-//
-private enum Metrics {
-    static func passwordHeight(signingIn: Bool) -> CGFloat {
-        signingIn ? CGFloat(40) : .zero
-    }
-    static func forgotHeight(signingIn: Bool) -> CGFloat {
-        signingIn ? CGFloat(20) : .zero
-    }
-    static func wordPressHeight(signingIn: Bool) -> CGFloat {
-        signingIn ? CGFloat(72) : .zero
-    }
-}
 
 // MARK: - Localization
 //
 private enum Localization {
     static let emailPlaceholder = NSLocalizedString("Email", comment: "Placeholder text for login field")
     static let passwordPlaceholder = NSLocalizedString("Password", comment: "Placeholder text for password field")
-    static let signInAction = NSLocalizedString("Log In", comment: "Title of button for logging in")
-    static let signUpAction = NSLocalizedString("Sign Up", comment: "Title of button for signing up")
-    static let signInTip = NSLocalizedString("Already have an account?", comment: "Link to sign in to an account")
-    static let signUpTip = NSLocalizedString("Need an account?", comment: "Link to create an account")
-    static let forgotAction = NSLocalizedString("Forgot your Password?", comment: "Forgot Password Button")
+    
     static let dotcomSSOAction = NSLocalizedString("Log in with WordPress.com", comment: "button title for wp.com sign in button")
     static let compromisedPasswordAlert = NSLocalizedString("Compromised Password", comment: "Compromised passsword alert title")
     static let compromisedPasswordMessage = NSLocalizedString("This password has appeared in a data breach, which puts your account at high risk of compromise. To protect your data, you'll need to update your password before being able to log in again.", comment: "Compromised password alert message")
