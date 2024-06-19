@@ -195,6 +195,32 @@ extension AuthViewController {
         }
     }
     
+    @objc
+    func performLoginWithEmailRequest() {
+        Task { @MainActor in
+            await performLoginWithEmailRequestInTask()
+        }
+    }
+     
+    func performLoginWithEmailRequestInTask() async {
+        defer {
+            stopActionAnimation()
+            setInterfaceEnabled(true)
+        }
+        
+        startActionAnimation()
+        setInterfaceEnabled(false)
+
+        do {
+            let remote = LoginRemote()
+            try await remote.requestLoginEmail(email: self.usernameText)
+// TODO: Verification Success
+        } catch {
+            let statusCode = (error as? RemoteError)?.statusCode ?? .zero
+            self.showAuthenticationError(forCode: statusCode, responseString: nil)
+        }
+    }
+    
     @IBAction
     func handleNewlineInField(_ field: NSControl) {
         if field.isEqual(passwordField.textField) {
