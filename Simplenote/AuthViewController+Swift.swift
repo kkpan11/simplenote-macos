@@ -146,6 +146,18 @@ extension AuthViewController {
         refreshInterface(animated: true)
         ensureUsernameIsFirstResponder()
     }
+    
+    @objc
+    func handleNewlineInField(_ field: NSControl) {
+        if field.isEqual(passwordField.textField) {
+            performMainAction(field)
+            return
+        }
+        
+        if field.isEqual(usernameField.textField), mode.isPasswordVisible == false {
+            performMainAction(field)
+        }
+    }
 
     @objc
     func performSignupRequest() {

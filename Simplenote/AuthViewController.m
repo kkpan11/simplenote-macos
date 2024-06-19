@@ -400,15 +400,4 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
     }
 }
 
-- (void)handleNewlineInField:(NSControl *)field {
-    if (_signingIn && [field isEqual:self.passwordField.textField]) {
-        [self signInAction:nil];
-        return;
-    }
-
-    if (!_signingIn && [field isEqual:self.usernameField.textField]) {
-        [self signUpAction:nil];
-    }
-}
-
 @end

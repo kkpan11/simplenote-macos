@@ -30,6 +30,8 @@
 @property (nonatomic, strong) AuthenticationMode                    *mode;
 @property (nonatomic, assign) BOOL                                  signingIn;
 
+- (IBAction)performMainAction:(id)sender;
+
 - (void)setInterfaceEnabled:(BOOL)enabled;
 
 - (void)startSignupAnimation;
