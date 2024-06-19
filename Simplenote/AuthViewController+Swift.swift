@@ -174,7 +174,7 @@ extension AuthViewController {
     
     @objc
     func performSignupRequest() {
-        startSignupAnimation()
+        startActionAnimation()
         setInterfaceEnabled(false)
 
         let email = usernameText
@@ -190,7 +190,7 @@ extension AuthViewController {
                 self.showAuthenticationError(forCode: result.statusCode, responseString: nil)
             }
 
-            self.stopSignupAnimation()
+            self.stopActionAnimation()
             self.setInterfaceEnabled(true)
         }
     }
@@ -205,6 +205,24 @@ extension AuthViewController {
         if field.isEqual(usernameField.textField), mode.isPasswordVisible == false {
             performMainAction(field)
         }
+    }
+}
+
+
+// MARK: - Animations
+//
+extension AuthViewController {
+    
+    @objc
+    func startActionAnimation() {
+        actionButton.title = mode.primaryActionAnimationText
+        actionProgress.startAnimation(nil)
+    }
+
+    @objc
+    func stopActionAnimation() {
+        actionButton.title = mode.primaryActionText
+        actionProgress.stopAnimation(nil)
     }
 }
 

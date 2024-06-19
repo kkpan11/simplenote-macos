@@ -84,6 +84,7 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
     [self.usernameField setEnabled:enabled];
     [self.passwordField setEnabled:enabled];
     [self.actionButton setEnabled:enabled];
+    [self.secondaryActionButton setEnabled:enabled];
     [self.switchActionButton setEnabled:enabled];
     [self.wordPressSSOButton setEnabled:enabled];
 }
@@ -158,55 +159,32 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
 }
 
 
-#pragma mark - Displaying Porgress
-
-- (void)startLoginAnimation {
-    self.actionButton.title = NSLocalizedString(@"Logging In...", @"Displayed temporarily while logging in");
-    [self.actionProgress startAnimation:self];
-}
-
-- (void)stopLoginAnimation {
-    self.actionButton.title = NSLocalizedString(@"Log In", @"Title of button for login");
-    [self.actionProgress stopAnimation:self];
-}
-
-- (void)startSignupAnimation {
-    self.actionButton.title = NSLocalizedString(@"Signing Up...", @"Displayed temoprarily while signing up");
-    [self.actionProgress startAnimation:self];
-}
-
-- (void)stopSignupAnimation {
-    self.actionButton.title = NSLocalizedString(@"Sign Up", @"Title of button for signing up");
-    [self.actionProgress stopAnimation:self];
-}
-
-
 #pragma mark - Authentication Wrappers
 
 - (void)performCredentialsValidation {
-    [self startLoginAnimation];
+    [self startActionAnimation];
     [self setInterfaceEnabled:NO];
 
     [self.authenticator validateWithUsername:self.usernameText password:self.passwordText success:^{
-        [self stopLoginAnimation];
+        [self stopActionAnimation];
         [self setInterfaceEnabled:YES];
         [self presentPasswordResetAlert];
     } failure:^(NSInteger responseCode, NSString *responseString, NSError *error) {
         [self showAuthenticationErrorForCode:responseCode responseString:responseString];
-        [self stopLoginAnimation];
+        [self stopActionAnimation];
         [self setInterfaceEnabled:YES];
     }];
 }
 
 - (void)performLoginWithPassword {
-    [self startLoginAnimation];
+    [self startActionAnimation];
     [self setInterfaceEnabled:NO];
 
     [self.authenticator authenticateWithUsername:self.usernameText password:self.passwordText success:^{
         // NO-OP
     } failure:^(NSInteger responseCode, NSString *responseString, NSError *error) {
         [self showAuthenticationErrorForCode:responseCode responseString: responseString];
-        [self stopLoginAnimation];
+        [self stopActionAnimation];
         [self setInterfaceEnabled:YES];
     }];
 }

@@ -36,9 +36,6 @@
 
 - (void)setInterfaceEnabled:(BOOL)enabled;
 
-- (void)startSignupAnimation;
-- (void)stopSignupAnimation;
-
 - (void)presentPasswordResetAlert;
 - (void)showAuthenticationErrorForCode:(NSInteger)responseCode responseString:(NSString *)responseString;
 

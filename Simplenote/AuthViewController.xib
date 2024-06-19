@@ -85,13 +85,13 @@
                                     </connections>
                                 </button>
                                 <progressIndicator maxValue="100" displayedWhenStopped="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="GMB-3v-AEQ" userLabel="Main Action Progress Indicator">
-                                    <rect key="frame" x="274" y="12" width="16" height="16"/>
+                                    <rect key="frame" x="289" y="12" width="16" height="16"/>
                                 </progressIndicator>
                             </subviews>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="Lid-6Q-zHR" secondAttribute="trailing" id="2c9-c1-cVE"/>
                                 <constraint firstItem="Lid-6Q-zHR" firstAttribute="leading" secondItem="Epn-oY-sfo" secondAttribute="leading" id="4E7-z2-N5C"/>
-                                <constraint firstItem="GMB-3v-AEQ" firstAttribute="trailing" secondItem="Lid-6Q-zHR" secondAttribute="trailing" constant="-30" id="A5n-zf-7v0"/>
+                                <constraint firstItem="GMB-3v-AEQ" firstAttribute="trailing" secondItem="Lid-6Q-zHR" secondAttribute="trailing" constant="-15" id="A5n-zf-7v0"/>
                                 <constraint firstItem="GMB-3v-AEQ" firstAttribute="centerY" secondItem="Lid-6Q-zHR" secondAttribute="centerY" id="EtT-i8-ImS"/>
                                 <constraint firstItem="Lid-6Q-zHR" firstAttribute="top" secondItem="Epn-oY-sfo" secondAttribute="top" constant="26" id="eJb-sz-gE7"/>
                                 <constraint firstAttribute="bottom" secondItem="Lid-6Q-zHR" secondAttribute="bottom" id="lmu-Jy-hXf"/>
