@@ -5,7 +5,8 @@ import SwiftUI
 // MARK: - MagicLinkConfirmationView
 //
 struct MagicLinkRequestedView: View {
-    
+
+    @State private var displaysFullImage: Bool = false
     let email: String
     var onDismissRequest: (() -> Void)?
         
@@ -23,6 +24,12 @@ struct MagicLinkRequestedView: View {
                 .renderingMode(.template)
                 .font(.system(size: 48))
                 .foregroundColor(Color(nsColor: .simplenoteBrandColor))
+                .scaleEffect(displaysFullImage ? 1 : 0.4)
+                .onAppear {
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.3)) {
+                        displaysFullImage = true
+                    }
+                }
 
             Spacer()
                 .frame(height: Metrics.imagePaddingBottom)
