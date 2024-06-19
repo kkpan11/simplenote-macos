@@ -50,8 +50,16 @@ struct MagicLinkConfirmationView: View {
         SwiftUI.Button(action: switchToAuthenticationUI) {
             Text("Accept")
                 .fontWeight(.bold)
-                .cornerRadius(5)
+                .foregroundStyle(Color(nsColor: .simplenoteBrandColor))
+                .onHover { inside in
+                    if inside {
+                        NSCursor.pointingHand.set()
+                    } else {
+                        NSCursor.arrow.set()
+                    }
+                }
         }
+        .buttonStyle(PlainButtonStyle())
     }
     
     func switchToAuthenticationUI() {
