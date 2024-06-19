@@ -8,7 +8,14 @@ struct MagicLinkRequestedView: View {
     
     let email: String
     var onDismissRequest: (() -> Void)?
-    
+        
+    private var emailLengthLimited: String {
+        guard email.count > Metrics.maximumEmailLength else {
+            return email
+        }
+        
+        return String(email.prefix(Metrics.maximumEmailLength)) + "..."
+    }
 
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
@@ -27,7 +34,7 @@ struct MagicLinkRequestedView: View {
             Spacer()
                 .frame(height: Metrics.titlePaddingBottom)
             
-            Text("If an account exists, we've sent an email to **\(email)** containing a link that'll log you in.")
+            Text("If an account exists, we've sent an email to **\(emailLengthLimited)** containing a link that'll log you in.")
                 .font(.title3)
                 .multilineTextAlignment(.center)
                 .padding()
@@ -64,6 +71,7 @@ struct MagicLinkRequestedView: View {
 private enum Metrics {
     static let imagePaddingBottom: CGFloat = 10
     static let titlePaddingBottom: CGFloat = 10
+    static let maximumEmailLength = 100
 }
 
 private enum MagicLinkImages {
