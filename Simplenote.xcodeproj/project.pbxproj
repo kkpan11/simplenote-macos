@@ -227,6 +227,7 @@
 		B5D3FCCD201F906E00A813B7 /* StatusChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D3FCCA201F906E00A813B7 /* StatusChecker.m */; };
 		B5D586C82C235F0600F3ADCC /* MagicLinkRequestedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D586C72C235F0600F3ADCC /* MagicLinkRequestedViewController.swift */; };
 		B5D586CA2C235F8700F3ADCC /* MagicLinkRequestedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5D586C92C235F8700F3ADCC /* MagicLinkRequestedViewController.xib */; };
+		B5D586CE2C23793900F3ADCC /* MagicLinkConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D586CD2C23793900F3ADCC /* MagicLinkConfirmationView.swift */; };
 		B5DD0F922476309000C8DD41 /* NoteTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DD0F902476309000C8DD41 /* NoteTableCellView.swift */; };
 		B5E061782450AEDA0076111A /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E061762450AEDA0076111A /* ToolbarView.swift */; };
 		B5E086292448B57200DEF476 /* HeaderTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E086272448B57200DEF476 /* HeaderTableCellView.swift */; };
@@ -686,6 +687,7 @@
 		B5D3FCCB201F906E00A813B7 /* StatusChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusChecker.h; sourceTree = "<group>"; };
 		B5D586C72C235F0600F3ADCC /* MagicLinkRequestedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicLinkRequestedViewController.swift; sourceTree = "<group>"; };
 		B5D586C92C235F8700F3ADCC /* MagicLinkRequestedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MagicLinkRequestedViewController.xib; sourceTree = "<group>"; };
+		B5D586CD2C23793900F3ADCC /* MagicLinkConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicLinkConfirmationView.swift; sourceTree = "<group>"; };
 		B5DD0F902476309000C8DD41 /* NoteTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableCellView.swift; sourceTree = "<group>"; };
 		B5E061762450AEDA0076111A /* ToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarView.swift; sourceTree = "<group>"; };
 		B5E073B424BF8BD900139912 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -1311,6 +1313,7 @@
 				B545DDD12C2313BA00A8FD89 /* AuthenticationMode.swift */,
 				B5D586C72C235F0600F3ADCC /* MagicLinkRequestedViewController.swift */,
 				B5D586C92C235F8700F3ADCC /* MagicLinkRequestedViewController.xib */,
+				B5D586CD2C23793900F3ADCC /* MagicLinkConfirmationView.swift */,
 				B5177CC325EEBF6900A8D834 /* SignupVerificationViewController.swift */,
 				B5177CC925EEBF8200A8D834 /* SignupVerificationViewController.xib */,
 			);
@@ -2270,6 +2273,7 @@
 				B528D684257FF15000C1EEA4 /* MainWindowController.swift in Sources */,
 				37AE49C31FFEB92A00FCB165 /* SPMarkdownParser.m in Sources */,
 				B5CBB05D2419714B0003C271 /* NSAttributedStringToMarkdownConverter.swift in Sources */,
+				B5D586CE2C23793900F3ADCC /* MagicLinkConfirmationView.swift in Sources */,
 				B5E96B671BDE732500D707F5 /* AuthViewController.m in Sources */,
 				B5EB3AD52458C48D0089858D /* SimplenoteAppDelegate+Swift.swift in Sources */,
 				B5EB3AD22458B9940089858D /* NSNotification+Simplenote.m in Sources */,
