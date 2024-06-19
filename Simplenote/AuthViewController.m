@@ -53,7 +53,7 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
 
 #pragma mark - Action Handlers
 
-- (IBAction)forgotPassword:(id)sender {
+- (void)openForgotPasswordURL {
     NSString *forgotPasswordURL = [SPCredentials simperiumForgotPasswordURL];
     NSString *username = self.usernameText;
 
@@ -65,7 +65,7 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:forgotPasswordURL]];
 }
 
-- (IBAction)toggleAuthenticationMode:(id)sender {
+- (IBAction)switchAuthenticationMode:(id)sender {
     self.mode = [self.mode nextMode];
 }
 
@@ -122,16 +122,7 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
 
 #pragma mark - Actions
 
-- (IBAction)performMainAction:(id)sender {
-    if (self.signingIn) {
-        [self signInAction:sender];
-        return;
-    }
-
-    [self signUpAction:sender];
-}
-
-- (IBAction)signInAction:(id)sender {
+- (void)pressedLogInWithPassword {
     [SPTracker trackUserSignedIn];
     [self clearAuthenticationError];
 
@@ -144,10 +135,14 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
         return;
     }
 
-    [self performAuthentication];
+    [self performLoginWithPassword];
 }
 
-- (IBAction)signUpAction:(id)sender {
+- (void)pressedLoginWithMagicLink {
+    
+}
+
+- (void)pressedSignUp {
     [SPTracker trackUserSignedUp];
     [self clearAuthenticationError];
 
@@ -203,7 +198,7 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
     }];
 }
 
-- (void)performAuthentication {
+- (void)performLoginWithPassword {
     [self startLoginAnimation];
     [self setInterfaceEnabled:NO];
 

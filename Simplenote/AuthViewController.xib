@@ -81,7 +81,7 @@
                                         <constraint firstAttribute="height" constant="40" id="UVW-gz-8cN"/>
                                     </constraints>
                                     <connections>
-                                        <action selector="performMainAction:" target="-2" id="oQR-Zg-shZ"/>
+                                        <action selector="performMainAction:" target="-2" id="t7F-Eu-cMm"/>
                                     </connections>
                                 </button>
                                 <progressIndicator maxValue="100" displayedWhenStopped="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="GMB-3v-AEQ" userLabel="Main Action Progress Indicator">
@@ -97,9 +97,9 @@
                                 <constraint firstAttribute="bottom" secondItem="Lid-6Q-zHR" secondAttribute="bottom" id="lmu-Jy-hXf"/>
                             </constraints>
                         </customView>
-                        <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="y1M-Np-v9m" userLabel="Forgot Button">
+                        <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="y1M-Np-v9m" userLabel="Secondary Action Button">
                             <rect key="frame" x="0.0" y="154" width="320" height="20"/>
-                            <buttonCell key="cell" type="bevel" title="[Forgot Action]" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="zjo-dD-vux">
+                            <buttonCell key="cell" type="bevel" title="[Secondary Action]" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="zjo-dD-vux" userLabel="[Secondary Action]">
                                 <behavior key="behavior" lightByContents="YES"/>
                                 <font key="font" metaFont="systemMedium" size="13"/>
                             </buttonCell>
@@ -107,7 +107,7 @@
                                 <constraint firstAttribute="height" constant="20" id="HrL-ss-QSd"/>
                             </constraints>
                             <connections>
-                                <action selector="forgotPassword:" target="-2" id="pEz-hB-6Tz"/>
+                                <action selector="performSecondaryAction:" target="-2" id="hjL-sS-hbT"/>
                             </connections>
                         </button>
                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="mRM-75-7tv" userLabel="Switch View">
@@ -136,7 +136,7 @@
                                         <constraint firstAttribute="height" constant="20" id="3pI-cn-CI2"/>
                                     </constraints>
                                     <connections>
-                                        <action selector="toggleAuthenticationMode:" target="-2" id="MRn-Y7-TWp"/>
+                                        <action selector="switchAuthenticationMode:" target="-2" id="5M2-AR-yd6"/>
                                     </connections>
                                 </button>
                             </subviews>

@@ -5,9 +5,11 @@ import Foundation
 //
 class AuthenticationMode: NSObject {
     let primaryActionText: String
+    let primaryActionSelector: Selector
     
     let secondaryActionText: String?
-    
+    let secondaryActionSelector: Selector?
+
     let switchActionText: String
     let switchActionTip: String
     let switchTargetMode: () -> AuthenticationMode
@@ -16,9 +18,11 @@ class AuthenticationMode: NSObject {
     let isSecondaryActionVisible: Bool
     let isWordPressVisible: Bool
     
-    init(primaryActionText: String, secondaryActionText: String?, switchActionText: String, switchActionTip: String, switchTargetMode: @escaping () -> AuthenticationMode, isPasswordVisible: Bool, isSecondaryActionVisible: Bool, isWordPressVisible: Bool) {
+    init(primaryActionText: String, primaryActionSelector: Selector, secondaryActionText: String?, secondaryActionSelector: Selector?, switchActionText: String, switchActionTip: String, switchTargetMode: @escaping () -> AuthenticationMode, isPasswordVisible: Bool, isSecondaryActionVisible: Bool, isWordPressVisible: Bool) {
         self.primaryActionText = primaryActionText
+        self.primaryActionSelector = primaryActionSelector
         self.secondaryActionText = secondaryActionText
+        self.secondaryActionSelector = secondaryActionSelector
         self.switchActionText = switchActionText
         self.switchActionTip = switchActionTip
         self.switchTargetMode = switchTargetMode
@@ -28,7 +32,8 @@ class AuthenticationMode: NSObject {
     }
 }
 
-
+// MARK: - Dynamic Properties
+//
 extension AuthenticationMode {
     
     @objc
@@ -62,6 +67,8 @@ extension AuthenticationMode {
 }
 
 
+// MARK: - Static Properties
+//
 extension AuthenticationMode {
     
     /// Auth Mode: Login with Username + Password
@@ -69,7 +76,9 @@ extension AuthenticationMode {
     @objc
     static var loginWithPassword: AuthenticationMode {
         AuthenticationMode(primaryActionText: LoginStrings.primaryAction,
+                           primaryActionSelector: #selector(AuthViewController.pressedLogInWithPassword),
                            secondaryActionText: LoginStrings.secondaryAction,
+                           secondaryActionSelector: #selector(AuthViewController.openForgotPasswordURL),
                            switchActionText: LoginStrings.switchAction,
                            switchActionTip: LoginStrings.switchTip,
                            switchTargetMode: { .signup },
@@ -83,7 +92,9 @@ extension AuthenticationMode {
     @objc
     static var loginWithMagicLink: AuthenticationMode {
         AuthenticationMode(primaryActionText: MagicLinkStrings.primaryAction,
+                           primaryActionSelector: #selector(AuthViewController.pressedLoginWithMagicLink),
                            secondaryActionText: MagicLinkStrings.secondaryAction,
+                           secondaryActionSelector: #selector(AuthViewController.switchToPasswordAuth),
                            switchActionText: MagicLinkStrings.switchAction,
                            switchActionTip: MagicLinkStrings.switchTip,
                            switchTargetMode: { .signup },
@@ -97,7 +108,9 @@ extension AuthenticationMode {
     @objc
     static var signup: AuthenticationMode {
         AuthenticationMode(primaryActionText: SignupStrings.primaryAction,
+                           primaryActionSelector: #selector(AuthViewController.pressedSignUp),
                            secondaryActionText: nil,
+                           secondaryActionSelector: nil,
                            switchActionText: SignupStrings.switchAction,
                            switchActionTip: SignupStrings.switchTip,
                            switchTargetMode: { .loginWithMagicLink },

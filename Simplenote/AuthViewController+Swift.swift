@@ -133,7 +133,7 @@ extension AuthViewController {
     }
 }
 
-// MARK: - Action Handlers
+// MARK: - IBAction Handlers
 //
 extension AuthViewController {
 
@@ -147,18 +147,31 @@ extension AuthViewController {
         ensureUsernameIsFirstResponder()
     }
     
-    @objc
-    func handleNewlineInField(_ field: NSControl) {
-        if field.isEqual(passwordField.textField) {
-            performMainAction(field)
+    @IBAction
+    func performMainAction(_ sender: Any) {
+        performSelector(onMainThread: mode.primaryActionSelector, with: nil, waitUntilDone: false)
+    }
+    
+    @IBAction
+    func performSecondaryAction(_ sender: Any) {
+        guard let secondaryActionSelector = mode.secondaryActionSelector else {
             return
         }
         
-        if field.isEqual(usernameField.textField), mode.isPasswordVisible == false {
-            performMainAction(field)
-        }
+        performSelector(onMainThread: secondaryActionSelector, with: nil, waitUntilDone: false)
     }
+}
 
+
+// MARK: - Handlers
+//
+extension AuthViewController {
+
+    @IBAction
+    func switchToPasswordAuth(_ sender: Any) {
+        mode = .loginWithPassword
+    }
+    
     @objc
     func performSignupRequest() {
         startSignupAnimation()
@@ -181,7 +194,20 @@ extension AuthViewController {
             self.setInterfaceEnabled(true)
         }
     }
+    
+    @IBAction
+    func handleNewlineInField(_ field: NSControl) {
+        if field.isEqual(passwordField.textField) {
+            performMainAction(field)
+            return
+        }
+        
+        if field.isEqual(usernameField.textField), mode.isPasswordVisible == false {
+            performMainAction(field)
+        }
+    }
 }
+
 
 // MARK: - Presenting!
 //

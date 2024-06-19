@@ -28,9 +28,11 @@
 
 @property (nonatomic, strong) SPAuthenticator                       *authenticator;
 @property (nonatomic, strong) AuthenticationMode                    *mode;
-@property (nonatomic, assign) BOOL                                  signingIn;
 
-- (IBAction)performMainAction:(id)sender;
+- (void)pressedLogInWithPassword;
+- (void)pressedLoginWithMagicLink;
+- (void)pressedSignUp;
+- (void)openForgotPasswordURL;
 
 - (void)setInterfaceEnabled:(BOOL)enabled;
 
