@@ -2,6 +2,8 @@
 #import <AppKit/AppKit.h>
 @import Simperium_OSX;
 
+@class AuthenticationMode;
+
 
 // MARK: - AuthViewController: Simperium's Authentication UI
 
@@ -25,6 +27,7 @@
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint           *wordPressSSOHeightConstraint;
 
 @property (nonatomic, strong) SPAuthenticator                       *authenticator;
+@property (nonatomic, strong) AuthenticationMode                    *mode;
 @property (nonatomic, assign) BOOL                                  signingIn;
 
 - (void)setInterfaceEnabled:(BOOL)enabled;

@@ -29,7 +29,7 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
 {
     if (self = [super init]) {
         self.validator = [SPAuthenticationValidator new];
-        self.signingIn = NO;
+        self.mode = [AuthenticationMode signup];
     }
 
     return self;
@@ -66,14 +66,14 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
 }
 
 - (IBAction)toggleAuthenticationMode:(id)sender {
-    self.signingIn = !self.signingIn;
+    self.mode = [self.mode nextMode];
 }
 
 
 #pragma mark - Dynamic Properties
 
-- (void)setSigningIn:(BOOL)signingIn {
-    _signingIn = signingIn;
+- (void)setMode:(AuthenticationMode *)mode {
+    _mode = mode;
     [self didUpdateAuthenticationMode];
 }
 

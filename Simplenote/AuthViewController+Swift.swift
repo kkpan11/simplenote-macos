@@ -18,7 +18,6 @@ extension AuthViewController {
         passwordField.delegate = self
 
         // Forgot Password!
-        forgotPasswordButton.title = Localization.forgotAction.uppercased()
         forgotPasswordButton.contentTintColor = .simplenoteBrandColor
 
         // Toggle Signup: Tip
@@ -62,21 +61,18 @@ extension AuthViewController {
     }
 
     func refreshButtonTitles() {
-        let actionText    = signingIn ? Localization.signInAction   : Localization.signUpAction
-        let tipText       = signingIn ? Localization.signUpTip      : Localization.signInTip
-        let switchText    = signingIn ? Localization.signUpAction   : Localization.signInAction
-
-        actionButton.title         = actionText
-        switchTipField.stringValue = tipText.uppercased()
-        switchActionButton.title   = switchText.uppercased()
+        actionButton.title          = mode.primaryActionText
+        forgotPasswordButton.title  = mode.secondaryActionText?.uppercased() ?? ""
+        switchTipField.stringValue  = mode.switchActionTip.uppercased()
+        switchActionButton.title    = mode.switchActionText.uppercased()
     }
 
     /// Makes sure unused components (in the current mode) are effectively disabled
     ///
     func refreshEnabledComponents() {
-        passwordField.isEnabled = signingIn
-        forgotPasswordButton.isEnabled = signingIn
-        wordPressSSOButton.isEnabled = signingIn
+        passwordField.isEnabled = mode.isPasswordVisible
+        forgotPasswordButton.isEnabled = mode.isSecondaryActionVisible
+        wordPressSSOButton.isEnabled = mode.isWordPressVisible
     }
 
     /// Shows / Hides relevant components, based on the specified state
@@ -94,32 +90,29 @@ extension AuthViewController {
     ///         Notice that AppKit requires us to go thru `animator()`.
     ///
     func refreshVisibleComponentsWithoutAnimation() {
-        passwordFieldHeightConstraint.constant   = Metrics.passwordHeight(signingIn: signingIn)
-        forgotPasswordHeightConstraint.constant  = Metrics.forgotHeight(signingIn: signingIn)
-        wordPressSSOHeightConstraint.constant    = Metrics.wordPressHeight(signingIn: signingIn)
+        passwordFieldHeightConstraint.constant  = mode.passwordFieldHeight
+        forgotPasswordHeightConstraint.constant = mode.secondaryActionFieldHeight
+        wordPressSSOHeightConstraint.constant   = mode.wordPressSSOFieldHeight
 
-        let fields      = [passwordField, forgotPasswordButton, wordPressSSOButton].compactMap { $0 }
-
-        fields.updateAlphaValue(AppKitConstants.alpha0_0)
+        passwordField.alphaValue        = mode.passwordFieldAlpha
+        forgotPasswordButton.alphaValue = mode.secondaryActionFieldAlpha
+        wordPressSSOButton.alphaValue   = mode.wordPressSSOFieldAlpha
     }
 
     /// Animates Visible / Invisible components, based on the specified state
     ///
     func refreshVisibleComponentsWithAnimation() {
-        let fields      = [passwordField, forgotPasswordButton, wordPressSSOButton].compactMap { $0 }
-        let alphaStart  = signingIn ? AppKitConstants.alpha0_0 : AppKitConstants.alpha1_0
-        let alphaEnd    = signingIn ? AppKitConstants.alpha1_0 : AppKitConstants.alpha0_0
-
-        fields.updateAlphaValue(alphaStart)
-
         NSAnimationContext.runAnimationGroup { context in
             context.duration = AppKitConstants.duration0_2
 
-            passwordFieldHeightConstraint.animator().constant   = Metrics.passwordHeight(signingIn: signingIn)
-            forgotPasswordHeightConstraint.animator().constant  = Metrics.forgotHeight(signingIn: signingIn)
-            wordPressSSOHeightConstraint.animator().constant    = Metrics.wordPressHeight(signingIn: signingIn)
+            passwordFieldHeightConstraint.animator().constant   = mode.passwordFieldHeight
+            forgotPasswordHeightConstraint.animator().constant  = mode.secondaryActionFieldHeight
+            wordPressSSOHeightConstraint.animator().constant    = mode.wordPressSSOFieldHeight
 
-            fields.updateAlphaValue(alphaEnd)
+            passwordField.alphaValue        = mode.passwordFieldAlpha
+            forgotPasswordButton.alphaValue = mode.secondaryActionFieldAlpha
+            wordPressSSOButton.alphaValue   = mode.wordPressSSOFieldAlpha
+            
             view.layoutSubtreeIfNeeded()
         }
     }
