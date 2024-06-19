@@ -216,7 +216,7 @@ extension AuthViewController {
             let remote = LoginRemote()
             try await remote.requestLoginEmail(email: email)
 
-            presentMagicLinkConfirmationView(email: email)
+            presentMagicLinkRequestedView(email: email)
             
         } catch {
             let statusCode = (error as? RemoteError)?.statusCode ?? .zero
@@ -265,8 +265,8 @@ extension AuthViewController {
         view.window?.transition(to: vc)
     }
     
-    func presentMagicLinkConfirmationView(email: String) {
-        let viewController = MagicLinkConfirmationViewController(email: email, authenticator: authenticator)
+    func presentMagicLinkRequestedView(email: String) {
+        let viewController = MagicLinkRequestedViewController(email: email, authenticator: authenticator)
         view.window?.transition(to: viewController)
     }
 }
