@@ -22,7 +22,7 @@ struct MagicLinkConfirmationView: View {
         }
         .padding()
         .background(.white)
-        .frame(width: 380, height: 200, alignment: .center)
+        .frame(width: 380, height: 400)
         .onReceive(NotificationCenter.default.publisher(for: .magicLinkAuthDidFail)) { _ in
             displaysInvalidLink = true
         }
