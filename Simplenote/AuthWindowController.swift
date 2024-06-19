@@ -78,6 +78,20 @@ extension AuthWindowController {
         window.transition(to: authViewController)
     }
     
+    func switchToMagicLinkRequestedUI(email: String) {
+        guard let window else {
+            return
+        }
+
+        var rootView = MagicLinkRequestedView(email: email)
+        rootView.onDismissRequest = { [weak self] in
+            self?.switchToAuthenticationUI()
+        }
+        
+        let hostingController = NSHostingController(rootView: rootView)
+        window.switchContentViewController(to: hostingController)
+    }
+
     func switchToMagicLinkConfirmationUI() {
         guard let window else {
             return

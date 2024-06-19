@@ -266,8 +266,11 @@ extension AuthViewController {
     }
     
     func presentMagicLinkRequestedView(email: String) {
-        let viewController = MagicLinkRequestedViewController(email: email, authenticator: authenticator)
-        view.window?.transition(to: viewController)
+        guard let authWindowController = view.window?.windowController as? AuthWindowController else {
+            return
+        }
+        
+        authWindowController.switchToMagicLinkRequestedUI(email: email)
     }
 }
 
