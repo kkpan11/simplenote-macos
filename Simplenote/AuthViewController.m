@@ -139,7 +139,7 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
 }
 
 - (void)pressedLoginWithMagicLink {
-    
+    NSLog(@"# TODO: Request Magic Link!!");
 }
 
 - (void)pressedSignUp {
