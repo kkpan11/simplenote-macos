@@ -2,9 +2,9 @@ import Foundation
 import AppKit
 
 
-// MARK: - MagicLinkConfirmationViewController
+// MARK: - MagicLinkRequestedViewController
 //
-class MagicLinkConfirmationViewController: NSViewController {
+class MagicLinkRequestedViewController: NSViewController {
 
     /// Outlets
     ///
@@ -47,7 +47,7 @@ class MagicLinkConfirmationViewController: NSViewController {
 
 // MARK: - Interface
 //
-private extension MagicLinkConfirmationViewController {
+private extension MagicLinkRequestedViewController {
 
     func setupHeadingImage() {
         headingImageView.contentTintColor = NSColor(studioColor: .spBlue50, alpha: AppKitConstants.alpha1_0)
@@ -83,7 +83,7 @@ private extension MagicLinkConfirmationViewController {
 
 // MARK: - Action Handlers
 //
-extension MagicLinkConfirmationViewController {
+extension MagicLinkRequestedViewController {
 
     @IBAction
     func backWasPressed(_ sender: Any) {
