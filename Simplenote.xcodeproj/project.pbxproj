@@ -133,6 +133,7 @@
 		B542FE5325D42EA600A3582D /* SPTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BBDA3225501398005C8343 /* SPTextView.swift */; };
 		B542FE5725D42EC700A3582D /* Storage.m in Sources */ = {isa = PBXBuildFile; fileRef = A6084B2B25D1B77000DDFAB2 /* Storage.m */; };
 		B5438013246358BA00F34B1C /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B543800F246355FA00F34B1C /* Icons.xcassets */; };
+		B545DDD22C2313BA00A8FD89 /* AuthenticationMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B545DDD12C2313BA00A8FD89 /* AuthenticationMode.swift */; };
 		B5469FCB2587DE3F007ED7BE /* SortMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5469FC92587DE3F007ED7BE /* SortMode.swift */; };
 		B5469FD12587FCD9007ED7BE /* NSSortDescriptor+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5469FCF2587FCD9007ED7BE /* NSSortDescriptor+Simplenote.swift */; };
 		B5469FDA25880128007ED7BE /* OptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5469FD925880128007ED7BE /* OptionsTests.swift */; };
@@ -557,6 +558,7 @@
 		B53BF1A324AC38C100938C34 /* VersionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionsController.swift; sourceTree = "<group>"; };
 		B53FF5462476F9450014E928 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B543800F246355FA00F34B1C /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
+		B545DDD12C2313BA00A8FD89 /* AuthenticationMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationMode.swift; sourceTree = "<group>"; };
 		B5469FC92587DE3F007ED7BE /* SortMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortMode.swift; sourceTree = "<group>"; };
 		B5469FCF2587FCD9007ED7BE /* NSSortDescriptor+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSSortDescriptor+Simplenote.swift"; sourceTree = "<group>"; };
 		B5469FD925880128007ED7BE /* OptionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsTests.swift; sourceTree = "<group>"; };
@@ -1302,6 +1304,7 @@
 				B5E96B651BDE732500D707F5 /* AuthViewController.m */,
 				B5177CBA25EEB01600A8D834 /* AuthViewController+Swift.swift */,
 				B597429225E97ADC0063DDD2 /* AuthViewController.xib */,
+				B545DDD12C2313BA00A8FD89 /* AuthenticationMode.swift */,
 				B5177CC325EEBF6900A8D834 /* SignupVerificationViewController.swift */,
 				B5177CC925EEBF8200A8D834 /* SignupVerificationViewController.xib */,
 			);
@@ -2217,6 +2220,7 @@
 				B51AFE6E25D30A1800A196DF /* SearchField.swift in Sources */,
 				B51E9FE222E615FA004F16B4 /* SPExporter.swift in Sources */,
 				B5562436253E328400836E20 /* ReferenceTableViewCell.swift in Sources */,
+				B545DDD22C2313BA00A8FD89 /* AuthenticationMode.swift in Sources */,
 				BA5A65972C091D0600F605A6 /* CoreDataValidator.swift in Sources */,
 				466FFECF17CC10A800399652 /* TagListViewController.m in Sources */,
 				B52F8FDA24644DD00062B8ED /* NSFont+Theme.swift in Sources */,
