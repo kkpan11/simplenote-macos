@@ -24,24 +24,22 @@ final class MagicLinkAuthenticatorTests: XCTestCase {
         XCTAssertFalse(magicLinkAuth.handle(url: MagicLinkTestConstants.sampleInvalidURL))
     }
     
-    func testMagicLinkURLResultsInLoginConfirmationRequest() throws {
+    func testMagicLinkURLResultsInLoginConfirmationRequest() async throws {
         let expectation = expectation(description: "LoginConfirmationRequest")
         loginRemote.onLoginConfirmationRequest = { (authKey, authCode) in
             XCTAssertEqual(authCode, MagicLinkTestConstants.expectedCode)
             XCTAssertEqual(authKey, MagicLinkTestConstants.expectedKey)
             
+            expectation.fulfill()
+            
             return LoginConfirmationResponse(username: MagicLinkTestConstants.expectedUsername, syncToken: MagicLinkTestConstants.expectedSyncToken)
         }
         
-        simperiumAuth.onAuthenticationRequest = { (username, token) in
-            expectation.fulfill()
-        }
-        
         XCTAssertTrue(magicLinkAuth.handle(url: MagicLinkTestConstants.sampleValidURL))
-        waitForExpectations(timeout: 1, handler: nil)
+        await fulfillment(of: [expectation])
     }
     
-    func testMagicLinkURLWithValidConfirmationResponseResultsInSimperiumAuthenticationRequest() throws {
+    func testMagicLinkURLWithValidConfirmationResponseResultsInSimperiumAuthenticationRequest() async throws {
         let expectation = expectation(description: "LoginAuthenticationRequest")
         loginRemote.onLoginConfirmationRequest = { authKey, authCode in
             LoginConfirmationResponse(username: MagicLinkTestConstants.expectedUsername, syncToken: MagicLinkTestConstants.expectedSyncToken)
@@ -54,7 +52,7 @@ final class MagicLinkAuthenticatorTests: XCTestCase {
         }
         
         XCTAssertTrue(magicLinkAuth.handle(url: MagicLinkTestConstants.sampleValidURL))
-        waitForExpectations(timeout: 1, handler: nil)
+        await fulfillment(of: [expectation])
     }
 }
 
