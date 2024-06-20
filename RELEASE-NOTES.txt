@@ -1,6 +1,7 @@
 2.21
 -----
 - Added shortcuts to Simplenote Mac!!
+- New Magic Link Authentication support
 
 2.20
 -----
