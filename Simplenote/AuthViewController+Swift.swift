@@ -46,6 +46,10 @@ extension AuthViewController {
     var passwordText: String {
         passwordField.stringValue?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
     }
+    
+    var authWindowController: AuthWindowController? {
+        view.window?.windowController as? AuthWindowController
+    }
 }
 
 // MARK: - Refreshing
@@ -197,11 +201,12 @@ extension AuthViewController {
     
     @objc
     func performLoginWithEmailRequest() {
-        Task { @MainActor in
+        Task {
             await performLoginWithEmailRequestInTask()
         }
     }
      
+    @MainActor
     func performLoginWithEmailRequestInTask() async {
         defer {
             stopActionAnimation()
@@ -266,7 +271,7 @@ extension AuthViewController {
     }
     
     func presentMagicLinkRequestedView(email: String) {
-        guard let authWindowController = view.window?.windowController as? AuthWindowController else {
+        guard let authWindowController else {
             return
         }
         
