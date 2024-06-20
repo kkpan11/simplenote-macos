@@ -29,9 +29,14 @@ final class MagicLinkAuthenticatorTests: XCTestCase {
         loginRemote.onLoginConfirmationRequest = { (authKey, authCode) in
             XCTAssertEqual(authCode, MagicLinkTestConstants.expectedCode)
             XCTAssertEqual(authKey, MagicLinkTestConstants.expectedKey)
-            expectation.fulfill()
             
-            return LoginConfirmationResponse(username: "", syncToken: "")
+            return LoginConfirmationResponse(username: MagicLinkTestConstants.expectedUsername, syncToken: MagicLinkTestConstants.expectedSyncToken)
+        }
+        
+        simperiumAuth.onAuthenticationRequest = { (username, token) in
+            XCTAssertEqual(username, MagicLinkTestConstants.expectedUsername)
+            XCTAssertEqual(token, MagicLinkTestConstants.expectedSyncToken)
+            expectation.fulfill()
         }
         
         XCTAssertTrue(magicLinkAuth.handle(url: MagicLinkTestConstants.sampleValidURL))
