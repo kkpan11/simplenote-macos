@@ -9,7 +9,8 @@ struct MagicLinkRequestedView: View {
     @State private var displaysFullImage: Bool = false
     let email: String
     var onDismissRequest: (() -> Void)?
-        
+
+    
     private var emailLengthLimited: String {
         guard email.count > Metrics.maximumEmailLength else {
             return email
@@ -30,19 +31,17 @@ struct MagicLinkRequestedView: View {
                         displaysFullImage = true
                     }
                 }
-
-            Spacer()
-                .frame(height: Metrics.imagePaddingBottom)
+                .padding(.bottom, Metrics.imagePaddingBottom)
+                .padding(.top, Metrics.imagePaddingTop)
 
             Text("Check your email")
                 .bold()
                 .font(.title)
-            
-            Spacer()
-                .frame(height: Metrics.titlePaddingBottom)
-            
+                .padding(.bottom, Metrics.titlePaddingBottom)
+                        
             Text("If an account exists, we've sent an email to **\(emailLengthLimited)** containing a link that'll log you in.")
                 .font(.title3)
+                .lineLimit(nil)
                 .multilineTextAlignment(.center)
                 .padding()
             
@@ -59,6 +58,7 @@ struct MagicLinkRequestedView: View {
                     }
             }
             .buttonStyle(PlainButtonStyle())
+            .padding(.bottom, Metrics.buttonPaddingBottom)
         }
         .frame(width: 380, height: 350)
         
@@ -76,8 +76,10 @@ struct MagicLinkRequestedView: View {
 // MARK: - Constants
 //
 private enum Metrics {
+    static let imagePaddingTop: CGFloat = 20
     static let imagePaddingBottom: CGFloat = 10
     static let titlePaddingBottom: CGFloat = 10
+    static let buttonPaddingBottom: CGFloat = 30
     static let maximumEmailLength = 100
 }
 
