@@ -34,10 +34,8 @@ final class MagicLinkAuthenticatorTests: XCTestCase {
             return LoginConfirmationResponse(username: "", syncToken: "")
         }
         
-        Task {
-            XCTAssertTrue(magicLinkAuth.handle(url: MagicLinkTestConstants.sampleValidURL))
-            await fulfillment(of: [expectation])
-        }
+        XCTAssertTrue(magicLinkAuth.handle(url: MagicLinkTestConstants.sampleValidURL))
+        await fulfillment(of: [expectation])
     }
     
     func testMagicLinkURLWithValidConfirmationResponseResultsInSimperiumAuthenticationRequest() async throws {
