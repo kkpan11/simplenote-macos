@@ -83,6 +83,8 @@ extension AuthWindowController {
             return
         }
 
+        /// Renders a UI that indicates a Magic Link has been requested
+        ///
         var rootView = MagicLinkRequestedView(email: email)
         rootView.onDismissRequest = { [weak self] in
             self?.switchToAuthenticationUI()
@@ -97,6 +99,9 @@ extension AuthWindowController {
             return
         }
 
+        /// Renders a spinner while we attempt to authorize a Magic Link.
+        /// It'll pick up the `magicLinkAuthDidFail` Notification, and will display an error, if needed.
+        ///
         var rootView = MagicLinkConfirmationView()
         rootView.onDismissRequest = { [weak self] in
             self?.switchToAuthenticationUI()
