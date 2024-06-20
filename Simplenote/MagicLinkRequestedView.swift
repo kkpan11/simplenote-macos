@@ -60,7 +60,7 @@ struct MagicLinkRequestedView: View {
             }
             .buttonStyle(PlainButtonStyle())
         }
-        .frame(width: 380, height: 400)
+        .frame(width: 380, height: 350)
         
         /// Force Light Mode (since the Authentication UI is all light!)
         .environment(\.colorScheme, .light)
