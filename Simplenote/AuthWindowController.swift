@@ -59,7 +59,9 @@ extension AuthWindowController {
     
     @objc
     func displayAuthenticationInProgress(_ sender: Notification) {
-        switchToMagicLinkConfirmationUI()
+        DispatchQueue.main.async {
+            self.switchToMagicLinkConfirmationUI()
+        }
     }
 }
 

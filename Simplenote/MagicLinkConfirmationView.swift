@@ -24,7 +24,9 @@ struct MagicLinkConfirmationView: View {
         .background(.white)
         .frame(width: 380, height: 200)
         .onReceive(NotificationCenter.default.publisher(for: .magicLinkAuthDidFail)) { _ in
-            displaysInvalidLink = true
+            Task { @MainActor in
+                displaysInvalidLink = true
+            }
         }
     }
     

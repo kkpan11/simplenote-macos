@@ -66,17 +66,15 @@ private extension MagicLinkAuthenticator {
         NSLog("[MagicLinkAuthenticator] Requesting SyncToken for \(authKey) and \(authCode)")
         NotificationCenter.default.post(name: .magicLinkAuthWillStart, object: nil)
         
-        Task {
+        Task { @MainActor in
             do {
                 let confirmation = try await loginRemote.requestLoginConfirmation(authKey: authKey, authCode: authCode)
               
-                Task { @MainActor in
-                    NSLog("[MagicLinkAuthenticator] Should auth with token \(confirmation.syncToken)")
-                    authenticator.authenticate(withUsername: confirmation.username, token: confirmation.syncToken)
-                    
-                    NotificationCenter.default.post(name: .magicLinkAuthDidSucceed, object: nil)
-                    SPTracker.trackUserConfirmedLoginLink()
-                }
+                NSLog("[MagicLinkAuthenticator] Should auth with token \(confirmation.syncToken)")
+                authenticator.authenticate(withUsername: confirmation.username, token: confirmation.syncToken)
+
+                NotificationCenter.default.post(name: .magicLinkAuthDidSucceed, object: nil)
+                SPTracker.trackUserConfirmedLoginLink()
 
             } catch {
                 NSLog("[MagicLinkAuthenticator] Magic Link TokenExchange Error: \(error)")
