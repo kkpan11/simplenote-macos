@@ -39,7 +39,7 @@ struct MagicLinkRequestedView: View {
                 .font(.title)
                 .padding(.bottom, Metrics.titlePaddingBottom)
                         
-            Text("If an account exists, we've sent an email to **\(emailLengthLimited)** containing a link that'll log you in.")
+            Text("If an account exists, we've sent an email with a link that'll log you in to **\(emailLengthLimited)**")
                 .font(.title3)
                 .lineLimit(nil)
                 .multilineTextAlignment(.center)
