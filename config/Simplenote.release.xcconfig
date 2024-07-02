@@ -1,1 +1,3 @@
-#include "Version.public.xcconfig"
+#include "Base.xcconfig"
+
+CODE_SIGN_IDENTITY = Apple Distribution
