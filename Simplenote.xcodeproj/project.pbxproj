@@ -171,6 +171,9 @@
 		B58117E325B9E5D200927E0C /* AccountVerificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58117E125B9E5D200927E0C /* AccountVerificationController.swift */; };
 		B58117E925B9EE7B00927E0C /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58117E725B9EE7B00927E0C /* Button.swift */; };
 		B586C063245CCD35009508EC /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B586C061245CCD35009508EC /* SplitViewController.swift */; };
+		B587D7DE2C21FDDF006645CF /* LoginRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587D7DD2C21FDDF006645CF /* LoginRemote.swift */; };
+		B587D7E22C220765006645CF /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587D7E12C220765006645CF /* URLSessionProtocol.swift */; };
+		B587D7E42C22086F006645CF /* LoginRemoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587D7E32C22086F006645CF /* LoginRemoteTests.swift */; };
 		B58942FB24E5EE8E006EC232 /* NSWindowFrameAutosaveName+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58942F924E5EE8E006EC232 /* NSWindowFrameAutosaveName+Simplenote.swift */; };
 		B58A71BF258422CC00601641 /* NSBezierPath+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58A71BD258422CC00601641 /* NSBezierPath+Simplenote.swift */; };
 		B58BBD2B2523D4CA0025135F /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58BBD292523D4CA0025135F /* Window.swift */; };
@@ -587,6 +590,9 @@
 		B58117E125B9E5D200927E0C /* AccountVerificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountVerificationController.swift; sourceTree = "<group>"; };
 		B58117E725B9EE7B00927E0C /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		B586C061245CCD35009508EC /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
+		B587D7DD2C21FDDF006645CF /* LoginRemote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRemote.swift; sourceTree = "<group>"; };
+		B587D7E12C220765006645CF /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
+		B587D7E32C22086F006645CF /* LoginRemoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRemoteTests.swift; sourceTree = "<group>"; };
 		B58942F924E5EE8E006EC232 /* NSWindowFrameAutosaveName+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSWindowFrameAutosaveName+Simplenote.swift"; sourceTree = "<group>"; };
 		B58A71BD258422CC00601641 /* NSBezierPath+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSBezierPath+Simplenote.swift"; sourceTree = "<group>"; };
 		B58BBD292523D4CA0025135F /* Window.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Window.swift; sourceTree = "<group>"; };
@@ -1145,9 +1151,11 @@
 			children = (
 				B5F5414D25EFFC2A00CAF52C /* RemoteConstants.swift */,
 				B502C1DC25BA2EB700145D6C /* AccountRemote.swift */,
+				B587D7DD2C21FDDF006645CF /* LoginRemote.swift */,
 				B5F5414725EFFC2200CAF52C /* SignupRemote.swift */,
 				BA938CEB26ACFF4A00BE5A1D /* Remote.swift */,
 				BAA0A87926B9F0B50006260E /* RemoteError.swift */,
+				B587D7E12C220765006645CF /* URLSessionProtocol.swift */,
 			);
 			name = Remote;
 			sourceTree = "<group>";
@@ -1156,6 +1164,7 @@
 			isa = PBXGroup;
 			children = (
 				B502C1E625BA2F0800145D6C /* AccountVerificationRemoteTests.swift */,
+				B587D7E32C22086F006645CF /* LoginRemoteTests.swift */,
 				BA4C6D15264CA8C000B723A7 /* SignupRemoteTests.swift */,
 			);
 			name = Remote;
@@ -2164,6 +2173,7 @@
 				3712FC871FE1ACAA008544AC /* Element.swift in Sources */,
 				B555CE3725ED81F200610BC6 /* AuthWindowController.swift in Sources */,
 				B5F04FD121594B6D004B1AA0 /* Simperium+Simplenote.m in Sources */,
+				B587D7E22C220765006645CF /* URLSessionProtocol.swift in Sources */,
 				B58117E325B9E5D200927E0C /* AccountVerificationController.swift in Sources */,
 				B5F5414925EFFC2200CAF52C /* SignupRemote.swift in Sources */,
 				B5EB3AD82458CDB50089858D /* ThemeOption.swift in Sources */,
@@ -2201,6 +2211,7 @@
 				B501AAD32437E5600084CDA3 /* AppKitConstants.swift in Sources */,
 				B57CB87F244DED2300BA7969 /* Bundle+Simplenote.swift in Sources */,
 				3712FC831FE1ACAA008544AC /* Storage.swift in Sources */,
+				B587D7DE2C21FDDF006645CF /* LoginRemote.swift in Sources */,
 				375D293521E033D1007AB25A /* autolink.c in Sources */,
 				B5F3150A24496A970036872D /* TableRowView.swift in Sources */,
 				B5EDF330258A8EF00066D91D /* NoteListFilter.swift in Sources */,
@@ -2235,6 +2246,7 @@
 				B50099322421218B0037A431 /* NSTextViewSimplenoteTests.swift in Sources */,
 				A6672FBF25C7F77000090DE3 /* NoteBodyExcerptTests.swift in Sources */,
 				A6672FBE25C7F77000090DE3 /* StringContentSliceTests.swift in Sources */,
+				B587D7E42C22086F006645CF /* LoginRemoteTests.swift in Sources */,
 				B5EF32B1258D075C0069EC7D /* NoteListControllerTests.swift in Sources */,
 				B502C1F725BA2F3F00145D6C /* MockURLSessionDataTask.swift in Sources */,
 				B502C1E725BA2F0800145D6C /* AccountVerificationRemoteTests.swift in Sources */,

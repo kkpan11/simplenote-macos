@@ -24,8 +24,14 @@ class SimplenoteConstants: NSObject {
 
     static let currentEngineBaseURL = "https://app.simplenote.com" as NSString
 
+    /// Simplenote: Current Platform
+    ///
+    static let simplenotePlatformName = "macOS"
+
     /// URL(s)
     ///
+    static let loginRequestURL              = currentEngineBaseURL.appendingPathComponent("/account/request-login")
+    static let loginCompletionURL           = currentEngineBaseURL.appendingPathComponent("/account/complete-login")
     static let simplenoteSettingsURL        = currentEngineBaseURL.appendingPathComponent("/settings")
     static let simplenoteVerificationURL    = currentEngineBaseURL.appendingPathComponent("/account/verify-email/")
     static let simplenoteRequestSignupURL   = currentEngineBaseURL.appendingPathComponent("/account/request-signup")
