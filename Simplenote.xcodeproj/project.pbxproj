@@ -174,6 +174,11 @@
 		B587D7DE2C21FDDF006645CF /* LoginRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587D7DD2C21FDDF006645CF /* LoginRemote.swift */; };
 		B587D7E22C220765006645CF /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587D7E12C220765006645CF /* URLSessionProtocol.swift */; };
 		B587D7E42C22086F006645CF /* LoginRemoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587D7E32C22086F006645CF /* LoginRemoteTests.swift */; };
+		B587D7E72C2214DB006645CF /* MagicLinkAuthenticatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587D7E62C2214DB006645CF /* MagicLinkAuthenticatorTests.swift */; };
+		B587D7EA2C221575006645CF /* SimperiumAuthenticatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587D7E92C221575006645CF /* SimperiumAuthenticatorProtocol.swift */; };
+		B587D7EC2C2215D9006645CF /* MockSimperiumAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587D7EB2C2215D9006645CF /* MockSimperiumAuthenticator.swift */; };
+		B587D7EE2C2217B1006645CF /* LoginRemoteProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587D7ED2C2217B1006645CF /* LoginRemoteProtocol.swift */; };
+		B587D7F02C2217EE006645CF /* MockLoginRemote.swift in Sources */ = {isa = PBXBuildFile; fileRef = B587D7EF2C2217EE006645CF /* MockLoginRemote.swift */; };
 		B58942FB24E5EE8E006EC232 /* NSWindowFrameAutosaveName+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58942F924E5EE8E006EC232 /* NSWindowFrameAutosaveName+Simplenote.swift */; };
 		B58A71BF258422CC00601641 /* NSBezierPath+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58A71BD258422CC00601641 /* NSBezierPath+Simplenote.swift */; };
 		B58BBD2B2523D4CA0025135F /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58BBD292523D4CA0025135F /* Window.swift */; };
@@ -593,6 +598,11 @@
 		B587D7DD2C21FDDF006645CF /* LoginRemote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginRemote.swift; sourceTree = "<group>"; };
 		B587D7E12C220765006645CF /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
 		B587D7E32C22086F006645CF /* LoginRemoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRemoteTests.swift; sourceTree = "<group>"; };
+		B587D7E62C2214DB006645CF /* MagicLinkAuthenticatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicLinkAuthenticatorTests.swift; sourceTree = "<group>"; };
+		B587D7E92C221575006645CF /* SimperiumAuthenticatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimperiumAuthenticatorProtocol.swift; sourceTree = "<group>"; };
+		B587D7EB2C2215D9006645CF /* MockSimperiumAuthenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSimperiumAuthenticator.swift; sourceTree = "<group>"; };
+		B587D7ED2C2217B1006645CF /* LoginRemoteProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRemoteProtocol.swift; sourceTree = "<group>"; };
+		B587D7EF2C2217EE006645CF /* MockLoginRemote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockLoginRemote.swift; sourceTree = "<group>"; };
 		B58942F924E5EE8E006EC232 /* NSWindowFrameAutosaveName+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSWindowFrameAutosaveName+Simplenote.swift"; sourceTree = "<group>"; };
 		B58A71BD258422CC00601641 /* NSBezierPath+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSBezierPath+Simplenote.swift"; sourceTree = "<group>"; };
 		B58BBD292523D4CA0025135F /* Window.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Window.swift; sourceTree = "<group>"; };
@@ -897,6 +907,7 @@
 			isa = PBXGroup;
 			children = (
 				BA39C4542C0133F30004B2A9 /* SimplenoteDebug.entitlements */,
+				B587D7E82C221503006645CF /* Authentication */,
 				463774DC171F114900E2E333 /* Categories */,
 				B501AAD22437E52D0084CDA3 /* Constants */,
 				B53BF1A224AC388F00938C34 /* Controllers */,
@@ -1010,7 +1021,6 @@
 			children = (
 				F998F3EA22853C29008C2B59 /* CrashLogging.swift */,
 				A6BF918E25E4EB44003C2018 /* FileStorage.swift */,
-				B5F5415325F0137100CAF52C /* MagicLinkAuthenticator.swift */,
 				B57CB87A244DEC4A00BA7969 /* MigrationsHandler.swift */,
 				A6672FB225C7F12F00090DE3 /* NoteContentHelper.swift */,
 				A6BF918825E4EAC6003C2018 /* NoteEditorMetadataCache.swift */,
@@ -1364,6 +1374,24 @@
 			name = Verification;
 			sourceTree = "<group>";
 		};
+		B587D7E52C2214C2006645CF /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				B587D7E62C2214DB006645CF /* MagicLinkAuthenticatorTests.swift */,
+			);
+			name = Authentication;
+			sourceTree = "<group>";
+		};
+		B587D7E82C221503006645CF /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				B5F5415325F0137100CAF52C /* MagicLinkAuthenticator.swift */,
+				B587D7E92C221575006645CF /* SimperiumAuthenticatorProtocol.swift */,
+				B587D7ED2C2217B1006645CF /* LoginRemoteProtocol.swift */,
+			);
+			name = Authentication;
+			sourceTree = "<group>";
+		};
 		B58BBD352523D7B20025135F /* Windows */ = {
 			isa = PBXGroup;
 			children = (
@@ -1482,6 +1510,8 @@
 				B5EF32CE258D08E70069EC7D /* MockStorage+Sample.swift */,
 				B5C1F0AB242E9A9800A627E3 /* MockTextView.swift */,
 				BA5A65902C09113400F605A6 /* MockFileManager.swift */,
+				B587D7EF2C2217EE006645CF /* MockLoginRemote.swift */,
+				B587D7EB2C2215D9006645CF /* MockSimperiumAuthenticator.swift */,
 				BA5A65942C09164100F605A6 /* MockStorageSettings.swift */,
 				BA5A65982C091E6000F605A6 /* MockStorageValidator.swift */,
 			);
@@ -1555,15 +1585,16 @@
 			isa = PBXGroup;
 			children = (
 				3F1FC4212C0EBEF10066B187 /* Simplenote.xctestplan */,
+				B587D7E52C2214C2006645CF /* Authentication */,
 				B53FF5482476F94B0014E928 /* Helpers */,
 				B5EF32AF258D07420069EC7D /* Controllers */,
 				B5985AD3242949C30044EDE9 /* Converters */,
 				B5985AD2242949B00044EDE9 /* Extensions */,
+				B5C1F0AD242E9AAA00A627E3 /* Mocks */,
 				B57401A725B7D9A60058960E /* Model */,
 				B5B5F33B243244D300F31720 /* Handlers */,
 				B502C1E525BA2EFB00145D6C /* Remote */,
 				B5469FD825880106007ED7BE /* Settings */,
-				B5C1F0AD242E9AAA00A627E3 /* Mocks */,
 				B5CBB06D241976230003C271 /* Info.plist */,
 			);
 			path = SimplenoteTests;
@@ -2149,6 +2180,7 @@
 				B542FE4725D42E6D00A3582D /* SearchMapView.swift in Sources */,
 				B57CB875244DEBC300BA7969 /* Options.swift in Sources */,
 				3712FC8F1FE1ACAA008544AC /* Theme.swift in Sources */,
+				B587D7EA2C221575006645CF /* SimperiumAuthenticatorProtocol.swift in Sources */,
 				B5EDF324258A236C0066D91D /* NSEdgeInsets+Simplenote.swift in Sources */,
 				B5E086302448E58C00DEF476 /* NSImageName+Simplenote.swift in Sources */,
 				B58CE26624F9AE870079C04B /* NSStoryboard+Simplenote.swift in Sources */,
@@ -2193,6 +2225,7 @@
 				B5ACE42F24785D8C00AB02C7 /* BackgroundView.swift in Sources */,
 				B5F5415525F0137100CAF52C /* MagicLinkAuthenticator.swift in Sources */,
 				B58A71BF258422CC00601641 /* NSBezierPath+Simplenote.swift in Sources */,
+				B587D7EE2C2217B1006645CF /* LoginRemoteProtocol.swift in Sources */,
 				B5DD0F922476309000C8DD41 /* NoteTableCellView.swift in Sources */,
 				B503FF4924848D0B00066059 /* TagAttachmentCell.swift in Sources */,
 				466FFED417CC10A800399652 /* SPTableView.m in Sources */,
@@ -2241,6 +2274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5469FDA25880128007ED7BE /* OptionsTests.swift in Sources */,
+				B587D7F02C2217EE006645CF /* MockLoginRemote.swift in Sources */,
 				B5985AD12429499D0044EDE9 /* NSRegularExpressionSimplenoteTests.swift in Sources */,
 				B53FF5472476F9450014E928 /* Constants.swift in Sources */,
 				B50099322421218B0037A431 /* NSTextViewSimplenoteTests.swift in Sources */,
@@ -2248,9 +2282,11 @@
 				A6672FBE25C7F77000090DE3 /* StringContentSliceTests.swift in Sources */,
 				B587D7E42C22086F006645CF /* LoginRemoteTests.swift in Sources */,
 				B5EF32B1258D075C0069EC7D /* NoteListControllerTests.swift in Sources */,
+				B587D7EC2C2215D9006645CF /* MockSimperiumAuthenticator.swift in Sources */,
 				B502C1F725BA2F3F00145D6C /* MockURLSessionDataTask.swift in Sources */,
 				B502C1E725BA2F0800145D6C /* AccountVerificationRemoteTests.swift in Sources */,
 				B502C1EF25BA2F2400145D6C /* MockURLSession.swift in Sources */,
+				B587D7E72C2214DB006645CF /* MagicLinkAuthenticatorTests.swift in Sources */,
 				BA938CEE26AD055400BE5A1D /* AccountVerificationController+TestHelpers.swift in Sources */,
 				B502C22325BA345700145D6C /* AccountVerificationControllerTests.swift in Sources */,
 				BA4C6D18264CAAF800B723A7 /* URLRequest+Simplenote.swift in Sources */,
