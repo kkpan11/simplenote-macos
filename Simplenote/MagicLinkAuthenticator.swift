@@ -69,10 +69,10 @@ private extension MagicLinkAuthenticator {
         Task { @MainActor in
             do {
                 let confirmation = try await loginRemote.requestLoginConfirmation(authKey: authKey, authCode: authCode)
-                
+              
                 NSLog("[MagicLinkAuthenticator] Should auth with token \(confirmation.syncToken)")
                 authenticator.authenticate(withUsername: confirmation.username, token: confirmation.syncToken)
-                
+
                 NotificationCenter.default.post(name: .magicLinkAuthDidSucceed, object: nil)
                 SPTracker.trackUserConfirmedLoginLink()
 

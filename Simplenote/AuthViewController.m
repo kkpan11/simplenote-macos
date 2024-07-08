@@ -140,7 +140,15 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
 }
 
 - (void)pressedLoginWithMagicLink {
-    NSLog(@"# TODO: Request Magic Link!!");
+    [SPTracker trackUserRequestedLoginLink];
+    
+    [self clearAuthenticationError];
+    
+    if (![self validateSignInWithMagicLink]) {
+        return;
+    }
+    
+    [self performLoginWithEmailRequest];
 }
 
 - (void)pressedSignUp {
@@ -279,6 +287,11 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
     return [self validateConnection] &&
            [self validateUsername] &&
            [self validatePasswordSecurity];
+}
+
+- (BOOL)validateSignInWithMagicLink {
+    return [self validateConnection] &&
+           [self validateUsername];
 }
 
 - (BOOL)validateSignUp {

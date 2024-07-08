@@ -25,13 +25,14 @@ final class MagicLinkAuthenticatorTests: XCTestCase {
     }
     
     func testMagicLinkURLResultsInLoginConfirmationRequest() async throws {
-        let expectation =  expectation(description: "LoginConfirmationREquest")
+        let expectation = expectation(description: "LoginConfirmationRequest")
         loginRemote.onLoginConfirmationRequest = { (authKey, authCode) in
             XCTAssertEqual(authCode, MagicLinkTestConstants.expectedCode)
             XCTAssertEqual(authKey, MagicLinkTestConstants.expectedKey)
+            
             expectation.fulfill()
             
-            return LoginConfirmationResponse(username: "", syncToken: "")
+            return LoginConfirmationResponse(username: MagicLinkTestConstants.expectedUsername, syncToken: MagicLinkTestConstants.expectedSyncToken)
         }
         
         XCTAssertTrue(magicLinkAuth.handle(url: MagicLinkTestConstants.sampleValidURL))
@@ -39,11 +40,11 @@ final class MagicLinkAuthenticatorTests: XCTestCase {
     }
     
     func testMagicLinkURLWithValidConfirmationResponseResultsInSimperiumAuthenticationRequest() async throws {
+        let expectation = expectation(description: "LoginAuthenticationRequest")
         loginRemote.onLoginConfirmationRequest = { authKey, authCode in
             LoginConfirmationResponse(username: MagicLinkTestConstants.expectedUsername, syncToken: MagicLinkTestConstants.expectedSyncToken)
         }
 
-        let expectation = expectation(description: "LoginConfirmationREquest")
         simperiumAuth.onAuthenticationRequest = { (username, token) in
             XCTAssertEqual(username, MagicLinkTestConstants.expectedUsername)
             XCTAssertEqual(token, MagicLinkTestConstants.expectedSyncToken)

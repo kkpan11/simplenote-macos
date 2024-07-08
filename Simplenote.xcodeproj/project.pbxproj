@@ -225,6 +225,8 @@
 		B5CD5F7F241AC69900D0260F /* NSProcessInfo+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CD5F7D241AC69900D0260F /* NSProcessInfo+Simplenote.swift */; };
 		B5D21CB824881EF600D57A34 /* Array+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D21CB624881EF600D57A34 /* Array+Simplenote.swift */; };
 		B5D3FCCD201F906E00A813B7 /* StatusChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = B5D3FCCA201F906E00A813B7 /* StatusChecker.m */; };
+		B5D586CE2C23793900F3ADCC /* MagicLinkConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D586CD2C23793900F3ADCC /* MagicLinkConfirmationView.swift */; };
+		B5D586D02C2396A900F3ADCC /* MagicLinkRequestedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5D586CF2C2396A900F3ADCC /* MagicLinkRequestedView.swift */; };
 		B5DD0F922476309000C8DD41 /* NoteTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DD0F902476309000C8DD41 /* NoteTableCellView.swift */; };
 		B5E061782450AEDA0076111A /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E061762450AEDA0076111A /* ToolbarView.swift */; };
 		B5E086292448B57200DEF476 /* HeaderTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E086272448B57200DEF476 /* HeaderTableCellView.swift */; };
@@ -682,6 +684,8 @@
 		B5D21CB624881EF600D57A34 /* Array+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Simplenote.swift"; sourceTree = "<group>"; };
 		B5D3FCCA201F906E00A813B7 /* StatusChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusChecker.m; sourceTree = "<group>"; };
 		B5D3FCCB201F906E00A813B7 /* StatusChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusChecker.h; sourceTree = "<group>"; };
+		B5D586CD2C23793900F3ADCC /* MagicLinkConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicLinkConfirmationView.swift; sourceTree = "<group>"; };
+		B5D586CF2C2396A900F3ADCC /* MagicLinkRequestedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicLinkRequestedView.swift; sourceTree = "<group>"; };
 		B5DD0F902476309000C8DD41 /* NoteTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableCellView.swift; sourceTree = "<group>"; };
 		B5E061762450AEDA0076111A /* ToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarView.swift; sourceTree = "<group>"; };
 		B5E073B424BF8BD900139912 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -1305,6 +1309,8 @@
 				B5177CBA25EEB01600A8D834 /* AuthViewController+Swift.swift */,
 				B597429225E97ADC0063DDD2 /* AuthViewController.xib */,
 				B545DDD12C2313BA00A8FD89 /* AuthenticationMode.swift */,
+				B5D586CF2C2396A900F3ADCC /* MagicLinkRequestedView.swift */,
+				B5D586CD2C23793900F3ADCC /* MagicLinkConfirmationView.swift */,
 				B5177CC325EEBF6900A8D834 /* SignupVerificationViewController.swift */,
 				B5177CC925EEBF8200A8D834 /* SignupVerificationViewController.xib */,
 			);
@@ -2066,6 +2072,7 @@
 				B58117C525B9D57F00927E0C /* AccountVerificationViewController.swift in Sources */,
 				B5AF76C824A3F00600B7D530 /* TagListState.swift in Sources */,
 				B5469FD12587FCD9007ED7BE /* NSSortDescriptor+Simplenote.swift in Sources */,
+				B5D586D02C2396A900F3ADCC /* MagicLinkRequestedView.swift in Sources */,
 				466FFEA817CC10A800399652 /* main.m in Sources */,
 				B518D37C2507BFA4006EA7F8 /* Note+Interlinks.swift in Sources */,
 				B58117E925B9EE7B00927E0C /* Button.swift in Sources */,
@@ -2262,6 +2269,7 @@
 				B528D684257FF15000C1EEA4 /* MainWindowController.swift in Sources */,
 				37AE49C31FFEB92A00FCB165 /* SPMarkdownParser.m in Sources */,
 				B5CBB05D2419714B0003C271 /* NSAttributedStringToMarkdownConverter.swift in Sources */,
+				B5D586CE2C23793900F3ADCC /* MagicLinkConfirmationView.swift in Sources */,
 				B5E96B671BDE732500D707F5 /* AuthViewController.m in Sources */,
 				B5EB3AD52458C48D0089858D /* SimplenoteAppDelegate+Swift.swift in Sources */,
 				B5EB3AD22458B9940089858D /* NSNotification+Simplenote.m in Sources */,

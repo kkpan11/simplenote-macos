@@ -23,4 +23,20 @@ extension NSWindow {
             self.layoutIfNeeded()
         }
     }
+    
+    /// Switches to the target ContentViewController, without animations
+    ///
+    func switchContentViewController(to viewController: NSViewController) {
+        let targetView = viewController.view
+        targetView.layoutSubtreeIfNeeded()
+        
+        let newSize = targetView.intrinsicContentSize
+        
+        var frame = frame
+        frame.origin.y += frame.size.height - newSize.height
+        frame.size = newSize
+
+        contentViewController = viewController
+        setFrame(frame, display: true)
+    }
 }

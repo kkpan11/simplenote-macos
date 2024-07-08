@@ -46,6 +46,10 @@ extension AuthViewController {
     var passwordText: String {
         passwordField.stringValue?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
     }
+    
+    var authWindowController: AuthWindowController? {
+        view.window?.windowController as? AuthWindowController
+    }
 }
 
 // MARK: - Refreshing
@@ -195,6 +199,36 @@ extension AuthViewController {
         }
     }
     
+    @objc
+    func performLoginWithEmailRequest() {
+        Task {
+            await performLoginWithEmailRequestInTask()
+        }
+    }
+     
+    @MainActor
+    func performLoginWithEmailRequestInTask() async {
+        defer {
+            stopActionAnimation()
+            setInterfaceEnabled(true)
+        }
+        
+        startActionAnimation()
+        setInterfaceEnabled(false)
+
+        do {
+            let email = usernameText
+            let remote = LoginRemote()
+            try await remote.requestLoginEmail(email: email)
+
+            presentMagicLinkRequestedView(email: email)
+            
+        } catch {
+            let statusCode = (error as? RemoteError)?.statusCode ?? .zero
+            self.showAuthenticationError(forCode: statusCode, responseString: nil)
+        }
+    }
+    
     @IBAction
     func handleNewlineInField(_ field: NSControl) {
         if field.isEqual(passwordField.textField) {
@@ -234,6 +268,14 @@ extension AuthViewController {
     func presentSignupVerification(email: String) {
         let vc = SignupVerificationViewController(email: email, authenticator: authenticator)
         view.window?.transition(to: vc)
+    }
+    
+    func presentMagicLinkRequestedView(email: String) {
+        guard let authWindowController else {
+            return
+        }
+        
+        authWindowController.switchToMagicLinkRequestedUI(email: email)
     }
 }
 
