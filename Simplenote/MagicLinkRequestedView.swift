@@ -20,14 +20,14 @@ struct MagicLinkRequestedView: View {
     }
 
     var body: some View {
-        VStack(alignment: .center, spacing: 10) {
+        VStack(alignment: .center, spacing: Metrics.stackSpacing) {
             Image(systemName: MagicLinkImages.mail)
                 .renderingMode(.template)
-                .font(.system(size: 48))
+                .font(.system(size: Metrics.titleFontSize))
                 .foregroundColor(Color(nsColor: .simplenoteBrandColor))
-                .scaleEffect(displaysFullImage ? 1 : 0.4)
+                .scaleEffect(displaysFullImage ? AnimationSettings.scaleEffectFull : AnimationSettings.scaleEffectReduced)
                 .onAppear {
-                    withAnimation(.spring(response: 0.3, dampingFraction: 0.3)) {
+                    withAnimation(.spring(response: AnimationSettings.response, dampingFraction: AnimationSettings.dampingFactor)) {
                         displaysFullImage = true
                     }
                 }
@@ -61,7 +61,7 @@ struct MagicLinkRequestedView: View {
             .padding(.bottom, Metrics.buttonPaddingBottom)
         }
 
-        .frame(width: 380)
+        .frame(width: Metrics.maximumWidth)
         .fixedSize()
 
         /// Force Light Mode (since the Authentication UI is all light!)
@@ -78,11 +78,21 @@ struct MagicLinkRequestedView: View {
 // MARK: - Constants
 //
 private enum Metrics {
+    static let stackSpacing: CGFloat = 10
     static let imagePaddingTop: CGFloat = 20
     static let imagePaddingBottom: CGFloat = 10
     static let titlePaddingBottom: CGFloat = 10
+    static let titleFontSize: CGFloat = 48
     static let buttonPaddingBottom: CGFloat = 30
     static let maximumEmailLength = 100
+    static let maximumWidth: CGFloat = 380
+}
+
+private enum AnimationSettings {
+    static let scaleEffectFull: CGFloat = 1
+    static let scaleEffectReduced: CGFloat = 0.4
+    static let response: Double = 0.3
+    static let dampingFactor: Double = 0.3
 }
 
 private enum MagicLinkImages {
