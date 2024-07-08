@@ -11,7 +11,7 @@ struct MagicLinkConfirmationView: View {
     var onDismissRequest: (() -> Void)?
     
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: Metrics.stackSpacing) {
             if displaysInvalidLink {
                 invalidLinkText
                 invalidLinkButton
@@ -22,7 +22,7 @@ struct MagicLinkConfirmationView: View {
         }
         .padding()
         .background(.white)
-        .frame(width: 380, height: 200)
+        .frame(width: Metrics.expectedSize.width, height: Metrics.expectedSize.height)
         .onReceive(NotificationCenter.default.publisher(for: .magicLinkAuthDidFail)) { _ in
             Task { @MainActor in
                 displaysInvalidLink = true
@@ -67,4 +67,12 @@ struct MagicLinkConfirmationView: View {
     func switchToAuthenticationUI() {
         onDismissRequest?()
     }
+}
+
+
+// MARK: - Metrics
+//
+private struct Metrics {
+    static let stackSpacing: CGFloat = 20
+    static let expectedSize = CGSize(width: 380, height: 200)
 }
