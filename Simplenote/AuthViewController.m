@@ -29,7 +29,7 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
 {
     if (self = [super init]) {
         self.validator = [SPAuthenticationValidator new];
-        self.signingIn = NO;
+        self.mode = [AuthenticationMode signup];
     }
 
     return self;
@@ -53,7 +53,7 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
 
 #pragma mark - Action Handlers
 
-- (IBAction)forgotPassword:(id)sender {
+- (void)openForgotPasswordURL {
     NSString *forgotPasswordURL = [SPCredentials simperiumForgotPasswordURL];
     NSString *username = self.usernameText;
 
@@ -65,15 +65,15 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:forgotPasswordURL]];
 }
 
-- (IBAction)toggleAuthenticationMode:(id)sender {
-    self.signingIn = !self.signingIn;
+- (IBAction)switchAuthenticationMode:(id)sender {
+    self.mode = [self.mode nextMode];
 }
 
 
 #pragma mark - Dynamic Properties
 
-- (void)setSigningIn:(BOOL)signingIn {
-    _signingIn = signingIn;
+- (void)setMode:(AuthenticationMode *)mode {
+    _mode = mode;
     [self didUpdateAuthenticationMode];
 }
 
@@ -84,6 +84,7 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
     [self.usernameField setEnabled:enabled];
     [self.passwordField setEnabled:enabled];
     [self.actionButton setEnabled:enabled];
+    [self.secondaryActionButton setEnabled:enabled];
     [self.switchActionButton setEnabled:enabled];
     [self.wordPressSSOButton setEnabled:enabled];
 }
@@ -122,16 +123,7 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
 
 #pragma mark - Actions
 
-- (IBAction)performMainAction:(id)sender {
-    if (self.signingIn) {
-        [self signInAction:sender];
-        return;
-    }
-
-    [self signUpAction:sender];
-}
-
-- (IBAction)signInAction:(id)sender {
+- (void)pressedLogInWithPassword {
     [SPTracker trackUserSignedIn];
     [self clearAuthenticationError];
 
@@ -144,10 +136,14 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
         return;
     }
 
-    [self performAuthentication];
+    [self performLoginWithPassword];
 }
 
-- (IBAction)signUpAction:(id)sender {
+- (void)pressedLoginWithMagicLink {
+    NSLog(@"# TODO: Request Magic Link!!");
+}
+
+- (void)pressedSignUp {
     [SPTracker trackUserSignedUp];
     [self clearAuthenticationError];
 
@@ -163,55 +159,32 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
 }
 
 
-#pragma mark - Displaying Porgress
-
-- (void)startLoginAnimation {
-    self.actionButton.title = NSLocalizedString(@"Logging In...", @"Displayed temporarily while logging in");
-    [self.actionProgress startAnimation:self];
-}
-
-- (void)stopLoginAnimation {
-    self.actionButton.title = NSLocalizedString(@"Log In", @"Title of button for login");
-    [self.actionProgress stopAnimation:self];
-}
-
-- (void)startSignupAnimation {
-    self.actionButton.title = NSLocalizedString(@"Signing Up...", @"Displayed temoprarily while signing up");
-    [self.actionProgress startAnimation:self];
-}
-
-- (void)stopSignupAnimation {
-    self.actionButton.title = NSLocalizedString(@"Sign Up", @"Title of button for signing up");
-    [self.actionProgress stopAnimation:self];
-}
-
-
 #pragma mark - Authentication Wrappers
 
 - (void)performCredentialsValidation {
-    [self startLoginAnimation];
+    [self startActionAnimation];
     [self setInterfaceEnabled:NO];
 
     [self.authenticator validateWithUsername:self.usernameText password:self.passwordText success:^{
-        [self stopLoginAnimation];
+        [self stopActionAnimation];
         [self setInterfaceEnabled:YES];
         [self presentPasswordResetAlert];
     } failure:^(NSInteger responseCode, NSString *responseString, NSError *error) {
         [self showAuthenticationErrorForCode:responseCode responseString:responseString];
-        [self stopLoginAnimation];
+        [self stopActionAnimation];
         [self setInterfaceEnabled:YES];
     }];
 }
 
-- (void)performAuthentication {
-    [self startLoginAnimation];
+- (void)performLoginWithPassword {
+    [self startActionAnimation];
     [self setInterfaceEnabled:NO];
 
     [self.authenticator authenticateWithUsername:self.usernameText password:self.passwordText success:^{
         // NO-OP
     } failure:^(NSInteger responseCode, NSString *responseString, NSError *error) {
         [self showAuthenticationErrorForCode:responseCode responseString: responseString];
-        [self stopLoginAnimation];
+        [self stopActionAnimation];
         [self setInterfaceEnabled:YES];
     }];
 }
@@ -397,17 +370,6 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
     NSEvent *currentEvent = [NSApp currentEvent];
     if (currentEvent.type == NSEventTypeKeyDown && [currentEvent.charactersIgnoringModifiers isEqualToString:@"\r"]) {
         [self handleNewlineInField:obj.object];
-    }
-}
-
-- (void)handleNewlineInField:(NSControl *)field {
-    if (_signingIn && [field isEqual:self.passwordField.textField]) {
-        [self signInAction:nil];
-        return;
-    }
-
-    if (!_signingIn && [field isEqual:self.usernameField.textField]) {
-        [self signUpAction:nil];
     }
 }
 

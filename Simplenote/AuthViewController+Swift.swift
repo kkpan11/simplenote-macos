@@ -17,9 +17,8 @@ extension AuthViewController {
         passwordField.placeholderString = Localization.passwordPlaceholder
         passwordField.delegate = self
 
-        // Forgot Password!
-        forgotPasswordButton.title = Localization.forgotAction.uppercased()
-        forgotPasswordButton.contentTintColor = .simplenoteBrandColor
+        // Secondary Action
+        secondaryActionButton.contentTintColor = .simplenoteBrandColor
 
         // Toggle Signup: Tip
         switchTipField.textColor = .simplenoteTertiaryTextColor
@@ -62,21 +61,18 @@ extension AuthViewController {
     }
 
     func refreshButtonTitles() {
-        let actionText    = signingIn ? Localization.signInAction   : Localization.signUpAction
-        let tipText       = signingIn ? Localization.signUpTip      : Localization.signInTip
-        let switchText    = signingIn ? Localization.signUpAction   : Localization.signInAction
-
-        actionButton.title         = actionText
-        switchTipField.stringValue = tipText.uppercased()
-        switchActionButton.title   = switchText.uppercased()
+        actionButton.title          = mode.primaryActionText
+        secondaryActionButton.title = mode.secondaryActionText?.uppercased() ?? ""
+        switchTipField.stringValue  = mode.switchActionTip.uppercased()
+        switchActionButton.title    = mode.switchActionText.uppercased()
     }
 
     /// Makes sure unused components (in the current mode) are effectively disabled
     ///
     func refreshEnabledComponents() {
-        passwordField.isEnabled = signingIn
-        forgotPasswordButton.isEnabled = signingIn
-        wordPressSSOButton.isEnabled = signingIn
+        passwordField.isEnabled         = mode.isPasswordVisible
+        secondaryActionButton.isEnabled = mode.isSecondaryActionVisible
+        wordPressSSOButton.isEnabled    = mode.isWordPressVisible
     }
 
     /// Shows / Hides relevant components, based on the specified state
@@ -94,32 +90,29 @@ extension AuthViewController {
     ///         Notice that AppKit requires us to go thru `animator()`.
     ///
     func refreshVisibleComponentsWithoutAnimation() {
-        passwordFieldHeightConstraint.constant   = Metrics.passwordHeight(signingIn: signingIn)
-        forgotPasswordHeightConstraint.constant  = Metrics.forgotHeight(signingIn: signingIn)
-        wordPressSSOHeightConstraint.constant    = Metrics.wordPressHeight(signingIn: signingIn)
+        passwordFieldHeightConstraint.constant  = mode.passwordFieldHeight
+        secondaryActionHeightConstraint.constant = mode.secondaryActionFieldHeight
+        wordPressSSOHeightConstraint.constant   = mode.wordPressSSOFieldHeight
 
-        let fields      = [passwordField, forgotPasswordButton, wordPressSSOButton].compactMap { $0 }
-
-        fields.updateAlphaValue(AppKitConstants.alpha0_0)
+        passwordField.alphaValue                = mode.passwordFieldAlpha
+        secondaryActionButton.alphaValue        = mode.secondaryActionFieldAlpha
+        wordPressSSOButton.alphaValue           = mode.wordPressSSOFieldAlpha
     }
 
     /// Animates Visible / Invisible components, based on the specified state
     ///
     func refreshVisibleComponentsWithAnimation() {
-        let fields      = [passwordField, forgotPasswordButton, wordPressSSOButton].compactMap { $0 }
-        let alphaStart  = signingIn ? AppKitConstants.alpha0_0 : AppKitConstants.alpha1_0
-        let alphaEnd    = signingIn ? AppKitConstants.alpha1_0 : AppKitConstants.alpha0_0
-
-        fields.updateAlphaValue(alphaStart)
-
         NSAnimationContext.runAnimationGroup { context in
             context.duration = AppKitConstants.duration0_2
 
-            passwordFieldHeightConstraint.animator().constant   = Metrics.passwordHeight(signingIn: signingIn)
-            forgotPasswordHeightConstraint.animator().constant  = Metrics.forgotHeight(signingIn: signingIn)
-            wordPressSSOHeightConstraint.animator().constant    = Metrics.wordPressHeight(signingIn: signingIn)
+            passwordFieldHeightConstraint.animator().constant   = mode.passwordFieldHeight
+            secondaryActionHeightConstraint.animator().constant = mode.secondaryActionFieldHeight
+            wordPressSSOHeightConstraint.animator().constant    = mode.wordPressSSOFieldHeight
 
-            fields.updateAlphaValue(alphaEnd)
+            passwordField.alphaValue            = mode.passwordFieldAlpha
+            secondaryActionButton.alphaValue    = mode.secondaryActionFieldAlpha
+            wordPressSSOButton.alphaValue       = mode.wordPressSSOFieldAlpha
+            
             view.layoutSubtreeIfNeeded()
         }
     }
@@ -140,7 +133,7 @@ extension AuthViewController {
     }
 }
 
-// MARK: - Action Handlers
+// MARK: - IBAction Handlers
 //
 extension AuthViewController {
 
@@ -153,10 +146,35 @@ extension AuthViewController {
         refreshInterface(animated: true)
         ensureUsernameIsFirstResponder()
     }
+    
+    @IBAction
+    func performMainAction(_ sender: Any) {
+        performSelector(onMainThread: mode.primaryActionSelector, with: nil, waitUntilDone: false)
+    }
+    
+    @IBAction
+    func performSecondaryAction(_ sender: Any) {
+        guard let secondaryActionSelector = mode.secondaryActionSelector else {
+            return
+        }
+        
+        performSelector(onMainThread: secondaryActionSelector, with: nil, waitUntilDone: false)
+    }
+}
 
+
+// MARK: - Handlers
+//
+extension AuthViewController {
+
+    @IBAction
+    func switchToPasswordAuth(_ sender: Any) {
+        mode = .loginWithPassword
+    }
+    
     @objc
     func performSignupRequest() {
-        startSignupAnimation()
+        startActionAnimation()
         setInterfaceEnabled(false)
 
         let email = usernameText
@@ -172,11 +190,42 @@ extension AuthViewController {
                 self.showAuthenticationError(forCode: result.statusCode, responseString: nil)
             }
 
-            self.stopSignupAnimation()
+            self.stopActionAnimation()
             self.setInterfaceEnabled(true)
         }
     }
+    
+    @IBAction
+    func handleNewlineInField(_ field: NSControl) {
+        if field.isEqual(passwordField.textField) {
+            performMainAction(field)
+            return
+        }
+        
+        if field.isEqual(usernameField.textField), mode.isPasswordVisible == false {
+            performMainAction(field)
+        }
+    }
 }
+
+
+// MARK: - Animations
+//
+extension AuthViewController {
+    
+    @objc
+    func startActionAnimation() {
+        actionButton.title = mode.primaryActionAnimationText
+        actionProgress.startAnimation(nil)
+    }
+
+    @objc
+    func stopActionAnimation() {
+        actionButton.title = mode.primaryActionText
+        actionProgress.stopAnimation(nil)
+    }
+}
+
 
 // MARK: - Presenting!
 //
@@ -235,30 +284,12 @@ extension AuthViewController {
     }
 }
 
-// MARK: - Metrics
-//
-private enum Metrics {
-    static func passwordHeight(signingIn: Bool) -> CGFloat {
-        signingIn ? CGFloat(40) : .zero
-    }
-    static func forgotHeight(signingIn: Bool) -> CGFloat {
-        signingIn ? CGFloat(20) : .zero
-    }
-    static func wordPressHeight(signingIn: Bool) -> CGFloat {
-        signingIn ? CGFloat(72) : .zero
-    }
-}
 
 // MARK: - Localization
 //
 private enum Localization {
     static let emailPlaceholder = NSLocalizedString("Email", comment: "Placeholder text for login field")
     static let passwordPlaceholder = NSLocalizedString("Password", comment: "Placeholder text for password field")
-    static let signInAction = NSLocalizedString("Log In", comment: "Title of button for logging in")
-    static let signUpAction = NSLocalizedString("Sign Up", comment: "Title of button for signing up")
-    static let signInTip = NSLocalizedString("Already have an account?", comment: "Link to sign in to an account")
-    static let signUpTip = NSLocalizedString("Need an account?", comment: "Link to create an account")
-    static let forgotAction = NSLocalizedString("Forgot your Password?", comment: "Forgot Password Button")
     static let dotcomSSOAction = NSLocalizedString("Log in with WordPress.com", comment: "button title for wp.com sign in button")
     static let compromisedPasswordAlert = NSLocalizedString("Compromised Password", comment: "Compromised passsword alert title")
     static let compromisedPasswordMessage = NSLocalizedString("This password has appeared in a data breach, which puts your account at high risk of compromise. To protect your data, you'll need to update your password before being able to log in again.", comment: "Compromised password alert message")
