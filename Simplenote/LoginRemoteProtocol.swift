@@ -5,7 +5,7 @@ import Foundation
 //
 protocol LoginRemoteProtocol {
     func requestLoginEmail(email: String) async throws
-    func requestLoginConfirmation(authKey: String, authCode: String) async throws -> LoginConfirmationResponse
+    func requestLoginConfirmation(email: String, authCode: String) async throws -> LoginConfirmationResponse
 }
 
 

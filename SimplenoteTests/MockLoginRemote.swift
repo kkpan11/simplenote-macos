@@ -13,8 +13,8 @@ class MockLoginRemote: LoginRemoteProtocol {
         lastLoginRequestEmail = email
     }
     
-    func requestLoginConfirmation(authKey: String, authCode: String) async throws -> LoginConfirmationResponse {
-        guard let response = onLoginConfirmationRequest?(authKey, authCode) else {
+    func requestLoginConfirmation(email: String, authCode: String) async throws -> LoginConfirmationResponse {
+        guard let response = onLoginConfirmationRequest?(email, authCode) else {
             throw RemoteError.network
         }
 
