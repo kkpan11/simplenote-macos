@@ -74,8 +74,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)trackUserSignedUp;
 + (void)trackUserSignedIn;
 + (void)trackUserSignedOut;
-+ (void)trackUserRequestedLoginLink;
-+ (void)trackUserConfirmedLoginLink;
+
+#pragma mark - Login Links
++ (void)trackLoginLinkRequested;
++ (void)trackLoginLinkConfirmationSuccess;
++ (void)trackLoginLinkConfirmationFailure;
 
 #pragma mark - WP.com Sign In
 + (void)trackWPCCButtonPressed;

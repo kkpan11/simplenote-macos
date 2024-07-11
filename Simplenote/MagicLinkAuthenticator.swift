@@ -74,11 +74,12 @@ private extension MagicLinkAuthenticator {
                 authenticator.authenticate(withUsername: confirmation.username, token: confirmation.syncToken)
 
                 NotificationCenter.default.post(name: .magicLinkAuthDidSucceed, object: nil)
-                SPTracker.trackUserConfirmedLoginLink()
+                SPTracker.trackLoginLinkConfirmationSuccess()
 
             } catch {
                 NSLog("[MagicLinkAuthenticator] Magic Link TokenExchange Error: \(error)")
                 NotificationCenter.default.post(name: .magicLinkAuthDidFail, object: error)
+                SPTracker.trackLoginLinkConfirmationFailure()
             }
         }
 
