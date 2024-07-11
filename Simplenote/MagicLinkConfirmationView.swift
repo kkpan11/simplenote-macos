@@ -43,7 +43,7 @@ struct MagicLinkConfirmationView: View {
     }
     
     private var invalidLinkText: some View {
-        Text("Link was no longer valid")
+        Text("Link no longer valid")
             .font(.title3)
             .foregroundColor(.gray)
     }
