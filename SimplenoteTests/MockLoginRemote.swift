@@ -7,7 +7,7 @@ import Foundation
 class MockLoginRemote: LoginRemoteProtocol {
     var lastLoginRequestEmail: String?
     
-    var onLoginConfirmationRequest: ((_ authKey: String, _ authCode: String) -> LoginConfirmationResponse)?
+    var onLoginConfirmationRequest: ((_ email: String, _ authCode: String) -> LoginConfirmationResponse)?
     
     func requestLoginEmail(email: String) async throws {
         lastLoginRequestEmail = email

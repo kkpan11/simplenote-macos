@@ -26,9 +26,9 @@ final class MagicLinkAuthenticatorTests: XCTestCase {
     
     func testMagicLinkURLResultsInLoginConfirmationRequest() async throws {
         let expectation = expectation(description: "LoginConfirmationRequest")
-        loginRemote.onLoginConfirmationRequest = { (authKey, authCode) in
+        loginRemote.onLoginConfirmationRequest = { (email, authCode) in
             XCTAssertEqual(authCode, MagicLinkTestConstants.expectedCode)
-            XCTAssertEqual(authKey, MagicLinkTestConstants.expectedKey)
+            XCTAssertEqual(email, MagicLinkTestConstants.expectedUsername)
             
             expectation.fulfill()
             
@@ -64,6 +64,7 @@ private enum MagicLinkTestConstants {
     static let expectedSyncToken = "12345678"
     static let expectedKey = "1234"
     static let expectedCode = "5678"
-    static let sampleValidURL = URL(string: "simplenotemac://login?auth_key=\(expectedKey)&auth_code=\(expectedCode)")!
-    static let sampleInvalidURL = URL(string: "simplenotemac://login?auth_key=&auth_code=")!
+    static let encodedUsername = expectedUsername.data(using: .utf8)!.base64EncodedString()
+    static let sampleValidURL = URL(string: "simplenotemac://login?email=\(encodedUsername)&auth_code=\(expectedCode)")!
+    static let sampleInvalidURL = URL(string: "simplenotemac://login?email=&auth_code=")!
 }
