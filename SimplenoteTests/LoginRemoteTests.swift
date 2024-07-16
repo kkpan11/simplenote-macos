@@ -42,7 +42,7 @@ class LoginRemoteTests: XCTestCase {
         /// Verify
         let body: Dictionary<String, String> = try XCTUnwrap(urlSession.lastRequest?.decodeHtmlBody())
 
-        XCTAssertEqual(body["email"], "1234@567.com")
+        XCTAssertEqual(body["username"], "1234@567.com")
         XCTAssertEqual(body["auth_code"], "5678")
         
         XCTAssertEqual(expectedResponse, decodedResponse)
