@@ -140,7 +140,7 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
 }
 
 - (void)pressedLoginWithMagicLink {
-    [SPTracker trackUserRequestedLoginLink];
+    [SPTracker trackLoginLinkRequested];
     
     [self clearAuthenticationError];
     
