@@ -37,12 +37,12 @@ class LoginRemoteTests: XCTestCase {
         mockSessionResponse(statusCode: 200, payload: encodedResponseBody)
         
         /// Run
-        let decodedResponse = try await loginRemote.requestLoginConfirmation(authKey: "1234", authCode: "5678")
+        let decodedResponse = try await loginRemote.requestLoginConfirmation(email: "1234@567.com", authCode: "5678")
 
         /// Verify
         let body: Dictionary<String, String> = try XCTUnwrap(urlSession.lastRequest?.decodeHtmlBody())
 
-        XCTAssertEqual(body["auth_key"], "1234")
+        XCTAssertEqual(body["username"], "1234@567.com")
         XCTAssertEqual(body["auth_code"], "5678")
         
         XCTAssertEqual(expectedResponse, decodedResponse)
