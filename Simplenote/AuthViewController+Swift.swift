@@ -176,6 +176,7 @@ extension AuthViewController {
         let nextMode = mode.nextMode()
 
         let nextVC = AuthViewController()
+        nextVC.authenticator = authenticator
         nextVC.mode = nextMode
 
         return nextVC
