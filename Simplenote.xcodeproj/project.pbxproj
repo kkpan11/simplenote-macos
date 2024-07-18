@@ -341,6 +341,7 @@
 		BAF1B0C32BC9B1C500B55F73 /* NoteWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF1B0C12BC9B1C500B55F73 /* NoteWindow.swift */; };
 		BAF1B0C92BCEDFD400B55F73 /* NoteWindowControllersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF1B0C72BCDDA9600B55F73 /* NoteWindowControllersManager.swift */; };
 		BAF4E5DE2C49C08A009B891F /* SPNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4E5DD2C49C08A009B891F /* SPNavigationController.swift */; };
+		BAF4E5E02C49C17A009B891F /* NSViewController+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4E5DF2C49C17A009B891F /* NSViewController+Simplenote.swift */; };
 		BAFB545126CCA7F1006E037C /* NSProgressIndicator+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFB544F26CCA7F1006E037C /* NSProgressIndicator+Simplenote.swift */; };
 		CD6BC8FB4B8661C30318208C /* Pods_Automattic_SimplenoteTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D95A169BF4BF7DEABC4021 /* Pods_Automattic_SimplenoteTests.framework */; };
 		F998F3EC22853C49008C2B59 /* CrashLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = F998F3EA22853C29008C2B59 /* CrashLogging.swift */; };
@@ -809,6 +810,7 @@
 		BAF1B0C12BC9B1C500B55F73 /* NoteWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteWindow.swift; sourceTree = "<group>"; };
 		BAF1B0C72BCDDA9600B55F73 /* NoteWindowControllersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteWindowControllersManager.swift; sourceTree = "<group>"; };
 		BAF4E5DD2C49C08A009B891F /* SPNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPNavigationController.swift; sourceTree = "<group>"; };
+		BAF4E5DF2C49C17A009B891F /* NSViewController+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSViewController+Simplenote.swift"; sourceTree = "<group>"; };
 		BAF8D5DB26AE3BE800CA9383 /* markdown-light.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "markdown-light.css"; sourceTree = "<group>"; };
 		BAFB544F26CCA7F1006E037C /* NSProgressIndicator+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSProgressIndicator+Simplenote.swift"; sourceTree = "<group>"; };
 		F998F3EA22853C29008C2B59 /* CrashLogging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashLogging.swift; sourceTree = "<group>"; };
@@ -1241,6 +1243,7 @@
 				BAFB544F26CCA7F1006E037C /* NSProgressIndicator+Simplenote.swift */,
 				BA2C65CA26FE996100FA84E1 /* NSButton+Extensions.swift */,
 				BA52005C2BC88397003F1B75 /* NSManagedObjectContext+Simplenote.swift */,
+				BAF4E5DF2C49C17A009B891F /* NSViewController+Simplenote.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -2082,6 +2085,7 @@
 				B5E086292448B57200DEF476 /* HeaderTableCellView.swift in Sources */,
 				375D294721E033D1007AB25A /* version.c in Sources */,
 				466FFEA917CC10A800399652 /* SimplenoteAppDelegate.m in Sources */,
+				BAF4E5E02C49C17A009B891F /* NSViewController+Simplenote.swift in Sources */,
 				B5D3FCCD201F906E00A813B7 /* StatusChecker.m in Sources */,
 				B52EE32825927D5100347F2B /* NoteListViewController.swift in Sources */,
 				B542FE4B25D42E7B00A3582D /* NoteContentHelper.swift in Sources */,
