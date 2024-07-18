@@ -101,6 +101,8 @@ extension AuthViewController {
         passwordField.alphaValue                = mode.passwordFieldAlpha
         secondaryActionButton.alphaValue        = mode.secondaryActionFieldAlpha
         wordPressSSOButton.alphaValue           = mode.wordPressSSOFieldAlpha
+
+        switchAuthenticationView.isHidden                 = !mode.isSwitchVisible
     }
 
     /// Animates Visible / Invisible components, based on the specified state

@@ -3,7 +3,7 @@ import Foundation
 class SPNavigationController: NSViewController {
     private var viewStack: [NSViewController] = []
 
-    private var backButton: NSButton = NSButton(title: String(), image: NSImage(named: NSImage.goBackTemplateName)!, target: nil, action: #selector(backWasPressed))
+    private var backButton: NSButton!
 
     var initialViewController: NSViewController {
         guard let first = viewStack.first else {
@@ -34,17 +34,18 @@ class SPNavigationController: NSViewController {
     override func loadView() {
         view = NSView()
         let initialView = initialViewController.view
-
         let spacerView = NSView(frame: NSRect(x: 0, y: 0, width: 100, height: 30))
-        spacerView.translatesAutoresizingMaskIntoConstraints = false
 
-        backButton.contentTintColor = .blue
-        backButton.setTitleColor(.blue)
-        backButton.bezelStyle = .accessoryBar
-        backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.isHidden = hideBackButton
+        let buttonImage = NSImage(named: NSImage.goBackTemplateName)!
+        let button = NSButton(title: String(), image: NSImage(named: NSImage.goBackTemplateName)!, target: nil, action: #selector(backWasPressed))
+        button.bezelStyle = .accessoryBarAction
 
         view.translatesAutoresizingMaskIntoConstraints = false
+        spacerView.translatesAutoresizingMaskIntoConstraints = false
+        button.translatesAutoresizingMaskIntoConstraints = false
+
+        backButton = button
+        backButton.isHidden = hideBackButton
 
         view.addSubview(spacerView)
         NSLayoutConstraint.activate([
@@ -56,8 +57,9 @@ class SPNavigationController: NSViewController {
 
         view.addSubview(backButton)
         NSLayoutConstraint.activate([
-            backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            backButton.topAnchor.constraint(equalTo: spacerView.bottomAnchor)
+            backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            backButton.topAnchor.constraint(equalTo: spacerView.bottomAnchor),
+            backButton.widthAnchor.constraint(equalToConstant: 50)
         ])
 
         show(initialView)
