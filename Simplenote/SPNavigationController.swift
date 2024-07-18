@@ -98,16 +98,6 @@ class SPNavigationController: NSViewController {
         refreshView()
     }
 
-    func popToInitialViewController() {
-        guard viewStack.count > 1 else {
-            return
-        }
-
-        while viewStack.count > 1 {
-            popViewController()
-        }
-    }
-
     @objc
     func backWasPressed() {
         popViewController()

@@ -136,7 +136,7 @@
                                         <constraint firstAttribute="height" constant="20" id="3pI-cn-CI2"/>
                                     </constraints>
                                     <connections>
-                                        <action selector="switchAuthenticationMode:" target="-2" id="5M2-AR-yd6"/>
+                                        <action selector="switchAuthenticationMode:" target="-2" id="RHe-NY-xff"/>
                                     </connections>
                                 </button>
                             </subviews>
