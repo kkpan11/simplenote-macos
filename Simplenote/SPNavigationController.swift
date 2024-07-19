@@ -17,6 +17,9 @@ class SPNavigationController: NSViewController {
         viewStack.last?.view
     }
 
+    var currentLeadingConstraint: NSLayoutConstraint? = nil
+    var currentTrailingConstraint: NSLayoutConstraint? = nil
+
     var hideBackButton: Bool {
         viewStack.count < 2
     }
@@ -81,7 +84,8 @@ class SPNavigationController: NSViewController {
         guard let currentView else {
             return
         }
-        currentView.removeFromSuperview()
+
+        currentView.removeConstraints(currentView.constraints)
 
         guard let (leadingAnchor, trailingAnchor) = attach(child: viewController) else {
             return
@@ -100,18 +104,28 @@ class SPNavigationController: NSViewController {
             context.duration = 0.4
             context.timingFunction = .init(name: .easeInEaseOut)
 
+            currentView.animator().alphaValue = .zero
             leadingAnchor.animator().constant = .zero
             trailingAnchor.animator().constant = .zero
             refreshView()
+        } completionHandler: {
+            currentView.removeFromSuperview()
         }
+
+        currentTrailingConstraint = trailingAnchor
+        currentLeadingConstraint = leadingAnchor
     }
 
     @discardableResult
-    private func attach(child: NSViewController) -> (leading: NSLayoutConstraint, trailing: NSLayoutConstraint)? {
+    private func attach(child: NSViewController, behindCurrent: Bool = false) -> (leading: NSLayoutConstraint, trailing: NSLayoutConstraint)? {
         let subview = child.view
 
         addChild(child)
-        view.addSubview(subview)
+        if behindCurrent {
+            view.addSubview(subview, positioned: .below, relativeTo: currentView)
+        } else {
+            view.addSubview(subview)
+        }
         subview.translatesAutoresizingMaskIntoConstraints = false
 
         let leadingAnchor = subview.leadingAnchor.constraint(equalTo: view.leadingAnchor)
@@ -123,6 +137,7 @@ class SPNavigationController: NSViewController {
             subview.topAnchor.constraint(equalTo: backButton.bottomAnchor),
             subview.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+
 
         return (leading: leadingAnchor, trailing: trailingAnchor)
     }
@@ -136,11 +151,26 @@ class SPNavigationController: NSViewController {
         guard viewStack.count > 1, let previousViewController = viewStack.popLast(), let currentViewController = viewStack.last else {
             return
         }
+        previousViewController.view.removeConstraints(previousViewController.view.constraints)
+        guard let (leadingAnchor, trailingAnchor) = self.attach(child: currentViewController, behindCurrent: true) else {
+            return
+        }
 
-        dettach(child: previousViewController)
-        attach(child: currentViewController)
+        NSAnimationContext.runAnimationGroup { context in
+            context.duration = 0.4
+            context.timingFunction = .init(name: .easeInEaseOut)
 
-        refreshView()
+            currentViewController.view.animator().alphaValue = 1
+            currentLeadingConstraint?.animator().constant += view.frame.width
+            currentTrailingConstraint?.animator().constant += view.frame.width
+        } completionHandler: {
+            self.dettach(child: previousViewController)
+
+            self.currentTrailingConstraint = trailingAnchor
+            self.currentLeadingConstraint = leadingAnchor
+
+            self.refreshView()
+        }
     }
 
     @objc
