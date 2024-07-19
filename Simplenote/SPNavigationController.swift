@@ -78,13 +78,12 @@ class SPNavigationController: NSViewController {
     }
 
     func push(_ viewController: NSViewController, animated: Bool = true) {
-
         guard let currentView else {
             return
         }
         currentView.removeFromSuperview()
 
-        guard let leadingAnchor = attach(child: viewController) else {
+        guard let (leadingAnchor, trailingAnchor) = attach(child: viewController) else {
             return
         }
 
@@ -93,18 +92,22 @@ class SPNavigationController: NSViewController {
         }
 
         leadingAnchor.constant = view.frame.width
+        trailingAnchor.constant = view.frame.width
 
         viewStack.append(viewController)
 
         NSAnimationContext.runAnimationGroup { context in
-            context.duration = 0.75
+            context.duration = 0.4
+            context.timingFunction = .init(name: .easeInEaseOut)
 
-            leadingAnchor.animator().constant = 0
+            leadingAnchor.animator().constant = .zero
+            trailingAnchor.animator().constant = .zero
             refreshView()
         }
     }
 
-    private func attach(child: NSViewController) -> NSLayoutConstraint? {
+    @discardableResult
+    private func attach(child: NSViewController) -> (leading: NSLayoutConstraint, trailing: NSLayoutConstraint)? {
         let subview = child.view
 
         addChild(child)
@@ -112,24 +115,30 @@ class SPNavigationController: NSViewController {
         subview.translatesAutoresizingMaskIntoConstraints = false
 
         let leadingAnchor = subview.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+        let trailingAnchor = subview.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+
         NSLayoutConstraint.activate([
             leadingAnchor,
-            subview.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            trailingAnchor,
             subview.topAnchor.constraint(equalTo: backButton.bottomAnchor),
             subview.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
 
-        return leadingAnchor
+        return (leading: leadingAnchor, trailing: trailingAnchor)
+    }
+
+    private func dettach(child: NSViewController) {
+        child.view.removeFromSuperview()
+        child.removeFromParent()
     }
 
     func popViewController() {
-        guard viewStack.count > 1 else {
+        guard viewStack.count > 1, let previousViewController = viewStack.popLast(), let currentViewController = viewStack.last else {
             return
         }
 
-        let viewControllerToPop = viewStack.removeLast()
-        viewControllerToPop.view.removeFromSuperview()
-        viewControllerToPop.removeFromParent()
+        dettach(child: previousViewController)
+        attach(child: currentViewController)
 
         refreshView()
     }
