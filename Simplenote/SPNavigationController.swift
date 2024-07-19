@@ -14,13 +14,6 @@ class SPNavigationController: NSViewController {
         return first
     }
 
-    var currentView: NSView? {
-        viewStack.last?.view
-    }
-
-    var currentLeadingConstraint: NSLayoutConstraint? = nil
-    var currentTrailingConstraint: NSLayoutConstraint? = nil
-
     var hideBackButton: Bool {
         viewStack.count < 2
     }
@@ -76,7 +69,7 @@ class SPNavigationController: NSViewController {
     }
 
     func push(_ viewController: NSViewController, animated: Bool = true) {
-        guard let currentView else {
+        guard let currentView = viewStack.last?.view else {
             return
         }
         attach(child: viewController)
@@ -85,8 +78,6 @@ class SPNavigationController: NSViewController {
         guard let (leadingAnchor, trailingAnchor) = attachView(subview: viewController.view) else {
             return
         }
-        currentTrailingConstraint = trailingAnchor
-        currentLeadingConstraint = leadingAnchor
 
         guard animated else {
             return
@@ -95,16 +86,7 @@ class SPNavigationController: NSViewController {
         leadingAnchor.constant = view.frame.width
         trailingAnchor.constant = view.frame.width
 
-        NSAnimationContext.runAnimationGroup { context in
-            context.duration = 0.4
-            context.timingFunction = .init(name: .easeInEaseOut)
-
-            currentView.animator().alphaValue = .zero
-            leadingAnchor.animator().constant = .zero
-            trailingAnchor.animator().constant = .zero
-
-            refreshView()
-        } completionHandler: {
+        animateTransition(slidingView: viewController.view, fadingView: currentView, direction: .trailingToLeading) {
             currentView.removeFromSuperview()
         }
     }
@@ -116,7 +98,8 @@ class SPNavigationController: NSViewController {
 
     @discardableResult
     private func attachView(subview: NSView, behindCurrent: Bool = false) -> (leading: NSLayoutConstraint, trailing: NSLayoutConstraint)? {
-        if behindCurrent {
+        if let currentView = viewStack.last?.view,
+           behindCurrent {
             view.addSubview(subview, positioned: .below, relativeTo: currentView)
         } else {
             view.addSubview(subview)
@@ -156,20 +139,8 @@ class SPNavigationController: NSViewController {
             return
         }
 
-        NSAnimationContext.runAnimationGroup { context in
-            context.duration = 0.4
-            context.timingFunction = .init(name: .easeInEaseOut)
-
-            nextViewController.view.animator().alphaValue = 1
-            currentLeadingConstraint?.animator().constant += view.frame.width
-            currentTrailingConstraint?.animator().constant += view.frame.width
-        } completionHandler: {
+        animateTransition(slidingView: currentViewController.view, fadingView: nextViewController.view, direction: .leadingToTrailing) {
             self.dettach(child: currentViewController)
-
-            self.currentTrailingConstraint = trailingAnchor
-            self.currentLeadingConstraint = leadingAnchor
-
-            self.refreshView()
         }
     }
 
@@ -178,8 +149,30 @@ class SPNavigationController: NSViewController {
         popViewController()
     }
 
-    private func refreshView() {
-        backButton.animator().isHidden = hideBackButton
-        view.window?.layoutIfNeeded()
+    private enum AnimationDirection {
+        case leadingToTrailing
+        case trailingToLeading
+    }
+
+    private func animateTransition(slidingView: NSView, fadingView: NSView, direction: AnimationDirection, onCompletion: @escaping () -> Void) {
+        guard let leadingConstraint = view.constraints.first(where: { $0.firstItem as? NSView == slidingView && $0.firstAttribute == .leading }),
+              let trailingConstraint = view.constraints.first(where: { $0.firstItem as? NSView == slidingView && $0.firstAttribute == .trailing }) else {
+            return
+        }
+
+        let multiplier: CGFloat = direction == .leadingToTrailing ? 1 : -1
+        let alpha: CGFloat = direction == .leadingToTrailing ? 1 : 0
+
+        NSAnimationContext.runAnimationGroup { context in
+            context.duration = 0.4
+            context.timingFunction = .init(name: .easeInEaseOut)
+
+            fadingView.animator().alphaValue = alpha
+            leadingConstraint.animator().constant += view.frame.width * multiplier
+            trailingConstraint.animator().constant += view.frame.width * multiplier
+            backButton.animator().isHidden = hideBackButton
+        } completionHandler: {
+            onCompletion()
+        }
     }
 }
