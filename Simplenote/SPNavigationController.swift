@@ -79,15 +79,14 @@ class SPNavigationController: NSViewController {
         guard let currentView else {
             return
         }
-
+        attach(child: viewController)
         currentView.removeConstraints(currentView.constraints)
 
-        guard let (leadingAnchor, trailingAnchor) = attach(child: viewController) else {
+        guard let (leadingAnchor, trailingAnchor) = attachView(subview: viewController.view) else {
             return
         }
         currentTrailingConstraint = trailingAnchor
         currentLeadingConstraint = leadingAnchor
-        viewStack.append(viewController)
 
         guard animated else {
             return
@@ -110,11 +109,13 @@ class SPNavigationController: NSViewController {
         }
     }
 
-    @discardableResult
-    private func attach(child: NSViewController, behindCurrent: Bool = false) -> (leading: NSLayoutConstraint, trailing: NSLayoutConstraint)? {
-        let subview = child.view
-
+    private func attach(child: NSViewController) {
         addChild(child)
+        viewStack.append(child)
+    }
+
+    @discardableResult
+    private func attachView(subview: NSView, behindCurrent: Bool = false) -> (leading: NSLayoutConstraint, trailing: NSLayoutConstraint)? {
         if behindCurrent {
             view.addSubview(subview, positioned: .below, relativeTo: currentView)
         } else {
@@ -146,13 +147,12 @@ class SPNavigationController: NSViewController {
             return
         }
 
-        let previousViewController = viewStack.removeLast()
-        guard let currentViewController = viewStack.last else {
+        let currentViewController = viewStack.removeLast()
+        guard let nextViewController = viewStack.last else {
             return
         }
 
-        previousViewController.view.removeConstraints(previousViewController.view.constraints)
-        guard let (leadingAnchor, trailingAnchor) = self.attach(child: currentViewController, behindCurrent: true) else {
+        guard let (leadingAnchor, trailingAnchor) = self.attachView(subview: nextViewController.view, behindCurrent: true) else {
             return
         }
 
@@ -160,11 +160,11 @@ class SPNavigationController: NSViewController {
             context.duration = 0.4
             context.timingFunction = .init(name: .easeInEaseOut)
 
-            currentViewController.view.animator().alphaValue = 1
+            nextViewController.view.animator().alphaValue = 1
             currentLeadingConstraint?.animator().constant += view.frame.width
             currentTrailingConstraint?.animator().constant += view.frame.width
         } completionHandler: {
-            self.dettach(child: previousViewController)
+            self.dettach(child: currentViewController)
 
             self.currentTrailingConstraint = trailingAnchor
             self.currentLeadingConstraint = leadingAnchor
