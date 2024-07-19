@@ -1,4 +1,5 @@
 import Foundation
+import AppKit
 
 class SPNavigationController: NSViewController {
     private var viewStack: [NSViewController] = []
@@ -36,11 +37,9 @@ class SPNavigationController: NSViewController {
 
     override func loadView() {
         let initialView = initialViewController.view
-        let spacerView = NSView(frame: NSRect(x: 0, y: 0, width: 100, height: 30))
+        let spacerView = NSView(frame: .zero)
         let button = NSButton(title: String(), image: NSImage(named: NSImage.goBackTemplateName)!, target: nil, action: #selector(backWasPressed))
         view = NSView()
-
-        view.frame = NSRect(x: 0, y: 0, width: initialView.frame.width, height: 500)
 
         view.translatesAutoresizingMaskIntoConstraints = false
         initialView.translatesAutoresizingMaskIntoConstraints = false
@@ -50,10 +49,6 @@ class SPNavigationController: NSViewController {
         backButton = button
         backButton.isHidden = hideBackButton
         button.bezelStyle = .accessoryBarAction
-
-        NSLayoutConstraint.activate([
-            view.widthAnchor.constraint(lessThanOrEqualToConstant: 380)
-        ])
 
         view.addSubview(spacerView)
         NSLayoutConstraint.activate([
@@ -90,6 +85,9 @@ class SPNavigationController: NSViewController {
         guard let (leadingAnchor, trailingAnchor) = attach(child: viewController) else {
             return
         }
+        currentTrailingConstraint = trailingAnchor
+        currentLeadingConstraint = leadingAnchor
+        viewStack.append(viewController)
 
         guard animated else {
             return
@@ -98,8 +96,6 @@ class SPNavigationController: NSViewController {
         leadingAnchor.constant = view.frame.width
         trailingAnchor.constant = view.frame.width
 
-        viewStack.append(viewController)
-
         NSAnimationContext.runAnimationGroup { context in
             context.duration = 0.4
             context.timingFunction = .init(name: .easeInEaseOut)
@@ -107,13 +103,11 @@ class SPNavigationController: NSViewController {
             currentView.animator().alphaValue = .zero
             leadingAnchor.animator().constant = .zero
             trailingAnchor.animator().constant = .zero
+
             refreshView()
         } completionHandler: {
             currentView.removeFromSuperview()
         }
-
-        currentTrailingConstraint = trailingAnchor
-        currentLeadingConstraint = leadingAnchor
     }
 
     @discardableResult
@@ -148,9 +142,15 @@ class SPNavigationController: NSViewController {
     }
 
     func popViewController() {
-        guard viewStack.count > 1, let previousViewController = viewStack.popLast(), let currentViewController = viewStack.last else {
+        guard viewStack.count > 1 else {
             return
         }
+
+        let previousViewController = viewStack.removeLast()
+        guard let currentViewController = viewStack.last else {
+            return
+        }
+
         previousViewController.view.removeConstraints(previousViewController.view.constraints)
         guard let (leadingAnchor, trailingAnchor) = self.attach(child: currentViewController, behindCurrent: true) else {
             return
@@ -179,7 +179,7 @@ class SPNavigationController: NSViewController {
     }
 
     private func refreshView() {
-        backButton.isHidden = hideBackButton
+        backButton.animator().isHidden = hideBackButton
         view.window?.layoutIfNeeded()
     }
 }
