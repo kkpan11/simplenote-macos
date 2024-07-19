@@ -23,8 +23,36 @@ class SPNavigationController: NSViewController {
 
     init(initialViewController: NSViewController) {
         super.init(nibName: nil, bundle: nil)
+
+//        let viewController = NSViewController()
+//        let view = NSView(frame: NSRect(x: 0, y: 0, width: 300, height: 300))
+//        viewController.view = view
+//        view.wantsLayer = true
+//        view.layer?.backgroundColor = NSColor.green.cgColor
+//
+//        let button = NSButton(frame: NSRect(x: 20, y: 20, width: 20, height: 20))
+//        button.action = #selector(animateNewView)
+//
+//        view.addSubview(button)
+//        addChild(viewController)
+//        viewStack.append(viewController)
         viewStack.append(initialViewController)
         addChild(initialViewController)
+    }
+
+    @objc
+    func animateNewView() {
+        let newView = NSView(frame: NSRect(x: 300, y: 0, width: 300, height: 300))
+        newView.wantsLayer = true
+        newView.layer?.backgroundColor = NSColor.red.cgColor
+
+        view.addSubview(newView)
+
+        NSAnimationContext.runAnimationGroup { context in
+            context.duration = 0.5
+            currentView?.animator().frame.origin.x -= 300
+            newView.animator().frame.origin.x -= 300
+        }
     }
 
     required init?(coder: NSCoder) {
@@ -32,20 +60,21 @@ class SPNavigationController: NSViewController {
     }
 
     override func loadView() {
-        view = NSView()
         let initialView = initialViewController.view
         let spacerView = NSView(frame: NSRect(x: 0, y: 0, width: 100, height: 30))
-
-        let buttonImage = NSImage(named: NSImage.goBackTemplateName)!
         let button = NSButton(title: String(), image: NSImage(named: NSImage.goBackTemplateName)!, target: nil, action: #selector(backWasPressed))
-        button.bezelStyle = .accessoryBarAction
+        view = NSView()
+
+        view.frame = NSRect(x: 0, y: 0, width: initialView.frame.width, height: initialView.frame.height)
 
         view.translatesAutoresizingMaskIntoConstraints = false
+        initialView.translatesAutoresizingMaskIntoConstraints = false
         spacerView.translatesAutoresizingMaskIntoConstraints = false
         button.translatesAutoresizingMaskIntoConstraints = false
 
         backButton = button
         backButton.isHidden = hideBackButton
+        button.bezelStyle = .accessoryBarAction
 
         view.addSubview(spacerView)
         NSLayoutConstraint.activate([
@@ -62,29 +91,48 @@ class SPNavigationController: NSViewController {
             backButton.widthAnchor.constraint(equalToConstant: 50)
         ])
 
-        show(initialView)
+        view.addSubview(initialView)
     }
 
     private func show(_ newView: NSView) {
         view.addSubview(newView)
-        NSLayoutConstraint.activate([
-            newView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            newView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            newView.topAnchor.constraint(equalTo: backButton.bottomAnchor),
-            newView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+//        NSLayoutConstraint.activate([
+//            newView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            newView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            newView.topAnchor.constraint(equalTo: backButton.bottomAnchor),
+//            newView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+//        ])
     }
 
     func push(_ viewController: NSViewController) {
 
-        currentView?.removeFromSuperview()
+//        currentView?.removeFromSuperview()
+//
+//        let newView = viewController.view
+//        viewStack.append(viewController)
+//        addChild(viewController)
+//
+//        show(newView)
+//        refreshView()
 
-        let newView = viewController.view
-        viewStack.append(viewController)
+        guard let currentView else {
+            return
+        }
+
+        currentView.removeConstraints(currentView.constraints)
+
         addChild(viewController)
+        let newView = viewController.view
 
-        show(newView)
-        refreshView()
+        newView.frame.origin.x += currentView.frame.width
+        view.addSubview(newView)
+
+        NSAnimationContext.runAnimationGroup { context in
+            context.duration = 0.75
+
+            currentView.animator().frame.origin.x -= currentView.frame.width
+            newView.animator().frame.origin.x -= currentView.frame.width
+        }
     }
 
     func popViewController() {
