@@ -2,20 +2,17 @@ import Foundation
 import AppKit
 
 class SPNavigationController: NSViewController {
+    // MARK: - ViewController
+    //
     private var viewStack: [NSViewController] = []
-
     private var backButton: NSButton!
-
-    var initialViewController: NSViewController {
-        guard let first = viewStack.first else {
-            fatalError()
-        }
-
-        return first
-    }
 
     var hideBackButton: Bool {
         viewStack.count < 2
+    }
+
+    var topViewController: NSViewController? {
+        viewStack.last
     }
 
     init(initialViewController: NSViewController) {
@@ -29,6 +26,10 @@ class SPNavigationController: NSViewController {
     }
 
     override func loadView() {
+        guard let initialViewController = topViewController else {
+            fatalError()
+        }
+
         let initialView = initialViewController.view
         let spacerView = NSView(frame: .zero)
         let button = NSButton(title: String(), image: NSImage(named: NSImage.goBackTemplateName)!, target: nil, action: #selector(backWasPressed))
@@ -68,8 +69,15 @@ class SPNavigationController: NSViewController {
         ])
     }
 
+    @objc
+    func backWasPressed() {
+        popViewController()
+    }
+
+    // MARK: - Add a View to the stack
+    //
     func push(_ viewController: NSViewController, animated: Bool = true) {
-        guard let currentView = viewStack.last?.view else {
+        guard let currentView = topViewController?.view else {
             return
         }
         attach(child: viewController)
@@ -98,7 +106,7 @@ class SPNavigationController: NSViewController {
 
     @discardableResult
     private func attachView(subview: NSView, behindCurrent: Bool = false) -> (leading: NSLayoutConstraint, trailing: NSLayoutConstraint)? {
-        if let currentView = viewStack.last?.view,
+        if let currentView = topViewController?.view,
            behindCurrent {
             view.addSubview(subview, positioned: .below, relativeTo: currentView)
         } else {
@@ -120,11 +128,7 @@ class SPNavigationController: NSViewController {
         return (leading: leadingAnchor, trailing: trailingAnchor)
     }
 
-    private func dettach(child: NSViewController) {
-        child.view.removeFromSuperview()
-        child.removeFromParent()
-    }
-
+    // MARK: - Remove view from stack
     func popViewController() {
         guard viewStack.count > 1 else {
             return
@@ -144,11 +148,13 @@ class SPNavigationController: NSViewController {
         }
     }
 
-    @objc
-    func backWasPressed() {
-        popViewController()
+    private func dettach(child: NSViewController) {
+        child.view.removeFromSuperview()
+        child.removeFromParent()
     }
 
+    // MARK: - Animation
+    //
     private enum AnimationDirection {
         case leadingToTrailing
         case trailingToLeading
