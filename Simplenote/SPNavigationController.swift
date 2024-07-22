@@ -143,9 +143,7 @@ class SPNavigationController: NSViewController {
             return
         }
 
-        guard let (leadingAnchor, trailingAnchor) = self.attachView(subview: nextViewController.view, behindCurrent: true) else {
-            return
-        }
+        self.attachView(subview: nextViewController.view, behindCurrent: true)
 
         animateTransition(slidingView: currentViewController.view, fadingView: nextViewController.view, direction: .leadingToTrailing) {
             self.dettach(child: currentViewController)
