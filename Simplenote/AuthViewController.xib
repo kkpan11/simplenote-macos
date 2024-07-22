@@ -20,9 +20,6 @@
                 <outlet property="secondaryActionHeightConstraint" destination="HrL-ss-QSd" id="Vg3-A9-yCH"/>
                 <outlet property="separatorLabel" destination="xI6-bI-NiW" id="PA7-tE-0Od"/>
                 <outlet property="stackView" destination="PWa-EY-51O" id="jUJ-sH-HgC"/>
-                <outlet property="switchActionButton" destination="5np-Xn-oop" id="KYi-sy-yoJ"/>
-                <outlet property="switchAuthenticationView" destination="mRM-75-7tv" id="Yij-Ld-A8r"/>
-                <outlet property="switchTipField" destination="0yP-IQ-Unz" id="jvk-lr-cHO"/>
                 <outlet property="trailingSeparatorView" destination="Uej-dg-hz2" id="UUI-he-9Xh"/>
                 <outlet property="usernameField" destination="Fco-3r-2Ys" id="qFA-HM-uFa"/>
                 <outlet property="view" destination="kU7-kg-wG3" id="WH8-Qa-i4c"/>
@@ -34,13 +31,13 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <view wantsLayer="YES" appearanceType="aqua" translatesAutoresizingMaskIntoConstraints="NO" id="kU7-kg-wG3" customClass="SPAuthenticationView">
-            <rect key="frame" x="0.0" y="0.0" width="380" height="638"/>
+            <rect key="frame" x="0.0" y="0.0" width="380" height="568"/>
             <subviews>
                 <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PWa-EY-51O">
-                    <rect key="frame" x="30" y="45" width="320" height="548"/>
+                    <rect key="frame" x="30" y="45" width="320" height="478"/>
                     <subviews>
                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="W9h-HS-WbG">
-                            <rect key="frame" x="112" y="452" width="96" height="96"/>
+                            <rect key="frame" x="112" y="382" width="96" height="96"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="96" id="Sys-NN-iWa"/>
                                 <constraint firstAttribute="height" constant="96" id="mq9-yP-8Tc"/>
@@ -48,7 +45,7 @@
                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="icon_simplenote_login" id="2Fh-2C-hTH"/>
                         </imageView>
                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lwM-mh-i3o">
-                            <rect key="frame" x="-2" y="424" width="324" height="16"/>
+                            <rect key="frame" x="-2" y="354" width="324" height="16"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="16" id="Pcu-pb-Ma8"/>
                             </constraints>
@@ -59,13 +56,13 @@
                             </textFieldCell>
                         </textField>
                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="Fco-3r-2Ys" userLabel="Username TextField" customClass="SPAuthenticationTextField">
-                            <rect key="frame" x="0.0" y="372" width="320" height="40"/>
+                            <rect key="frame" x="0.0" y="302" width="320" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="ZyF-TN-zXQ"/>
                             </constraints>
                         </customView>
                         <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2bk-bk-VfG" userLabel="Password TextField" customClass="SPAuthenticationTextField">
-                            <rect key="frame" x="0.0" y="320" width="320" height="40"/>
+                            <rect key="frame" x="0.0" y="250" width="320" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="Cah-V8-aCS"/>
                             </constraints>
@@ -74,7 +71,7 @@
                             </userDefinedRuntimeAttributes>
                         </customView>
                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="Epn-oY-sfo" userLabel="Action View">
-                            <rect key="frame" x="0.0" y="242" width="320" height="66"/>
+                            <rect key="frame" x="0.0" y="172" width="320" height="66"/>
                             <subviews>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lid-6Q-zHR" userLabel="Main Action Button" customClass="SPAuthenticationButton">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
@@ -103,7 +100,7 @@
                             </constraints>
                         </customView>
                         <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="y1M-Np-v9m" userLabel="Secondary Action Button">
-                            <rect key="frame" x="0.0" y="210" width="320" height="20"/>
+                            <rect key="frame" x="0.0" y="140" width="320" height="20"/>
                             <buttonCell key="cell" type="bevel" title="[Secondary Action]" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="zjo-dD-vux" userLabel="[Secondary Action]">
                                 <behavior key="behavior" lightByContents="YES"/>
                                 <font key="font" metaFont="systemMedium" size="13"/>
@@ -116,7 +113,7 @@
                             </connections>
                         </button>
                         <customView appearanceType="darkAqua" translatesAutoresizingMaskIntoConstraints="NO" id="WI9-SH-Yrp" userLabel="Actions Separator View">
-                            <rect key="frame" x="0.0" y="154" width="320" height="44"/>
+                            <rect key="frame" x="0.0" y="84" width="320" height="44"/>
                             <subviews>
                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="4nP-3I-NOF" userLabel="Leading Line">
                                     <rect key="frame" x="0.0" y="22" width="145" height="1"/>
@@ -149,46 +146,6 @@
                                 <constraint firstAttribute="trailing" secondItem="Uej-dg-hz2" secondAttribute="trailing" id="chk-5V-L7P"/>
                                 <constraint firstItem="Uej-dg-hz2" firstAttribute="centerY" secondItem="WI9-SH-Yrp" secondAttribute="centerY" id="rUr-aw-HHD"/>
                                 <constraint firstItem="xI6-bI-NiW" firstAttribute="centerX" secondItem="WI9-SH-Yrp" secondAttribute="centerX" id="tJX-vD-jHm"/>
-                            </constraints>
-                        </customView>
-                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="mRM-75-7tv" userLabel="Switch View">
-                            <rect key="frame" x="0.0" y="84" width="320" height="58"/>
-                            <subviews>
-                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0yP-IQ-Unz" userLabel="Switch Tip">
-                                    <rect key="frame" x="-2" y="20" width="324" height="20"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="20" id="5GW-OX-wF2"/>
-                                        <constraint firstAttribute="width" constant="320" id="Ice-bc-Xa9"/>
-                                    </constraints>
-                                    <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" alignment="center" title="[Switch Tip]" id="lWM-Lh-rKn">
-                                        <font key="font" metaFont="systemSemibold" size="13"/>
-                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    </textFieldCell>
-                                </textField>
-                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5np-Xn-oop" userLabel="Switch Button">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
-                                    <buttonCell key="cell" type="bevel" title="[Switch Action]" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="nb6-bt-sFC">
-                                        <behavior key="behavior" lightByContents="YES"/>
-                                        <font key="font" metaFont="systemSemibold" size="13"/>
-                                    </buttonCell>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="320" id="3N3-wW-P6F"/>
-                                        <constraint firstAttribute="height" constant="20" id="3pI-cn-CI2"/>
-                                    </constraints>
-                                    <connections>
-                                        <action selector="switchAuthenticationMode:" target="-2" id="RHe-NY-xff"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <constraints>
-                                <constraint firstItem="0yP-IQ-Unz" firstAttribute="leading" secondItem="mRM-75-7tv" secondAttribute="leading" id="3oG-BE-MuY"/>
-                                <constraint firstAttribute="trailing" secondItem="0yP-IQ-Unz" secondAttribute="trailing" id="41V-Lw-UEz"/>
-                                <constraint firstItem="5np-Xn-oop" firstAttribute="leading" secondItem="mRM-75-7tv" secondAttribute="leading" id="Tlj-YL-2ZG"/>
-                                <constraint firstItem="5np-Xn-oop" firstAttribute="top" secondItem="0yP-IQ-Unz" secondAttribute="bottom" id="e9q-W5-TqD"/>
-                                <constraint firstItem="0yP-IQ-Unz" firstAttribute="top" secondItem="mRM-75-7tv" secondAttribute="top" constant="18" id="iL2-kb-zDB"/>
-                                <constraint firstAttribute="trailing" secondItem="5np-Xn-oop" secondAttribute="trailing" id="nsv-X2-CkQ"/>
-                                <constraint firstAttribute="bottom" secondItem="5np-Xn-oop" secondAttribute="bottom" id="zC9-oc-1g2"/>
                             </constraints>
                         </customView>
                         <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3tE-Zi-edS" userLabel="WordPress SSO View">
@@ -243,10 +200,8 @@
                         <integer value="1000"/>
                         <integer value="1000"/>
                         <integer value="1000"/>
-                        <integer value="1000"/>
                     </visibilityPriorities>
                     <customSpacing>
-                        <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>

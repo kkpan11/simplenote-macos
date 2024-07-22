@@ -20,12 +20,6 @@ extension AuthViewController {
         // Secondary Action
         secondaryActionButton.contentTintColor = .simplenoteBrandColor
 
-        // Toggle Signup: Tip
-        switchTipField.textColor = .simplenoteTertiaryTextColor
-
-        // Toggle Signup: Action
-        switchActionButton.contentTintColor = .simplenoteBrandColor
-
         // WordPress SSO
         wordPressSSOButton.image = NSImage(named: .wordPressLogo)?.tinted(with: .simplenoteBrandColor)
         wordPressSSOButton.title = Localization.dotcomSSOAction
@@ -78,8 +72,6 @@ extension AuthViewController {
     func refreshButtonTitles() {
         actionButton.title          = mode.primaryActionText
         secondaryActionButton.title = mode.secondaryActionText?.uppercased() ?? ""
-        switchTipField.stringValue  = mode.switchActionTip.uppercased()
-        switchActionButton.title    = mode.switchActionText.uppercased()
     }
 
     /// Makes sure unused components (in the current mode) are effectively disabled
@@ -113,7 +105,6 @@ extension AuthViewController {
         secondaryActionButton.alphaValue        = mode.secondaryActionFieldAlpha
         wordPressSSOButton.alphaValue           = mode.wordPressSSOFieldAlpha
 
-        switchAuthenticationView.isHidden                 = !mode.isSwitchVisible
         actionsSeparatorView.isHidden = !mode.showActionSeparator
     }
 
@@ -177,11 +168,6 @@ extension AuthViewController {
         }
         
         performSelector(onMainThread: secondaryActionSelector, with: nil, waitUntilDone: false)
-    }
-
-    @IBAction
-    func switchAuthenticationMode(_ sender: Any) {
-        containingNavigationController?.push(nextViewController())
     }
 
     private func nextViewController() -> AuthViewController {
