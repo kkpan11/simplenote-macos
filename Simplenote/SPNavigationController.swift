@@ -78,11 +78,12 @@ class SPNavigationController: NSViewController {
     // MARK: - Add a View to the stack
     //
     func push(_ viewController: NSViewController, animated: Bool = true) {
-        guard let currentView = topViewController?.view else {
-            return
-        }
+        let currentView = topViewController?.view
+
         attach(child: viewController)
-        currentView.removeConstraints(currentView.constraints)
+        if let currentView {
+            currentView.removeConstraints(currentView.constraints)
+        }
 
         guard let (leadingAnchor, trailingAnchor) = attachView(subview: viewController.view) else {
             return
@@ -96,7 +97,7 @@ class SPNavigationController: NSViewController {
         trailingAnchor.constant = view.frame.width
 
         animateTransition(slidingView: viewController.view, fadingView: currentView, direction: .trailingToLeading) {
-            currentView.removeFromSuperview()
+            currentView?.removeFromSuperview()
         }
     }
 
@@ -159,7 +160,7 @@ class SPNavigationController: NSViewController {
         case trailingToLeading
     }
 
-    private func animateTransition(slidingView: NSView, fadingView: NSView, direction: AnimationDirection, onCompletion: @escaping () -> Void) {
+    private func animateTransition(slidingView: NSView, fadingView: NSView?, direction: AnimationDirection, onCompletion: @escaping () -> Void) {
         guard let leadingConstraint = view.constraints.first(where: { $0.firstItem as? NSView == slidingView && $0.firstAttribute == .leading }),
               let trailingConstraint = view.constraints.first(where: { $0.firstItem as? NSView == slidingView && $0.firstAttribute == .trailing }) else {
             return
@@ -172,7 +173,7 @@ class SPNavigationController: NSViewController {
             context.duration = 0.4
             context.timingFunction = .init(name: .easeInEaseOut)
 
-            fadingView.animator().alphaValue = alpha
+            fadingView?.animator().alphaValue = alpha
             leadingConstraint.animator().constant += view.frame.width * multiplier
             trailingConstraint.animator().constant += view.frame.width * multiplier
             backButtonHeightConstraint.animator().constant = hideBackButton ? 0 : 30
