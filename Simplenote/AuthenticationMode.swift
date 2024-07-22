@@ -59,7 +59,7 @@ extension AuthenticationMode {
     }
     
     var wordPressSSOFieldHeight: CGFloat {
-        isWordPressVisible ? CGFloat(72) : .zero
+        isWordPressVisible ? CGFloat(40) : .zero
     }
     
     var passwordFieldAlpha: CGFloat {

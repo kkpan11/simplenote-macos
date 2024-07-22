@@ -21,9 +21,11 @@ extension AuthViewController {
         secondaryActionButton.contentTintColor = .simplenoteBrandColor
 
         // WordPress SSO
-        wordPressSSOButton.image = NSImage(named: .wordPressLogo)?.tinted(with: .simplenoteBrandColor)
         wordPressSSOButton.title = Localization.dotcomSSOAction
-        wordPressSSOButton.contentTintColor = .simplenoteTertiaryTextColor
+        wordPressSSOButton.contentTintColor = .white
+        wordPressSSOContainerView.wantsLayer = true
+        wordPressSSOContainerView.layer?.backgroundColor = NSColor.simplenoteWPBlue50Color.cgColor
+        wordPressSSOContainerView.layer?.cornerRadius = 5
 
         setupActionsSeparatorView()
     }
