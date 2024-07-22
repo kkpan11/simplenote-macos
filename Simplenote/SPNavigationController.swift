@@ -160,8 +160,8 @@ class SPNavigationController: NSViewController {
     }
 
     private func animateTransition(slidingView: NSView, fadingView: NSView?, direction: AnimationDirection, onCompletion: @escaping () -> Void) {
-        guard let leadingConstraint = view.constraints.first(where: { $0.firstItem as? NSView == slidingView && $0.firstAttribute == .leading }),
-              let trailingConstraint = view.constraints.first(where: { $0.firstItem as? NSView == slidingView && $0.firstAttribute == .trailing }) else {
+        guard let leadingConstraint = view.firstContraint(firstView: slidingView, firstAttribute: .leading),
+              let trailingConstraint = view.firstContraint(firstView: slidingView, firstAttribute: .trailing) else {
             return
         }
 

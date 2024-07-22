@@ -19,4 +19,10 @@ extension NSView {
         let effectiveResponder = fieldEditor?.delegate as? NSControl
         return effectiveResponder == self
     }
+
+    /// Returns first layout constraint found for attribute type
+    ///
+    func firstContraint(firstView: NSView, firstAttribute: NSLayoutConstraint.Attribute) -> NSLayoutConstraint? {
+        constraints.first(where: { $0.firstItem as? NSView == firstView && $0.firstAttribute == firstAttribute })
+    }
 }
