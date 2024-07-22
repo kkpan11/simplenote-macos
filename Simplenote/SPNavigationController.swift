@@ -32,36 +32,12 @@ class SPNavigationController: NSViewController {
             fatalError()
         }
 
-        let initialView = initialViewController.view
-        let spacerView = NSView(frame: .zero)
-        let button = NSButton(title: String(), image: NSImage(named: NSImage.goBackTemplateName)!, target: nil, action: #selector(backWasPressed))
         view = NSView()
+        let initialView = initialViewController.view
+        backButton = insertBackButton()
 
         view.translatesAutoresizingMaskIntoConstraints = false
         initialView.translatesAutoresizingMaskIntoConstraints = false
-        spacerView.translatesAutoresizingMaskIntoConstraints = false
-        button.translatesAutoresizingMaskIntoConstraints = false
-
-        backButton = button
-        backButton.isHidden = hideBackButton
-        button.bezelStyle = .accessoryBarAction
-
-        view.addSubview(spacerView)
-        NSLayoutConstraint.activate([
-            spacerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            spacerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            spacerView.heightAnchor.constraint(equalToConstant: 30),
-            spacerView.topAnchor.constraint(equalTo: view.topAnchor)
-        ])
-
-        view.addSubview(backButton)
-        backButtonHeightConstraint = backButton.heightAnchor.constraint(equalToConstant: 0)
-        NSLayoutConstraint.activate([
-            backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            backButton.topAnchor.constraint(equalTo: spacerView.bottomAnchor),
-            backButton.widthAnchor.constraint(equalToConstant: 50),
-            backButtonHeightConstraint
-        ])
 
         view.addSubview(initialView)
 
@@ -71,6 +47,27 @@ class SPNavigationController: NSViewController {
             initialView.topAnchor.constraint(equalTo: backButton.bottomAnchor),
             initialView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+
+    private func insertBackButton() -> NSButton {
+        let button = NSButton(title: String(), image: NSImage(named: NSImage.goBackTemplateName)!, target: nil, action: #selector(backWasPressed))
+
+        button.translatesAutoresizingMaskIntoConstraints = false
+
+        backButton = button
+        backButton.isHidden = hideBackButton
+        button.bezelStyle = .accessoryBarAction
+
+        view.addSubview(backButton)
+        backButtonHeightConstraint = backButton.heightAnchor.constraint(equalToConstant: 0)
+        NSLayoutConstraint.activate([
+            backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
+            backButton.widthAnchor.constraint(equalToConstant: 50),
+            backButtonHeightConstraint
+        ])
+
+        return button
     }
 
     @objc
