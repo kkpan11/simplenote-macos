@@ -85,7 +85,7 @@ class SPNavigationController: NSViewController {
             currentView.removeConstraints(currentView.constraints)
         }
 
-        guard let (leadingAnchor, trailingAnchor) = attachView(subview: viewController.view) else {
+        guard let (leadingAnchor, trailingAnchor) = attachView(subview: viewController.view, currentView: currentView) else {
             return
         }
 
@@ -107,9 +107,8 @@ class SPNavigationController: NSViewController {
     }
 
     @discardableResult
-    private func attachView(subview: NSView, behindCurrent: Bool = false) -> (leading: NSLayoutConstraint, trailing: NSLayoutConstraint)? {
-        if let currentView = topViewController?.view,
-           behindCurrent {
+    private func attachView(subview: NSView, currentView: NSView?, behindCurrent: Bool = false) -> (leading: NSLayoutConstraint, trailing: NSLayoutConstraint)? {
+        if behindCurrent {
             view.addSubview(subview, positioned: .below, relativeTo: currentView)
         } else {
             view.addSubview(subview)
@@ -141,7 +140,7 @@ class SPNavigationController: NSViewController {
             return
         }
 
-        self.attachView(subview: nextViewController.view, behindCurrent: true)
+        attachView(subview: nextViewController.view, currentView: currentViewController.view, behindCurrent: true)
 
         animateTransition(slidingView: currentViewController.view, fadingView: nextViewController.view, direction: .leadingToTrailing) {
             self.dettach(child: currentViewController)
