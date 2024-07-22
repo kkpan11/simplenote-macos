@@ -30,6 +30,17 @@ extension AuthViewController {
         wordPressSSOButton.image = NSImage(named: .wordPressLogo)?.tinted(with: .simplenoteBrandColor)
         wordPressSSOButton.title = Localization.dotcomSSOAction
         wordPressSSOButton.contentTintColor = .simplenoteTertiaryTextColor
+
+        setupActionsSeparatorView()
+    }
+
+    private func setupActionsSeparatorView() {
+        leadingSeparatorView.wantsLayer = true
+        leadingSeparatorView.layer?.backgroundColor = NSColor.lightGray.cgColor
+        trailingSeparatorView.wantsLayer = true
+        trailingSeparatorView.layer?.backgroundColor = NSColor.lightGray.cgColor
+
+        separatorLabel.textColor = .lightGray
     }
 }
 
@@ -103,6 +114,7 @@ extension AuthViewController {
         wordPressSSOButton.alphaValue           = mode.wordPressSSOFieldAlpha
 
         switchAuthenticationView.isHidden                 = !mode.isSwitchVisible
+        actionsSeparatorView.isHidden = !mode.showActionSeparator
     }
 
     /// Animates Visible / Invisible components, based on the specified state
@@ -180,6 +192,11 @@ extension AuthViewController {
         nextVC.mode = nextMode
 
         return nextVC
+    }
+
+    @objc
+    func pushEmailLoginView() {
+        containingNavigationController?.push(nextViewController())
     }
 }
 
