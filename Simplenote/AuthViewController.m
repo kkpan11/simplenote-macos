@@ -65,10 +65,6 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:forgotPasswordURL]];
 }
 
-- (IBAction)switchAuthenticationMode:(id)sender {
-    self.mode = [self.mode nextMode];
-}
-
 
 #pragma mark - Dynamic Properties
 

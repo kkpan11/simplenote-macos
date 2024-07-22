@@ -18,6 +18,7 @@
                 <outlet property="secondaryActionHeightConstraint" destination="HrL-ss-QSd" id="Vg3-A9-yCH"/>
                 <outlet property="stackView" destination="PWa-EY-51O" id="jUJ-sH-HgC"/>
                 <outlet property="switchActionButton" destination="5np-Xn-oop" id="KYi-sy-yoJ"/>
+                <outlet property="switchAuthenticationView" destination="mRM-75-7tv" id="Yij-Ld-A8r"/>
                 <outlet property="switchTipField" destination="0yP-IQ-Unz" id="jvk-lr-cHO"/>
                 <outlet property="usernameField" destination="Fco-3r-2Ys" id="qFA-HM-uFa"/>
                 <outlet property="view" destination="kU7-kg-wG3" id="WH8-Qa-i4c"/>
@@ -136,7 +137,7 @@
                                         <constraint firstAttribute="height" constant="20" id="3pI-cn-CI2"/>
                                     </constraints>
                                     <connections>
-                                        <action selector="switchAuthenticationMode:" target="-2" id="5M2-AR-yd6"/>
+                                        <action selector="switchAuthenticationMode:" target="-2" id="RHe-NY-xff"/>
                                     </connections>
                                 </button>
                             </subviews>

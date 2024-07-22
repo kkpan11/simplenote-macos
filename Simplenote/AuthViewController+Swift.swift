@@ -101,6 +101,8 @@ extension AuthViewController {
         passwordField.alphaValue                = mode.passwordFieldAlpha
         secondaryActionButton.alphaValue        = mode.secondaryActionFieldAlpha
         wordPressSSOButton.alphaValue           = mode.wordPressSSOFieldAlpha
+
+        switchAuthenticationView.isHidden                 = !mode.isSwitchVisible
     }
 
     /// Animates Visible / Invisible components, based on the specified state
@@ -163,6 +165,21 @@ extension AuthViewController {
         }
         
         performSelector(onMainThread: secondaryActionSelector, with: nil, waitUntilDone: false)
+    }
+
+    @IBAction
+    func switchAuthenticationMode(_ sender: Any) {
+        containingNavigationController?.push(nextViewController())
+    }
+
+    private func nextViewController() -> AuthViewController {
+        let nextMode = mode.nextMode()
+
+        let nextVC = AuthViewController()
+        nextVC.authenticator = authenticator
+        nextVC.mode = nextMode
+
+        return nextVC
     }
 }
 

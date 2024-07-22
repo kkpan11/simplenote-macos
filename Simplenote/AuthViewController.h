@@ -21,6 +21,7 @@
 @property (nonatomic, strong) IBOutlet NSButton                     *switchActionButton;
 @property (nonatomic, strong) IBOutlet NSView                       *wordPressSSOContainerView;
 @property (nonatomic, strong) IBOutlet NSButton                     *wordPressSSOButton;
+@property (weak) IBOutlet NSView *switchAuthenticationView;
 
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint           *passwordFieldHeightConstraint;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint           *secondaryActionHeightConstraint;

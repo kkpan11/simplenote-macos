@@ -18,8 +18,9 @@ class AuthenticationMode: NSObject {
     let isPasswordVisible: Bool
     let isSecondaryActionVisible: Bool
     let isWordPressVisible: Bool
-    
-    init(primaryActionText: String, primaryActionAnimationText: String, primaryActionSelector: Selector, secondaryActionText: String?, secondaryActionSelector: Selector?, switchActionText: String, switchActionTip: String, switchTargetMode: @escaping () -> AuthenticationMode, isPasswordVisible: Bool, isSecondaryActionVisible: Bool, isWordPressVisible: Bool) {
+    let isSwitchVisible: Bool
+
+    init(primaryActionText: String, primaryActionAnimationText: String, primaryActionSelector: Selector, secondaryActionText: String?, secondaryActionSelector: Selector?, switchActionText: String, switchActionTip: String, switchTargetMode: @escaping () -> AuthenticationMode, isPasswordVisible: Bool, isSecondaryActionVisible: Bool, isWordPressVisible: Bool, isSwitchVisible: Bool) {
         self.primaryActionText = primaryActionText
         self.primaryActionAnimationText =  primaryActionAnimationText
         self.primaryActionSelector = primaryActionSelector
@@ -31,6 +32,7 @@ class AuthenticationMode: NSObject {
         self.isPasswordVisible = isPasswordVisible
         self.isSecondaryActionVisible = isSecondaryActionVisible
         self.isWordPressVisible = isWordPressVisible
+        self.isSwitchVisible = isSwitchVisible
     }
 }
 
@@ -87,7 +89,8 @@ extension AuthenticationMode {
                            switchTargetMode: { .signup },
                            isPasswordVisible: true,
                            isSecondaryActionVisible: true,
-                           isWordPressVisible: true)
+                           isWordPressVisible: true,
+                           isSwitchVisible: false)
     }
 
     /// Auth Mode: Login is handled via Magic Links!
@@ -104,7 +107,8 @@ extension AuthenticationMode {
                            switchTargetMode: { .signup },
                            isPasswordVisible: false,
                            isSecondaryActionVisible: true,
-                           isWordPressVisible: true)
+                           isWordPressVisible: true,
+                           isSwitchVisible: false)
     }
 
     /// Auth Mode: SignUp
@@ -121,7 +125,8 @@ extension AuthenticationMode {
                            switchTargetMode: { .loginWithMagicLink },
                            isPasswordVisible: false,
                            isSecondaryActionVisible: false,
-                           isWordPressVisible: false)
+                           isWordPressVisible: false,
+                           isSwitchVisible: true)
     }
 }
 
