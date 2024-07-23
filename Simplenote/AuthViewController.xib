@@ -109,9 +109,6 @@
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="UVW-gz-8cN"/>
                                     </constraints>
-                                    <connections>
-                                        <action selector="performMainAction:" target="-2" id="t7F-Eu-cMm"/>
-                                    </connections>
                                 </button>
                                 <progressIndicator maxValue="100" displayedWhenStopped="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="GMB-3v-AEQ" userLabel="Main Action Progress Indicator">
                                     <rect key="frame" x="289" y="12" width="16" height="16"/>
@@ -135,9 +132,6 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="HrL-ss-QSd"/>
                             </constraints>
-                            <connections>
-                                <action selector="performSecondaryAction:" target="-2" id="hjL-sS-hbT"/>
-                            </connections>
                         </button>
                         <customView appearanceType="darkAqua" translatesAutoresizingMaskIntoConstraints="NO" id="WI9-SH-Yrp" userLabel="Actions Separator View">
                             <rect key="frame" x="0.0" y="52" width="320" height="44"/>

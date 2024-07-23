@@ -60,6 +60,12 @@ extension AuthViewController {
     var authWindowController: AuthWindowController? {
         view.window?.windowController as? AuthWindowController
     }
+
+    /// # All of the Action Views
+    ///
+    private var allActionViews: [NSButton] {
+        [actionButton, secondaryActionButton]
+    }
 }
 
 // MARK: - Refreshing
@@ -69,14 +75,33 @@ extension AuthViewController {
     @objc(refreshInterfaceWithAnimation:)
     func refreshInterface(animated: Bool) {
         clearAuthenticationError()
-        refreshButtonTitles()
+        refreshActionViews()
         refreshEnabledComponents()
         refreshVisibleComponents(animated: animated)
     }
 
-    func refreshButtonTitles() {
-        actionButton.title          = mode.primaryActionText
-        secondaryActionButton.title = mode.secondaryActionText?.uppercased() ?? ""
+    private func refreshActionViews() {
+        let viewMap: [AuthenticationActionName: NSButton] = [
+            .primary: actionButton,
+            .secondary: secondaryActionButton
+        ]
+
+        allActionViews.forEach({ $0.isHidden = true })
+
+        for descriptor in mode.actions {
+            guard let actionView = viewMap[descriptor.name] else {
+                assertionFailure()
+                continue
+            }
+
+            if let title = descriptor.text {
+                let modifiedTitle = descriptor.name == .secondary ? title.uppercased() : title
+                actionView.title = modifiedTitle
+            }
+
+            actionView.action = descriptor.selector
+            actionView.isHidden = false
+        }
     }
 
     /// Makes sure unused components (in the current mode) are effectively disabled
@@ -163,20 +188,6 @@ extension AuthViewController {
 
         refreshInterface(animated: true)
         ensureUsernameIsFirstResponder()
-    }
-    
-    @IBAction
-    func performMainAction(_ sender: Any) {
-        performSelector(onMainThread: mode.primaryActionSelector, with: nil, waitUntilDone: false)
-    }
-    
-    @IBAction
-    func performSecondaryAction(_ sender: Any) {
-        guard let secondaryActionSelector = mode.secondaryActionSelector else {
-            return
-        }
-        
-        performSelector(onMainThread: secondaryActionSelector, with: nil, waitUntilDone: false)
     }
 
     private func authViewController(with mode: AuthenticationMode) -> AuthViewController {
@@ -274,12 +285,13 @@ extension AuthViewController {
     @IBAction
     func handleNewlineInField(_ field: NSControl) {
         if field.isEqual(passwordField.textField) {
-            performMainAction(field)
+            guard let primaryActionDescriptor = mode.actions.first(where: { $0.name == .primary }) else {
+                assertionFailure()
+                return
+            }
+
+            performSelector(onMainThread: primaryActionDescriptor.selector, with: nil, waitUntilDone: false)
             return
-        }
-        
-        if field.isEqual(usernameField.textField), mode.isPasswordVisible == false {
-            performMainAction(field)
         }
     }
 }
@@ -297,7 +309,8 @@ extension AuthViewController {
 
     @objc
     func stopActionAnimation() {
-        actionButton.title = mode.primaryActionText
+        //TODO: Fix animating title changes
+//        actionButton.title = mode.primaryActionText
         actionProgress.stopAnimation(nil)
     }
 }

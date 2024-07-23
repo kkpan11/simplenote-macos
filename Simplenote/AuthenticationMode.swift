@@ -1,18 +1,36 @@
 import Foundation
 
+// MARK: - Authentication Actions
+//
+enum AuthenticationActionName {
+    case primary
+    case secondary
+    case tertiary
+    case quaternary
+}
+
+struct AuthenticationActionDescriptor {
+    let name: AuthenticationActionName
+    let selector: Selector
+    let text: String?
+    let attributedText: NSAttributedString?
+
+    init(name: AuthenticationActionName, selector: Selector, text: String?, attributedText: NSAttributedString? = nil) {
+        self.name = name
+        self.selector = selector
+        self.text = text
+        self.attributedText = attributedText
+    }
+}
 
 // MARK: - AuthenticationMode
 //
 class AuthenticationMode: NSObject {
     let title: String
     let header: String?
+    let actions: [AuthenticationActionDescriptor]
 
-    let primaryActionText: String
     let primaryActionAnimationText: String
-    let primaryActionSelector: Selector
-    
-    let secondaryActionText: String?
-    let secondaryActionSelector: Selector?
 
     let switchTargetMode: () -> AuthenticationMode
     
@@ -24,11 +42,8 @@ class AuthenticationMode: NSObject {
 
     init(title: String,
          header: String? = nil,
-         primaryActionText: String,
+         actions: [AuthenticationActionDescriptor],
          primaryActionAnimationText: String,
-         primaryActionSelector: Selector,
-         secondaryActionText: String?,
-         secondaryActionSelector: Selector?,
          switchTargetMode: @escaping () -> AuthenticationMode,
          isPasswordVisible: Bool,
          isSecondaryActionVisible: Bool,
@@ -37,11 +52,8 @@ class AuthenticationMode: NSObject {
          isIntroView: Bool = false) {
         self.title = title
         self.header = header
-        self.primaryActionText = primaryActionText
+        self.actions = actions
         self.primaryActionAnimationText =  primaryActionAnimationText
-        self.primaryActionSelector = primaryActionSelector
-        self.secondaryActionText = secondaryActionText
-        self.secondaryActionSelector = secondaryActionSelector
         self.switchTargetMode = switchTargetMode
         self.isPasswordVisible = isPasswordVisible
         self.isSecondaryActionVisible = isSecondaryActionVisible
@@ -92,12 +104,16 @@ extension AuthenticationMode {
     @objc
     static var onboarding: AuthenticationMode {
         return AuthenticationMode(title: "Onboarding",
-                           header: nil,
-                           primaryActionText: SignupStrings.primaryAction,
+                                  header: nil,
+                                  actions: [
+                                    AuthenticationActionDescriptor(name: .primary,
+                                                                   selector: #selector(AuthViewController.pushSignupView),
+                                                                   text: SignupStrings.primaryAction),
+                                    AuthenticationActionDescriptor(name: .secondary,
+                                                                   selector: #selector(AuthViewController.pushEmailLoginView),
+                                                                   text: LoginStrings.primaryAction)
+                                  ],
                            primaryActionAnimationText: SignupStrings.primaryAnimationText,
-                           primaryActionSelector: #selector(AuthViewController.pushSignupView),
-                           secondaryActionText: LoginStrings.primaryAction,
-                           secondaryActionSelector: #selector(AuthViewController.pushEmailLoginView),
                            switchTargetMode: { .requestLoginCode }, isPasswordVisible: false,
                            isSecondaryActionVisible: true,
                            isWordPressVisible: false,
@@ -110,11 +126,15 @@ extension AuthenticationMode {
     static func loginWithPassword(header: String? = nil) -> AuthenticationMode {
         AuthenticationMode(title: NSLocalizedString("Log In with Password", comment: "LogIn Interface Title"),
                            header: header,
-                           primaryActionText: LoginStrings.primaryAction,
+                           actions: [
+                            AuthenticationActionDescriptor(name: .primary,
+                                                           selector: #selector(AuthViewController.pressedLogInWithPassword),
+                                                           text: LoginStrings.primaryAction),
+                            AuthenticationActionDescriptor(name: .secondary,
+                                                           selector: #selector(AuthViewController.openForgotPasswordURL),
+                                                           text: LoginStrings.secondaryAction)
+                           ],
                            primaryActionAnimationText: LoginStrings.primaryAnimationText,
-                           primaryActionSelector: #selector(AuthViewController.pressedLogInWithPassword),
-                           secondaryActionText: LoginStrings.secondaryAction,
-                           secondaryActionSelector: #selector(AuthViewController.openForgotPasswordURL),
                            switchTargetMode: { .signup },
                            isPasswordVisible: true,
                            isSecondaryActionVisible: true,
@@ -128,11 +148,15 @@ extension AuthenticationMode {
     @objc
     static var requestLoginCode: AuthenticationMode {
         AuthenticationMode(title: NSLocalizedString("Log In", comment: "LogIn Interface Title"),
-                           primaryActionText: MagicLinkStrings.primaryAction,
+                           actions: [
+                            AuthenticationActionDescriptor(name: .primary, 
+                                                           selector: #selector(AuthViewController.pressedLoginWithMagicLink),
+                                                           text: MagicLinkStrings.primaryAction),
+                            AuthenticationActionDescriptor(name: .secondary,
+                                                           selector: #selector(AuthViewController.switchToPasswordAuth),
+                                                           text: MagicLinkStrings.secondaryAction)
+                           ],
                            primaryActionAnimationText: MagicLinkStrings.primaryAnimationText,
-                           primaryActionSelector: #selector(AuthViewController.pressedLoginWithMagicLink),
-                           secondaryActionText: MagicLinkStrings.secondaryAction,
-                           secondaryActionSelector: #selector(AuthViewController.switchToPasswordAuth),
                            switchTargetMode: { .signup },
                            isPasswordVisible: false,
                            isSecondaryActionVisible: true,
@@ -145,11 +169,12 @@ extension AuthenticationMode {
     @objc
     static var signup: AuthenticationMode {
         AuthenticationMode(title: NSLocalizedString("Sign Up", comment: "SignUp Interface Title"),
-                           primaryActionText: SignupStrings.primaryAction,
+                           actions: [
+                            AuthenticationActionDescriptor(name: .primary,
+                                                           selector: #selector(AuthViewController.pressedSignUp),
+                                                           text: SignupStrings.primaryAction)
+                           ],
                            primaryActionAnimationText: SignupStrings.primaryAnimationText,
-                           primaryActionSelector: #selector(AuthViewController.pressedSignUp),
-                           secondaryActionText: SignupStrings.switchAction,
-                           secondaryActionSelector: #selector(AuthViewController.pushEmailLoginView),
                            switchTargetMode: { .requestLoginCode },
                            isPasswordVisible: false,
                            isSecondaryActionVisible: true,
