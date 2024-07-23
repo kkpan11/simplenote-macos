@@ -148,10 +148,8 @@ extension AuthViewController {
             context.duration = AppKitConstants.duration0_2
 
             passwordFieldHeightConstraint.animator().constant   = mode.passwordFieldHeight
-//            wordPressSSOHeightConstraint.animator().constant    = mode.wordPressSSOFieldHeight
 
             passwordField.alphaValue            = mode.passwordFieldAlpha
-//            wordPressSSOButton.alphaValue       = mode.wordPressSSOFieldAlpha
             
             view.layoutSubtreeIfNeeded()
         }
