@@ -86,7 +86,10 @@ extension AuthViewController {
             .secondary: secondaryActionButton
         ]
 
-        allActionViews.forEach({ $0.isHidden = true })
+        allActionViews.forEach({
+            $0.isHidden = true
+            $0.isEnabled = false
+        })
 
         for descriptor in mode.actions {
             guard let actionView = viewMap[descriptor.name] else {
@@ -101,6 +104,7 @@ extension AuthViewController {
 
             actionView.action = descriptor.selector
             actionView.isHidden = false
+            actionView.isEnabled = true
         }
     }
 
@@ -108,7 +112,6 @@ extension AuthViewController {
     ///
     func refreshEnabledComponents() {
         passwordField.isEnabled         = mode.isPasswordVisible
-        secondaryActionButton.isEnabled = mode.isSecondaryActionVisible
         wordPressSSOButton.isEnabled    = mode.isWordPressVisible
     }
 
@@ -128,11 +131,9 @@ extension AuthViewController {
     ///
     func refreshVisibleComponentsWithoutAnimation() {
         passwordFieldHeightConstraint.constant  = mode.passwordFieldHeight
-        secondaryActionHeightConstraint.constant = mode.secondaryActionFieldHeight
         wordPressSSOHeightConstraint.constant   = mode.wordPressSSOFieldHeight
 
         passwordField.alphaValue                = mode.passwordFieldAlpha
-        secondaryActionButton.alphaValue        = mode.secondaryActionFieldAlpha
         wordPressSSOButton.alphaValue           = mode.wordPressSSOFieldAlpha
 
         actionsSeparatorView.isHidden = !mode.showActionSeparator
@@ -149,11 +150,9 @@ extension AuthViewController {
             context.duration = AppKitConstants.duration0_2
 
             passwordFieldHeightConstraint.animator().constant   = mode.passwordFieldHeight
-            secondaryActionHeightConstraint.animator().constant = mode.secondaryActionFieldHeight
             wordPressSSOHeightConstraint.animator().constant    = mode.wordPressSSOFieldHeight
 
             passwordField.alphaValue            = mode.passwordFieldAlpha
-            secondaryActionButton.alphaValue    = mode.secondaryActionFieldAlpha
             wordPressSSOButton.alphaValue       = mode.wordPressSSOFieldAlpha
             
             view.layoutSubtreeIfNeeded()
