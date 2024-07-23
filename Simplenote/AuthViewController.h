@@ -11,6 +11,9 @@
 
 @property (nonatomic, strong) IBOutlet NSStackView                  *stackView;
 @property (nonatomic, strong) IBOutlet NSImageView                  *logoImageView;
+@property (nonatomic, strong) IBOutlet NSTextField *simplenoteTitleView;
+@property (nonatomic, strong) IBOutlet NSTextField *simplenoteSubTitleView;
+@property (nonatomic, strong) IBOutlet NSTextField *headerLabel;
 @property (nonatomic, strong) IBOutlet NSTextField                  *errorField;
 @property (nonatomic, strong) IBOutlet SPAuthenticationTextField    *usernameField;
 @property (nonatomic, strong) IBOutlet SPAuthenticationTextField    *passwordField;

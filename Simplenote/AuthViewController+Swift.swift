@@ -6,6 +6,9 @@ extension AuthViewController {
 
     @objc
     func setupInterface() {
+        simplenoteTitleView.stringValue = "Simplenote"
+        simplenoteSubTitleView.textColor = .simplenoteGray50Color
+        simplenoteSubTitleView.stringValue = NSLocalizedString("The simplest way to keep notes.", comment: "Simplenote subtitle")
         // Error Label
         errorField.stringValue = ""
         errorField.textColor = .red
@@ -108,6 +111,10 @@ extension AuthViewController {
         wordPressSSOButton.alphaValue           = mode.wordPressSSOFieldAlpha
 
         actionsSeparatorView.isHidden = !mode.showActionSeparator
+        simplenoteTitleView.isHidden = !mode.isIntroView
+        simplenoteSubTitleView.isHidden = !mode.isIntroView
+
+        headerLabel.isHidden = mode.header == nil
     }
 
     /// Animates Visible / Invisible components, based on the specified state
@@ -172,6 +179,14 @@ extension AuthViewController {
         performSelector(onMainThread: secondaryActionSelector, with: nil, waitUntilDone: false)
     }
 
+    private func authViewController(with mode: AuthenticationMode) -> AuthViewController {
+        let vc = AuthViewController()
+        vc.authenticator = authenticator
+        vc.mode = mode
+
+        return vc
+    }
+
     private func nextViewController() -> AuthViewController {
         let nextMode = mode.nextMode()
 
@@ -184,7 +199,12 @@ extension AuthViewController {
 
     @objc
     func pushEmailLoginView() {
-        containingNavigationController?.push(nextViewController())
+        containingNavigationController?.push(authViewController(with: .requestLoginCode))
+    }
+
+    @objc
+    func pushSignupView() {
+        containingNavigationController?.push(authViewController(with: .signup))
     }
 }
 
@@ -195,7 +215,7 @@ extension AuthViewController {
 
     @IBAction
     func switchToPasswordAuth(_ sender: Any) {
-        mode = .loginWithPassword
+        mode = AuthenticationMode.loginWithPassword(header: nil)
     }
     
     @objc

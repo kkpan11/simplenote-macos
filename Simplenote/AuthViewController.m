@@ -29,7 +29,7 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
 {
     if (self = [super init]) {
         self.validator = [SPAuthenticationValidator new];
-        self.mode = [AuthenticationMode signup];
+        self.mode = [AuthenticationMode onboarding];
     }
 
     return self;
