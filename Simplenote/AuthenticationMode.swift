@@ -45,7 +45,6 @@ class AuthenticationMode: NSObject {
     let primaryActionAnimationText: String
     
     let isPasswordVisible: Bool
-    let isWordPressVisible: Bool
     let showActionSeparator: Bool
     let isIntroView: Bool
 
@@ -55,7 +54,6 @@ class AuthenticationMode: NSObject {
          actions: [AuthenticationActionDescriptor],
          primaryActionAnimationText: String,
          isPasswordVisible: Bool,
-         isWordPressVisible: Bool,
          showActionSeparator: Bool,
          isIntroView: Bool = false) {
         self.title = title
@@ -64,7 +62,6 @@ class AuthenticationMode: NSObject {
         self.actions = actions
         self.primaryActionAnimationText =  primaryActionAnimationText
         self.isPasswordVisible = isPasswordVisible
-        self.isWordPressVisible = isWordPressVisible
         self.showActionSeparator = showActionSeparator
         self.isIntroView = isIntroView
     }
@@ -77,17 +74,9 @@ extension AuthenticationMode {
     var passwordFieldHeight: CGFloat {
         isPasswordVisible ? CGFloat(40) : .zero
     }
-    
-    var wordPressSSOFieldHeight: CGFloat {
-        isWordPressVisible ? CGFloat(40) : .zero
-    }
-    
+
     var passwordFieldAlpha: CGFloat {
         isPasswordVisible ? AppKitConstants.alpha1_0 : AppKitConstants.alpha0_0
-    }
-
-    var wordPressSSOFieldAlpha: CGFloat {
-        isWordPressVisible ? AppKitConstants.alpha1_0 : AppKitConstants.alpha0_0
     }
 }
 
@@ -110,7 +99,6 @@ extension AuthenticationMode {
                                   ],
                                   primaryActionAnimationText: SignupStrings.primaryAnimationText,
                                   isPasswordVisible: false,
-                                  isWordPressVisible: false,
                                   showActionSeparator: false,
                                   isIntroView: true)
     }
@@ -131,7 +119,6 @@ extension AuthenticationMode {
                            ],
                            primaryActionAnimationText: LoginStrings.primaryAnimationText,
                            isPasswordVisible: true,
-                           isWordPressVisible: true,
                            showActionSeparator: true)
     }
 
@@ -154,7 +141,6 @@ extension AuthenticationMode {
                            ],
                            primaryActionAnimationText: MagicLinkStrings.primaryAnimationText,
                            isPasswordVisible: false,
-                           isWordPressVisible: true,
                            showActionSeparator: true)
     }
 
@@ -171,7 +157,6 @@ extension AuthenticationMode {
                            ],
                            primaryActionAnimationText: SignupStrings.primaryAnimationText,
                            isPasswordVisible: false,
-                           isWordPressVisible: false,
                            showActionSeparator: false)
     }
 }
