@@ -272,8 +272,7 @@ extension AuthViewController {
     @objc
     func wordpressSSOAction() {
         let sessionsState = "app-\(UUID().uuidString)"
-        //TODO: Set the constant somewhere else
-        UserDefaults.standard.set(sessionsState, forKey: "SPAuthSessionKey")
+        UserDefaults.standard.set(sessionsState, forKey: .SPAuthSessionKey)
 
         let requestURL = String(format: SPWPSignInAuthURL, SPCredentials.wpcomClientID, SPCredentials.wpcomRedirectURL, sessionsState)
         let encodedURL = requestURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)

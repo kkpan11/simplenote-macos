@@ -6,8 +6,6 @@
 
 #pragma mark - Constants
 
-static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
-
 
 #pragma mark - Private
 
