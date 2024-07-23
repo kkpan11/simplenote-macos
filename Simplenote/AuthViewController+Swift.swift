@@ -24,11 +24,11 @@ extension AuthViewController {
         secondaryActionButton.contentTintColor = .simplenoteBrandColor
 
         // WordPress SSO
-        wordPressSSOButton.title = Localization.dotcomSSOAction
-        wordPressSSOButton.contentTintColor = .white
-        wordPressSSOContainerView.wantsLayer = true
-        wordPressSSOContainerView.layer?.backgroundColor = NSColor.simplenoteWPBlue50Color.cgColor
-        wordPressSSOContainerView.layer?.cornerRadius = 5
+
+        tertiaryButton.contentTintColor = .white
+        tertiaryButton.wantsLayer = true
+        tertiaryButton.layer?.backgroundColor = NSColor.simplenoteWPBlue50Color.cgColor
+        tertiaryButton.layer?.cornerRadius = 5
 
         setupActionsSeparatorView()
     }
@@ -64,7 +64,7 @@ extension AuthViewController {
     /// # All of the Action Views
     ///
     private var allActionViews: [NSButton] {
-        [actionButton, secondaryActionButton]
+        [actionButton, secondaryActionButton, tertiaryButton]
     }
 }
 
@@ -83,7 +83,8 @@ extension AuthViewController {
     private func refreshActionViews() {
         let viewMap: [AuthenticationActionName: NSButton] = [
             .primary: actionButton,
-            .secondary: secondaryActionButton
+            .secondary: secondaryActionButton,
+            .tertiary: tertiaryButton
         ]
 
         allActionViews.forEach({
@@ -112,7 +113,6 @@ extension AuthViewController {
     ///
     func refreshEnabledComponents() {
         passwordField.isEnabled         = mode.isPasswordVisible
-        wordPressSSOButton.isEnabled    = mode.isWordPressVisible
     }
 
     /// Shows / Hides relevant components, based on the specified state
@@ -131,10 +131,8 @@ extension AuthViewController {
     ///
     func refreshVisibleComponentsWithoutAnimation() {
         passwordFieldHeightConstraint.constant  = mode.passwordFieldHeight
-        wordPressSSOHeightConstraint.constant   = mode.wordPressSSOFieldHeight
 
         passwordField.alphaValue                = mode.passwordFieldAlpha
-        wordPressSSOButton.alphaValue           = mode.wordPressSSOFieldAlpha
 
         actionsSeparatorView.isHidden = !mode.showActionSeparator
         simplenoteTitleView.isHidden = !mode.isIntroView
@@ -150,10 +148,10 @@ extension AuthViewController {
             context.duration = AppKitConstants.duration0_2
 
             passwordFieldHeightConstraint.animator().constant   = mode.passwordFieldHeight
-            wordPressSSOHeightConstraint.animator().constant    = mode.wordPressSSOFieldHeight
+//            wordPressSSOHeightConstraint.animator().constant    = mode.wordPressSSOFieldHeight
 
             passwordField.alphaValue            = mode.passwordFieldAlpha
-            wordPressSSOButton.alphaValue       = mode.wordPressSSOFieldAlpha
+//            wordPressSSOButton.alphaValue       = mode.wordPressSSOFieldAlpha
             
             view.layoutSubtreeIfNeeded()
         }
@@ -280,7 +278,20 @@ extension AuthViewController {
             self.showAuthenticationError(forCode: statusCode, responseString: nil)
         }
     }
-    
+
+    @objc
+    func wordpressSSOAction() {
+        let sessionsState = "app-\(UUID().uuidString)"
+        //TODO: Set the constant somewhere else
+        UserDefaults.standard.set(sessionsState, forKey: "SPAuthSessionKey")
+
+        let requestURL = NSString(format: SPWPSignInAuthURL as NSString, SPCredentials.wpcomClientID, SPCredentials.wpcomRedirectURL)
+        let encodedURL = requestURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        NSWorkspace.shared.open(URL(string: encodedURL!)!)
+
+        SPTracker.trackWPCCButtonPressed()
+    }
+
     @IBAction
     func handleNewlineInField(_ field: NSControl) {
         if field.isEqual(passwordField.textField) {
@@ -386,7 +397,6 @@ extension AuthViewController {
 private enum Localization {
     static let emailPlaceholder = NSLocalizedString("Email", comment: "Placeholder text for login field")
     static let passwordPlaceholder = NSLocalizedString("Password", comment: "Placeholder text for password field")
-    static let dotcomSSOAction = NSLocalizedString("Log in with WordPress.com", comment: "button title for wp.com sign in button")
     static let compromisedPasswordAlert = NSLocalizedString("Compromised Password", comment: "Compromised passsword alert title")
     static let compromisedPasswordMessage = NSLocalizedString("This password has appeared in a data breach, which puts your account at high risk of compromise. To protect your data, you'll need to update your password before being able to log in again.", comment: "Compromised password alert message")
     static let changePasswordAction = NSLocalizedString("Change Password", comment: "Change password action")

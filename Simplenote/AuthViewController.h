@@ -20,8 +20,8 @@
 @property (nonatomic, strong) IBOutlet NSButton                     *actionButton;
 @property (nonatomic, strong) IBOutlet NSProgressIndicator          *actionProgress;
 @property (nonatomic, strong) IBOutlet NSButton                     *secondaryActionButton;
-@property (nonatomic, strong) IBOutlet NSView                       *wordPressSSOContainerView;
-@property (nonatomic, strong) IBOutlet NSButton                     *wordPressSSOButton;
+@property (nonatomic, strong) IBOutlet NSView                       *tertiaryButtonContainerView;
+@property (nonatomic, strong) IBOutlet NSButton                     *tertiaryButton;
 @property (weak) IBOutlet NSView *actionsSeparatorView;
 @property (weak) IBOutlet NSView *leadingSeparatorView;
 @property (weak) IBOutlet NSTextField *separatorLabel;

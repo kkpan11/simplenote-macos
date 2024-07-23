@@ -23,11 +23,11 @@
                 <outlet property="simplenoteSubTitleView" destination="OWk-yc-eau" id="fbz-WL-DUq"/>
                 <outlet property="simplenoteTitleView" destination="QdZ-0O-kg0" id="nKL-R9-joW"/>
                 <outlet property="stackView" destination="PWa-EY-51O" id="jUJ-sH-HgC"/>
+                <outlet property="tertiaryButton" destination="sc9-DH-ug9" id="gLe-Cv-8dc"/>
+                <outlet property="tertiaryButtonContainerView" destination="3tE-Zi-edS" id="TCK-Oi-0EO"/>
                 <outlet property="trailingSeparatorView" destination="Uej-dg-hz2" id="UUI-he-9Xh"/>
                 <outlet property="usernameField" destination="Fco-3r-2Ys" id="qFA-HM-uFa"/>
                 <outlet property="view" destination="kU7-kg-wG3" id="WH8-Qa-i4c"/>
-                <outlet property="wordPressSSOButton" destination="sc9-DH-ug9" id="bjJ-cB-cCj"/>
-                <outlet property="wordPressSSOContainerView" destination="3tE-Zi-edS" id="Nhq-OA-Rqf"/>
                 <outlet property="wordPressSSOHeightConstraint" destination="IW2-ZK-7lM" id="NWD-Sk-CYO"/>
             </connections>
         </customObject>
@@ -169,21 +169,18 @@
                                 <constraint firstItem="xI6-bI-NiW" firstAttribute="centerX" secondItem="WI9-SH-Yrp" secondAttribute="centerX" id="tJX-vD-jHm"/>
                             </constraints>
                         </customView>
-                        <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3tE-Zi-edS" userLabel="WordPress SSO View">
+                        <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3tE-Zi-edS" userLabel="Tertiary Button View">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
                             <subviews>
-                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sc9-DH-ug9" userLabel="WordPress SSO Button">
+                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sc9-DH-ug9" userLabel="Tertiary Button">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
-                                    <buttonCell key="cell" type="bevel" title="[WordPress SSO]" bezelStyle="rounded" imagePosition="left" alignment="center" imageScaling="proportionallyDown" inset="2" id="Mzh-LI-XpK">
+                                    <buttonCell key="cell" type="bevel" title="Tertiary" bezelStyle="rounded" imagePosition="left" alignment="center" imageScaling="proportionallyDown" inset="2" id="Mzh-LI-XpK">
                                         <behavior key="behavior" lightByContents="YES"/>
                                         <font key="font" metaFont="system" size="16"/>
                                     </buttonCell>
                                     <constraints>
                                         <constraint firstAttribute="height" priority="999" constant="40" id="ynU-1V-xiN"/>
                                     </constraints>
-                                    <connections>
-                                        <action selector="wpccSignInAction:" target="-2" id="XuG-cb-poD"/>
-                                    </connections>
                                 </button>
                             </subviews>
                             <constraints>

@@ -142,7 +142,9 @@ extension AuthenticationMode {
                                                            text: MagicLinkStrings.primaryAction),
                             AuthenticationActionDescriptor(name: .secondary,
                                                            selector: #selector(AuthViewController.switchToPasswordAuth),
-                                                           text: MagicLinkStrings.secondaryAction)
+                                                           text: MagicLinkStrings.secondaryAction),
+                            AuthenticationActionDescriptor(name: .tertiary,
+                                                           selector: #selector(AuthViewController.wordpressSSOAction), text: LoginStrings.wordpressAction)
                            ],
                            primaryActionAnimationText: MagicLinkStrings.primaryAnimationText,
                            switchTargetMode: { .signup },
@@ -178,6 +180,7 @@ private enum LoginStrings {
     static let secondaryAction      = NSLocalizedString("Forgot your Password?", comment: "Forgot Password Button")
     static let switchAction         = NSLocalizedString("Sign Up", comment: "Title of button for signing up")
     static let switchTip            = NSLocalizedString("Need an account?", comment: "Link to create an account")
+    static let wordpressAction      = NSLocalizedString("Log in with WordPress.com", comment: "Title to use wordpress login instead of email")
 }
 
 private enum MagicLinkStrings {
