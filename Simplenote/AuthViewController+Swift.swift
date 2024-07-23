@@ -137,7 +137,6 @@ extension AuthViewController {
 
         passwordField.alphaValue                = mode.passwordFieldAlpha
 
-        actionsSeparatorView.isHidden = !mode.showActionSeparator
         simplenoteTitleView.isHidden = !mode.isIntroView
         simplenoteSubTitleView.isHidden = !mode.isIntroView
 

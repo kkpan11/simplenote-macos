@@ -45,7 +45,6 @@ class AuthenticationMode: NSObject {
     let primaryActionAnimationText: String
     
     let isPasswordVisible: Bool
-    let showActionSeparator: Bool
     let isIntroView: Bool
 
     init(title: String,
@@ -54,7 +53,6 @@ class AuthenticationMode: NSObject {
          actions: [AuthenticationActionDescriptor],
          primaryActionAnimationText: String,
          isPasswordVisible: Bool,
-         showActionSeparator: Bool,
          isIntroView: Bool = false) {
         self.title = title
         self.header = header
@@ -62,7 +60,6 @@ class AuthenticationMode: NSObject {
         self.actions = actions
         self.primaryActionAnimationText =  primaryActionAnimationText
         self.isPasswordVisible = isPasswordVisible
-        self.showActionSeparator = showActionSeparator
         self.isIntroView = isIntroView
     }
 }
@@ -99,7 +96,6 @@ extension AuthenticationMode {
                                   ],
                                   primaryActionAnimationText: SignupStrings.primaryAnimationText,
                                   isPasswordVisible: false,
-                                  showActionSeparator: false,
                                   isIntroView: true)
     }
 
@@ -118,8 +114,7 @@ extension AuthenticationMode {
                                                            text: LoginStrings.secondaryAction)
                            ],
                            primaryActionAnimationText: LoginStrings.primaryAnimationText,
-                           isPasswordVisible: true,
-                           showActionSeparator: true)
+                           isPasswordVisible: true)
     }
 
     /// Auth Mode: Login is handled via Magic Links!
@@ -128,7 +123,7 @@ extension AuthenticationMode {
     @objc
     static var requestLoginCode: AuthenticationMode {
         AuthenticationMode(title: NSLocalizedString("Log In", comment: "LogIn Interface Title"),
-                           inputElements: [.username],
+                           inputElements: [.username, .actionSeparator],
                            actions: [
                             AuthenticationActionDescriptor(name: .primary, 
                                                            selector: #selector(AuthViewController.pressedLoginWithMagicLink),
@@ -140,8 +135,7 @@ extension AuthenticationMode {
                                                            selector: #selector(AuthViewController.wordpressSSOAction), text: LoginStrings.wordpressAction)
                            ],
                            primaryActionAnimationText: MagicLinkStrings.primaryAnimationText,
-                           isPasswordVisible: false,
-                           showActionSeparator: true)
+                           isPasswordVisible: false)
     }
 
     /// Auth Mode: SignUp
@@ -156,8 +150,7 @@ extension AuthenticationMode {
                                                            text: SignupStrings.primaryAction)
                            ],
                            primaryActionAnimationText: SignupStrings.primaryAnimationText,
-                           isPasswordVisible: false,
-                           showActionSeparator: false)
+                           isPasswordVisible: false)
     }
 }
 
