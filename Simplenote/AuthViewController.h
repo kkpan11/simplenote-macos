@@ -11,21 +11,22 @@
 
 @property (nonatomic, strong) IBOutlet NSStackView                  *stackView;
 @property (nonatomic, strong) IBOutlet NSImageView                  *logoImageView;
-@property (nonatomic, strong) IBOutlet NSTextField *simplenoteTitleView;
-@property (nonatomic, strong) IBOutlet NSTextField *simplenoteSubTitleView;
-@property (nonatomic, strong) IBOutlet NSTextField *headerLabel;
+@property (nonatomic, strong) IBOutlet NSTextField                  *simplenoteTitleView;
+@property (nonatomic, strong) IBOutlet NSTextField                  *simplenoteSubTitleView;
+@property (nonatomic, strong) IBOutlet NSTextField                  *headerLabel;
 @property (nonatomic, strong) IBOutlet NSTextField                  *errorField;
 @property (nonatomic, strong) IBOutlet SPAuthenticationTextField    *usernameField;
 @property (nonatomic, strong) IBOutlet SPAuthenticationTextField    *passwordField;
+@property (nonatomic, strong) IBOutlet SPAuthenticationTextField    *codeTextField;
 @property (nonatomic, strong) IBOutlet NSButton                     *actionButton;
 @property (nonatomic, strong) IBOutlet NSProgressIndicator          *actionProgress;
 @property (nonatomic, strong) IBOutlet NSButton                     *secondaryActionButton;
 @property (nonatomic, strong) IBOutlet NSView                       *tertiaryButtonContainerView;
 @property (nonatomic, strong) IBOutlet NSButton                     *tertiaryButton;
-@property (weak) IBOutlet NSView *actionsSeparatorView;
-@property (weak) IBOutlet NSView *leadingSeparatorView;
-@property (weak) IBOutlet NSTextField *separatorLabel;
-@property (weak) IBOutlet NSView *trailingSeparatorView;
+@property (nonatomic, strong) IBOutlet NSView                       *actionsSeparatorView;
+@property (nonatomic, strong) IBOutlet NSView                       *leadingSeparatorView;
+@property (nonatomic, strong) IBOutlet NSTextField                  *separatorLabel;
+@property (nonatomic, strong) IBOutlet NSView                       *trailingSeparatorView;
 
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint           *passwordFieldHeightConstraint;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint           *secondaryActionHeightConstraint;
