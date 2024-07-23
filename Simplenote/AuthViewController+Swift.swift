@@ -275,7 +275,7 @@ extension AuthViewController {
         //TODO: Set the constant somewhere else
         UserDefaults.standard.set(sessionsState, forKey: "SPAuthSessionKey")
 
-        let requestURL = NSString(format: SPWPSignInAuthURL as NSString, SPCredentials.wpcomClientID, SPCredentials.wpcomRedirectURL)
+        let requestURL = String(format: SPWPSignInAuthURL, SPCredentials.wpcomClientID, SPCredentials.wpcomRedirectURL, sessionsState)
         let encodedURL = requestURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         NSWorkspace.shared.open(URL(string: encodedURL!)!)
 
