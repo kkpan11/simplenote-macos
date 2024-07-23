@@ -1,5 +1,16 @@
 import Foundation
 
+// MARK: - Authentication Elements
+//
+struct AuthenticationInputElements: OptionSet, Hashable {
+    let rawValue: UInt
+
+    static let username         = AuthenticationInputElements(rawValue: 1 << 0)
+    static let password         = AuthenticationInputElements(rawValue: 1 << 1)
+    static let code             = AuthenticationInputElements(rawValue: 1 << 2)
+    static let actionSeparator  = AuthenticationInputElements(rawValue: 1 << 3)
+}
+
 // MARK: - Authentication Actions
 //
 enum AuthenticationActionName {
@@ -28,6 +39,7 @@ struct AuthenticationActionDescriptor {
 class AuthenticationMode: NSObject {
     let title: String
     let header: String?
+    let inputElements: AuthenticationInputElements
     let actions: [AuthenticationActionDescriptor]
 
     let primaryActionAnimationText: String
@@ -41,6 +53,7 @@ class AuthenticationMode: NSObject {
 
     init(title: String,
          header: String? = nil,
+         inputElements: AuthenticationInputElements,
          actions: [AuthenticationActionDescriptor],
          primaryActionAnimationText: String,
          switchTargetMode: @escaping () -> AuthenticationMode,
@@ -50,6 +63,7 @@ class AuthenticationMode: NSObject {
          isIntroView: Bool = false) {
         self.title = title
         self.header = header
+        self.inputElements = inputElements
         self.actions = actions
         self.primaryActionAnimationText =  primaryActionAnimationText
         self.switchTargetMode = switchTargetMode
@@ -94,13 +108,14 @@ extension AuthenticationMode {
     static var onboarding: AuthenticationMode {
         return AuthenticationMode(title: "Onboarding",
                                   header: nil,
+                                  inputElements: [],
                                   actions: [
                                     AuthenticationActionDescriptor(name: .primary,
                                                                    selector: #selector(AuthViewController.pushSignupView),
                                                                    text: SignupStrings.primaryAction),
                                     AuthenticationActionDescriptor(name: .secondary,
                                                                    selector: #selector(AuthViewController.pushEmailLoginView),
-                                                                   text: LoginStrings.primaryAction)
+                                                                   text: LoginStrings.primaryAction.uppercased())
                                   ],
 
                            primaryActionAnimationText: SignupStrings.primaryAnimationText,
@@ -115,6 +130,7 @@ extension AuthenticationMode {
     static func loginWithPassword(header: String? = nil) -> AuthenticationMode {
         AuthenticationMode(title: NSLocalizedString("Log In with Password", comment: "LogIn Interface Title"),
                            header: header,
+                           inputElements: [.username, .password],
                            actions: [
                             AuthenticationActionDescriptor(name: .primary,
                                                            selector: #selector(AuthViewController.pressedLogInWithPassword),
@@ -136,6 +152,7 @@ extension AuthenticationMode {
     @objc
     static var requestLoginCode: AuthenticationMode {
         AuthenticationMode(title: NSLocalizedString("Log In", comment: "LogIn Interface Title"),
+                           inputElements: [.username],
                            actions: [
                             AuthenticationActionDescriptor(name: .primary, 
                                                            selector: #selector(AuthViewController.pressedLoginWithMagicLink),
@@ -158,6 +175,7 @@ extension AuthenticationMode {
     @objc
     static var signup: AuthenticationMode {
         AuthenticationMode(title: NSLocalizedString("Sign Up", comment: "SignUp Interface Title"),
+                           inputElements: [.username],
                            actions: [
                             AuthenticationActionDescriptor(name: .primary,
                                                            selector: #selector(AuthViewController.pressedSignUp),

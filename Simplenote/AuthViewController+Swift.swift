@@ -76,7 +76,7 @@ extension AuthViewController {
     func refreshInterface(animated: Bool) {
         clearAuthenticationError()
         refreshActionViews()
-        refreshEnabledComponents()
+        refreshInputViews()
         refreshVisibleComponents(animated: animated)
     }
 
@@ -99,20 +99,23 @@ extension AuthViewController {
             }
 
             if let title = descriptor.text {
-                let modifiedTitle = descriptor.name == .secondary ? title.uppercased() : title
-                actionView.title = modifiedTitle
+                actionView.title = title
             }
 
             actionView.action = descriptor.selector
+            actionView.target = self
             actionView.isHidden = false
             actionView.isEnabled = true
         }
     }
 
-    /// Makes sure unused components (in the current mode) are effectively disabled
-    ///
-    func refreshEnabledComponents() {
-        passwordField.isEnabled         = mode.isPasswordVisible
+    private func refreshInputViews() {
+        let inputElements = mode.inputElements
+
+        usernameField.isHidden          = !inputElements.contains(.username)
+        passwordField.isHidden          = !inputElements.contains(.password)
+        actionsSeparatorView.isHidden   = !inputElements.contains(.actionSeparator)
+
     }
 
     /// Shows / Hides relevant components, based on the specified state
