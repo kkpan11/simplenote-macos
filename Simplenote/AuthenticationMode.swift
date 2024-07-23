@@ -43,8 +43,6 @@ class AuthenticationMode: NSObject {
     let actions: [AuthenticationActionDescriptor]
 
     let primaryActionAnimationText: String
-
-    let switchTargetMode: () -> AuthenticationMode
     
     let isPasswordVisible: Bool
     let isWordPressVisible: Bool
@@ -56,7 +54,6 @@ class AuthenticationMode: NSObject {
          inputElements: AuthenticationInputElements,
          actions: [AuthenticationActionDescriptor],
          primaryActionAnimationText: String,
-         switchTargetMode: @escaping () -> AuthenticationMode,
          isPasswordVisible: Bool,
          isWordPressVisible: Bool,
          showActionSeparator: Bool,
@@ -66,7 +63,6 @@ class AuthenticationMode: NSObject {
         self.inputElements = inputElements
         self.actions = actions
         self.primaryActionAnimationText =  primaryActionAnimationText
-        self.switchTargetMode = switchTargetMode
         self.isPasswordVisible = isPasswordVisible
         self.isWordPressVisible = isWordPressVisible
         self.showActionSeparator = showActionSeparator
@@ -77,11 +73,6 @@ class AuthenticationMode: NSObject {
 // MARK: - Dynamic Properties
 //
 extension AuthenticationMode {
-    
-    @objc
-    func nextMode() -> AuthenticationMode {
-        switchTargetMode()
-    }
     
     var passwordFieldHeight: CGFloat {
         isPasswordVisible ? CGFloat(40) : .zero
@@ -117,11 +108,10 @@ extension AuthenticationMode {
                                                                    selector: #selector(AuthViewController.pushEmailLoginView),
                                                                    text: LoginStrings.primaryAction.uppercased())
                                   ],
-
-                           primaryActionAnimationText: SignupStrings.primaryAnimationText,
-                           switchTargetMode: { .requestLoginCode }, isPasswordVisible: false,
-                           isWordPressVisible: false,
-                           showActionSeparator: false,
+                                  primaryActionAnimationText: SignupStrings.primaryAnimationText,
+                                  isPasswordVisible: false,
+                                  isWordPressVisible: false,
+                                  showActionSeparator: false,
                                   isIntroView: true)
     }
 
@@ -140,7 +130,6 @@ extension AuthenticationMode {
                                                            text: LoginStrings.secondaryAction)
                            ],
                            primaryActionAnimationText: LoginStrings.primaryAnimationText,
-                           switchTargetMode: { .signup },
                            isPasswordVisible: true,
                            isWordPressVisible: true,
                            showActionSeparator: true)
@@ -164,7 +153,6 @@ extension AuthenticationMode {
                                                            selector: #selector(AuthViewController.wordpressSSOAction), text: LoginStrings.wordpressAction)
                            ],
                            primaryActionAnimationText: MagicLinkStrings.primaryAnimationText,
-                           switchTargetMode: { .signup },
                            isPasswordVisible: false,
                            isWordPressVisible: true,
                            showActionSeparator: true)
@@ -182,7 +170,6 @@ extension AuthenticationMode {
                                                            text: SignupStrings.primaryAction)
                            ],
                            primaryActionAnimationText: SignupStrings.primaryAnimationText,
-                           switchTargetMode: { .requestLoginCode },
                            isPasswordVisible: false,
                            isWordPressVisible: false,
                            showActionSeparator: false)
