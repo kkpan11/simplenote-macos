@@ -354,8 +354,7 @@ extension AuthViewController {
 
     @objc
     func stopActionAnimation() {
-        //TODO: Fix animating title changes
-//        actionButton.title = mode.primaryActionText
+        actionButton.title = mode.action(withName: .primary)?.text ?? String()
         actionProgress.stopAnimation(nil)
     }
 }

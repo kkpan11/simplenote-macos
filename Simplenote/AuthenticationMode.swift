@@ -70,6 +70,14 @@ class AuthenticationMode: NSObject {
     }
 }
 
+// MARK: - Convenience Properties
+//
+extension AuthenticationMode {
+    func action(withName name: AuthenticationActionName) -> AuthenticationActionDescriptor? {
+        actions.first(where: { $0.name == name })
+    }
+}
+
 // MARK: - Static Properties
 //
 extension AuthenticationMode {
@@ -152,7 +160,7 @@ extension AuthenticationMode {
                                                            selector: #selector(AuthViewController.pushPasswordView),
                                                            text: NSLocalizedString("Enter password", comment: "Enter Password fallback Action")),
                            ],
-                           primaryActionAnimationText: "")
+                           primaryActionAnimationText: LoginStrings.primaryAnimationText)
     }
 
 }
