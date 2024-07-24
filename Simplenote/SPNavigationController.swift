@@ -7,8 +7,6 @@ class SPNavigationController: NSViewController {
     private var viewStack: [NSViewController] = []
     private var backButton: NSButton!
 
-    private var backButtonHeightConstraint: NSLayoutConstraint!
-
     var hideBackButton: Bool {
         viewStack.count < 2
     }
@@ -59,12 +57,11 @@ class SPNavigationController: NSViewController {
         button.bezelStyle = .accessoryBarAction
 
         view.addSubview(backButton)
-        backButtonHeightConstraint = backButton.heightAnchor.constraint(equalToConstant: 0)
         NSLayoutConstraint.activate([
             backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
             backButton.widthAnchor.constraint(equalToConstant: 50),
-            backButtonHeightConstraint
+            backButton.heightAnchor.constraint(equalToConstant: 30)
         ])
 
         return button
@@ -175,7 +172,6 @@ class SPNavigationController: NSViewController {
             fadingView?.animator().alphaValue = alpha
             leadingConstraint.animator().constant += view.frame.width * multiplier
             trailingConstraint.animator().constant += view.frame.width * multiplier
-            backButtonHeightConstraint.animator().constant = hideBackButton ? 0 : 30
             backButton.animator().isHidden = hideBackButton
         } completionHandler: {
             onCompletion()
