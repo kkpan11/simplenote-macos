@@ -68,7 +68,6 @@
 
 - (void)setMode:(AuthenticationMode *)mode {
     _mode = mode;
-    [self didUpdateAuthenticationMode];
 }
 
 

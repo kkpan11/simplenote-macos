@@ -69,6 +69,10 @@ extension AuthViewController {
 
         headerLabel.isHidden = mode.header == nil
     }
+
+    open override func viewDidAppear() {
+        ensureFirstTextFieldIsFirstResponder()
+    }
 }
 
 // MARK: - Dynamic Properties
@@ -93,6 +97,14 @@ extension AuthViewController {
     ///
     private var allActionViews: [NSButton] {
         [actionButton, secondaryActionButton, tertiaryButton, quarternaryButton]
+    }
+
+    private var allInputViews: [SPAuthenticationTextField] {
+        [usernameField, passwordField, codeTextField]
+    }
+
+    private var firstVisibleTextField: SPAuthenticationTextField? {
+        allInputViews.first(where: { $0.isHidden == false })
     }
 }
 
@@ -157,8 +169,8 @@ extension AuthViewController {
     /// Marks the Username Field as the First Responder
     ///
     @objc
-    func ensureUsernameIsFirstResponder() {
-        usernameField?.textField.becomeFirstResponder()
+    func ensureFirstTextFieldIsFirstResponder() {
+        firstVisibleTextField?.textField.becomeFirstResponder()
         view.needsDisplay = true
     }
 }
@@ -174,7 +186,7 @@ extension AuthViewController {
         }
 
         refreshInterface()
-        ensureUsernameIsFirstResponder()
+        ensureFirstTextFieldIsFirstResponder()
     }
 
     private func authViewController(with mode: AuthenticationMode, state: AuthenticationState) -> AuthViewController {
