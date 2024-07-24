@@ -3,6 +3,7 @@
 @import Simperium_OSX;
 
 @class AuthenticationMode;
+@class AuthenticationState;
 
 
 // MARK: - AuthViewController: Simperium's Authentication UI
@@ -27,6 +28,9 @@
 @property (nonatomic, strong) IBOutlet NSView                       *leadingSeparatorView;
 @property (nonatomic, strong) IBOutlet NSTextField                  *separatorLabel;
 @property (nonatomic, strong) IBOutlet NSView                       *trailingSeparatorView;
+@property (nonatomic, strong) IBOutlet NSView                       *quarternaryButtonView;
+@property (nonatomic, strong) IBOutlet NSButton                     *quarternaryButton;
+
 
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint           *passwordFieldHeightConstraint;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint           *secondaryActionHeightConstraint;
@@ -34,6 +38,7 @@
 
 @property (nonatomic, strong) SPAuthenticator                       *authenticator;
 @property (nonatomic, strong) AuthenticationMode                    *mode;
+@property (nonatomic, strong) AuthenticationState                   *state;
 
 - (void)pressedLogInWithPassword;
 - (void)pressedLoginWithMagicLink;

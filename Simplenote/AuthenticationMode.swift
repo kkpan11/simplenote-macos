@@ -1,5 +1,14 @@
 import Foundation
 
+// MARK: - State
+//
+@objcMembers
+class AuthenticationState: NSObject {
+    var username = String()
+    var password = String()
+    var code = String()
+}
+
 // MARK: - Authentication Elements
 //
 struct AuthenticationInputElements: OptionSet, Hashable {
@@ -152,6 +161,25 @@ extension AuthenticationMode {
                            primaryActionAnimationText: SignupStrings.primaryAnimationText,
                            isPasswordVisible: false)
     }
+
+    /// Login with Code: Submit Code + Authenticate the user
+    ///
+    static var loginWithCode: AuthenticationMode {
+        AuthenticationMode(title: NSLocalizedString("Enter Code", comment: "LogIn Interface Title"),
+                           header: NSLocalizedString("We've sent a code to {{EMAIL}}. The code will be valid for a few minutes.", comment: "Header for the Login with Code UI. Please preserve the {{EMAIL}} string as is!"),
+                           inputElements: [.code, .actionSeparator],
+                           actions: [
+                            AuthenticationActionDescriptor(name: .primary,
+                                                           selector: #selector(AuthViewController.performLogInWithCode),
+                                                           text: NSLocalizedString("Log In", comment: "LogIn Interface Title")),
+                            AuthenticationActionDescriptor(name: .quaternary,
+                                                           selector: #selector(AuthViewController.pushPasswordView),
+                                                           text: NSLocalizedString("Enter password", comment: "Enter Password fallback Action")),
+                           ],
+                           primaryActionAnimationText: "",
+                           isPasswordVisible: false)
+    }
+
 }
 
 

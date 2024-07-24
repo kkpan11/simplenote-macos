@@ -6,6 +6,10 @@ extension AuthViewController {
 
     @objc
     func setupInterface() {
+        if state == nil {
+            state = AuthenticationState()
+        }
+
         simplenoteTitleView.stringValue = "Simplenote"
         simplenoteSubTitleView.textColor = .simplenoteGray50Color
         simplenoteSubTitleView.stringValue = NSLocalizedString("The simplest way to keep notes.", comment: "Simplenote subtitle")
@@ -20,17 +24,26 @@ extension AuthViewController {
         passwordField.placeholderString = Localization.passwordPlaceholder
         passwordField.delegate = self
 
+        codeTextField.placeholderString = Localization.codePlaceholder
+        codeTextField.delegate = self
+
         // Secondary Action
         secondaryActionButton.contentTintColor = .simplenoteBrandColor
 
-        // WordPress SSO
-
+        // tertiary button
         tertiaryButton.contentTintColor = .white
         tertiaryButton.wantsLayer = true
         tertiaryButton.layer?.backgroundColor = NSColor.simplenoteWPBlue50Color.cgColor
         tertiaryButton.layer?.cornerRadius = 5
 
+        // quarternary button
+        quarternaryButtonView.wantsLayer = true
+        quarternaryButtonView.layer?.borderWidth = 2
+        quarternaryButtonView.layer?.borderColor = .black
+        quarternaryButtonView.layer?.cornerRadius = 5
+
         setupActionsSeparatorView()
+        setupAdditionalButtons()
     }
 
     private func setupActionsSeparatorView() {
@@ -40,6 +53,13 @@ extension AuthViewController {
         trailingSeparatorView.layer?.backgroundColor = NSColor.lightGray.cgColor
 
         separatorLabel.textColor = .lightGray
+    }
+
+    private func setupAdditionalButtons() {
+        let modeActions = mode.actions
+
+        tertiaryButtonContainerView.isHidden = !modeActions.contains(where: { $0.name == .tertiary })
+        quarternaryButtonView.isHidden = !modeActions.contains(where: { $0.name == .quaternary })
     }
 }
 
@@ -64,7 +84,7 @@ extension AuthViewController {
     /// # All of the Action Views
     ///
     private var allActionViews: [NSButton] {
-        [actionButton, secondaryActionButton, tertiaryButton]
+        [actionButton, secondaryActionButton, tertiaryButton, quarternaryButton]
     }
 }
 
@@ -84,7 +104,8 @@ extension AuthViewController {
         let viewMap: [AuthenticationActionName: NSButton] = [
             .primary: actionButton,
             .secondary: secondaryActionButton,
-            .tertiary: tertiaryButton
+            .tertiary: tertiaryButton,
+            .quaternary: quarternaryButton
         ]
 
         allActionViews.forEach({
@@ -114,6 +135,7 @@ extension AuthViewController {
 
         usernameField.isHidden          = !inputElements.contains(.username)
         passwordField.isHidden          = !inputElements.contains(.password)
+        codeTextField.isHidden          = !inputElements.contains(.code)
         actionsSeparatorView.isHidden   = !inputElements.contains(.actionSeparator)
 
     }
@@ -187,9 +209,10 @@ extension AuthViewController {
         ensureUsernameIsFirstResponder()
     }
 
-    private func authViewController(with mode: AuthenticationMode) -> AuthViewController {
+    private func authViewController(with mode: AuthenticationMode, state: AuthenticationState) -> AuthViewController {
         let vc = AuthViewController()
         vc.authenticator = authenticator
+        vc.state = state
         vc.mode = mode
 
         return vc
@@ -197,12 +220,21 @@ extension AuthViewController {
 
     @objc
     func pushEmailLoginView() {
-        containingNavigationController?.push(authViewController(with: .requestLoginCode))
+        containingNavigationController?.push(authViewController(with: .requestLoginCode, state: state))
     }
 
     @objc
     func pushSignupView() {
-        containingNavigationController?.push(authViewController(with: .signup))
+        containingNavigationController?.push(authViewController(with: .signup, state: state))
+    }
+
+    @objc
+    func pushPasswordView() {
+        //TODO: Present password view
+    }
+
+    func pushCodeLoginView() {
+        containingNavigationController?.push(authViewController(with: .loginWithCode, state: state))
     }
 }
 
@@ -256,16 +288,28 @@ extension AuthViewController {
         startActionAnimation()
         setInterfaceEnabled(false)
 
+
         do {
             let email = usernameText
             let remote = LoginRemote()
             try await remote.requestLoginEmail(email: email)
 
-            presentMagicLinkRequestedView(email: email)
-            
+            pushCodeLoginView()
         } catch {
             let statusCode = (error as? RemoteError)?.statusCode ?? .zero
             self.showAuthenticationError(forCode: statusCode, responseString: nil)
+        }
+    }
+
+    @MainActor
+    func loginWithCode(username: String, code: String) async throws {
+        let remote = LoginRemote()
+
+        do {
+            let confirmation = try await remote.requestLoginConfirmation(email: username, authCode: code.uppercased())
+            authenticator.authenticate(withUsername: confirmation.username, token: confirmation.syncToken)
+        } catch {
+            //TODO: Handle errors
         }
     }
 
@@ -281,6 +325,11 @@ extension AuthViewController {
         SPTracker.trackWPCCButtonPressed()
     }
 
+    @objc
+    func performLogInWithCode() {
+
+    }
+
     @IBAction
     func handleNewlineInField(_ field: NSControl) {
         if field.isEqual(passwordField.textField) {
@@ -290,6 +339,25 @@ extension AuthViewController {
             }
 
             performSelector(onMainThread: primaryActionDescriptor.selector, with: nil, waitUntilDone: false)
+            return
+        }
+    }
+
+    @objc
+    func updateState(with object: Any) {
+        guard let field = object as? NSTextField,
+                let superView = field.superview else {
+            return
+        }
+
+        switch superView {
+        case usernameField:
+            state.username = usernameField.stringValue
+        case passwordField:
+            state.password = passwordField.stringValue
+        case codeTextField:
+            state.code = passwordField.stringValue
+        default:
             return
         }
     }
@@ -324,6 +392,7 @@ extension AuthViewController {
         view.window?.transition(to: vc)
     }
     
+    //TODO: Drop this method?
     func presentMagicLinkRequestedView(email: String) {
         guard let authWindowController else {
             return
@@ -386,6 +455,7 @@ extension AuthViewController {
 private enum Localization {
     static let emailPlaceholder = NSLocalizedString("Email", comment: "Placeholder text for login field")
     static let passwordPlaceholder = NSLocalizedString("Password", comment: "Placeholder text for password field")
+    static let codePlaceholder = NSLocalizedString("Code", comment: "Placeholder text for code field")
     static let compromisedPasswordAlert = NSLocalizedString("Compromised Password", comment: "Compromised passsword alert title")
     static let compromisedPasswordMessage = NSLocalizedString("This password has appeared in a data breach, which puts your account at high risk of compromise. To protect your data, you'll need to update your password before being able to log in again.", comment: "Compromised password alert message")
     static let changePasswordAction = NSLocalizedString("Change Password", comment: "Change password action")

@@ -364,6 +364,8 @@
     if (currentEvent.type == NSEventTypeKeyDown && [currentEvent.charactersIgnoringModifiers isEqualToString:@"\r"]) {
         [self handleNewlineInField:obj.object];
     }
+
+    [self updateStateWith:obj.object];
 }
 
 @end
