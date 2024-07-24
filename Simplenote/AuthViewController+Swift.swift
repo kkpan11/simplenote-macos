@@ -45,6 +45,7 @@ extension AuthViewController {
         setupActionsSeparatorView()
         setupAdditionalButtons()
         setupLabels()
+        setupHeaderView()
     }
 
     private func setupActionsSeparatorView() {
@@ -66,8 +67,16 @@ extension AuthViewController {
     private func setupLabels() {
         simplenoteTitleView.isHidden = !mode.isIntroView
         simplenoteSubTitleView.isHidden = !mode.isIntroView
+    }
 
-        headerLabel.isHidden = mode.header == nil
+    private func setupHeaderView() {
+        guard let headerText = mode.buildHeaderText(email: state.username) else {
+            headerLabel.isHidden = true
+            return
+        }
+
+        headerLabel.attributedStringValue = headerText
+        headerLabel.isHidden = false
     }
 
     open override func viewDidAppear() {

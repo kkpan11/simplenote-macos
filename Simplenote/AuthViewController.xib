@@ -68,7 +68,7 @@
                         </textField>
                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xA2-cU-2CM" userLabel="headerLabel">
                             <rect key="frame" x="134" y="454" width="53" height="16"/>
-                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Header" id="pyn-HV-JBL">
+                            <textFieldCell key="cell" alignment="center" title="Header" id="pyn-HV-JBL">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

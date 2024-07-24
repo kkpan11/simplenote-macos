@@ -78,6 +78,26 @@ extension AuthenticationMode {
     }
 }
 
+// MARK: - Public Properties
+//
+extension AuthenticationMode {
+
+    func buildHeaderText(email: String) -> NSAttributedString? {
+        guard let header = header?.replacingOccurrences(of: "{{EMAIL}}", with: email) else {
+            return nil
+        }
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+
+        return NSMutableAttributedString(string: header, attributes: [
+            .font: NSFont.systemFont(ofSize: 16, weight: .regular),
+            .paragraphStyle: paragraphStyle
+        ], highlighting: email, highlightAttributes: [
+            .font: NSFont.systemFont(ofSize: 16, weight: .bold)
+        ])
+    }
+}
+
 // MARK: - Static Properties
 //
 extension AuthenticationMode {
