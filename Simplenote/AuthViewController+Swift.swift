@@ -299,6 +299,12 @@ extension AuthViewController {
             setInterfaceEnabled(true)
         }
 
+        clearAuthenticationError()
+
+        if !validateCode() {
+            return
+        }
+
         startActionAnimation()
         setInterfaceEnabled(false)
 

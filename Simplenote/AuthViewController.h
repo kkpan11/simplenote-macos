@@ -44,6 +44,7 @@
 - (void)pressedLoginWithMagicLink;
 - (void)pressedSignUp;
 - (void)openForgotPasswordURL;
+- (BOOL)validateCode;
 
 - (void)setInterfaceEnabled:(BOOL)enabled;
 

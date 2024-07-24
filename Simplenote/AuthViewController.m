@@ -254,6 +254,15 @@
     return [self.validator mustPerformPasswordResetWithUsername:self.usernameText password:self.passwordText];
 }
 
+- (BOOL)validateCodeInput {
+    if (self.state.code.length >= 6) {
+        return YES;
+    }
+
+    [self showAuthenticationError:NSLocalizedString(@"Login Code is too short", comment: @"Message displayed when a login code is too short")];
+    return NO;
+}
+
 - (BOOL)validateSignIn {
     return [self validateConnection] &&
            [self validateUsername] &&
@@ -268,6 +277,11 @@
 - (BOOL)validateSignUp {
     return [self validateConnection] &&
            [self validateUsername];
+}
+
+- (BOOL)validateCode {
+    return [self validateConnection] &&
+    [self validateCodeInput];
 }
 
 - (void)showAuthenticationError:(NSString *)errorMessage {
