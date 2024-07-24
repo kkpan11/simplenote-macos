@@ -302,7 +302,15 @@ extension AuthViewController {
     }
 
     @MainActor
-    func loginWithCode(username: String, code: String) async throws {
+    func loginWithCode(username: String, code: String) async {
+        defer {
+            stopActionAnimation()
+            setInterfaceEnabled(true)
+        }
+
+        startActionAnimation()
+        setInterfaceEnabled(false)
+
         let remote = LoginRemote()
 
         do {
@@ -327,7 +335,9 @@ extension AuthViewController {
 
     @objc
     func performLogInWithCode() {
-        //TODO: Add login with code
+        Task {
+            await loginWithCode(username: state.username, code: state.code)
+        }
     }
 
     @IBAction
@@ -356,7 +366,7 @@ extension AuthViewController {
         case passwordField:
             state.password = passwordField.stringValue
         case codeTextField:
-            state.code = passwordField.stringValue
+            state.code = codeTextField.stringValue
         default:
             return
         }
