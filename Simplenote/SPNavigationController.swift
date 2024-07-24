@@ -129,12 +129,7 @@ class SPNavigationController: NSViewController {
 
     // MARK: - Remove view from stack
     func popViewController() {
-        guard viewStack.count > 1 else {
-            return
-        }
-
-        let currentViewController = viewStack.removeLast()
-        guard let nextViewController = viewStack.last else {
+        guard viewStack.count > 1, let currentViewController = viewStack.popLast(), let nextViewController = viewStack.last else {
             return
         }
   
