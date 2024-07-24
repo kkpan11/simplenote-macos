@@ -283,9 +283,9 @@ extension AuthViewController {
 
 
         do {
-//            let email = usernameText
-//            let remote = LoginRemote()
-//            try await remote.requestLoginEmail(email: email)
+            let email = usernameText
+            let remote = LoginRemote()
+            try await remote.requestLoginEmail(email: email)
 
             pushCodeLoginView()
         } catch {
