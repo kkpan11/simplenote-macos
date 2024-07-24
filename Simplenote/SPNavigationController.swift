@@ -7,8 +7,6 @@ class SPNavigationController: NSViewController {
     private var viewStack: [NSViewController] = []
     private var backButton: NSButton!
 
-    private var backButtonHeightConstraint: NSLayoutConstraint!
-
     var hideBackButton: Bool {
         viewStack.count < 2
     }
@@ -40,12 +38,19 @@ class SPNavigationController: NSViewController {
         initialView.translatesAutoresizingMaskIntoConstraints = false
 
         view.addSubview(initialView)
+        
+        /// "Hint" we wanna occupy as little as possible. This constraint is meant to be broken, but the layout system will
+        /// attempt to reduce the Height, when possible
+        ///
+        let minimumHeightConstraint = view.heightAnchor.constraint(equalToConstant: .zero)
+        minimumHeightConstraint.priority = .init(1)
 
         NSLayoutConstraint.activate([
             initialView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             initialView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             initialView.topAnchor.constraint(equalTo: backButton.bottomAnchor),
-            initialView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            initialView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            minimumHeightConstraint
         ])
     }
 
@@ -59,12 +64,11 @@ class SPNavigationController: NSViewController {
         button.bezelStyle = .accessoryBarAction
 
         view.addSubview(backButton)
-        backButtonHeightConstraint = backButton.heightAnchor.constraint(equalToConstant: 0)
         NSLayoutConstraint.activate([
             backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
             backButton.widthAnchor.constraint(equalToConstant: 50),
-            backButtonHeightConstraint
+            backButton.heightAnchor.constraint(equalToConstant: 30)
         ])
 
         return button
@@ -81,11 +85,15 @@ class SPNavigationController: NSViewController {
         let currentView = topViewController?.view
 
         attach(child: viewController)
-        if let currentView {
-            currentView.removeConstraints(currentView.constraints)
+        
+        /// Disable Bottom Constraint
+        /// This allows for the enclosing NSWindow to resize, just enough to fit the `nextViewController.view`
+        ///
+        if let currentView, let bottomConstraint = view.firstContraint(firstView: currentView, firstAttribute: .bottom) {
+            bottomConstraint.isActive = false
         }
 
-        guard let (leadingAnchor, trailingAnchor) = attachView(subview: viewController.view, currentView: currentView) else {
+        guard let (leadingAnchor, trailingAnchor) = attachView(subview: viewController.view, below: currentView) else {
             return
         }
 
@@ -107,12 +115,13 @@ class SPNavigationController: NSViewController {
     }
 
     @discardableResult
-    private func attachView(subview: NSView, currentView: NSView?, behindCurrent: Bool = false) -> (leading: NSLayoutConstraint, trailing: NSLayoutConstraint)? {
-        if behindCurrent {
-            view.addSubview(subview, positioned: .below, relativeTo: currentView)
+    private func attachView(subview: NSView, below siblingView: NSView?) -> (leading: NSLayoutConstraint, trailing: NSLayoutConstraint)? {
+        if let siblingView {
+            view.addSubview(subview, positioned: .below, relativeTo: siblingView)
         } else {
             view.addSubview(subview)
         }
+
         subview.translatesAutoresizingMaskIntoConstraints = false
 
         let leadingAnchor = subview.leadingAnchor.constraint(equalTo: view.leadingAnchor)
@@ -131,17 +140,19 @@ class SPNavigationController: NSViewController {
 
     // MARK: - Remove view from stack
     func popViewController() {
-        guard viewStack.count > 1 else {
+        guard viewStack.count > 1, let currentViewController = viewStack.popLast(), let nextViewController = viewStack.last else {
             return
         }
-
-        let currentViewController = viewStack.removeLast()
-        guard let nextViewController = viewStack.last else {
-            return
+        
+        /// Disable Bottom Constraint
+        /// This allows for the enclosing NSWindow to resize, just enough to fit the `nextViewController.view`
+        ///
+        if let currentBottomConstraint = view.firstContraint(firstView: currentViewController.view, firstAttribute: .bottom) {
+            currentBottomConstraint.isActive = false
         }
-
-        attachView(subview: nextViewController.view, currentView: currentViewController.view, behindCurrent: true)
-
+  
+        attachView(subview: nextViewController.view, below: currentViewController.view)
+        
         animateTransition(slidingView: currentViewController.view, fadingView: nextViewController.view, direction: .leadingToTrailing) {
             self.dettach(child: currentViewController)
         }
@@ -175,7 +186,6 @@ class SPNavigationController: NSViewController {
             fadingView?.animator().alphaValue = alpha
             leadingConstraint.animator().constant += view.frame.width * multiplier
             trailingConstraint.animator().constant += view.frame.width * multiplier
-            backButtonHeightConstraint.animator().constant = hideBackButton ? 0 : 30
             backButton.animator().isHidden = hideBackButton
         } completionHandler: {
             onCompletion()
