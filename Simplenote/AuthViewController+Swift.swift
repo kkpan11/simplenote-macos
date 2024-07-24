@@ -6,10 +6,6 @@ extension AuthViewController {
 
     @objc
     func setupInterface() {
-        if state == nil {
-            state = AuthenticationState()
-        }
-
         simplenoteTitleView.stringValue = "Simplenote"
         simplenoteSubTitleView.textColor = .simplenoteGray50Color
         simplenoteSubTitleView.stringValue = NSLocalizedString("The simplest way to keep notes.", comment: "Simplenote subtitle")
@@ -203,32 +199,32 @@ extension AuthViewController {
         ensureFirstTextFieldIsFirstResponder()
     }
 
-    private func authViewController(with mode: AuthenticationMode, state: AuthenticationState) -> AuthViewController {
-        let vc = AuthViewController()
-        vc.authenticator = authenticator
-        vc.state = state
-        vc.mode = mode
+    private func pushNewAuthViewController(with mode: AuthenticationMode, state: AuthenticationState) {
+        guard let authVC = AuthViewController(mode: mode, state: state) else {
+            return
+        }
+        authVC.authenticator = authenticator
 
-        return vc
+        containingNavigationController?.push(authVC)
     }
 
     @objc
     func pushEmailLoginView() {
-        containingNavigationController?.push(authViewController(with: .requestLoginCode, state: state))
+        pushNewAuthViewController(with: .requestLoginCode, state: state)
     }
 
     @objc
     func pushSignupView() {
-        containingNavigationController?.push(authViewController(with: .signup, state: state))
+        pushNewAuthViewController(with: .signup, state: state)
     }
 
     @objc
     func pushPasswordView() {
-        containingNavigationController?.push(authViewController(with: .loginWithPassword(), state: state))
+        pushNewAuthViewController(with: .loginWithPassword(), state: state)
     }
 
     func pushCodeLoginView() {
-        containingNavigationController?.push(authViewController(with: .loginWithCode, state: state))
+        pushNewAuthViewController(with: .loginWithCode, state: state)
     }
 }
 

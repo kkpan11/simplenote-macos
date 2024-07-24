@@ -26,7 +26,7 @@ class AuthWindowController: NSWindowController, SPAuthenticationInterface {
     }
 
     init() {
-        self.authViewController = AuthViewController()
+        self.authViewController = AuthViewController(mode: .onboarding, state: AuthenticationState())
         let navigationController = SPNavigationController(initialViewController: authViewController)
         let window = NSWindow(contentViewController: navigationController)
         window.styleMask = [.borderless, .closable, .titled, .fullSizeContentView]
