@@ -38,7 +38,7 @@ extension AuthViewController {
 
         // quarternary button
         quarternaryButtonView.wantsLayer = true
-        quarternaryButtonView.layer?.borderWidth = 2
+        quarternaryButtonView.layer?.borderWidth = 1
         quarternaryButtonView.layer?.borderColor = .black
         quarternaryButtonView.layer?.cornerRadius = 5
 
