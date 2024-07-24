@@ -230,7 +230,7 @@ extension AuthViewController {
 
     @objc
     func pushPasswordView() {
-        //TODO: Present password view
+        containingNavigationController?.push(authViewController(with: .loginWithPassword(), state: state))
     }
 
     func pushCodeLoginView() {
@@ -327,7 +327,7 @@ extension AuthViewController {
 
     @objc
     func performLogInWithCode() {
-
+        //TODO: Add login with code
     }
 
     @IBAction

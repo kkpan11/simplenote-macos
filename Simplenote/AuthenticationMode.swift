@@ -113,7 +113,7 @@ extension AuthenticationMode {
     static func loginWithPassword(header: String? = nil) -> AuthenticationMode {
         AuthenticationMode(title: NSLocalizedString("Log In with Password", comment: "LogIn Interface Title"),
                            header: header,
-                           inputElements: [.username, .password],
+                           inputElements: [.password],
                            actions: [
                             AuthenticationActionDescriptor(name: .primary,
                                                            selector: #selector(AuthViewController.pressedLogInWithPassword),
@@ -137,9 +137,6 @@ extension AuthenticationMode {
                             AuthenticationActionDescriptor(name: .primary, 
                                                            selector: #selector(AuthViewController.pressedLoginWithMagicLink),
                                                            text: MagicLinkStrings.primaryAction),
-                            AuthenticationActionDescriptor(name: .secondary,
-                                                           selector: #selector(AuthViewController.switchToPasswordAuth),
-                                                           text: MagicLinkStrings.secondaryAction),
                             AuthenticationActionDescriptor(name: .tertiary,
                                                            selector: #selector(AuthViewController.wordpressSSOAction), text: LoginStrings.wordpressAction)
                            ],

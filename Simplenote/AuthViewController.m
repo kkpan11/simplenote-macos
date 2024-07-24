@@ -168,7 +168,7 @@
     [self startActionAnimation];
     [self setInterfaceEnabled:NO];
 
-    [self.authenticator authenticateWithUsername:self.usernameText password:self.passwordText success:^{
+    [self.authenticator authenticateWithUsername:self.state.username password:self.state.password success:^{
         // NO-OP
     } failure:^(NSInteger responseCode, NSString *responseString, NSError *error) {
         [self showAuthenticationErrorForCode:responseCode responseString: responseString];
@@ -230,7 +230,7 @@
 
 - (BOOL)validateUsername {
     NSError *error = nil;
-    if ([self.validator validateUsername:self.usernameText error:&error]) {
+    if ([self.validator validateUsername:self.state.username error:&error]) {
         return YES;
     }
 
@@ -241,7 +241,7 @@
 
 - (BOOL)validatePasswordSecurity {
     NSError *error = nil;
-    if ([self.validator validatePasswordWithUsername:self.usernameText password:self.passwordText error:&error]) {
+    if ([self.validator validatePasswordWithUsername:self.state.username password:self.state.password error:&error]) {
         return YES;
     }
 
