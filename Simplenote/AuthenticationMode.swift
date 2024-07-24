@@ -52,8 +52,7 @@ class AuthenticationMode: NSObject {
     let actions: [AuthenticationActionDescriptor]
 
     let primaryActionAnimationText: String
-    
-    let isPasswordVisible: Bool
+
     let isIntroView: Bool
 
     init(title: String,
@@ -61,31 +60,15 @@ class AuthenticationMode: NSObject {
          inputElements: AuthenticationInputElements,
          actions: [AuthenticationActionDescriptor],
          primaryActionAnimationText: String,
-         isPasswordVisible: Bool,
          isIntroView: Bool = false) {
         self.title = title
         self.header = header
         self.inputElements = inputElements
         self.actions = actions
         self.primaryActionAnimationText =  primaryActionAnimationText
-        self.isPasswordVisible = isPasswordVisible
         self.isIntroView = isIntroView
     }
 }
-
-// MARK: - Dynamic Properties
-//
-extension AuthenticationMode {
-    
-    var passwordFieldHeight: CGFloat {
-        isPasswordVisible ? CGFloat(40) : .zero
-    }
-
-    var passwordFieldAlpha: CGFloat {
-        isPasswordVisible ? AppKitConstants.alpha1_0 : AppKitConstants.alpha0_0
-    }
-}
-
 
 // MARK: - Static Properties
 //
@@ -104,7 +87,6 @@ extension AuthenticationMode {
                                                                    text: LoginStrings.primaryAction.uppercased())
                                   ],
                                   primaryActionAnimationText: SignupStrings.primaryAnimationText,
-                                  isPasswordVisible: false,
                                   isIntroView: true)
     }
 
@@ -122,8 +104,7 @@ extension AuthenticationMode {
                                                            selector: #selector(AuthViewController.openForgotPasswordURL),
                                                            text: LoginStrings.secondaryAction)
                            ],
-                           primaryActionAnimationText: LoginStrings.primaryAnimationText,
-                           isPasswordVisible: true)
+                           primaryActionAnimationText: LoginStrings.primaryAnimationText)
     }
 
     /// Auth Mode: Login is handled via Magic Links!
@@ -140,8 +121,7 @@ extension AuthenticationMode {
                             AuthenticationActionDescriptor(name: .tertiary,
                                                            selector: #selector(AuthViewController.wordpressSSOAction), text: LoginStrings.wordpressAction)
                            ],
-                           primaryActionAnimationText: MagicLinkStrings.primaryAnimationText,
-                           isPasswordVisible: false)
+                           primaryActionAnimationText: MagicLinkStrings.primaryAnimationText)
     }
 
     /// Auth Mode: SignUp
@@ -155,8 +135,7 @@ extension AuthenticationMode {
                                                            selector: #selector(AuthViewController.pressedSignUp),
                                                            text: SignupStrings.primaryAction)
                            ],
-                           primaryActionAnimationText: SignupStrings.primaryAnimationText,
-                           isPasswordVisible: false)
+                           primaryActionAnimationText: SignupStrings.primaryAnimationText)
     }
 
     /// Login with Code: Submit Code + Authenticate the user
@@ -173,8 +152,7 @@ extension AuthenticationMode {
                                                            selector: #selector(AuthViewController.pushPasswordView),
                                                            text: NSLocalizedString("Enter password", comment: "Enter Password fallback Action")),
                            ],
-                           primaryActionAnimationText: "",
-                           isPasswordVisible: false)
+                           primaryActionAnimationText: "")
     }
 
 }

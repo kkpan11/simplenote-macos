@@ -44,6 +44,7 @@ extension AuthViewController {
 
         setupActionsSeparatorView()
         setupAdditionalButtons()
+        setupLabels()
     }
 
     private func setupActionsSeparatorView() {
@@ -60,6 +61,13 @@ extension AuthViewController {
 
         tertiaryButtonContainerView.isHidden = !modeActions.contains(where: { $0.name == .tertiary })
         quarternaryButtonView.isHidden = !modeActions.contains(where: { $0.name == .quaternary })
+    }
+
+    private func setupLabels() {
+        simplenoteTitleView.isHidden = !mode.isIntroView
+        simplenoteSubTitleView.isHidden = !mode.isIntroView
+
+        headerLabel.isHidden = mode.header == nil
     }
 }
 
@@ -92,12 +100,11 @@ extension AuthViewController {
 //
 extension AuthViewController {
 
-    @objc(refreshInterfaceWithAnimation:)
-    func refreshInterface(animated: Bool) {
+    @objc(refreshInterface)
+    func refreshInterface() {
         clearAuthenticationError()
         refreshActionViews()
         refreshInputViews()
-        refreshVisibleComponents(animated: animated)
     }
 
     private func refreshActionViews() {
@@ -140,45 +147,6 @@ extension AuthViewController {
 
     }
 
-    /// Shows / Hides relevant components, based on the specified state
-    ///
-    func refreshVisibleComponents(animated: Bool) {
-        if animated {
-            refreshVisibleComponentsWithAnimation()
-        } else {
-            refreshVisibleComponentsWithoutAnimation()
-        }
-    }
-
-    /// Shows / Hides relevant components, based on the specified state
-    /// - Note: Trust me on this one. It's cleaner to have specific methods, rather than making a single one support the `animated` flag.
-    ///         Notice that AppKit requires us to go thru `animator()`.
-    ///
-    func refreshVisibleComponentsWithoutAnimation() {
-        passwordFieldHeightConstraint.constant  = mode.passwordFieldHeight
-
-        passwordField.alphaValue                = mode.passwordFieldAlpha
-
-        simplenoteTitleView.isHidden = !mode.isIntroView
-        simplenoteSubTitleView.isHidden = !mode.isIntroView
-
-        headerLabel.isHidden = mode.header == nil
-    }
-
-    /// Animates Visible / Invisible components, based on the specified state
-    ///
-    func refreshVisibleComponentsWithAnimation() {
-        NSAnimationContext.runAnimationGroup { context in
-            context.duration = AppKitConstants.duration0_2
-
-            passwordFieldHeightConstraint.animator().constant   = mode.passwordFieldHeight
-
-            passwordField.alphaValue            = mode.passwordFieldAlpha
-            
-            view.layoutSubtreeIfNeeded()
-        }
-    }
-
     /// Drops any Errors onscreen
     ///
     @objc
@@ -205,7 +173,7 @@ extension AuthViewController {
             return
         }
 
-        refreshInterface(animated: true)
+        refreshInterface()
         ensureUsernameIsFirstResponder()
     }
 

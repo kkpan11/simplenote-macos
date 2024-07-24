@@ -38,7 +38,7 @@
     [super viewDidLoad];
 
     [self setupInterface];
-    [self refreshInterfaceWithAnimation:NO];
+    [self refreshInterface];
     [self startListeningToNotifications];
 }
 
