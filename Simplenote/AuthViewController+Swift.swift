@@ -311,7 +311,7 @@ extension AuthViewController {
 
     @IBAction
     func handleNewlineInField(_ field: NSControl) {
-        if field.isEqual(passwordField.textField) {
+        if shouldHandleNewLine(in: field) {
             guard let primaryActionDescriptor = mode.actions.first(where: { $0.name == .primary }) else {
                 assertionFailure()
                 return
@@ -320,6 +320,10 @@ extension AuthViewController {
             performSelector(onMainThread: primaryActionDescriptor.selector, with: nil, waitUntilDone: false)
             return
         }
+    }
+
+    func shouldHandleNewLine(in field: NSControl) -> Bool {
+        field.isEqual(usernameField.textField) || field.isEqual(passwordField.textField) || field.isEqual(codeTextField.textField)
     }
 
     @objc
