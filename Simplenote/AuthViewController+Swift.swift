@@ -42,6 +42,8 @@ extension AuthViewController {
         quarternaryButtonView.layer?.borderColor = .black
         quarternaryButtonView.layer?.cornerRadius = 5
 
+        actionProgress.set(tintColor: .white)
+
         setupActionsSeparatorView()
         setupAdditionalButtons()
         setupLabels()
@@ -275,15 +277,15 @@ extension AuthViewController {
             stopActionAnimation()
             setInterfaceEnabled(true)
         }
-        
+
         startActionAnimation()
         setInterfaceEnabled(false)
 
 
         do {
-            let email = usernameText
-            let remote = LoginRemote()
-            try await remote.requestLoginEmail(email: email)
+//            let email = usernameText
+//            let remote = LoginRemote()
+//            try await remote.requestLoginEmail(email: email)
 
             pushCodeLoginView()
         } catch {
