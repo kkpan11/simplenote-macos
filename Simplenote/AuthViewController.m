@@ -63,14 +63,6 @@
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:forgotPasswordURL]];
 }
 
-
-#pragma mark - Dynamic Properties
-
-- (void)setMode:(AuthenticationMode *)mode {
-    _mode = mode;
-}
-
-
 #pragma mark - Interface Helpers
 
 - (void)setInterfaceEnabled:(BOOL)enabled {
