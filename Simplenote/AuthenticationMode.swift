@@ -1,43 +1,66 @@
 import Foundation
 
+// MARK: - Authentication Elements
+//
+struct AuthenticationInputElements: OptionSet, Hashable {
+    let rawValue: UInt
+
+    static let username         = AuthenticationInputElements(rawValue: 1 << 0)
+    static let password         = AuthenticationInputElements(rawValue: 1 << 1)
+    static let code             = AuthenticationInputElements(rawValue: 1 << 2)
+    static let actionSeparator  = AuthenticationInputElements(rawValue: 1 << 3)
+}
+
+// MARK: - Authentication Actions
+//
+enum AuthenticationActionName {
+    case primary
+    case secondary
+    case tertiary
+    case quaternary
+}
+
+struct AuthenticationActionDescriptor {
+    let name: AuthenticationActionName
+    let selector: Selector
+    let text: String?
+    let attributedText: NSAttributedString?
+
+    init(name: AuthenticationActionName, selector: Selector, text: String?, attributedText: NSAttributedString? = nil) {
+        self.name = name
+        self.selector = selector
+        self.text = text
+        self.attributedText = attributedText
+    }
+}
 
 // MARK: - AuthenticationMode
 //
 class AuthenticationMode: NSObject {
-    let primaryActionText: String
-    let primaryActionAnimationText: String
-    let primaryActionSelector: Selector
-    
-    let secondaryActionText: String?
-    let secondaryActionSelector: Selector?
+    let title: String
+    let header: String?
+    let inputElements: AuthenticationInputElements
+    let actions: [AuthenticationActionDescriptor]
 
-    let switchTargetMode: () -> AuthenticationMode
+    let primaryActionAnimationText: String
     
     let isPasswordVisible: Bool
-    let isSecondaryActionVisible: Bool
-    let isWordPressVisible: Bool
-    let showActionSeparator: Bool
+    let isIntroView: Bool
 
-    init(primaryActionText: String, 
+    init(title: String,
+         header: String? = nil,
+         inputElements: AuthenticationInputElements,
+         actions: [AuthenticationActionDescriptor],
          primaryActionAnimationText: String,
-         primaryActionSelector: Selector,
-         secondaryActionText: String?,
-         secondaryActionSelector: Selector?,
-         switchTargetMode: @escaping () -> AuthenticationMode,
          isPasswordVisible: Bool,
-         isSecondaryActionVisible: Bool,
-         isWordPressVisible: Bool,
-         showActionSeparator: Bool) {
-        self.primaryActionText = primaryActionText
+         isIntroView: Bool = false) {
+        self.title = title
+        self.header = header
+        self.inputElements = inputElements
+        self.actions = actions
         self.primaryActionAnimationText =  primaryActionAnimationText
-        self.primaryActionSelector = primaryActionSelector
-        self.secondaryActionText = secondaryActionText
-        self.secondaryActionSelector = secondaryActionSelector
-        self.switchTargetMode = switchTargetMode
         self.isPasswordVisible = isPasswordVisible
-        self.isSecondaryActionVisible = isSecondaryActionVisible
-        self.isWordPressVisible = isWordPressVisible
-        self.showActionSeparator = showActionSeparator
+        self.isIntroView = isIntroView
     }
 }
 
@@ -45,33 +68,12 @@ class AuthenticationMode: NSObject {
 //
 extension AuthenticationMode {
     
-    @objc
-    func nextMode() -> AuthenticationMode {
-        switchTargetMode()
-    }
-    
     var passwordFieldHeight: CGFloat {
         isPasswordVisible ? CGFloat(40) : .zero
     }
-    
-    var secondaryActionFieldHeight: CGFloat {
-        isSecondaryActionVisible ? CGFloat(20) : .zero
-    }
-    
-    var wordPressSSOFieldHeight: CGFloat {
-        isWordPressVisible ? CGFloat(40) : .zero
-    }
-    
+
     var passwordFieldAlpha: CGFloat {
         isPasswordVisible ? AppKitConstants.alpha1_0 : AppKitConstants.alpha0_0
-    }
-    
-    var secondaryActionFieldAlpha: CGFloat {
-        isSecondaryActionVisible ? AppKitConstants.alpha1_0 : AppKitConstants.alpha0_0
-    }
-    
-    var wordPressSSOFieldAlpha: CGFloat {
-        isWordPressVisible ? AppKitConstants.alpha1_0 : AppKitConstants.alpha0_0
     }
 }
 
@@ -79,53 +81,76 @@ extension AuthenticationMode {
 // MARK: - Static Properties
 //
 extension AuthenticationMode {
-    
+    @objc
+    static var onboarding: AuthenticationMode {
+        return AuthenticationMode(title: "Onboarding",
+                                  header: nil,
+                                  inputElements: [],
+                                  actions: [
+                                    AuthenticationActionDescriptor(name: .primary,
+                                                                   selector: #selector(AuthViewController.pushSignupView),
+                                                                   text: SignupStrings.primaryAction),
+                                    AuthenticationActionDescriptor(name: .secondary,
+                                                                   selector: #selector(AuthViewController.pushEmailLoginView),
+                                                                   text: LoginStrings.primaryAction.uppercased())
+                                  ],
+                                  primaryActionAnimationText: SignupStrings.primaryAnimationText,
+                                  isPasswordVisible: false,
+                                  isIntroView: true)
+    }
+
     /// Auth Mode: Login with Username + Password
     ///
-    @objc
-    static var loginWithPassword: AuthenticationMode {
-        AuthenticationMode(primaryActionText: LoginStrings.primaryAction,
+    static func loginWithPassword(header: String? = nil) -> AuthenticationMode {
+        AuthenticationMode(title: NSLocalizedString("Log In with Password", comment: "LogIn Interface Title"),
+                           header: header,
+                           inputElements: [.username, .password],
+                           actions: [
+                            AuthenticationActionDescriptor(name: .primary,
+                                                           selector: #selector(AuthViewController.pressedLogInWithPassword),
+                                                           text: LoginStrings.primaryAction),
+                            AuthenticationActionDescriptor(name: .secondary,
+                                                           selector: #selector(AuthViewController.openForgotPasswordURL),
+                                                           text: LoginStrings.secondaryAction)
+                           ],
                            primaryActionAnimationText: LoginStrings.primaryAnimationText,
-                           primaryActionSelector: #selector(AuthViewController.pressedLogInWithPassword),
-                           secondaryActionText: LoginStrings.secondaryAction,
-                           secondaryActionSelector: #selector(AuthViewController.openForgotPasswordURL),
-                           switchTargetMode: { .signup },
-                           isPasswordVisible: true,
-                           isSecondaryActionVisible: true,
-                           isWordPressVisible: true,
-                           showActionSeparator: true)
+                           isPasswordVisible: true)
     }
 
     /// Auth Mode: Login is handled via Magic Links!
+    /// Requests a Login Code
     ///
     @objc
-    static var loginWithMagicLink: AuthenticationMode {
-        AuthenticationMode(primaryActionText: MagicLinkStrings.primaryAction,
+    static var requestLoginCode: AuthenticationMode {
+        AuthenticationMode(title: NSLocalizedString("Log In", comment: "LogIn Interface Title"),
+                           inputElements: [.username, .actionSeparator],
+                           actions: [
+                            AuthenticationActionDescriptor(name: .primary, 
+                                                           selector: #selector(AuthViewController.pressedLoginWithMagicLink),
+                                                           text: MagicLinkStrings.primaryAction),
+                            AuthenticationActionDescriptor(name: .secondary,
+                                                           selector: #selector(AuthViewController.switchToPasswordAuth),
+                                                           text: MagicLinkStrings.secondaryAction),
+                            AuthenticationActionDescriptor(name: .tertiary,
+                                                           selector: #selector(AuthViewController.wordpressSSOAction), text: LoginStrings.wordpressAction)
+                           ],
                            primaryActionAnimationText: MagicLinkStrings.primaryAnimationText,
-                           primaryActionSelector: #selector(AuthViewController.pressedLoginWithMagicLink),
-                           secondaryActionText: MagicLinkStrings.secondaryAction,
-                           secondaryActionSelector: #selector(AuthViewController.switchToPasswordAuth),
-                           switchTargetMode: { .signup },
-                           isPasswordVisible: false,
-                           isSecondaryActionVisible: true,
-                           isWordPressVisible: true,
-                           showActionSeparator: true)
+                           isPasswordVisible: false)
     }
 
     /// Auth Mode: SignUp
     ///
     @objc
     static var signup: AuthenticationMode {
-        AuthenticationMode(primaryActionText: SignupStrings.primaryAction,
+        AuthenticationMode(title: NSLocalizedString("Sign Up", comment: "SignUp Interface Title"),
+                           inputElements: [.username],
+                           actions: [
+                            AuthenticationActionDescriptor(name: .primary,
+                                                           selector: #selector(AuthViewController.pressedSignUp),
+                                                           text: SignupStrings.primaryAction)
+                           ],
                            primaryActionAnimationText: SignupStrings.primaryAnimationText,
-                           primaryActionSelector: #selector(AuthViewController.pressedSignUp),
-                           secondaryActionText: SignupStrings.switchAction,
-                           secondaryActionSelector: #selector(AuthViewController.pushEmailLoginView),
-                           switchTargetMode: { .loginWithMagicLink },
-                           isPasswordVisible: false,
-                           isSecondaryActionVisible: true,
-                           isWordPressVisible: false,
-                           showActionSeparator: false)
+                           isPasswordVisible: false)
     }
 }
 
@@ -138,6 +163,7 @@ private enum LoginStrings {
     static let secondaryAction      = NSLocalizedString("Forgot your Password?", comment: "Forgot Password Button")
     static let switchAction         = NSLocalizedString("Sign Up", comment: "Title of button for signing up")
     static let switchTip            = NSLocalizedString("Need an account?", comment: "Link to create an account")
+    static let wordpressAction      = NSLocalizedString("Log in with WordPress.com", comment: "Title to use wordpress login instead of email")
 }
 
 private enum MagicLinkStrings {

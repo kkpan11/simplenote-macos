@@ -241,6 +241,10 @@ extension NSColor {
     static var simplenoteWPBlue50Color: NSColor {
         NSColor(studioColor: .wpBlue50)
     }
+
+    static var simplenoteGray50Color: NSColor {
+        NSColor(studioColor: .gray50)
+    }
 }
 
 // MARK: - Internal Colors

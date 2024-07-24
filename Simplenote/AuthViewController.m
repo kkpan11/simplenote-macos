@@ -6,8 +6,6 @@
 
 #pragma mark - Constants
 
-static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
-
 
 #pragma mark - Private
 
@@ -29,7 +27,7 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
 {
     if (self = [super init]) {
         self.validator = [SPAuthenticationValidator new];
-        self.mode = [AuthenticationMode signup];
+        self.mode = [AuthenticationMode onboarding];
     }
 
     return self;
@@ -81,24 +79,11 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
     [self.passwordField setEnabled:enabled];
     [self.actionButton setEnabled:enabled];
     [self.secondaryActionButton setEnabled:enabled];
-    [self.wordPressSSOButton setEnabled:enabled];
+    [self.tertiaryButton setEnabled:enabled];
 }
 
 
 #pragma mark - WordPress SSO
-
-- (IBAction)wpccSignInAction:(id)sender
-{
-    NSString *sessionState = [[NSUUID UUID] UUIDString];
-    sessionState = [@"app-" stringByAppendingString:sessionState];
-    [[NSUserDefaults standardUserDefaults] setObject:sessionState forKey:SPAuthSessionKey];
-
-    NSString *requestUrl = [NSString stringWithFormat:SPWPSignInAuthURL, SPCredentials.wpcomClientID, SPCredentials.wpcomRedirectURL, sessionState];
-    NSString *encodedUrl = [requestUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:encodedUrl]];
-
-    [SPTracker trackWPCCButtonPressed];
-}
 
 - (IBAction)signInErrorAction:(NSNotification *)notification
 {

@@ -6,6 +6,9 @@ extension AuthViewController {
 
     @objc
     func setupInterface() {
+        simplenoteTitleView.stringValue = "Simplenote"
+        simplenoteSubTitleView.textColor = .simplenoteGray50Color
+        simplenoteSubTitleView.stringValue = NSLocalizedString("The simplest way to keep notes.", comment: "Simplenote subtitle")
         // Error Label
         errorField.stringValue = ""
         errorField.textColor = .red
@@ -21,11 +24,11 @@ extension AuthViewController {
         secondaryActionButton.contentTintColor = .simplenoteBrandColor
 
         // WordPress SSO
-        wordPressSSOButton.title = Localization.dotcomSSOAction
-        wordPressSSOButton.contentTintColor = .white
-        wordPressSSOContainerView.wantsLayer = true
-        wordPressSSOContainerView.layer?.backgroundColor = NSColor.simplenoteWPBlue50Color.cgColor
-        wordPressSSOContainerView.layer?.cornerRadius = 5
+
+        tertiaryButton.contentTintColor = .white
+        tertiaryButton.wantsLayer = true
+        tertiaryButton.layer?.backgroundColor = NSColor.simplenoteWPBlue50Color.cgColor
+        tertiaryButton.layer?.cornerRadius = 5
 
         setupActionsSeparatorView()
     }
@@ -57,6 +60,12 @@ extension AuthViewController {
     var authWindowController: AuthWindowController? {
         view.window?.windowController as? AuthWindowController
     }
+
+    /// # All of the Action Views
+    ///
+    private var allActionViews: [NSButton] {
+        [actionButton, secondaryActionButton, tertiaryButton]
+    }
 }
 
 // MARK: - Refreshing
@@ -66,22 +75,47 @@ extension AuthViewController {
     @objc(refreshInterfaceWithAnimation:)
     func refreshInterface(animated: Bool) {
         clearAuthenticationError()
-        refreshButtonTitles()
-        refreshEnabledComponents()
+        refreshActionViews()
+        refreshInputViews()
         refreshVisibleComponents(animated: animated)
     }
 
-    func refreshButtonTitles() {
-        actionButton.title          = mode.primaryActionText
-        secondaryActionButton.title = mode.secondaryActionText?.uppercased() ?? ""
+    private func refreshActionViews() {
+        let viewMap: [AuthenticationActionName: NSButton] = [
+            .primary: actionButton,
+            .secondary: secondaryActionButton,
+            .tertiary: tertiaryButton
+        ]
+
+        allActionViews.forEach({
+            $0.isHidden = true
+            $0.isEnabled = false
+        })
+
+        for descriptor in mode.actions {
+            guard let actionView = viewMap[descriptor.name] else {
+                assertionFailure()
+                continue
+            }
+
+            if let title = descriptor.text {
+                actionView.title = title
+            }
+
+            actionView.action = descriptor.selector
+            actionView.target = self
+            actionView.isHidden = false
+            actionView.isEnabled = true
+        }
     }
 
-    /// Makes sure unused components (in the current mode) are effectively disabled
-    ///
-    func refreshEnabledComponents() {
-        passwordField.isEnabled         = mode.isPasswordVisible
-        secondaryActionButton.isEnabled = mode.isSecondaryActionVisible
-        wordPressSSOButton.isEnabled    = mode.isWordPressVisible
+    private func refreshInputViews() {
+        let inputElements = mode.inputElements
+
+        usernameField.isHidden          = !inputElements.contains(.username)
+        passwordField.isHidden          = !inputElements.contains(.password)
+        actionsSeparatorView.isHidden   = !inputElements.contains(.actionSeparator)
+
     }
 
     /// Shows / Hides relevant components, based on the specified state
@@ -100,14 +134,13 @@ extension AuthViewController {
     ///
     func refreshVisibleComponentsWithoutAnimation() {
         passwordFieldHeightConstraint.constant  = mode.passwordFieldHeight
-        secondaryActionHeightConstraint.constant = mode.secondaryActionFieldHeight
-        wordPressSSOHeightConstraint.constant   = mode.wordPressSSOFieldHeight
 
         passwordField.alphaValue                = mode.passwordFieldAlpha
-        secondaryActionButton.alphaValue        = mode.secondaryActionFieldAlpha
-        wordPressSSOButton.alphaValue           = mode.wordPressSSOFieldAlpha
 
-        actionsSeparatorView.isHidden = !mode.showActionSeparator
+        simplenoteTitleView.isHidden = !mode.isIntroView
+        simplenoteSubTitleView.isHidden = !mode.isIntroView
+
+        headerLabel.isHidden = mode.header == nil
     }
 
     /// Animates Visible / Invisible components, based on the specified state
@@ -117,12 +150,8 @@ extension AuthViewController {
             context.duration = AppKitConstants.duration0_2
 
             passwordFieldHeightConstraint.animator().constant   = mode.passwordFieldHeight
-            secondaryActionHeightConstraint.animator().constant = mode.secondaryActionFieldHeight
-            wordPressSSOHeightConstraint.animator().constant    = mode.wordPressSSOFieldHeight
 
             passwordField.alphaValue            = mode.passwordFieldAlpha
-            secondaryActionButton.alphaValue    = mode.secondaryActionFieldAlpha
-            wordPressSSOButton.alphaValue       = mode.wordPressSSOFieldAlpha
             
             view.layoutSubtreeIfNeeded()
         }
@@ -157,34 +186,23 @@ extension AuthViewController {
         refreshInterface(animated: true)
         ensureUsernameIsFirstResponder()
     }
-    
-    @IBAction
-    func performMainAction(_ sender: Any) {
-        performSelector(onMainThread: mode.primaryActionSelector, with: nil, waitUntilDone: false)
-    }
-    
-    @IBAction
-    func performSecondaryAction(_ sender: Any) {
-        guard let secondaryActionSelector = mode.secondaryActionSelector else {
-            return
-        }
-        
-        performSelector(onMainThread: secondaryActionSelector, with: nil, waitUntilDone: false)
-    }
 
-    private func nextViewController() -> AuthViewController {
-        let nextMode = mode.nextMode()
+    private func authViewController(with mode: AuthenticationMode) -> AuthViewController {
+        let vc = AuthViewController()
+        vc.authenticator = authenticator
+        vc.mode = mode
 
-        let nextVC = AuthViewController()
-        nextVC.authenticator = authenticator
-        nextVC.mode = nextMode
-
-        return nextVC
+        return vc
     }
 
     @objc
     func pushEmailLoginView() {
-        containingNavigationController?.push(nextViewController())
+        containingNavigationController?.push(authViewController(with: .requestLoginCode))
+    }
+
+    @objc
+    func pushSignupView() {
+        containingNavigationController?.push(authViewController(with: .signup))
     }
 }
 
@@ -195,7 +213,7 @@ extension AuthViewController {
 
     @IBAction
     func switchToPasswordAuth(_ sender: Any) {
-        mode = .loginWithPassword
+        mode = AuthenticationMode.loginWithPassword(header: nil)
     }
     
     @objc
@@ -250,16 +268,29 @@ extension AuthViewController {
             self.showAuthenticationError(forCode: statusCode, responseString: nil)
         }
     }
-    
+
+    @objc
+    func wordpressSSOAction() {
+        let sessionsState = "app-\(UUID().uuidString)"
+        UserDefaults.standard.set(sessionsState, forKey: .SPAuthSessionKey)
+
+        let requestURL = String(format: SPWPSignInAuthURL, SPCredentials.wpcomClientID, SPCredentials.wpcomRedirectURL, sessionsState)
+        let encodedURL = requestURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        NSWorkspace.shared.open(URL(string: encodedURL!)!)
+
+        SPTracker.trackWPCCButtonPressed()
+    }
+
     @IBAction
     func handleNewlineInField(_ field: NSControl) {
         if field.isEqual(passwordField.textField) {
-            performMainAction(field)
+            guard let primaryActionDescriptor = mode.actions.first(where: { $0.name == .primary }) else {
+                assertionFailure()
+                return
+            }
+
+            performSelector(onMainThread: primaryActionDescriptor.selector, with: nil, waitUntilDone: false)
             return
-        }
-        
-        if field.isEqual(usernameField.textField), mode.isPasswordVisible == false {
-            performMainAction(field)
         }
     }
 }
@@ -277,7 +308,8 @@ extension AuthViewController {
 
     @objc
     func stopActionAnimation() {
-        actionButton.title = mode.primaryActionText
+        //TODO: Fix animating title changes
+//        actionButton.title = mode.primaryActionText
         actionProgress.stopAnimation(nil)
     }
 }
@@ -354,7 +386,6 @@ extension AuthViewController {
 private enum Localization {
     static let emailPlaceholder = NSLocalizedString("Email", comment: "Placeholder text for login field")
     static let passwordPlaceholder = NSLocalizedString("Password", comment: "Placeholder text for password field")
-    static let dotcomSSOAction = NSLocalizedString("Log in with WordPress.com", comment: "button title for wp.com sign in button")
     static let compromisedPasswordAlert = NSLocalizedString("Compromised Password", comment: "Compromised passsword alert title")
     static let compromisedPasswordMessage = NSLocalizedString("This password has appeared in a data breach, which puts your account at high risk of compromise. To protect your data, you'll need to update your password before being able to log in again.", comment: "Compromised password alert message")
     static let changePasswordAction = NSLocalizedString("Change Password", comment: "Change password action")
