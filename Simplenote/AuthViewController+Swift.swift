@@ -41,6 +41,7 @@ extension AuthViewController {
         quarternaryButtonView.layer?.borderWidth = 1
         quarternaryButtonView.layer?.borderColor = .black
         quarternaryButtonView.layer?.cornerRadius = 5
+        quarternaryButton.contentTintColor = .black
 
         actionProgress.set(tintColor: .white)
 
