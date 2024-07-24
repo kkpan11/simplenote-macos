@@ -126,8 +126,9 @@ private extension SignupVerificationViewController {
 
     func presentAuthenticationInteface() {
         let authViewController = AuthViewController()
+        let navigationController = SPNavigationController(initialViewController: authViewController)
         authViewController.authenticator = authenticator
-        view.window?.transition(to: authViewController)
+        view.window?.transition(to: navigationController)
     }
 }
 
