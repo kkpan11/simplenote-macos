@@ -71,6 +71,8 @@ extension AuthViewController {
     }
 
     open override func viewDidAppear() {
+        super.viewDidAppear()
+        
         ensureFirstTextFieldIsFirstResponder()
     }
 }
