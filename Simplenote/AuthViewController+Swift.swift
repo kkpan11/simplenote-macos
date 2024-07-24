@@ -285,7 +285,8 @@ extension AuthViewController {
             let confirmation = try await remote.requestLoginConfirmation(email: username, authCode: code.uppercased())
             authenticator.authenticate(withUsername: confirmation.username, token: confirmation.syncToken)
         } catch {
-            //TODO: Handle errors
+            let statusCode = (error as? RemoteError)?.statusCode ?? .zero
+            self.showAuthenticationError(forCode: statusCode, responseString: nil)
         }
     }
 
