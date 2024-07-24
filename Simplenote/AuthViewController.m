@@ -81,7 +81,6 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
     [self.passwordField setEnabled:enabled];
     [self.actionButton setEnabled:enabled];
     [self.secondaryActionButton setEnabled:enabled];
-    [self.switchActionButton setEnabled:enabled];
     [self.wordPressSSOButton setEnabled:enabled];
 }
 

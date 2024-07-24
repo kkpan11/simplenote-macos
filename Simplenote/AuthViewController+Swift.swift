@@ -20,16 +20,23 @@ extension AuthViewController {
         // Secondary Action
         secondaryActionButton.contentTintColor = .simplenoteBrandColor
 
-        // Toggle Signup: Tip
-        switchTipField.textColor = .simplenoteTertiaryTextColor
-
-        // Toggle Signup: Action
-        switchActionButton.contentTintColor = .simplenoteBrandColor
-
         // WordPress SSO
-        wordPressSSOButton.image = NSImage(named: .wordPressLogo)?.tinted(with: .simplenoteBrandColor)
         wordPressSSOButton.title = Localization.dotcomSSOAction
-        wordPressSSOButton.contentTintColor = .simplenoteTertiaryTextColor
+        wordPressSSOButton.contentTintColor = .white
+        wordPressSSOContainerView.wantsLayer = true
+        wordPressSSOContainerView.layer?.backgroundColor = NSColor.simplenoteWPBlue50Color.cgColor
+        wordPressSSOContainerView.layer?.cornerRadius = 5
+
+        setupActionsSeparatorView()
+    }
+
+    private func setupActionsSeparatorView() {
+        leadingSeparatorView.wantsLayer = true
+        leadingSeparatorView.layer?.backgroundColor = NSColor.lightGray.cgColor
+        trailingSeparatorView.wantsLayer = true
+        trailingSeparatorView.layer?.backgroundColor = NSColor.lightGray.cgColor
+
+        separatorLabel.textColor = .lightGray
     }
 }
 
@@ -67,8 +74,6 @@ extension AuthViewController {
     func refreshButtonTitles() {
         actionButton.title          = mode.primaryActionText
         secondaryActionButton.title = mode.secondaryActionText?.uppercased() ?? ""
-        switchTipField.stringValue  = mode.switchActionTip.uppercased()
-        switchActionButton.title    = mode.switchActionText.uppercased()
     }
 
     /// Makes sure unused components (in the current mode) are effectively disabled
@@ -102,7 +107,7 @@ extension AuthViewController {
         secondaryActionButton.alphaValue        = mode.secondaryActionFieldAlpha
         wordPressSSOButton.alphaValue           = mode.wordPressSSOFieldAlpha
 
-        switchAuthenticationView.isHidden                 = !mode.isSwitchVisible
+        actionsSeparatorView.isHidden = !mode.showActionSeparator
     }
 
     /// Animates Visible / Invisible components, based on the specified state
@@ -167,11 +172,6 @@ extension AuthViewController {
         performSelector(onMainThread: secondaryActionSelector, with: nil, waitUntilDone: false)
     }
 
-    @IBAction
-    func switchAuthenticationMode(_ sender: Any) {
-        containingNavigationController?.push(nextViewController())
-    }
-
     private func nextViewController() -> AuthViewController {
         let nextMode = mode.nextMode()
 
@@ -180,6 +180,11 @@ extension AuthViewController {
         nextVC.mode = nextMode
 
         return nextVC
+    }
+
+    @objc
+    func pushEmailLoginView() {
+        containingNavigationController?.push(nextViewController())
     }
 }
 

@@ -11,28 +11,33 @@ class AuthenticationMode: NSObject {
     let secondaryActionText: String?
     let secondaryActionSelector: Selector?
 
-    let switchActionText: String
-    let switchActionTip: String
     let switchTargetMode: () -> AuthenticationMode
     
     let isPasswordVisible: Bool
     let isSecondaryActionVisible: Bool
     let isWordPressVisible: Bool
-    let isSwitchVisible: Bool
+    let showActionSeparator: Bool
 
-    init(primaryActionText: String, primaryActionAnimationText: String, primaryActionSelector: Selector, secondaryActionText: String?, secondaryActionSelector: Selector?, switchActionText: String, switchActionTip: String, switchTargetMode: @escaping () -> AuthenticationMode, isPasswordVisible: Bool, isSecondaryActionVisible: Bool, isWordPressVisible: Bool, isSwitchVisible: Bool) {
+    init(primaryActionText: String, 
+         primaryActionAnimationText: String,
+         primaryActionSelector: Selector,
+         secondaryActionText: String?,
+         secondaryActionSelector: Selector?,
+         switchTargetMode: @escaping () -> AuthenticationMode,
+         isPasswordVisible: Bool,
+         isSecondaryActionVisible: Bool,
+         isWordPressVisible: Bool,
+         showActionSeparator: Bool) {
         self.primaryActionText = primaryActionText
         self.primaryActionAnimationText =  primaryActionAnimationText
         self.primaryActionSelector = primaryActionSelector
         self.secondaryActionText = secondaryActionText
         self.secondaryActionSelector = secondaryActionSelector
-        self.switchActionText = switchActionText
-        self.switchActionTip = switchActionTip
         self.switchTargetMode = switchTargetMode
         self.isPasswordVisible = isPasswordVisible
         self.isSecondaryActionVisible = isSecondaryActionVisible
         self.isWordPressVisible = isWordPressVisible
-        self.isSwitchVisible = isSwitchVisible
+        self.showActionSeparator = showActionSeparator
     }
 }
 
@@ -54,7 +59,7 @@ extension AuthenticationMode {
     }
     
     var wordPressSSOFieldHeight: CGFloat {
-        isWordPressVisible ? CGFloat(72) : .zero
+        isWordPressVisible ? CGFloat(40) : .zero
     }
     
     var passwordFieldAlpha: CGFloat {
@@ -84,13 +89,11 @@ extension AuthenticationMode {
                            primaryActionSelector: #selector(AuthViewController.pressedLogInWithPassword),
                            secondaryActionText: LoginStrings.secondaryAction,
                            secondaryActionSelector: #selector(AuthViewController.openForgotPasswordURL),
-                           switchActionText: LoginStrings.switchAction,
-                           switchActionTip: LoginStrings.switchTip,
                            switchTargetMode: { .signup },
                            isPasswordVisible: true,
                            isSecondaryActionVisible: true,
                            isWordPressVisible: true,
-                           isSwitchVisible: false)
+                           showActionSeparator: true)
     }
 
     /// Auth Mode: Login is handled via Magic Links!
@@ -102,13 +105,11 @@ extension AuthenticationMode {
                            primaryActionSelector: #selector(AuthViewController.pressedLoginWithMagicLink),
                            secondaryActionText: MagicLinkStrings.secondaryAction,
                            secondaryActionSelector: #selector(AuthViewController.switchToPasswordAuth),
-                           switchActionText: MagicLinkStrings.switchAction,
-                           switchActionTip: MagicLinkStrings.switchTip,
                            switchTargetMode: { .signup },
                            isPasswordVisible: false,
                            isSecondaryActionVisible: true,
                            isWordPressVisible: true,
-                           isSwitchVisible: false)
+                           showActionSeparator: true)
     }
 
     /// Auth Mode: SignUp
@@ -118,15 +119,13 @@ extension AuthenticationMode {
         AuthenticationMode(primaryActionText: SignupStrings.primaryAction,
                            primaryActionAnimationText: SignupStrings.primaryAnimationText,
                            primaryActionSelector: #selector(AuthViewController.pressedSignUp),
-                           secondaryActionText: nil,
-                           secondaryActionSelector: nil,
-                           switchActionText: SignupStrings.switchAction,
-                           switchActionTip: SignupStrings.switchTip,
+                           secondaryActionText: SignupStrings.switchAction,
+                           secondaryActionSelector: #selector(AuthViewController.pushEmailLoginView),
                            switchTargetMode: { .loginWithMagicLink },
                            isPasswordVisible: false,
-                           isSecondaryActionVisible: false,
+                           isSecondaryActionVisible: true,
                            isWordPressVisible: false,
-                           isSwitchVisible: true)
+                           showActionSeparator: false)
     }
 }
 
