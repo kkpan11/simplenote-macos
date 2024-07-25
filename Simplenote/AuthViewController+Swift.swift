@@ -180,7 +180,7 @@ extension AuthViewController {
     ///
     @objc
     func ensureFirstTextFieldIsFirstResponder() {
-        firstVisibleTextField?.textField.becomeFirstResponder()
+        firstVisibleTextField?.becomeFirstResponder()
         view.needsDisplay = true
     }
 }
@@ -280,9 +280,9 @@ extension AuthViewController {
 
 
         do {
-            let email = usernameText
-            let remote = LoginRemote()
-            try await remote.requestLoginEmail(email: email)
+//            let email = usernameText
+//            let remote = LoginRemote()
+//            try await remote.requestLoginEmail(email: email)
 
             pushCodeLoginView()
         } catch {
