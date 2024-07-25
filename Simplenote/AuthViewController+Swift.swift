@@ -445,8 +445,8 @@ extension AuthViewController {
             showAuthenticationError(message)
 
         case .requestNotFound:
-// TODO
-            break
+            let message = NSLocalizedString("The authentication code you've requested has expired. Please request a new one", comment: "Login Code no longer exists")
+            showAuthenticationError(message)
 
         case .tooManyAttempts:
             let message = NSLocalizedString("Too many log in attempts. Try again later.", comment: "Error for too many login attempts")
