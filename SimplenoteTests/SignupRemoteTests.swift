@@ -1,5 +1,7 @@
 import XCTest
+import SimplenoteEndpoints
 @testable import Simplenote
+
 
 class SignupRemoteTests: XCTestCase {
     private lazy var urlSession = MockURLSession()
@@ -11,7 +13,8 @@ class SignupRemoteTests: XCTestCase {
 
     func testFailureWhenStatusCodeIs4xxOr5xx() {
         let statusCode = Int.random(in: 400..<600)
-        verifySignupSucceeds(withStatusCode: statusCode, email: "email@gmail.com", expectedSuccess: Result.failure(RemoteError.requestError(statusCode, nil)))
+        let expectedError = RemoteError(statusCode: statusCode, response: nil, networkError: nil)
+        verifySignupSucceeds(withStatusCode: statusCode, email: "email@gmail.com", expectedSuccess: Result.failure(expectedError))
     }
 
     func testRequestSetsEmailToCorrectCase() throws {

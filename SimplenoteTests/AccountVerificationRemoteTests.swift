@@ -1,5 +1,7 @@
 import XCTest
+import SimplenoteEndpoints
 @testable import Simplenote
+
 
 // MARK: - AccountVerificationRemoteTests
 //
@@ -16,12 +18,14 @@ class AccountVerificationRemoteTests: XCTestCase {
     func testFailureWhenStatusCodeIs4xxOr5xx() {
         for _ in 0..<5 {
             let statusCode = Int.random(in: 400..<600)
-            test(withStatusCode: statusCode, expectedResult: Result.failure(RemoteError.requestError(statusCode, nil)))
+            let error = RemoteError(statusCode: statusCode, response: nil, networkError: nil)
+            test(withStatusCode: statusCode, expectedResult: Result.failure(error))
         }
     }
 
     func testFailureWhenNoResponse() {
-        test(withStatusCode: nil, expectedResult: Result.failure(RemoteError.network))
+        let expectedError = RemoteError(statusCode: .zero, response: nil, networkError: nil)
+        test(withStatusCode: nil, expectedResult: Result.failure(expectedError))
     }
 
     private func test(withStatusCode statusCode: Int?, expectedResult: Result<Data?, RemoteError>) {

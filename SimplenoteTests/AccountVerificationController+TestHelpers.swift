@@ -1,8 +1,15 @@
 import Foundation
+import SimplenoteEndpoints
 @testable import Simplenote
+
 
 extension AccountVerificationController {
     func randomResult() -> Result<Data?, RemoteError> {
-        return Bool.random() ? .success(nil) : .failure(RemoteError.requestError(0, nil))
+        if Bool.random() {
+            return .success(nil)
+        }
+        
+        let error = RemoteError(statusCode: .zero, response: nil, networkError: nil)
+        return .failure(error)
     }
 }

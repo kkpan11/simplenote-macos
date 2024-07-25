@@ -1,4 +1,5 @@
 import XCTest
+import SimplenoteEndpoints
 @testable import Simplenote
 
 class LoginRemoteTests: XCTestCase {
@@ -13,7 +14,7 @@ class LoginRemoteTests: XCTestCase {
         do {
             try await loginRemote.requestLoginEmail(email: "email@gmail.com")
         } catch {
-            XCTAssertEqual(error as? RemoteError, RemoteError.init(statusCode: statusCode))
+            XCTAssertEqual(error as? RemoteError, RemoteError(statusCode: statusCode, response: nil, networkError: nil))
         }
     }
 
