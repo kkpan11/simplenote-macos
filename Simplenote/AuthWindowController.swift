@@ -78,8 +78,9 @@ extension AuthWindowController {
         }
         
         let authViewController = AuthViewController()
+        let navigationController = SPNavigationController(initialViewController: authViewController)
         authViewController.authenticator = authenticator
-        window.transition(to: authViewController)
+        window.transition(to: navigationController)
     }
     
     func switchToMagicLinkRequestedUI(email: String) {
