@@ -220,7 +220,7 @@ extension AuthViewController {
 
     @objc
     func pushPasswordView() {
-        pushNewAuthViewController(with: .loginWithPassword(), state: state)
+        pushNewAuthViewController(with: .loginWithPassword, state: state)
     }
 
     func pushCodeLoginView() {
@@ -235,7 +235,7 @@ extension AuthViewController {
 
     @IBAction
     func switchToPasswordAuth(_ sender: Any) {
-        mode = AuthenticationMode.loginWithPassword(header: nil)
+        mode = AuthenticationMode.loginWithPassword
     }
     
     @objc

@@ -120,9 +120,9 @@ extension AuthenticationMode {
 
     /// Auth Mode: Login with Username + Password
     ///
-    static func loginWithPassword(header: String? = nil) -> AuthenticationMode {
+    static var loginWithPassword: AuthenticationMode {
         AuthenticationMode(title: NSLocalizedString("Log In with Password", comment: "LogIn Interface Title"),
-                           header: header,
+                           header: LoginStrings.loginWithEmailEmailHeader,
                            inputElements: [.password],
                            actions: [
                             AuthenticationActionDescriptor(name: .primary,
@@ -195,6 +195,7 @@ private enum LoginStrings {
     static let switchAction         = NSLocalizedString("Sign Up", comment: "Title of button for signing up")
     static let switchTip            = NSLocalizedString("Need an account?", comment: "Link to create an account")
     static let wordpressAction      = NSLocalizedString("Log in with WordPress.com", comment: "Title to use wordpress login instead of email")
+    static let loginWithEmailEmailHeader = NSLocalizedString("Enter the password for the account {{EMAIL}}", comment: "Header for Login With Password. Please preserve the {{EMAIL}} substring")
 }
 
 private enum MagicLinkStrings {
