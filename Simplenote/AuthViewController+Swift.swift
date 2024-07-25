@@ -259,7 +259,7 @@ extension AuthViewController {
             case .success:
                 self.presentSignupVerification(email: email)
             case .failure(let result):
-                self.showAuthenticationError(forCode: result.statusCode, responseString: nil)
+                self.showAuthenticationError(forCode: result.statusCode, responseString: result.response)
             }
 
             self.stopActionAnimation()
@@ -292,8 +292,9 @@ extension AuthViewController {
 
             pushCodeLoginView()
         } catch {
-            let statusCode = (error as? RemoteError)?.statusCode ?? .zero
-            self.showAuthenticationError(forCode: statusCode, responseString: nil)
+            // TODO: Once Xcode 16 goes GM, *please* wire Typed Errors here? (it'll always be a RemoteError instance)
+            let remoteError = error as? RemoteError
+            self.showAuthenticationError(forCode: remoteError?.statusCode ?? .zero, responseString: remoteError?.response)
         }
     }
 
@@ -319,8 +320,9 @@ extension AuthViewController {
             let confirmation = try await remote.requestLoginConfirmation(email: username, authCode: code.uppercased())
             authenticator.authenticate(withUsername: confirmation.username, token: confirmation.syncToken)
         } catch {
-            let statusCode = (error as? RemoteError)?.statusCode ?? .zero
-            self.showAuthenticationError(forCode: statusCode, responseString: nil)
+            // TODO: Once Xcode 16 goes GM, *please* wire Typed Errors here? (it'll always be a RemoteError instance)
+            let remoteError = error as? RemoteError
+            self.showAuthenticationError(forCode: remoteError?.statusCode ?? .zero, responseString: remoteError?.response)
         }
     }
 
@@ -421,6 +423,44 @@ extension AuthViewController {
 // MARK: - Login Error Handling
 //
 extension AuthViewController {
+
+    @objc(showAuthenticationError:)
+    func showAuthenticationError(_ error: String) {
+        errorField.stringValue = error
+    }
+    
+    @objc(showAuthenticationErrorForCode:responseString:)
+    func showAuthenticationError(statusCode: Int, responseString: String?) {
+        let error = AuthenticationError(statusCode: statusCode, response: responseString, error: nil)
+        switch error {
+        case .compromisedPassword:
+            presentPasswordCompromisedAlert()
+
+        case .invalidCode:
+            let message = NSLocalizedString("The code you've entered is invalid.", comment: "Login po sCode Invalid Error")
+            showAuthenticationError(message)
+
+        case .loginBadCredentials:
+            let message = NSLocalizedString("Bad email or password", comment: "Error for authorization failure")
+            showAuthenticationError(message)
+
+        case .requestNotFound:
+// TODO
+            break
+
+        case .tooManyAttempts:
+            let message = NSLocalizedString("Too many log in attempts. Try again later.", comment: "Error for too many login attempts")
+            showAuthenticationError(message)
+
+        case .unverifiedEmail:
+            presentUnverifiedEmailAlert()
+            
+        default:
+            let message = NSLocalizedString("We're having problems. Please try again soon.", comment: "Generic error")
+            showAuthenticationError(message)
+        }
+    }
+    
     @objc
     func showCompromisedPasswordAlert(for window: NSWindow, completion: @escaping (NSApplication.ModalResponse) -> Void) {
         let alert = NSAlert()
