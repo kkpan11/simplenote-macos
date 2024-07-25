@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Automattic/SimplenoteEndpoints-Swift",
       "state" : {
-        "branch" : "trunk",
-        "revision" : "3d1c0a5db39ca798a7de10e7faeef8ae66e941e6"
+        "revision" : "3d1c0a5db39ca798a7de10e7faeef8ae66e941e6",
+        "version" : "1.0.0"
       }
     },
     {
