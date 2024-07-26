@@ -145,8 +145,6 @@ class SPNavigationController: NSViewController {
 
             heightConstraint?.animator().constant = finalHeight
         }
-
-        return
     }
 
     // MARK: - Remove view from stack
