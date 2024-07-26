@@ -207,11 +207,9 @@ extension AuthenticationMode {
 // MARK: - Localization
 //
 private enum LoginStrings {
-    static let primaryAction        = NSLocalizedString("Log In", comment: "Title of button for logging in")
-    static let primaryAnimationText = NSLocalizedString("Logging In...", comment: "Title of button for logging in")
-    static let secondaryAction      = NSLocalizedString("Forgot your Password?", comment: "Forgot Password Button")
-    static let switchAction         = NSLocalizedString("Sign Up", comment: "Title of button for signing up")
-    static let switchTip            = NSLocalizedString("Need an account?", comment: "Link to create an account")
+    static let primaryAction        = NSLocalizedString("Log in", comment: "Title of button for logging in")
+    static let primaryAnimationText = NSLocalizedString("Logging in...", comment: "Title of button for logging in")
+    static let secondaryAction      = NSLocalizedString("Forgot your password?", comment: "Forgot Password Button")
     static let wordpressAction      = NSLocalizedString("Log in with WordPress.com", comment: "Title to use wordpress login instead of email")
     static let loginWithEmailEmailHeader = NSLocalizedString("Enter the password for the account {{EMAIL}}", comment: "Header for Login With Password. Please preserve the {{EMAIL}} substring")
     static let loginWithEmailLimitHeader = NSLocalizedString("Log in with email failed, please enter the password for {{EMAIL}}", comment: "Header for Enter Password UI, when the user performed too many requests")
@@ -221,14 +219,10 @@ private enum LoginStrings {
 private enum MagicLinkStrings {
     static let primaryAction        = NSLocalizedString("Log in with email", comment: "Title of button for logging in")
     static let primaryAnimationText = NSLocalizedString("Requesting email...", comment: "Title of button for logging in")
-    static let secondaryAction      = NSLocalizedString("Continue with Password", comment: "Continue with Password Action")
-    static let switchAction         = NSLocalizedString("Sign Up", comment: "Title of button for signing up")
-    static let switchTip            = NSLocalizedString("Need an account?", comment: "Link to create an account")
+    static let secondaryAction      = NSLocalizedString("Continue with password", comment: "Continue with Password Action")
 }
 
 private enum SignupStrings {
-    static let primaryAction        = NSLocalizedString("Sign Up", comment: "Title of button for signing up")
-    static let primaryAnimationText = NSLocalizedString("Signing Up...", comment: "Title of button for logging in")
-    static let switchAction         = NSLocalizedString("Log In", comment: "Title of button for logging in up")
-    static let switchTip            = NSLocalizedString("Already have an account?", comment: "Link to sign in to an account")
+    static let primaryAction        = NSLocalizedString("Sign up", comment: "Title of button for signing up")
+    static let primaryAnimationText = NSLocalizedString("Signing up...", comment: "Title of button for logging in")
 }
