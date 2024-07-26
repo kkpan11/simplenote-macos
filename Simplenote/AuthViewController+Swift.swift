@@ -11,6 +11,7 @@ extension AuthViewController {
         simplenoteTitleView.stringValue = "Simplenote"
         simplenoteSubTitleView.textColor = .simplenoteGray50Color
         simplenoteSubTitleView.stringValue = NSLocalizedString("The simplest way to keep notes.", comment: "Simplenote subtitle")
+
         // Error Label
         errorField.stringValue = ""
         errorField.textColor = .red
@@ -93,18 +94,14 @@ extension AuthViewController {
 
     @objc
     var usernameText: String {
-        usernameField.stringValue?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        state.username
     }
 
     @objc
     var passwordText: String {
-        passwordField.stringValue?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        state.password
     }
     
-    var authWindowController: AuthWindowController? {
-        view.window?.windowController as? AuthWindowController
-    }
-
     /// # All of the Action Views
     ///
     private var allActionViews: [NSButton] {
@@ -234,11 +231,6 @@ extension AuthViewController {
 // MARK: - Handlers
 //
 extension AuthViewController {
-
-    @IBAction
-    func switchToPasswordAuth(_ sender: Any) {
-        mode = AuthenticationMode.loginWithPassword
-    }
     
     @objc
     func performSignupRequest() {
@@ -255,7 +247,7 @@ extension AuthViewController {
             case .success:
                 self.presentSignupVerification(email: email)
             case .failure(let result):
-                self.showAuthenticationError(forCode: result.statusCode, responseString: result.response)
+                self.showAuthenticationError(statusCode: result.statusCode, responseString: result.response)
             }
 
             self.stopActionAnimation()
@@ -271,7 +263,7 @@ extension AuthViewController {
     }
      
     @MainActor
-    func performLoginWithEmailRequestInTask() async {
+    private func performLoginWithEmailRequestInTask() async {
         defer {
             stopActionAnimation()
             setInterfaceEnabled(true)
@@ -290,7 +282,7 @@ extension AuthViewController {
         } catch {
             // TODO: Once Xcode 16 goes GM, *please* wire Typed Errors here? (it'll always be a RemoteError instance)
             let remoteError = error as? RemoteError
-            self.showAuthenticationError(forCode: remoteError?.statusCode ?? .zero, responseString: remoteError?.response)
+            self.showAuthenticationError(statusCode: remoteError?.statusCode ?? .zero, responseString: remoteError?.response)
         }
     }
 
@@ -318,7 +310,7 @@ extension AuthViewController {
         } catch {
             // TODO: Once Xcode 16 goes GM, *please* wire Typed Errors here? (it'll always be a RemoteError instance)
             let remoteError = error as? RemoteError
-            self.showAuthenticationError(forCode: remoteError?.statusCode ?? .zero, responseString: remoteError?.response)
+            self.showAuthenticationError(statusCode: remoteError?.statusCode ?? .zero, responseString: remoteError?.response)
         }
     }
 
@@ -367,9 +359,9 @@ extension AuthViewController {
 
         switch superView {
         case usernameField:
-            state.username = usernameField.stringValue
+            state.username = usernameField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
         case passwordField:
-            state.password = passwordField.stringValue
+            state.password = passwordField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
         case codeTextField:
             state.code = codeTextField.stringValue
         default:
@@ -405,16 +397,8 @@ extension AuthViewController {
         let vc = SignupVerificationViewController(email: email, authenticator: authenticator)
         view.window?.transition(to: vc)
     }
-    
-    //TODO: Drop this method?
-    func presentMagicLinkRequestedView(email: String) {
-        guard let authWindowController else {
-            return
-        }
-        
-        authWindowController.switchToMagicLinkRequestedUI(email: email)
-    }
 }
+
 
 // MARK: - Login Error Handling
 //
