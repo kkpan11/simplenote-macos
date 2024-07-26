@@ -40,6 +40,7 @@
 @property (nonatomic, strong) AuthenticationMode                    *mode;
 @property (nonatomic, strong) AuthenticationState                   *state;
 
+- (instancetype)initWithMode:(AuthenticationMode*)mode state:(AuthenticationState*)state;
 - (void)pressedLogInWithPassword;
 - (void)pressedLoginWithMagicLink;
 - (void)pressedSignUp;
