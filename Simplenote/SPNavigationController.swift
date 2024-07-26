@@ -16,6 +16,9 @@ class SPNavigationController: NSViewController {
     }
     
     private var heightConstraint: NSLayoutConstraint!
+    private var totalTopPadding: CGFloat {
+        Constants.buttonViewLeadingPadding + Constants.buttonViewHeight
+    }
 
     init(initialViewController: NSViewController) {
         super.init(nibName: nil, bundle: nil)
@@ -41,6 +44,7 @@ class SPNavigationController: NSViewController {
         initialView.translatesAutoresizingMaskIntoConstraints = false
 
         attachView(subview: initialViewController.view, below: nil, animated: false)
+        resizeWindow(to: initialViewController.view, animated: false)
 
         NSLayoutConstraint.activate([
             initialView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -89,6 +93,7 @@ class SPNavigationController: NSViewController {
 
         attach(child: viewController)
         attachView(subview: viewController.view, below: currentView, animated: animated)
+        resizeWindow(to: viewController.view, animated: animated)
 
         guard animated else {
             currentView?.removeFromSuperview()
@@ -107,25 +112,25 @@ class SPNavigationController: NSViewController {
     }
 
     private func attachView(subview: NSView, below siblingView: NSView?, animated: Bool) {
-
-        let padding = Constants.buttonViewLeadingPadding + Constants.buttonViewHeight
-        let finalHeight = subview.fittingSize.height + padding
+        subview.translatesAutoresizingMaskIntoConstraints = false
 
         if let siblingView,
            animated {
-            heightConstraint.constant = siblingView.fittingSize.height + padding
+            heightConstraint.constant = siblingView.fittingSize.height + totalTopPadding
             view.addSubview(subview, positioned: .below, relativeTo: siblingView)
         } else {
             view.addSubview(subview)
         }
-
-        subview.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             subview.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             subview.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             subview.topAnchor.constraint(equalTo: backButton.bottomAnchor)
         ])
+    }
+
+    private func resizeWindow(to subview: NSView, animated: Bool) {
+        let finalHeight = subview.fittingSize.height + totalTopPadding
 
         guard animated else {
             heightConstraint.constant = finalHeight
@@ -147,6 +152,7 @@ class SPNavigationController: NSViewController {
         }
   
         attachView(subview: nextViewController.view, below: currentViewController.view, animated: animated)
+        resizeWindow(to: nextViewController.view, animated: animated)
 
         guard animated else {
             dettach(child: currentViewController)
