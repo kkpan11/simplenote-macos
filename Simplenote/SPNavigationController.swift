@@ -17,7 +17,7 @@ class SPNavigationController: NSViewController {
     
     private var heightConstraint: NSLayoutConstraint!
     private var totalTopPadding: CGFloat {
-        Constants.buttonViewLeadingPadding + Constants.buttonViewHeight
+        Constants.buttonViewTopPadding + Constants.buttonViewHeight
     }
 
     init(initialViewController: NSViewController) {
