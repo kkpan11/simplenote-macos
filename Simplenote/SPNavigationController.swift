@@ -15,9 +15,7 @@ class SPNavigationController: NSViewController {
         viewStack.last
     }
     
-    private lazy var heightConstraint: NSLayoutConstraint = {
-        view.heightAnchor.constraint(equalToConstant: 300)
-    }()
+    private var heightConstraint: NSLayoutConstraint? = nil
 
     init(initialViewController: NSViewController) {
         super.init(nibName: nil, bundle: nil)
@@ -35,6 +33,7 @@ class SPNavigationController: NSViewController {
         }
 
         view = NSView()
+        heightConstraint = view.heightAnchor.constraint(equalToConstant: .zero)
         let initialView = initialViewController.view
         backButton = insertBackButton()
 
@@ -124,7 +123,7 @@ class SPNavigationController: NSViewController {
         let finalHeight = subview.fittingSize.height + padding
         
         if let siblingView {
-            heightConstraint.constant = siblingView.fittingSize.height + padding
+            heightConstraint?.constant = siblingView.fittingSize.height + padding
             view.addSubview(subview, positioned: .below, relativeTo: siblingView)
         } else {
             view.addSubview(subview)
@@ -132,7 +131,7 @@ class SPNavigationController: NSViewController {
 
         subview.translatesAutoresizingMaskIntoConstraints = false
 
-        heightConstraint.isActive = true
+        heightConstraint?.isActive = true
         let leadingAnchor = subview.leadingAnchor.constraint(equalTo: view.leadingAnchor)
         let trailingAnchor = subview.trailingAnchor.constraint(equalTo: view.trailingAnchor)
 
@@ -143,7 +142,7 @@ class SPNavigationController: NSViewController {
         ])
 
         guard animated else {
-            heightConstraint.constant = finalHeight
+            heightConstraint?.constant = finalHeight
             return (leading: leadingAnchor, trailing: trailingAnchor)
         }
 
@@ -151,7 +150,7 @@ class SPNavigationController: NSViewController {
             context.duration = 0.4
             context.timingFunction = .init(name: .easeInEaseOut)
 
-            heightConstraint.animator().constant = finalHeight
+            heightConstraint?.animator().constant = finalHeight
         }
 
         return (leading: leadingAnchor, trailing: trailingAnchor)
