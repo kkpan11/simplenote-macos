@@ -99,7 +99,7 @@ class SPNavigationController: NSViewController {
 
         guard animated else {
             currentView?.removeFromSuperview()
-            backButton.animator().isHidden = hideBackButton
+            backButton.isHidden = hideBackButton
             return
         }
 
