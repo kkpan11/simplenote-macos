@@ -11,6 +11,7 @@ extension AuthViewController {
         simplenoteTitleView.stringValue = "Simplenote"
         simplenoteSubTitleView.textColor = .simplenoteGray50Color
         simplenoteSubTitleView.stringValue = NSLocalizedString("The simplest way to keep notes.", comment: "Simplenote subtitle")
+
         // Error Label
         errorField.stringValue = ""
         errorField.textColor = .red
@@ -271,7 +272,7 @@ extension AuthViewController {
     }
      
     @MainActor
-    func performLoginWithEmailRequestInTask() async {
+    private func performLoginWithEmailRequestInTask() async {
         defer {
             stopActionAnimation()
             setInterfaceEnabled(true)
@@ -415,6 +416,7 @@ extension AuthViewController {
         authWindowController.switchToMagicLinkRequestedUI(email: email)
     }
 }
+
 
 // MARK: - Login Error Handling
 //
