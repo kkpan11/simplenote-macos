@@ -428,6 +428,12 @@ extension AuthViewController {
             showLoginCodeExpiredAlert()
 
         case .tooManyAttempts:
+            if let fallbackMode = mode.rateLimitingFallbackMode?() {
+                pushNewAuthViewController(with: fallbackMode, state: state)
+                break
+            }
+
+            /// No fallback =(
             let message = NSLocalizedString("Too many log in attempts. Try again later.", comment: "Error for too many login attempts")
             showAuthenticationError(message)
 
