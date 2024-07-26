@@ -96,7 +96,7 @@ class SPNavigationController: NSViewController {
 
         attach(child: viewController)
 
-        guard let (leadingAnchor, trailingAnchor) = attachView(subview: viewController.view, below: currentView) else {
+        guard let (leadingAnchor, trailingAnchor) = attachView(subview: viewController.view, below: currentView, animated: animated) else {
             return
         }
 
@@ -118,7 +118,7 @@ class SPNavigationController: NSViewController {
     }
 
     @discardableResult
-    private func attachView(subview: NSView, below siblingView: NSView?) -> (leading: NSLayoutConstraint, trailing: NSLayoutConstraint)? {
+    private func attachView(subview: NSView, below siblingView: NSView?, animated: Bool) -> (leading: NSLayoutConstraint, trailing: NSLayoutConstraint)? {
 
         let padding = Constants.buttonViewLeadingPadding + Constants.buttonViewHeight
         let finalHeight = subview.fittingSize.height + padding
@@ -131,19 +131,8 @@ class SPNavigationController: NSViewController {
         }
 
         subview.translatesAutoresizingMaskIntoConstraints = false
-        
+
         heightConstraint.isActive = true
-        
-        NSAnimationContext.runAnimationGroup { context in
-            context.duration = 0.4
-            context.timingFunction = .init(name: .easeInEaseOut)
-
-            heightConstraint.animator().constant = finalHeight
-        } completionHandler: {
-
-        }
-        
-
         let leadingAnchor = subview.leadingAnchor.constraint(equalTo: view.leadingAnchor)
         let trailingAnchor = subview.trailingAnchor.constraint(equalTo: view.trailingAnchor)
 
@@ -153,17 +142,29 @@ class SPNavigationController: NSViewController {
             subview.topAnchor.constraint(equalTo: backButton.bottomAnchor)
         ])
 
+        guard animated else {
+            heightConstraint.constant = finalHeight
+            return (leading: leadingAnchor, trailing: trailingAnchor)
+        }
+
+        NSAnimationContext.runAnimationGroup { context in
+            context.duration = 0.4
+            context.timingFunction = .init(name: .easeInEaseOut)
+
+            heightConstraint.animator().constant = finalHeight
+        }
+
         return (leading: leadingAnchor, trailing: trailingAnchor)
     }
 
     // MARK: - Remove view from stack
-    func popViewController() {
+    func popViewController(animated: Bool = true) {
         guard viewStack.count > 1, let currentViewController = viewStack.popLast(), let nextViewController = viewStack.last else {
             return
         }
   
-        attachView(subview: nextViewController.view, below: currentViewController.view)
-        
+        attachView(subview: nextViewController.view, below: currentViewController.view, animated: animated)
+
         animateTransition(slidingView: currentViewController.view, fadingView: nextViewController.view, direction: .leadingToTrailing) {
             self.dettach(child: currentViewController)
         }
