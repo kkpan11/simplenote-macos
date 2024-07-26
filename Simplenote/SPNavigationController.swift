@@ -158,7 +158,7 @@ class SPNavigationController: NSViewController {
         attachView(subview: nextViewController.view, below: currentViewController.view, animated: animated)
 
         guard animated else {
-            self.dettach(child: currentViewController)
+            dettach(child: currentViewController)
             backButton.isHidden = hideBackButton
             return
         }
