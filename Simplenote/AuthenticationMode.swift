@@ -199,7 +199,7 @@ private enum LoginStrings {
 }
 
 private enum MagicLinkStrings {
-    static let primaryAction        = NSLocalizedString("Instantly Log In with Email", comment: "Title of button for logging in")
+    static let primaryAction        = NSLocalizedString("Log in with email", comment: "Title of button for logging in")
     static let primaryAnimationText = NSLocalizedString("Requesting Email...", comment: "Title of button for logging in")
     static let secondaryAction      = NSLocalizedString("Continue with Password", comment: "Continue with Password Action")
     static let switchAction         = NSLocalizedString("Sign Up", comment: "Title of button for signing up")
