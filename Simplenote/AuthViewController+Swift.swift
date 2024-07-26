@@ -367,9 +367,9 @@ extension AuthViewController {
 
         switch superView {
         case usernameField:
-            state.username = usernameField.stringValue
+            state.username = usernameField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
         case passwordField:
-            state.password = passwordField.stringValue
+            state.password = passwordField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
         case codeTextField:
             state.code = codeTextField.stringValue
         default:
