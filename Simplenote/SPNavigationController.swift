@@ -95,13 +95,6 @@ class SPNavigationController: NSViewController {
         let currentView = topViewController?.view
 
         attach(child: viewController)
-        
-        /// Disable Bottom Constraint
-        /// This allows for the enclosing NSWindow to resize, just enough to fit the `nextViewController.view`
-        ///
-        if let currentView, let bottomConstraint = view.firstContraint(firstView: currentView, firstAttribute: .bottom) {
-            bottomConstraint.isActive = false
-        }
 
         guard let (leadingAnchor, trailingAnchor) = attachView(subview: viewController.view, below: currentView) else {
             return
@@ -162,8 +155,7 @@ class SPNavigationController: NSViewController {
         NSLayoutConstraint.activate([
             leadingAnchor,
             trailingAnchor,
-            subview.topAnchor.constraint(equalTo: backButton.bottomAnchor) //,
-//            subview.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            subview.topAnchor.constraint(equalTo: backButton.bottomAnchor)
         ])
 
         NSLog("# After Window Height \(view.window?.frame.height.description) - size \(subview.intrinsicContentSize) - \(subview.fittingSize)")
@@ -174,13 +166,6 @@ class SPNavigationController: NSViewController {
     func popViewController() {
         guard viewStack.count > 1, let currentViewController = viewStack.popLast(), let nextViewController = viewStack.last else {
             return
-        }
-        
-        /// Disable Bottom Constraint
-        /// This allows for the enclosing NSWindow to resize, just enough to fit the `nextViewController.view`
-        ///
-        if let currentBottomConstraint = view.firstContraint(firstView: currentViewController.view, firstAttribute: .bottom) {
-            currentBottomConstraint.isActive = false
         }
   
         attachView(subview: nextViewController.view, below: currentViewController.view)
