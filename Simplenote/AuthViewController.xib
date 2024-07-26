@@ -106,7 +106,7 @@
                                 <constraint firstAttribute="height" constant="40" id="hpG-uZ-e1S"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="boolean" keyPath="secure" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="secure" value="NO"/>
                             </userDefinedRuntimeAttributes>
                         </customView>
                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="Epn-oY-sfo" userLabel="Action View">

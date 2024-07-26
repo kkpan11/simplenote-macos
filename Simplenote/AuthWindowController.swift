@@ -26,7 +26,7 @@ class AuthWindowController: NSWindowController, SPAuthenticationInterface {
     }
 
     init() {
-        self.authViewController = AuthViewController()
+        self.authViewController = AuthViewController(mode: .onboarding, state: AuthenticationState())
         let navigationController = SPNavigationController(initialViewController: authViewController)
         let window = NSWindow(contentViewController: navigationController)
         window.styleMask = [.borderless, .closable, .titled, .fullSizeContentView]
@@ -78,8 +78,9 @@ extension AuthWindowController {
         }
         
         let authViewController = AuthViewController()
+        let navigationController = SPNavigationController(initialViewController: authViewController)
         authViewController.authenticator = authenticator
-        window.transition(to: authViewController)
+        window.transition(to: navigationController)
     }
     
     func switchToMagicLinkRequestedUI(email: String) {

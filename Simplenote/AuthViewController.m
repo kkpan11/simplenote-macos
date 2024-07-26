@@ -23,11 +23,23 @@
     [[NSNotificationCenter defaultCenter] removeObserver: self];
 }
 
+- (instancetype)initWithMode:(AuthenticationMode*)mode state:(AuthenticationState*)state;
+{
+    if (self = [super init]) {
+        self.validator = [SPAuthenticationValidator new];
+        self.mode = mode;
+        self.state = state;
+    }
+
+    return self;
+}
+
 - (instancetype)init
 {
     if (self = [super init]) {
         self.validator = [SPAuthenticationValidator new];
         self.mode = [AuthenticationMode onboarding];
+        self.state = [AuthenticationState new];
     }
 
     return self;

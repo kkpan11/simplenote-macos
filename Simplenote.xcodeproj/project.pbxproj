@@ -328,6 +328,7 @@
 		BACA687B2C0A7634005409C1 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACA687A2C0A7634005409C1 /* KeychainPasswordItem.swift */; };
 		BACA687C2C0A764C005409C1 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACA687A2C0A7634005409C1 /* KeychainPasswordItem.swift */; };
 		BAD4ECC026E6FC0A00881CC4 /* markdown-light.css in Resources */ = {isa = PBXBuildFile; fileRef = BAF8D5DB26AE3BE800CA9383 /* markdown-light.css */; };
+		BAEBDD4A2C52C14500335700 /* SPAuthenticationTextField+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEBDD492C52C14500335700 /* SPAuthenticationTextField+Simplenote.swift */; };
 		BAF1B0C32BC9B1C500B55F73 /* NoteWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF1B0C12BC9B1C500B55F73 /* NoteWindow.swift */; };
 		BAF1B0C92BCEDFD400B55F73 /* NoteWindowControllersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF1B0C72BCDDA9600B55F73 /* NoteWindowControllersManager.swift */; };
 		BAF4E5DE2C49C08A009B891F /* SPNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4E5DD2C49C08A009B891F /* SPNavigationController.swift */; };
@@ -786,6 +787,7 @@
 		BACA68752C0A72F3005409C1 /* NSString+Intents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSString+Intents.swift"; sourceTree = "<group>"; };
 		BACA68772C0A7537005409C1 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		BACA687A2C0A7634005409C1 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
+		BAEBDD492C52C14500335700 /* SPAuthenticationTextField+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SPAuthenticationTextField+Simplenote.swift"; sourceTree = "<group>"; };
 		BAF1B0C12BC9B1C500B55F73 /* NoteWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteWindow.swift; sourceTree = "<group>"; };
 		BAF1B0C72BCDDA9600B55F73 /* NoteWindowControllersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteWindowControllersManager.swift; sourceTree = "<group>"; };
 		BAF4E5DD2C49C08A009B891F /* SPNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPNavigationController.swift; sourceTree = "<group>"; };
@@ -1199,6 +1201,7 @@
 				BA2C65CA26FE996100FA84E1 /* NSButton+Extensions.swift */,
 				BA52005C2BC88397003F1B75 /* NSManagedObjectContext+Simplenote.swift */,
 				BAF4E5DF2C49C17A009B891F /* NSViewController+Simplenote.swift */,
+				BAEBDD492C52C14500335700 /* SPAuthenticationTextField+Simplenote.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -2192,6 +2195,7 @@
 				B5ACE42F24785D8C00AB02C7 /* BackgroundView.swift in Sources */,
 				B5F5415525F0137100CAF52C /* MagicLinkAuthenticator.swift in Sources */,
 				B58A71BF258422CC00601641 /* NSBezierPath+Simplenote.swift in Sources */,
+				BAEBDD4A2C52C14500335700 /* SPAuthenticationTextField+Simplenote.swift in Sources */,
 				BAF4E5DE2C49C08A009B891F /* SPNavigationController.swift in Sources */,
 				B5DD0F922476309000C8DD41 /* NoteTableCellView.swift in Sources */,
 				B503FF4924848D0B00066059 /* TagAttachmentCell.swift in Sources */,
