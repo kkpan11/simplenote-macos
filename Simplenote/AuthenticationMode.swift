@@ -50,9 +50,8 @@ class AuthenticationMode: NSObject {
     let header: String?
     let inputElements: AuthenticationInputElements
     let actions: [AuthenticationActionDescriptor]
-
     let primaryActionAnimationText: String
-
+    let rateLimitingFallbackMode: (() -> AuthenticationMode)?
     let isIntroView: Bool
 
     init(title: String,
@@ -60,12 +59,14 @@ class AuthenticationMode: NSObject {
          inputElements: AuthenticationInputElements,
          actions: [AuthenticationActionDescriptor],
          primaryActionAnimationText: String,
+         rateLimitingFallbackMode: (() -> AuthenticationMode)? = nil,
          isIntroView: Bool = false) {
         self.title = title
         self.header = header
         self.inputElements = inputElements
         self.actions = actions
         self.primaryActionAnimationText =  primaryActionAnimationText
+        self.rateLimitingFallbackMode = rateLimitingFallbackMode
         self.isIntroView = isIntroView
     }
 }
@@ -77,6 +78,7 @@ extension AuthenticationMode {
         actions.first(where: { $0.name == name })
     }
 }
+
 
 // MARK: - Public Properties
 //
@@ -121,8 +123,20 @@ extension AuthenticationMode {
     /// Auth Mode: Login with Username + Password
     ///
     static var loginWithPassword: AuthenticationMode {
+        buildLoginWithPasswordMode(header: LoginStrings.loginWithEmailEmailHeader)
+    }
+    
+    /// Auth Mode: Login with Username + Password + Rate Limiting Header
+    ///
+    static var loginWithPasswordRateLimited: AuthenticationMode {
+        buildLoginWithPasswordMode(header: LoginStrings.loginWithEmailLimitHeader)
+    }
+
+    /// Builds the loginWithPassword Mode with the specified Header
+    ///
+    private static func buildLoginWithPasswordMode(header: String) -> AuthenticationMode {
         AuthenticationMode(title: NSLocalizedString("Log In with Password", comment: "LogIn Interface Title"),
-                           header: LoginStrings.loginWithEmailEmailHeader,
+                           header: header,
                            inputElements: [.password],
                            actions: [
                             AuthenticationActionDescriptor(name: .primary,
@@ -143,14 +157,17 @@ extension AuthenticationMode {
         AuthenticationMode(title: NSLocalizedString("Log In", comment: "LogIn Interface Title"),
                            inputElements: [.username, .actionSeparator],
                            actions: [
-                            AuthenticationActionDescriptor(name: .primary, 
+                            AuthenticationActionDescriptor(name: .primary,
                                                            selector: #selector(AuthViewController.pressedLoginWithMagicLink),
                                                            text: MagicLinkStrings.primaryAction),
                             AuthenticationActionDescriptor(name: .tertiary,
                                                            selector: #selector(AuthViewController.wordpressSSOAction),
                                                            text: LoginStrings.wordpressAction)
                            ],
-                           primaryActionAnimationText: MagicLinkStrings.primaryAnimationText)
+                           primaryActionAnimationText: MagicLinkStrings.primaryAnimationText,
+                           rateLimitingFallbackMode: {
+                                AuthenticationMode.loginWithPasswordRateLimited
+                            })
     }
 
     /// Auth Mode: SignUp
@@ -197,6 +214,8 @@ private enum LoginStrings {
     static let switchTip            = NSLocalizedString("Need an account?", comment: "Link to create an account")
     static let wordpressAction      = NSLocalizedString("Log in with WordPress.com", comment: "Title to use wordpress login instead of email")
     static let loginWithEmailEmailHeader = NSLocalizedString("Enter the password for the account {{EMAIL}}", comment: "Header for Login With Password. Please preserve the {{EMAIL}} substring")
+    static let loginWithEmailLimitHeader = NSLocalizedString("Log in with email failed, please enter the password for {{EMAIL}}", comment: "Header for Enter Password UI, when the user performed too many requests")
+
 }
 
 private enum MagicLinkStrings {
