@@ -102,10 +102,6 @@ extension AuthViewController {
         state.password
     }
     
-    var authWindowController: AuthWindowController? {
-        view.window?.windowController as? AuthWindowController
-    }
-
     /// # All of the Action Views
     ///
     private var allActionViews: [NSButton] {
@@ -235,11 +231,6 @@ extension AuthViewController {
 // MARK: - Handlers
 //
 extension AuthViewController {
-
-    @IBAction
-    func switchToPasswordAuth(_ sender: Any) {
-        mode = AuthenticationMode.loginWithPassword
-    }
     
     @objc
     func performSignupRequest() {
@@ -405,15 +396,6 @@ extension AuthViewController {
     func presentSignupVerification(email: String) {
         let vc = SignupVerificationViewController(email: email, authenticator: authenticator)
         view.window?.transition(to: vc)
-    }
-    
-    //TODO: Drop this method?
-    func presentMagicLinkRequestedView(email: String) {
-        guard let authWindowController else {
-            return
-        }
-        
-        authWindowController.switchToMagicLinkRequestedUI(email: email)
     }
 }
 
