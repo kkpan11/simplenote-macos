@@ -43,7 +43,7 @@ class SPNavigationController: NSViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         initialView.translatesAutoresizingMaskIntoConstraints = false
 
-        attachView(subview: initialViewController.view, below: nil, animated: false)
+        attachView(subview: initialViewController.view, below: nil)
         resizeWindow(to: initialViewController.view, animated: false)
 
         NSLayoutConstraint.activate([
@@ -92,7 +92,7 @@ class SPNavigationController: NSViewController {
         let currentView = topViewController?.view
 
         attach(child: viewController)
-        attachView(subview: viewController.view, below: currentView, animated: animated)
+        attachView(subview: viewController.view, below: currentView)
         resizeWindow(to: viewController.view, animated: animated)
 
         guard animated else {
@@ -111,12 +111,11 @@ class SPNavigationController: NSViewController {
         viewStack.append(child)
     }
 
-    private func attachView(subview: NSView, below siblingView: NSView?, animated: Bool) {
+    private func attachView(subview: NSView, below siblingView: NSView?) {
         subview.translatesAutoresizingMaskIntoConstraints = false
 
-        if let siblingView,
-           animated {
-            heightConstraint.constant = siblingView.fittingSize.height + totalTopPadding
+        if let siblingView {
+//            heightConstraint.constant = siblingView.fittingSize.height + totalTopPadding
             view.addSubview(subview, positioned: .below, relativeTo: siblingView)
         } else {
             view.addSubview(subview)
@@ -151,7 +150,7 @@ class SPNavigationController: NSViewController {
             return
         }
   
-        attachView(subview: nextViewController.view, below: currentViewController.view, animated: animated)
+        attachView(subview: nextViewController.view, below: currentViewController.view)
         resizeWindow(to: nextViewController.view, animated: animated)
 
         guard animated else {
