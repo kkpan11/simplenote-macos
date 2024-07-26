@@ -104,6 +104,7 @@
 		B51AFE6E25D30A1800A196DF /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51AFE6C25D30A1800A196DF /* SearchField.swift */; };
 		B51AFE7725D36CDD00A196DF /* NSFont+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51AFE7525D36CDD00A196DF /* NSFont+Simplenote.swift */; };
 		B51D44582C52AB2200F296A7 /* SimplenoteEndpoints in Frameworks */ = {isa = PBXBuildFile; productRef = B51D44572C52AB2200F296A7 /* SimplenoteEndpoints */; };
+		B51D44672C52F5AE00F296A7 /* AuthenticationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51D44662C52F5AE00F296A7 /* AuthenticationError.swift */; };
 		B51D85F525A8B392005F08CE /* NoteListPrefixFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51D85F325A8B392005F08CE /* NoteListPrefixFormatter.swift */; };
 		B51E9FE222E615FA004F16B4 /* SPExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51E9FE022E615FA004F16B4 /* SPExporter.swift */; };
 		B51E9FE622E644A0004F16B4 /* NSObject+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51E9FE422E644A0004F16B4 /* NSObject+Helpers.swift */; };
@@ -511,6 +512,7 @@
 		B518D37D2507C356006EA7F8 /* StringSimplenoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringSimplenoteTests.swift; sourceTree = "<group>"; };
 		B51AFE6C25D30A1800A196DF /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
 		B51AFE7525D36CDD00A196DF /* NSFont+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFont+Simplenote.swift"; sourceTree = "<group>"; };
+		B51D44662C52F5AE00F296A7 /* AuthenticationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationError.swift; sourceTree = "<group>"; };
 		B51D85F325A8B392005F08CE /* NoteListPrefixFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListPrefixFormatter.swift; sourceTree = "<group>"; };
 		B51E9FE022E615FA004F16B4 /* SPExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SPExporter.swift; sourceTree = "<group>"; };
 		B51E9FE422E644A0004F16B4 /* NSObject+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Helpers.swift"; sourceTree = "<group>"; };
@@ -1359,6 +1361,7 @@
 			children = (
 				B5F5415325F0137100CAF52C /* MagicLinkAuthenticator.swift */,
 				B587D7E92C221575006645CF /* SimperiumAuthenticatorProtocol.swift */,
+				B51D44662C52F5AE00F296A7 /* AuthenticationError.swift */,
 			);
 			name = Authentication;
 			sourceTree = "<group>";
@@ -2200,6 +2203,7 @@
 				B5DD0F922476309000C8DD41 /* NoteTableCellView.swift in Sources */,
 				B503FF4924848D0B00066059 /* TagAttachmentCell.swift in Sources */,
 				466FFED417CC10A800399652 /* SPTableView.m in Sources */,
+				B51D44672C52F5AE00F296A7 /* AuthenticationError.swift in Sources */,
 				375D293921E033D1007AB25A /* escape.c in Sources */,
 				BA0B43CA26F2FCFC00B44A8C /* PreferencesViewController.swift in Sources */,
 				B53BF19D24ABDE7C00938C34 /* DateFormatter+Simplenote.swift in Sources */,

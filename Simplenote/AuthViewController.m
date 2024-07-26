@@ -296,49 +296,6 @@
     [self validateCodeInput];
 }
 
-- (void)showAuthenticationError:(NSString *)errorMessage {
-    [self.errorField setStringValue:errorMessage];
-}
-
-- (void)showAuthenticationErrorForCode:(NSInteger)responseCode responseString:(NSString *)responseString {
-    switch (responseCode) {
-        case 409:
-            [self showAuthenticationError:NSLocalizedString(@"That email is already being used", @"Error when address is in use")];
-            [self.view.window makeFirstResponder:self.usernameField];
-            break;
-        case 401:
-            if ([self isPasswordCompromisedResponse:responseString]) {
-                [self presentPasswordCompromisedAlert];
-            } else {
-                [self showAuthenticationError:NSLocalizedString(@"Bad email or password", @"Error for bad email or password")];
-            }
-            break;
-        case 403:
-            if ([self isRequiresVerificationdResponse:responseString]) {
-                [self presentUnverifiedEmailAlert];
-            } else {
-                [self showAuthenticationError:NSLocalizedString(@"Authorization failed", @"Error for authorization failure")];
-            }
-            break;
-        case 429:
-            [self showAuthenticationError:NSLocalizedString(@"Too many log in attempts. Try again later.", @"Error for too many login attempts")];
-            break;
-        default:
-            [self showAuthenticationError:NSLocalizedString(@"We're having problems. Please try again soon.", @"Generic error")];
-            break;
-    }
-}
-
-- (BOOL)isPasswordCompromisedResponse:(NSString *)responseString
-{
-   return ([responseString isEqual:@"compromised password"]);
-}
-
-- (BOOL)isRequiresVerificationdResponse:(NSString *)responseString
-{
-   return ([responseString isEqual:@"verification required"]);
-}
-
 -(void)presentPasswordCompromisedAlert
 {
     __weak typeof(self) weakSelf = self;

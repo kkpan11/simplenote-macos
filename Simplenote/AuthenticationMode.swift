@@ -147,7 +147,8 @@ extension AuthenticationMode {
                                                            selector: #selector(AuthViewController.pressedLoginWithMagicLink),
                                                            text: MagicLinkStrings.primaryAction),
                             AuthenticationActionDescriptor(name: .tertiary,
-                                                           selector: #selector(AuthViewController.wordpressSSOAction), text: LoginStrings.wordpressAction)
+                                                           selector: #selector(AuthViewController.wordpressSSOAction),
+                                                           text: LoginStrings.wordpressAction)
                            ],
                            primaryActionAnimationText: MagicLinkStrings.primaryAnimationText)
     }
