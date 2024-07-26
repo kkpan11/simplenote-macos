@@ -50,7 +50,6 @@ class SPNavigationController: NSViewController {
             initialView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             initialView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             initialView.topAnchor.constraint(equalTo: backButton.bottomAnchor),
-            initialView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             heightConstraint
         ])
     }
