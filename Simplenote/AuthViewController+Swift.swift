@@ -445,8 +445,7 @@ extension AuthViewController {
             showAuthenticationError(message)
 
         case .requestNotFound:
-            let message = NSLocalizedString("The authentication code you've requested has expired. Please request a new one", comment: "Login Code no longer exists")
-            showAuthenticationError(message)
+            showLoginCodeExpiredAlert()
 
         case .tooManyAttempts:
             let message = NSLocalizedString("Too many log in attempts. Try again later.", comment: "Error for too many login attempts")
@@ -458,6 +457,19 @@ extension AuthViewController {
         default:
             let message = NSLocalizedString("We're having problems. Please try again soon.", comment: "Generic error")
             showAuthenticationError(message)
+        }
+    }
+    
+    func showLoginCodeExpiredAlert() {
+        guard let window = view.window else {
+            return
+        }
+        
+        let alert = NSAlert.buildLoginCodeExpiredAlert()
+        alert.beginSheetModal(for: window) { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.containingNavigationController?.popViewController()
+            }
         }
     }
     

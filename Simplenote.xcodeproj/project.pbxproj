@@ -93,6 +93,7 @@
 		B511799C242036BD005F8936 /* NSTextView+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = B511799A242036BD005F8936 /* NSTextView+Simplenote.swift */; };
 		B5132FA923C4B9760065DD80 /* NSTextStorage+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5132FA723C4B9760065DD80 /* NSTextStorage+Simplenote.swift */; };
 		B51374F71AC0591900825FCC /* SPConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = B51374F51AC0591900825FCC /* SPConstants.m */; };
+		B5146B092C53FBC40064AE72 /* NSAlert+AuthErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5146B082C53FBC40064AE72 /* NSAlert+AuthErrors.swift */; };
 		B51699852480B93100ACF2F4 /* TagsField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51699832480B93100ACF2F4 /* TagsField.swift */; };
 		B5177CBC25EEB01600A8D834 /* AuthViewController+Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5177CBA25EEB01600A8D834 /* AuthViewController+Swift.swift */; };
 		B5177CC525EEBF6900A8D834 /* SignupVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5177CC325EEBF6900A8D834 /* SignupVerificationViewController.swift */; };
@@ -501,6 +502,7 @@
 		B5132FA723C4B9760065DD80 /* NSTextStorage+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextStorage+Simplenote.swift"; sourceTree = "<group>"; };
 		B51374F41AC0591900825FCC /* SPConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPConstants.h; sourceTree = "<group>"; };
 		B51374F51AC0591900825FCC /* SPConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPConstants.m; sourceTree = "<group>"; };
+		B5146B082C53FBC40064AE72 /* NSAlert+AuthErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAlert+AuthErrors.swift"; sourceTree = "<group>"; };
 		B51699832480B93100ACF2F4 /* TagsField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsField.swift; sourceTree = "<group>"; };
 		B5177CBA25EEB01600A8D834 /* AuthViewController+Swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthViewController+Swift.swift"; sourceTree = "<group>"; };
 		B5177CC325EEBF6900A8D834 /* SignupVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVerificationViewController.swift; sourceTree = "<group>"; };
@@ -1154,6 +1156,7 @@
 				B57CB87D244DED2300BA7969 /* Bundle+Simplenote.swift */,
 				BA52005A2BC878F1003F1B75 /* CSSearchable+Helpers.swift */,
 				B53BF19B24ABDE7C00938C34 /* DateFormatter+Simplenote.swift */,
+				B5146B082C53FBC40064AE72 /* NSAlert+AuthErrors.swift */,
 				B5C620AA257ED4CF008359A9 /* NSAnimationContext+Simplenote.swift */,
 				B56FA79A2437D2E0002CB9FF /* NSAppearance+Simplenote.swift */,
 				B5B17F392425668400DD5B34 /* NSAttributedString+Simplenote.swift */,
@@ -2092,6 +2095,7 @@
 				B54F9A6B24D0BDC100BCF754 /* TagTextFormatter.swift in Sources */,
 				B5D21CB824881EF600D57A34 /* Array+Simplenote.swift in Sources */,
 				B542FE4F25D42E8900A3582D /* ContentSlice.swift in Sources */,
+				B5146B092C53FBC40064AE72 /* NSAlert+AuthErrors.swift in Sources */,
 				B5117999242036B1005F8936 /* NSString+Simplenote.swift in Sources */,
 				B5E0863C2449012700DEF476 /* NSImage+Simplenote.swift in Sources */,
 				BAC5DFB72C069993002AD7EF /* SharedStorageMigrator.swift in Sources */,
