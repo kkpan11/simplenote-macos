@@ -1,5 +1,7 @@
 import XCTest
+@testable import SimplenoteEndpoints
 @testable import Simplenote
+
 
 // MARK: - MockAccountVerificationRemote
 //

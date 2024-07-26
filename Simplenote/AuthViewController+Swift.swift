@@ -1,4 +1,6 @@
 import Foundation
+import SimplenoteEndpoints
+
 
 // MARK: - AuthViewController: Interface Initialization
 //

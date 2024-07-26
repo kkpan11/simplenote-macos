@@ -1,4 +1,6 @@
 import Foundation
+import SimplenoteEndpoints
+
 
 @objc
 class AccountDeletionController: NSObject {

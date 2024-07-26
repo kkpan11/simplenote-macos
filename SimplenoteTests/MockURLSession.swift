@@ -1,5 +1,7 @@
 import Foundation
+import SimplenoteEndpoints
 @testable import Simplenote
+
 
 // MARK: - MockURLSession
 //
@@ -31,6 +33,6 @@ class MockURLSession: URLSessionProtocol {
             return (responseData, urlResponse)
         }
         
-        throw RemoteError.network
+        throw RemoteError(statusCode: .zero, response: nil, networkError: nil)
     }
 }
