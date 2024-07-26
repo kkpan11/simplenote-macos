@@ -93,12 +93,12 @@ extension AuthViewController {
 
     @objc
     var usernameText: String {
-        usernameField.stringValue?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        state.username
     }
 
     @objc
     var passwordText: String {
-        passwordField.stringValue?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        state.password
     }
     
     var authWindowController: AuthWindowController? {
