@@ -62,6 +62,12 @@ class SPNavigationController: NSViewController {
         backButton = button
         backButton.isHidden = hideBackButton
         button.bezelStyle = .accessoryBarAction
+        button.cell?.isBordered = false
+        button.contentTintColor = .darkGray
+        button.wantsLayer = true
+        button.layer?.cornerRadius = 5
+        let trackingArea = NSTrackingArea(rect: backButton.bounds, options: [.mouseEnteredAndExited, .activeAlways], owner: self)
+        button.addTrackingArea(trackingArea)
 
         view.addSubview(backButton)
         NSLayoutConstraint.activate([
@@ -190,5 +196,17 @@ class SPNavigationController: NSViewController {
         } completionHandler: {
             onCompletion()
         }
+    }
+}
+
+// MARK: - Button Hover Color Animation
+//
+extension SPNavigationController {
+    override func mouseEntered(with event: NSEvent) {
+        backButton.layer?.backgroundColor = NSColor.lightGray.withAlphaComponent(0.1).cgColor
+    }
+
+    override func mouseExited(with event: NSEvent) {
+        backButton.layer?.backgroundColor = .clear
     }
 }
