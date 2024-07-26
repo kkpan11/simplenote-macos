@@ -255,7 +255,7 @@ extension AuthViewController {
             case .success:
                 self.presentSignupVerification(email: email)
             case .failure(let result):
-                self.showAuthenticationError(forCode: result.statusCode, responseString: result.response)
+                self.showAuthenticationError(statusCode: result.statusCode, responseString: result.response)
             }
 
             self.stopActionAnimation()
@@ -290,7 +290,7 @@ extension AuthViewController {
         } catch {
             // TODO: Once Xcode 16 goes GM, *please* wire Typed Errors here? (it'll always be a RemoteError instance)
             let remoteError = error as? RemoteError
-            self.showAuthenticationError(forCode: remoteError?.statusCode ?? .zero, responseString: remoteError?.response)
+            self.showAuthenticationError(statusCode: remoteError?.statusCode ?? .zero, responseString: remoteError?.response)
         }
     }
 
@@ -318,7 +318,7 @@ extension AuthViewController {
         } catch {
             // TODO: Once Xcode 16 goes GM, *please* wire Typed Errors here? (it'll always be a RemoteError instance)
             let remoteError = error as? RemoteError
-            self.showAuthenticationError(forCode: remoteError?.statusCode ?? .zero, responseString: remoteError?.response)
+            self.showAuthenticationError(statusCode: remoteError?.statusCode ?? .zero, responseString: remoteError?.response)
         }
     }
 
