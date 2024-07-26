@@ -15,7 +15,7 @@ class SPNavigationController: NSViewController {
         viewStack.last
     }
     
-    private var heightConstraint: NSLayoutConstraint? = nil
+    private var heightConstraint: NSLayoutConstraint!
 
     init(initialViewController: NSViewController) {
         super.init(nibName: nil, bundle: nil)
@@ -34,7 +34,6 @@ class SPNavigationController: NSViewController {
 
         view = NSView()
         heightConstraint = view.heightAnchor.constraint(equalToConstant: .zero)
-        heightConstraint?.isActive = true
         let initialView = initialViewController.view
         backButton = insertBackButton()
 
@@ -43,18 +42,12 @@ class SPNavigationController: NSViewController {
 
         attachView(subview: initialViewController.view, below: nil, animated: false)
 
-        /// "Hint" we wanna occupy as little as possible. This constraint is meant to be broken, but the layout system will
-        /// attempt to reduce the Height, when possible
-        ///
-        let minimumHeightConstraint = view.heightAnchor.constraint(equalToConstant: .zero)
-        minimumHeightConstraint.priority = .init(1)
-
         NSLayoutConstraint.activate([
             initialView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             initialView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             initialView.topAnchor.constraint(equalTo: backButton.bottomAnchor),
             initialView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            minimumHeightConstraint
+            heightConstraint
         ])
     }
 
@@ -120,7 +113,7 @@ class SPNavigationController: NSViewController {
 
         if let siblingView,
            animated {
-            heightConstraint?.constant = siblingView.fittingSize.height + padding
+            heightConstraint.constant = siblingView.fittingSize.height + padding
             view.addSubview(subview, positioned: .below, relativeTo: siblingView)
         } else {
             view.addSubview(subview)
@@ -135,7 +128,7 @@ class SPNavigationController: NSViewController {
         ])
 
         guard animated else {
-            heightConstraint?.constant = finalHeight
+            heightConstraint.constant = finalHeight
             return
         }
 
@@ -143,7 +136,7 @@ class SPNavigationController: NSViewController {
             context.duration = 0.4
             context.timingFunction = .init(name: .easeInEaseOut)
 
-            heightConstraint?.animator().constant = finalHeight
+            heightConstraint.animator().constant = finalHeight
         }
     }
 
