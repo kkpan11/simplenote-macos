@@ -91,23 +91,17 @@ class SPNavigationController: NSViewController {
 
     // MARK: - Add a View to the stack
     //
-    func push(_ viewController: NSViewController, animated: Bool = false) {
+    func push(_ viewController: NSViewController, animated: Bool = true) {
         let currentView = topViewController?.view
 
         attach(child: viewController)
-
-        guard let (leadingAnchor, trailingAnchor) = attachView(subview: viewController.view, below: currentView, animated: animated) else {
-            return
-        }
+        attachView(subview: viewController.view, below: currentView, animated: animated)
 
         guard animated else {
             currentView?.removeFromSuperview()
             backButton.animator().isHidden = hideBackButton
             return
         }
-
-        leadingAnchor.constant = view.frame.width
-        trailingAnchor.constant = view.frame.width
 
         animateTransition(slidingView: viewController.view, fadingView: currentView, direction: .trailingToLeading) {
             currentView?.removeFromSuperview()
@@ -119,15 +113,14 @@ class SPNavigationController: NSViewController {
         viewStack.append(child)
     }
 
-    @discardableResult
-    private func attachView(subview: NSView, below siblingView: NSView?, animated: Bool) -> (leading: NSLayoutConstraint, trailing: NSLayoutConstraint)? {
+    private func attachView(subview: NSView, below siblingView: NSView?, animated: Bool) {
 
         let padding = Constants.buttonViewLeadingPadding + Constants.buttonViewHeight
         let finalHeight = subview.fittingSize.height + padding
 
         if let siblingView,
            animated {
-            heightConstraint?.constant = finalHeight
+            heightConstraint?.constant = siblingView.fittingSize.height + padding
             view.addSubview(subview, positioned: .below, relativeTo: siblingView)
         } else {
             view.addSubview(subview)
@@ -135,18 +128,15 @@ class SPNavigationController: NSViewController {
 
         subview.translatesAutoresizingMaskIntoConstraints = false
 
-        let leadingAnchor = subview.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-        let trailingAnchor = subview.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-
         NSLayoutConstraint.activate([
-            leadingAnchor,
-            trailingAnchor,
+            subview.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            subview.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             subview.topAnchor.constraint(equalTo: backButton.bottomAnchor)
         ])
 
         guard animated else {
             heightConstraint?.constant = finalHeight
-            return (leading: leadingAnchor, trailing: trailingAnchor)
+            return
         }
 
         NSAnimationContext.runAnimationGroup { context in
@@ -156,11 +146,11 @@ class SPNavigationController: NSViewController {
             heightConstraint?.animator().constant = finalHeight
         }
 
-        return (leading: leadingAnchor, trailing: trailingAnchor)
+        return
     }
 
     // MARK: - Remove view from stack
-    func popViewController(animated: Bool = false) {
+    func popViewController(animated: Bool = true) {
         guard viewStack.count > 1, let currentViewController = viewStack.popLast(), let nextViewController = viewStack.last else {
             return
         }
@@ -194,6 +184,11 @@ class SPNavigationController: NSViewController {
         guard let leadingConstraint = view.firstContraint(firstView: slidingView, firstAttribute: .leading),
               let trailingConstraint = view.firstContraint(firstView: slidingView, firstAttribute: .trailing) else {
             return
+        }
+
+        if direction == .trailingToLeading {
+            leadingConstraint.constant = view.frame.width
+            trailingConstraint.constant = view.frame.width
         }
 
         let multiplier: CGFloat = direction == .leadingToTrailing ? 1 : -1
