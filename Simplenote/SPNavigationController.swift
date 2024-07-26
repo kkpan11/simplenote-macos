@@ -115,7 +115,6 @@ class SPNavigationController: NSViewController {
         subview.translatesAutoresizingMaskIntoConstraints = false
 
         if let siblingView {
-//            heightConstraint.constant = siblingView.fittingSize.height + totalTopPadding
             view.addSubview(subview, positioned: .below, relativeTo: siblingView)
         } else {
             view.addSubview(subview)
