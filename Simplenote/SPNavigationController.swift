@@ -41,7 +41,6 @@ class SPNavigationController: NSViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         initialView.translatesAutoresizingMaskIntoConstraints = false
 
-        attach(child: initialViewController)
         attachView(subview: initialViewController.view, below: nil, animated: false)
 
         /// "Hint" we wanna occupy as little as possible. This constraint is meant to be broken, but the layout system will
@@ -92,7 +91,7 @@ class SPNavigationController: NSViewController {
 
     // MARK: - Add a View to the stack
     //
-    func push(_ viewController: NSViewController, animated: Bool = true) {
+    func push(_ viewController: NSViewController, animated: Bool = false) {
         let currentView = topViewController?.view
 
         attach(child: viewController)
@@ -102,6 +101,8 @@ class SPNavigationController: NSViewController {
         }
 
         guard animated else {
+            currentView?.removeFromSuperview()
+            backButton.animator().isHidden = hideBackButton
             return
         }
 
@@ -123,9 +124,10 @@ class SPNavigationController: NSViewController {
 
         let padding = Constants.buttonViewLeadingPadding + Constants.buttonViewHeight
         let finalHeight = subview.fittingSize.height + padding
-        
-        if let siblingView {
-            heightConstraint?.constant = siblingView.fittingSize.height + padding
+
+        if let siblingView,
+           animated {
+            heightConstraint?.constant = finalHeight
             view.addSubview(subview, positioned: .below, relativeTo: siblingView)
         } else {
             view.addSubview(subview)
@@ -158,12 +160,18 @@ class SPNavigationController: NSViewController {
     }
 
     // MARK: - Remove view from stack
-    func popViewController(animated: Bool = true) {
+    func popViewController(animated: Bool = false) {
         guard viewStack.count > 1, let currentViewController = viewStack.popLast(), let nextViewController = viewStack.last else {
             return
         }
   
         attachView(subview: nextViewController.view, below: currentViewController.view, animated: animated)
+
+        guard animated else {
+            self.dettach(child: currentViewController)
+            backButton.isHidden = hideBackButton
+            return
+        }
 
         animateTransition(slidingView: currentViewController.view, fadingView: nextViewController.view, direction: .leadingToTrailing) {
             self.dettach(child: currentViewController)
