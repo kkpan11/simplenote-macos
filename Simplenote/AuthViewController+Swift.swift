@@ -467,8 +467,12 @@ extension AuthViewController {
         
         let alert = NSAlert.buildLoginCodeExpiredAlert()
         alert.beginSheetModal(for: window) { [weak self] _ in
+            guard let navigationController = self?.containingNavigationController else {
+                return
+            }
+
             DispatchQueue.main.async {
-                self?.containingNavigationController?.popViewController()
+                navigationController.popViewController()
             }
         }
     }
