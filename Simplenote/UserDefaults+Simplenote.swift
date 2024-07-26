@@ -15,6 +15,7 @@ extension UserDefaults {
         case themeName = "VSThemeManagerThemePrefKey"
         case fontSize = "kFontSizePreferencesKey"
         case indexNotesForSpotlight
+        case SPAuthSessionKey
     }
 }
 

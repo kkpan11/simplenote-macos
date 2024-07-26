@@ -6,8 +6,6 @@
 
 #pragma mark - Constants
 
-static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
-
 
 #pragma mark - Private
 
@@ -25,11 +23,23 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
     [[NSNotificationCenter defaultCenter] removeObserver: self];
 }
 
+- (instancetype)initWithMode:(AuthenticationMode*)mode state:(AuthenticationState*)state;
+{
+    if (self = [super init]) {
+        self.validator = [SPAuthenticationValidator new];
+        self.mode = mode;
+        self.state = state;
+    }
+
+    return self;
+}
+
 - (instancetype)init
 {
     if (self = [super init]) {
         self.validator = [SPAuthenticationValidator new];
-        self.mode = [AuthenticationMode signup];
+        self.mode = [AuthenticationMode onboarding];
+        self.state = [AuthenticationState new];
     }
 
     return self;
@@ -40,7 +50,7 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
     [super viewDidLoad];
 
     [self setupInterface];
-    [self refreshInterfaceWithAnimation:NO];
+    [self refreshInterface];
     [self startListeningToNotifications];
 }
 
@@ -65,15 +75,6 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:forgotPasswordURL]];
 }
 
-
-#pragma mark - Dynamic Properties
-
-- (void)setMode:(AuthenticationMode *)mode {
-    _mode = mode;
-    [self didUpdateAuthenticationMode];
-}
-
-
 #pragma mark - Interface Helpers
 
 - (void)setInterfaceEnabled:(BOOL)enabled {
@@ -81,25 +82,11 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
     [self.passwordField setEnabled:enabled];
     [self.actionButton setEnabled:enabled];
     [self.secondaryActionButton setEnabled:enabled];
-    [self.switchActionButton setEnabled:enabled];
-    [self.wordPressSSOButton setEnabled:enabled];
+    [self.tertiaryButton setEnabled:enabled];
 }
 
 
 #pragma mark - WordPress SSO
-
-- (IBAction)wpccSignInAction:(id)sender
-{
-    NSString *sessionState = [[NSUUID UUID] UUIDString];
-    sessionState = [@"app-" stringByAppendingString:sessionState];
-    [[NSUserDefaults standardUserDefaults] setObject:sessionState forKey:SPAuthSessionKey];
-
-    NSString *requestUrl = [NSString stringWithFormat:SPWPSignInAuthURL, SPCredentials.wpcomClientID, SPCredentials.wpcomRedirectURL, sessionState];
-    NSString *encodedUrl = [requestUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:encodedUrl]];
-
-    [SPTracker trackWPCCButtonPressed];
-}
 
 - (IBAction)signInErrorAction:(NSNotification *)notification
 {
@@ -184,7 +171,7 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
     [self startActionAnimation];
     [self setInterfaceEnabled:NO];
 
-    [self.authenticator authenticateWithUsername:self.usernameText password:self.passwordText success:^{
+    [self.authenticator authenticateWithUsername:self.state.username password:self.state.password success:^{
         // NO-OP
     } failure:^(NSInteger responseCode, NSString *responseString, NSError *error) {
         [self showAuthenticationErrorForCode:responseCode responseString: responseString];
@@ -246,7 +233,7 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
 
 - (BOOL)validateUsername {
     NSError *error = nil;
-    if ([self.validator validateUsername:self.usernameText error:&error]) {
+    if ([self.validator validateUsername:self.state.username error:&error]) {
         return YES;
     }
 
@@ -257,7 +244,7 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
 
 - (BOOL)validatePasswordSecurity {
     NSError *error = nil;
-    if ([self.validator validatePasswordWithUsername:self.usernameText password:self.passwordText error:&error]) {
+    if ([self.validator validatePasswordWithUsername:self.state.username password:self.state.password error:&error]) {
         return YES;
     }
 
@@ -279,6 +266,15 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
     return [self.validator mustPerformPasswordResetWithUsername:self.usernameText password:self.passwordText];
 }
 
+- (BOOL)validateCodeInput {
+    if (self.state.code.length >= 6) {
+        return YES;
+    }
+
+    [self showAuthenticationError:NSLocalizedString(@"Login Code is too short", comment: @"Message displayed when a login code is too short")];
+    return NO;
+}
+
 - (BOOL)validateSignIn {
     return [self validateConnection] &&
            [self validateUsername] &&
@@ -295,47 +291,9 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
            [self validateUsername];
 }
 
-- (void)showAuthenticationError:(NSString *)errorMessage {
-    [self.errorField setStringValue:errorMessage];
-}
-
-- (void)showAuthenticationErrorForCode:(NSInteger)responseCode responseString:(NSString *)responseString {
-    switch (responseCode) {
-        case 409:
-            [self showAuthenticationError:NSLocalizedString(@"That email is already being used", @"Error when address is in use")];
-            [self.view.window makeFirstResponder:self.usernameField];
-            break;
-        case 401:
-            if ([self isPasswordCompromisedResponse:responseString]) {
-                [self presentPasswordCompromisedAlert];
-            } else {
-                [self showAuthenticationError:NSLocalizedString(@"Bad email or password", @"Error for bad email or password")];
-            }
-            break;
-        case 403:
-            if ([self isRequiresVerificationdResponse:responseString]) {
-                [self presentUnverifiedEmailAlert];
-            } else {
-                [self showAuthenticationError:NSLocalizedString(@"Authorization failed", @"Error for authorization failure")];
-            }
-            break;
-        case 429:
-            [self showAuthenticationError:NSLocalizedString(@"Too many log in attempts. Try again later.", @"Error for too many login attempts")];
-            break;
-        default:
-            [self showAuthenticationError:NSLocalizedString(@"We're having problems. Please try again soon.", @"Generic error")];
-            break;
-    }
-}
-
-- (BOOL)isPasswordCompromisedResponse:(NSString *)responseString
-{
-   return ([responseString isEqual:@"compromised password"]);
-}
-
-- (BOOL)isRequiresVerificationdResponse:(NSString *)responseString
-{
-   return ([responseString isEqual:@"verification required"]);
+- (BOOL)validateCode {
+    return [self validateConnection] &&
+    [self validateCodeInput];
 }
 
 -(void)presentPasswordCompromisedAlert
@@ -380,6 +338,8 @@ static NSString *SPAuthSessionKey = @"SPAuthSessionKey";
     if (currentEvent.type == NSEventTypeKeyDown && [currentEvent.charactersIgnoringModifiers isEqualToString:@"\r"]) {
         [self handleNewlineInField:obj.object];
     }
+
+    [self updateStateWith:obj.object];
 }
 
 @end

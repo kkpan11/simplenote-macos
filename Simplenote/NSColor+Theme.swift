@@ -237,6 +237,14 @@ extension NSColor {
     static var simplenotePreferencesDividerColor: NSColor {
         dynamicColor(lightStudio: .black, darkStudio: .white, lightColorAlpha: AppKitConstants.alpha0_1, darkColorAlpha: AppKitConstants.alpha0_1)
     }
+
+    static var simplenoteWPBlue50Color: NSColor {
+        NSColor(studioColor: .wpBlue50)
+    }
+
+    static var simplenoteGray50Color: NSColor {
+        NSColor(studioColor: .gray50)
+    }
 }
 
 // MARK: - Internal Colors

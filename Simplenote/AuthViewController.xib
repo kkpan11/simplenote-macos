@@ -10,41 +10,72 @@
             <connections>
                 <outlet property="actionButton" destination="Lid-6Q-zHR" id="k1R-7A-0Fc"/>
                 <outlet property="actionProgress" destination="GMB-3v-AEQ" id="Qv3-0X-3xO"/>
+                <outlet property="actionsSeparatorView" destination="WI9-SH-Yrp" id="SJl-TQ-htb"/>
+                <outlet property="codeTextField" destination="y3O-LQ-R2F" id="DFz-hT-edA"/>
                 <outlet property="errorField" destination="lwM-mh-i3o" id="hCf-XY-GKI"/>
+                <outlet property="headerLabel" destination="xA2-cU-2CM" id="fvc-Az-Hc1"/>
+                <outlet property="leadingSeparatorView" destination="4nP-3I-NOF" id="mKf-M6-kx7"/>
                 <outlet property="logoImageView" destination="W9h-HS-WbG" id="GV7-vy-NaT"/>
                 <outlet property="passwordField" destination="2bk-bk-VfG" id="JQn-Xi-XNs"/>
                 <outlet property="passwordFieldHeightConstraint" destination="Cah-V8-aCS" id="saQ-Mz-zu6"/>
+                <outlet property="quarternaryButton" destination="PF9-wA-mIg" id="sQL-2W-kgK"/>
+                <outlet property="quarternaryButtonView" destination="Aiw-Qy-Zcs" id="iz2-AU-dmp"/>
                 <outlet property="secondaryActionButton" destination="y1M-Np-v9m" id="z7i-Qa-Tye"/>
                 <outlet property="secondaryActionHeightConstraint" destination="HrL-ss-QSd" id="Vg3-A9-yCH"/>
+                <outlet property="separatorLabel" destination="xI6-bI-NiW" id="PA7-tE-0Od"/>
+                <outlet property="simplenoteSubTitleView" destination="OWk-yc-eau" id="fbz-WL-DUq"/>
+                <outlet property="simplenoteTitleView" destination="QdZ-0O-kg0" id="nKL-R9-joW"/>
                 <outlet property="stackView" destination="PWa-EY-51O" id="jUJ-sH-HgC"/>
-                <outlet property="switchActionButton" destination="5np-Xn-oop" id="KYi-sy-yoJ"/>
-                <outlet property="switchAuthenticationView" destination="mRM-75-7tv" id="Yij-Ld-A8r"/>
-                <outlet property="switchTipField" destination="0yP-IQ-Unz" id="jvk-lr-cHO"/>
+                <outlet property="tertiaryButton" destination="sc9-DH-ug9" id="gLe-Cv-8dc"/>
+                <outlet property="tertiaryButtonContainerView" destination="3tE-Zi-edS" id="TCK-Oi-0EO"/>
+                <outlet property="trailingSeparatorView" destination="Uej-dg-hz2" id="UUI-he-9Xh"/>
                 <outlet property="usernameField" destination="Fco-3r-2Ys" id="qFA-HM-uFa"/>
                 <outlet property="view" destination="kU7-kg-wG3" id="WH8-Qa-i4c"/>
-                <outlet property="wordPressSSOButton" destination="sc9-DH-ug9" id="bjJ-cB-cCj"/>
-                <outlet property="wordPressSSOContainerView" destination="3tE-Zi-edS" id="Nhq-OA-Rqf"/>
                 <outlet property="wordPressSSOHeightConstraint" destination="IW2-ZK-7lM" id="NWD-Sk-CYO"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <view wantsLayer="YES" appearanceType="aqua" translatesAutoresizingMaskIntoConstraints="NO" id="kU7-kg-wG3" customClass="SPAuthenticationView">
-            <rect key="frame" x="0.0" y="0.0" width="380" height="582"/>
+            <rect key="frame" x="0.0" y="0.0" width="380" height="749"/>
             <subviews>
                 <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PWa-EY-51O">
-                    <rect key="frame" x="30" y="45" width="320" height="492"/>
+                    <rect key="frame" x="30" y="45" width="320" height="659"/>
                     <subviews>
                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="W9h-HS-WbG">
-                            <rect key="frame" x="112" y="396" width="96" height="96"/>
+                            <rect key="frame" x="112" y="563" width="96" height="96"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="96" id="Sys-NN-iWa"/>
                                 <constraint firstAttribute="height" constant="96" id="mq9-yP-8Tc"/>
                             </constraints>
                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="icon_simplenote_login" id="2Fh-2C-hTH"/>
                         </imageView>
+                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QdZ-0O-kg0" userLabel="simplenoteTitleLabel">
+                            <rect key="frame" x="129" y="513" width="62" height="38"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="title" id="qpG-DI-lUy">
+                                <font key="font" metaFont="systemMedium" size="32"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OWk-yc-eau" userLabel="simplenoteSubTitleLabel">
+                            <rect key="frame" x="129" y="482" width="62" height="19"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="subtitle" id="biC-yR-Nb8">
+                                <font key="font" metaFont="system" size="16"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xA2-cU-2CM" userLabel="headerLabel">
+                            <rect key="frame" x="134" y="454" width="53" height="16"/>
+                            <textFieldCell key="cell" alignment="center" title="Header" id="pyn-HV-JBL">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
                         <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lwM-mh-i3o">
-                            <rect key="frame" x="-2" y="368" width="324" height="16"/>
+                            <rect key="frame" x="-2" y="426" width="324" height="16"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="16" id="Pcu-pb-Ma8"/>
                             </constraints>
@@ -55,13 +86,13 @@
                             </textFieldCell>
                         </textField>
                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="Fco-3r-2Ys" userLabel="Username TextField" customClass="SPAuthenticationTextField">
-                            <rect key="frame" x="0.0" y="316" width="320" height="40"/>
+                            <rect key="frame" x="0.0" y="374" width="320" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="ZyF-TN-zXQ"/>
                             </constraints>
                         </customView>
                         <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2bk-bk-VfG" userLabel="Password TextField" customClass="SPAuthenticationTextField">
-                            <rect key="frame" x="0.0" y="264" width="320" height="40"/>
+                            <rect key="frame" x="0.0" y="322" width="320" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="Cah-V8-aCS"/>
                             </constraints>
@@ -69,8 +100,17 @@
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="secure" value="YES"/>
                             </userDefinedRuntimeAttributes>
                         </customView>
+                        <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y3O-LQ-R2F" userLabel="CodeTextField" customClass="SPAuthenticationTextField">
+                            <rect key="frame" x="0.0" y="270" width="320" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="hpG-uZ-e1S"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="secure" value="NO"/>
+                            </userDefinedRuntimeAttributes>
+                        </customView>
                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="Epn-oY-sfo" userLabel="Action View">
-                            <rect key="frame" x="0.0" y="186" width="320" height="66"/>
+                            <rect key="frame" x="0.0" y="192" width="320" height="66"/>
                             <subviews>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lid-6Q-zHR" userLabel="Main Action Button" customClass="SPAuthenticationButton">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
@@ -81,9 +121,6 @@
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="UVW-gz-8cN"/>
                                     </constraints>
-                                    <connections>
-                                        <action selector="performMainAction:" target="-2" id="t7F-Eu-cMm"/>
-                                    </connections>
                                 </button>
                                 <progressIndicator maxValue="100" displayedWhenStopped="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="GMB-3v-AEQ" userLabel="Main Action Progress Indicator">
                                     <rect key="frame" x="289" y="12" width="16" height="16"/>
@@ -99,7 +136,7 @@
                             </constraints>
                         </customView>
                         <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="y1M-Np-v9m" userLabel="Secondary Action Button">
-                            <rect key="frame" x="0.0" y="154" width="320" height="20"/>
+                            <rect key="frame" x="0.0" y="160" width="320" height="20"/>
                             <buttonCell key="cell" type="bevel" title="[Secondary Action]" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="zjo-dD-vux" userLabel="[Secondary Action]">
                                 <behavior key="behavior" lightByContents="YES"/>
                                 <font key="font" metaFont="systemMedium" size="13"/>
@@ -107,73 +144,85 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="HrL-ss-QSd"/>
                             </constraints>
-                            <connections>
-                                <action selector="performSecondaryAction:" target="-2" id="hjL-sS-hbT"/>
-                            </connections>
                         </button>
-                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="mRM-75-7tv" userLabel="Switch View">
-                            <rect key="frame" x="0.0" y="84" width="320" height="58"/>
+                        <customView appearanceType="darkAqua" translatesAutoresizingMaskIntoConstraints="NO" id="WI9-SH-Yrp" userLabel="Actions Separator View">
+                            <rect key="frame" x="0.0" y="104" width="320" height="44"/>
                             <subviews>
-                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0yP-IQ-Unz" userLabel="Switch Tip">
-                                    <rect key="frame" x="-2" y="20" width="324" height="20"/>
+                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="4nP-3I-NOF" userLabel="Leading Line">
+                                    <rect key="frame" x="0.0" y="22" width="145" height="1"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="20" id="5GW-OX-wF2"/>
-                                        <constraint firstAttribute="width" constant="320" id="Ice-bc-Xa9"/>
+                                        <constraint firstAttribute="height" constant="1" id="0F2-TL-h1F"/>
                                     </constraints>
-                                    <textFieldCell key="cell" lineBreakMode="clipping" allowsUndo="NO" alignment="center" title="[Switch Tip]" id="lWM-Lh-rKn">
-                                        <font key="font" metaFont="systemSemibold" size="13"/>
+                                </customView>
+                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xI6-bI-NiW" userLabel="Or">
+                                    <rect key="frame" x="151" y="15" width="19" height="15"/>
+                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Or" id="V5x-vC-IGm">
+                                        <font key="font" size="13" name="SFPro-RegularItalic"/>
                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
-                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5np-Xn-oop" userLabel="Switch Button">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
-                                    <buttonCell key="cell" type="bevel" title="[Switch Action]" bezelStyle="rounded" alignment="center" imageScaling="proportionallyDown" inset="2" id="nb6-bt-sFC">
-                                        <behavior key="behavior" lightByContents="YES"/>
-                                        <font key="font" metaFont="systemSemibold" size="13"/>
-                                    </buttonCell>
+                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="Uej-dg-hz2" userLabel="Trailing Line">
+                                    <rect key="frame" x="176" y="22" width="144" height="1"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="320" id="3N3-wW-P6F"/>
-                                        <constraint firstAttribute="height" constant="20" id="3pI-cn-CI2"/>
+                                        <constraint firstAttribute="height" constant="1" id="Qig-LY-zAH"/>
                                     </constraints>
-                                    <connections>
-                                        <action selector="switchAuthenticationMode:" target="-2" id="RHe-NY-xff"/>
-                                    </connections>
-                                </button>
+                                </customView>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="0yP-IQ-Unz" firstAttribute="leading" secondItem="mRM-75-7tv" secondAttribute="leading" id="3oG-BE-MuY"/>
-                                <constraint firstAttribute="trailing" secondItem="0yP-IQ-Unz" secondAttribute="trailing" id="41V-Lw-UEz"/>
-                                <constraint firstItem="5np-Xn-oop" firstAttribute="leading" secondItem="mRM-75-7tv" secondAttribute="leading" id="Tlj-YL-2ZG"/>
-                                <constraint firstItem="5np-Xn-oop" firstAttribute="top" secondItem="0yP-IQ-Unz" secondAttribute="bottom" id="e9q-W5-TqD"/>
-                                <constraint firstItem="0yP-IQ-Unz" firstAttribute="top" secondItem="mRM-75-7tv" secondAttribute="top" constant="18" id="iL2-kb-zDB"/>
-                                <constraint firstAttribute="trailing" secondItem="5np-Xn-oop" secondAttribute="trailing" id="nsv-X2-CkQ"/>
-                                <constraint firstAttribute="bottom" secondItem="5np-Xn-oop" secondAttribute="bottom" id="zC9-oc-1g2"/>
+                                <constraint firstItem="Uej-dg-hz2" firstAttribute="leading" secondItem="xI6-bI-NiW" secondAttribute="trailing" constant="8" id="36u-lv-wOT"/>
+                                <constraint firstAttribute="height" constant="44" id="FJn-bq-bEy"/>
+                                <constraint firstItem="4nP-3I-NOF" firstAttribute="centerY" secondItem="WI9-SH-Yrp" secondAttribute="centerY" id="IdE-dj-SwX"/>
+                                <constraint firstItem="4nP-3I-NOF" firstAttribute="leading" secondItem="WI9-SH-Yrp" secondAttribute="leading" id="SbL-Zj-SbQ"/>
+                                <constraint firstItem="4nP-3I-NOF" firstAttribute="trailing" secondItem="xI6-bI-NiW" secondAttribute="leading" constant="-8" id="Z4v-qb-RdQ"/>
+                                <constraint firstItem="xI6-bI-NiW" firstAttribute="centerY" secondItem="WI9-SH-Yrp" secondAttribute="centerY" id="cdG-ci-RvD"/>
+                                <constraint firstAttribute="trailing" secondItem="Uej-dg-hz2" secondAttribute="trailing" id="chk-5V-L7P"/>
+                                <constraint firstItem="Uej-dg-hz2" firstAttribute="centerY" secondItem="WI9-SH-Yrp" secondAttribute="centerY" id="rUr-aw-HHD"/>
+                                <constraint firstItem="xI6-bI-NiW" firstAttribute="centerX" secondItem="WI9-SH-Yrp" secondAttribute="centerX" id="tJX-vD-jHm"/>
                             </constraints>
                         </customView>
-                        <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3tE-Zi-edS" userLabel="WordPress SSO View">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
+                        <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3tE-Zi-edS" userLabel="Tertiary Button View">
+                            <rect key="frame" x="0.0" y="52" width="320" height="40"/>
                             <subviews>
-                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sc9-DH-ug9" userLabel="WordPress SSO Button">
+                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sc9-DH-ug9" userLabel="Tertiary Button">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
-                                    <buttonCell key="cell" type="bevel" title="[WordPress SSO]" bezelStyle="rounded" image="icon_wp" imagePosition="left" alignment="center" imageScaling="proportionallyDown" inset="2" id="Mzh-LI-XpK">
+                                    <buttonCell key="cell" type="bevel" title="Tertiary" bezelStyle="rounded" imagePosition="left" alignment="center" imageScaling="proportionallyDown" inset="2" id="Mzh-LI-XpK">
                                         <behavior key="behavior" lightByContents="YES"/>
                                         <font key="font" metaFont="system" size="16"/>
                                     </buttonCell>
                                     <constraints>
                                         <constraint firstAttribute="height" priority="999" constant="40" id="ynU-1V-xiN"/>
                                     </constraints>
-                                    <connections>
-                                        <action selector="wpccSignInAction:" target="-2" id="XuG-cb-poD"/>
-                                    </connections>
                                 </button>
                             </subviews>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="sc9-DH-ug9" secondAttribute="trailing" id="8Jl-X1-wpa"/>
-                                <constraint firstAttribute="height" constant="72" id="IW2-ZK-7lM"/>
+                                <constraint firstAttribute="height" constant="40" id="IW2-ZK-7lM"/>
                                 <constraint firstAttribute="bottom" secondItem="sc9-DH-ug9" secondAttribute="bottom" id="OYw-Do-eII"/>
                                 <constraint firstItem="sc9-DH-ug9" firstAttribute="leading" secondItem="3tE-Zi-edS" secondAttribute="leading" id="Q4j-qA-c63"/>
-                                <constraint firstItem="sc9-DH-ug9" firstAttribute="top" secondItem="3tE-Zi-edS" secondAttribute="top" priority="999" constant="32" id="k9B-l0-1OW"/>
+                                <constraint firstItem="sc9-DH-ug9" firstAttribute="top" secondItem="3tE-Zi-edS" secondAttribute="top" priority="999" id="k9B-l0-1OW"/>
+                            </constraints>
+                        </customView>
+                        <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aiw-Qy-Zcs" userLabel="Quartenary Button View">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+                            <subviews>
+                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PF9-wA-mIg" userLabel="Quarternary Button">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+                                    <buttonCell key="cell" type="bevel" title="Quarternary" bezelStyle="rounded" imagePosition="left" alignment="center" imageScaling="proportionallyDown" inset="2" id="eEj-p1-LWQ" userLabel="Quarternary">
+                                        <behavior key="behavior" lightByContents="YES"/>
+                                        <font key="font" metaFont="system" size="16"/>
+                                    </buttonCell>
+                                    <constraints>
+                                        <constraint firstAttribute="height" priority="999" constant="40" id="XZN-6k-gIC"/>
+                                    </constraints>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="PF9-wA-mIg" secondAttribute="trailing" id="Hfu-10-dUj"/>
+                                <constraint firstAttribute="bottom" secondItem="PF9-wA-mIg" secondAttribute="bottom" id="Hkz-Fv-C90"/>
+                                <constraint firstAttribute="height" constant="40" id="Mxu-QC-FOY"/>
+                                <constraint firstItem="PF9-wA-mIg" firstAttribute="leading" secondItem="Aiw-Qy-Zcs" secondAttribute="leading" id="TFC-PM-uEN"/>
+                                <constraint firstItem="PF9-wA-mIg" firstAttribute="top" secondItem="Aiw-Qy-Zcs" secondAttribute="top" priority="999" id="iEG-06-TqS"/>
                             </constraints>
                         </customView>
                     </subviews>
@@ -184,12 +233,17 @@
                         <constraint firstItem="3tE-Zi-edS" firstAttribute="leading" secondItem="PWa-EY-51O" secondAttribute="leading" id="8t5-zc-I3D"/>
                         <constraint firstItem="2bk-bk-VfG" firstAttribute="leading" secondItem="PWa-EY-51O" secondAttribute="leading" id="GPa-uH-nyA"/>
                         <constraint firstItem="y1M-Np-v9m" firstAttribute="leading" secondItem="PWa-EY-51O" secondAttribute="leading" id="GWL-9k-A81"/>
+                        <constraint firstAttribute="width" constant="320" id="Ifa-qD-b3e"/>
+                        <constraint firstAttribute="trailing" secondItem="Aiw-Qy-Zcs" secondAttribute="trailing" id="UKd-8G-vNO"/>
                         <constraint firstAttribute="trailing" secondItem="y1M-Np-v9m" secondAttribute="trailing" id="Zys-3I-SBQ"/>
                         <constraint firstAttribute="trailing" secondItem="Epn-oY-sfo" secondAttribute="trailing" id="eWd-kZ-fSY"/>
                         <constraint firstAttribute="trailing" secondItem="Fco-3r-2Ys" secondAttribute="trailing" id="gTV-rG-Rz6"/>
                         <constraint firstItem="Fco-3r-2Ys" firstAttribute="leading" secondItem="PWa-EY-51O" secondAttribute="leading" id="lFa-dR-M3o"/>
+                        <constraint firstItem="Aiw-Qy-Zcs" firstAttribute="leading" secondItem="PWa-EY-51O" secondAttribute="leading" id="nms-7H-Ibk"/>
                         <constraint firstAttribute="trailing" secondItem="3tE-Zi-edS" secondAttribute="trailing" id="oW8-45-PLX"/>
                         <constraint firstItem="lwM-mh-i3o" firstAttribute="leading" secondItem="PWa-EY-51O" secondAttribute="leading" id="pMz-cI-3Ed"/>
+                        <constraint firstAttribute="trailing" secondItem="WI9-SH-Yrp" secondAttribute="trailing" id="sUi-JY-GKT"/>
+                        <constraint firstItem="WI9-SH-Yrp" firstAttribute="leading" secondItem="PWa-EY-51O" secondAttribute="leading" id="ufX-by-B5G"/>
                     </constraints>
                     <visibilityPriorities>
                         <integer value="1000"/>
@@ -200,8 +254,18 @@
                         <integer value="1000"/>
                         <integer value="1000"/>
                         <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
                     </visibilityPriorities>
                     <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
@@ -224,6 +288,5 @@
     </objects>
     <resources>
         <image name="icon_simplenote_login" width="96" height="96"/>
-        <image name="icon_wp" width="32" height="32"/>
     </resources>
 </document>

@@ -1,4 +1,6 @@
 import Foundation
+import SimplenoteEndpoints
+import Simperium_OSX
 
 
 // MARK: - SimperiumAuthenticatorProtocol
@@ -9,3 +11,6 @@ protocol SimperiumAuthenticatorProtocol {
 
 
 extension SPAuthenticator: SimperiumAuthenticatorProtocol { }
+
+
+extension SPUser: UserProtocol { }

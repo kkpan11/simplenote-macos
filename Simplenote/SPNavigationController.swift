@@ -7,14 +7,17 @@ class SPNavigationController: NSViewController {
     private var viewStack: [NSViewController] = []
     private var backButton: NSButton!
 
-    private var backButtonHeightConstraint: NSLayoutConstraint!
-
     var hideBackButton: Bool {
         viewStack.count < 2
     }
 
     var topViewController: NSViewController? {
         viewStack.last
+    }
+    
+    private var heightConstraint: NSLayoutConstraint!
+    private var totalTopPadding: CGFloat {
+        Constants.buttonViewTopPadding + Constants.buttonViewHeight
     }
 
     init(initialViewController: NSViewController) {
@@ -26,26 +29,28 @@ class SPNavigationController: NSViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func loadView() {
         guard let initialViewController = topViewController else {
             fatalError()
         }
 
         view = NSView()
+        heightConstraint = view.heightAnchor.constraint(equalToConstant: .zero)
         let initialView = initialViewController.view
         backButton = insertBackButton()
 
         view.translatesAutoresizingMaskIntoConstraints = false
         initialView.translatesAutoresizingMaskIntoConstraints = false
 
-        view.addSubview(initialView)
+        attachView(subview: initialViewController.view, below: nil)
+        resizeWindow(to: initialViewController.view, animated: false)
 
         NSLayoutConstraint.activate([
             initialView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             initialView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             initialView.topAnchor.constraint(equalTo: backButton.bottomAnchor),
-            initialView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            heightConstraint
         ])
     }
 
@@ -57,14 +62,19 @@ class SPNavigationController: NSViewController {
         backButton = button
         backButton.isHidden = hideBackButton
         button.bezelStyle = .accessoryBarAction
+        button.cell?.isBordered = false
+        button.contentTintColor = .darkGray
+        button.wantsLayer = true
+        button.layer?.cornerRadius = 5
+        let trackingArea = NSTrackingArea(rect: backButton.bounds, options: [.mouseEnteredAndExited, .activeAlways], owner: self)
+        button.addTrackingArea(trackingArea)
 
         view.addSubview(backButton)
-        backButtonHeightConstraint = backButton.heightAnchor.constraint(equalToConstant: 0)
         NSLayoutConstraint.activate([
-            backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
-            backButton.widthAnchor.constraint(equalToConstant: 50),
-            backButtonHeightConstraint
+            backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.buttonViewLeadingPadding),
+            backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: Constants.buttonViewTopPadding),
+            backButton.widthAnchor.constraint(equalToConstant: Constants.buttonViewWidth),
+            backButton.heightAnchor.constraint(equalToConstant: Constants.buttonViewHeight)
         ])
 
         return button
@@ -81,20 +91,14 @@ class SPNavigationController: NSViewController {
         let currentView = topViewController?.view
 
         attach(child: viewController)
-        if let currentView {
-            currentView.removeConstraints(currentView.constraints)
-        }
-
-        guard let (leadingAnchor, trailingAnchor) = attachView(subview: viewController.view, currentView: currentView) else {
-            return
-        }
+        attachView(subview: viewController.view, below: currentView)
+        resizeWindow(to: viewController.view, animated: animated)
 
         guard animated else {
+            currentView?.removeFromSuperview()
+            backButton.isHidden = hideBackButton
             return
         }
-
-        leadingAnchor.constant = view.frame.width
-        trailingAnchor.constant = view.frame.width
 
         animateTransition(slidingView: viewController.view, fadingView: currentView, direction: .trailingToLeading) {
             currentView?.removeFromSuperview()
@@ -106,41 +110,52 @@ class SPNavigationController: NSViewController {
         viewStack.append(child)
     }
 
-    @discardableResult
-    private func attachView(subview: NSView, currentView: NSView?, behindCurrent: Bool = false) -> (leading: NSLayoutConstraint, trailing: NSLayoutConstraint)? {
-        if behindCurrent {
-            view.addSubview(subview, positioned: .below, relativeTo: currentView)
+    private func attachView(subview: NSView, below siblingView: NSView?) {
+        subview.translatesAutoresizingMaskIntoConstraints = false
+
+        if let siblingView {
+            view.addSubview(subview, positioned: .below, relativeTo: siblingView)
         } else {
             view.addSubview(subview)
         }
-        subview.translatesAutoresizingMaskIntoConstraints = false
-
-        let leadingAnchor = subview.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-        let trailingAnchor = subview.trailingAnchor.constraint(equalTo: view.trailingAnchor)
 
         NSLayoutConstraint.activate([
-            leadingAnchor,
-            trailingAnchor,
-            subview.topAnchor.constraint(equalTo: backButton.bottomAnchor),
-            subview.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            subview.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            subview.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            subview.topAnchor.constraint(equalTo: backButton.bottomAnchor)
         ])
+    }
 
+    private func resizeWindow(to subview: NSView, animated: Bool) {
+        let finalHeight = subview.fittingSize.height + totalTopPadding
 
-        return (leading: leadingAnchor, trailing: trailingAnchor)
+        guard animated else {
+            heightConstraint.constant = finalHeight
+            return
+        }
+
+        NSAnimationContext.runAnimationGroup { context in
+            context.duration = 0.4
+            context.timingFunction = .init(name: .easeInEaseOut)
+
+            heightConstraint.animator().constant = finalHeight
+        }
     }
 
     // MARK: - Remove view from stack
-    func popViewController() {
-        guard viewStack.count > 1 else {
+    func popViewController(animated: Bool = true) {
+        guard viewStack.count > 1, let currentViewController = viewStack.popLast(), let nextViewController = viewStack.last else {
             return
         }
+  
+        attachView(subview: nextViewController.view, below: currentViewController.view)
+        resizeWindow(to: nextViewController.view, animated: animated)
 
-        let currentViewController = viewStack.removeLast()
-        guard let nextViewController = viewStack.last else {
+        guard animated else {
+            dettach(child: currentViewController)
+            backButton.isHidden = hideBackButton
             return
         }
-
-        attachView(subview: nextViewController.view, currentView: currentViewController.view, behindCurrent: true)
 
         animateTransition(slidingView: currentViewController.view, fadingView: nextViewController.view, direction: .leadingToTrailing) {
             self.dettach(child: currentViewController)
@@ -165,9 +180,14 @@ class SPNavigationController: NSViewController {
             return
         }
 
+        if direction == .trailingToLeading {
+            leadingConstraint.constant = view.frame.width
+            trailingConstraint.constant = view.frame.width
+        }
+
         let multiplier: CGFloat = direction == .leadingToTrailing ? 1 : -1
         let alpha: CGFloat = direction == .leadingToTrailing ? 1 : 0
-
+        
         NSAnimationContext.runAnimationGroup { context in
             context.duration = 0.4
             context.timingFunction = .init(name: .easeInEaseOut)
@@ -175,10 +195,28 @@ class SPNavigationController: NSViewController {
             fadingView?.animator().alphaValue = alpha
             leadingConstraint.animator().constant += view.frame.width * multiplier
             trailingConstraint.animator().constant += view.frame.width * multiplier
-            backButtonHeightConstraint.animator().constant = hideBackButton ? 0 : 30
             backButton.animator().isHidden = hideBackButton
         } completionHandler: {
             onCompletion()
         }
     }
+}
+
+// MARK: - Button Hover Color Animation
+//
+extension SPNavigationController {
+    override func mouseEntered(with event: NSEvent) {
+        backButton.layer?.backgroundColor = NSColor.lightGray.withAlphaComponent(0.1).cgColor
+    }
+
+    override func mouseExited(with event: NSEvent) {
+        backButton.layer?.backgroundColor = .clear
+    }
+}
+
+private struct Constants {
+    static let buttonViewWidth = CGFloat(50)
+    static let buttonViewHeight = CGFloat(30)
+    static let buttonViewTopPadding = CGFloat(30)
+    static let buttonViewLeadingPadding = CGFloat(10)
 }

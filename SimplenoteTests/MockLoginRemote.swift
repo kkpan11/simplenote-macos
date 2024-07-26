@@ -1,4 +1,5 @@
 import Foundation
+import SimplenoteEndpoints
 @testable import Simplenote
 
 
@@ -15,7 +16,7 @@ class MockLoginRemote: LoginRemoteProtocol {
     
     func requestLoginConfirmation(email: String, authCode: String) async throws -> LoginConfirmationResponse {
         guard let response = onLoginConfirmationRequest?(email, authCode) else {
-            throw RemoteError.network
+            throw RemoteError(statusCode: .zero, response: nil, networkError: nil)
         }
 
         return response
