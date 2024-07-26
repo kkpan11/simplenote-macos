@@ -14,6 +14,10 @@ class SPNavigationController: NSViewController {
     var topViewController: NSViewController? {
         viewStack.last
     }
+    
+    private lazy var heightConstraint: NSLayoutConstraint = {
+        view.heightAnchor.constraint(equalToConstant: 300)
+    }()
 
     init(initialViewController: NSViewController) {
         super.init(nibName: nil, bundle: nil)
@@ -24,7 +28,7 @@ class SPNavigationController: NSViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func loadView() {
         guard let initialViewController = topViewController else {
             fatalError()
@@ -38,7 +42,7 @@ class SPNavigationController: NSViewController {
         initialView.translatesAutoresizingMaskIntoConstraints = false
 
         view.addSubview(initialView)
-        
+                
         /// "Hint" we wanna occupy as little as possible. This constraint is meant to be broken, but the layout system will
         /// attempt to reduce the Height, when possible
         ///
@@ -122,13 +126,35 @@ class SPNavigationController: NSViewController {
 
     @discardableResult
     private func attachView(subview: NSView, below siblingView: NSView?) -> (leading: NSLayoutConstraint, trailing: NSLayoutConstraint)? {
+        
+        NSLog("# Before Window Height \(view.window?.frame.height.description) - size \(subview.intrinsicContentSize) - \(subview.fittingSize)")
+        
+        let padding = (view.window?.frame.height ?? .zero) - backButton.frame.minY
+        NSLog("# Button Origin \(backButton.frame.minY) - \(padding)")
+        
+        let finalHeight = subview.fittingSize.height + padding
+        NSLog("# Button Origin \(finalHeight)")
+        
         if let siblingView {
+            heightConstraint.constant = siblingView.fittingSize.height + padding
             view.addSubview(subview, positioned: .below, relativeTo: siblingView)
         } else {
             view.addSubview(subview)
         }
 
         subview.translatesAutoresizingMaskIntoConstraints = false
+        
+        heightConstraint.isActive = true
+        
+        NSAnimationContext.runAnimationGroup { context in
+            context.duration = 0.4
+            context.timingFunction = .init(name: .easeInEaseOut)
+
+            heightConstraint.animator().constant = finalHeight
+        } completionHandler: {
+
+        }
+        
 
         let leadingAnchor = subview.leadingAnchor.constraint(equalTo: view.leadingAnchor)
         let trailingAnchor = subview.trailingAnchor.constraint(equalTo: view.trailingAnchor)
@@ -136,11 +162,11 @@ class SPNavigationController: NSViewController {
         NSLayoutConstraint.activate([
             leadingAnchor,
             trailingAnchor,
-            subview.topAnchor.constraint(equalTo: backButton.bottomAnchor),
-            subview.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            subview.topAnchor.constraint(equalTo: backButton.bottomAnchor) //,
+//            subview.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
 
-
+        NSLog("# After Window Height \(view.window?.frame.height.description) - size \(subview.intrinsicContentSize) - \(subview.fittingSize)")
         return (leading: leadingAnchor, trailing: trailingAnchor)
     }
 
@@ -184,7 +210,7 @@ class SPNavigationController: NSViewController {
 
         let multiplier: CGFloat = direction == .leadingToTrailing ? 1 : -1
         let alpha: CGFloat = direction == .leadingToTrailing ? 1 : 0
-
+        
         NSAnimationContext.runAnimationGroup { context in
             context.duration = 0.4
             context.timingFunction = .init(name: .easeInEaseOut)
