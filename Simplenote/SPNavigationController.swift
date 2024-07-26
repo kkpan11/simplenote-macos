@@ -34,14 +34,16 @@ class SPNavigationController: NSViewController {
 
         view = NSView()
         heightConstraint = view.heightAnchor.constraint(equalToConstant: .zero)
+        heightConstraint?.isActive = true
         let initialView = initialViewController.view
         backButton = insertBackButton()
 
         view.translatesAutoresizingMaskIntoConstraints = false
         initialView.translatesAutoresizingMaskIntoConstraints = false
 
-        view.addSubview(initialView)
-                
+        attach(child: initialViewController)
+        attachView(subview: initialViewController.view, below: nil, animated: false)
+
         /// "Hint" we wanna occupy as little as possible. This constraint is meant to be broken, but the layout system will
         /// attempt to reduce the Height, when possible
         ///
@@ -131,7 +133,6 @@ class SPNavigationController: NSViewController {
 
         subview.translatesAutoresizingMaskIntoConstraints = false
 
-        heightConstraint?.isActive = true
         let leadingAnchor = subview.leadingAnchor.constraint(equalTo: view.leadingAnchor)
         let trailingAnchor = subview.trailingAnchor.constraint(equalTo: view.trailingAnchor)
 
