@@ -75,10 +75,10 @@ class SPNavigationController: NSViewController {
 
         view.addSubview(backButton)
         NSLayoutConstraint.activate([
-            backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
-            backButton.widthAnchor.constraint(equalToConstant: 50),
-            backButton.heightAnchor.constraint(equalToConstant: 30)
+            backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.buttonViewLeadingPadding),
+            backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: Constants.buttonViewTopPadding),
+            backButton.widthAnchor.constraint(equalToConstant: Constants.buttonViewWidth),
+            backButton.heightAnchor.constraint(equalToConstant: Constants.buttonViewHeight)
         ])
 
         return button
@@ -235,4 +235,11 @@ extension SPNavigationController {
     override func mouseExited(with event: NSEvent) {
         backButton.layer?.backgroundColor = .clear
     }
+}
+
+private struct Constants {
+    static let buttonViewWidth = CGFloat(50)
+    static let buttonViewHeight = CGFloat(30)
+    static let buttonViewTopPadding = CGFloat(30)
+    static let buttonViewLeadingPadding = CGFloat(10)
 }
