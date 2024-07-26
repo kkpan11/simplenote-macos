@@ -119,14 +119,9 @@ class SPNavigationController: NSViewController {
 
     @discardableResult
     private func attachView(subview: NSView, below siblingView: NSView?) -> (leading: NSLayoutConstraint, trailing: NSLayoutConstraint)? {
-        
-        NSLog("# Before Window Height \(view.window?.frame.height.description) - size \(subview.intrinsicContentSize) - \(subview.fittingSize)")
-        
-        let padding = (view.window?.frame.height ?? .zero) - backButton.frame.minY
-        NSLog("# Button Origin \(backButton.frame.minY) - \(padding)")
-        
+
+        let padding = Constants.buttonViewLeadingPadding + Constants.buttonViewHeight
         let finalHeight = subview.fittingSize.height + padding
-        NSLog("# Button Origin \(finalHeight)")
         
         if let siblingView {
             heightConstraint.constant = siblingView.fittingSize.height + padding
@@ -158,7 +153,6 @@ class SPNavigationController: NSViewController {
             subview.topAnchor.constraint(equalTo: backButton.bottomAnchor)
         ])
 
-        NSLog("# After Window Height \(view.window?.frame.height.description) - size \(subview.intrinsicContentSize) - \(subview.fittingSize)")
         return (leading: leadingAnchor, trailing: trailingAnchor)
     }
 
