@@ -52,6 +52,5 @@
 - (void)presentPasswordResetAlert;
 - (void)presentPasswordCompromisedAlert;
 - (void)presentUnverifiedEmailAlert;
-- (void)showAuthenticationErrorForCode:(NSInteger)responseCode responseString:(NSString *)responseString;
 
 @end
