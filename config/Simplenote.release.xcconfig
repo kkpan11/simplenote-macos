@@ -1,6 +1,3 @@
-#include "Base.xcconfig"
+#include "Project.Release.xcconfig"
 
 CODE_SIGN_IDENTITY = Apple Distribution
-
-// Notice we don't have a PROVISIONING_PROFILE_SPECIFIER defined here because this xcconfig is used at the project-level but that settings need to be target-level.
-// Once we'll have target-level xcconfigs, we shall add the setting there

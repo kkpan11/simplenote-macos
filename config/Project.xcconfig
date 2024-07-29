@@ -1,4 +1,4 @@
 #include "Version.public.xcconfig"
 
-CODE_SIGN_STYLE = Manual
 DEVELOPMENT_TEAM = PZYM8XX95Q
+CODE_SIGN_STYLE = Manual
