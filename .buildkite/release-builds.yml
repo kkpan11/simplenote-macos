@@ -1,16 +1,9 @@
-# Nodes with values to reuse in the pipeline.
-common_params:
-  # Common plugin settings to use with the `plugins` key.
-  - &common_plugins
-    - automattic/a8c-ci-toolkit#3.1.0
-  # Common environment values to use with the `env` key.
-  - &common_env
-    IMAGE_ID: xcode-15.4
-
-# This is the default pipeline – it will build and test the app
 steps:
   - label: "🛠 App Store Upload"
     command: .buildkite/commands/build-and-upload-release.sh
     priority: 1
-    env: *common_env
-    plugins: *common_plugins
+    plugins: [$CI_TOOLKIT_PLUGIN]
+    agents:
+      queue: mac
+    env:
+      IMAGE_ID: $IMAGE_ID
