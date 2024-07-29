@@ -1,1 +1,4 @@
 #include "Project.xcconfig"
+
+// Each target using this will interpolate its own computed value for the bundle id
+PROVISIONING_PROFILE_SPECIFIER = match AppStore $(PRODUCT_BUNDLE_IDENTIFIER) macos
