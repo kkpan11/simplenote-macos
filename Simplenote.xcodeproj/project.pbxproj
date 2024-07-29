@@ -2609,8 +2609,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.SimplenoteMac.Development;
 				PRODUCT_NAME = Simplenote;
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "Simplenote Mac - Development";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Simplenote Mac - Development";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2657,8 +2657,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.SimplenoteMac;
 				PRODUCT_NAME = Simplenote;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=macosx*]" = "";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.automattic.SimplenoteMac macos";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
