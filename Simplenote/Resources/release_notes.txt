@@ -1,1 +1,2 @@
-• Behind-the-scenes reliability improvements
+- Added shortcuts to Simplenote Mac!!
+- New Magic Link Authentication support
