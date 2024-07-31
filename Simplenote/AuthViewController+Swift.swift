@@ -25,6 +25,7 @@ extension AuthViewController {
 
         codeTextField.placeholderString = Localization.codePlaceholder
         codeTextField.delegate = self
+        codeTextField.textField.formatter = CharacterCountLimiter()
 
         // Secondary Action
         secondaryActionButton.contentTintColor = .simplenoteBrandColor

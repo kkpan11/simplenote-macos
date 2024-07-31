@@ -276,6 +276,7 @@
 		BA5A65952C09164100F605A6 /* MockStorageSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A65942C09164100F605A6 /* MockStorageSettings.swift */; };
 		BA5A65972C091D0600F605A6 /* CoreDataValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A65962C091D0600F605A6 /* CoreDataValidator.swift */; };
 		BA5A65992C091E6000F605A6 /* MockStorageValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A65982C091E6000F605A6 /* MockStorageValidator.swift */; };
+		BA5CB2822C5ACBBB00FF5B55 /* CharacterCountLimiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5CB2812C5ACBBB00FF5B55 /* CharacterCountLimiter.swift */; };
 		BA5F020626BB57F000581E92 /* NSAlert+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5F020426BB57F000581E92 /* NSAlert+Simplenote.swift */; };
 		BA71EC242BC88FD000F42CB1 /* CSSearchable+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA52005A2BC878F1003F1B75 /* CSSearchable+Helpers.swift */; };
 		BA71EC252BC88FFC00F42CB1 /* NSManagedObjectContext+Simplenote.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA52005C2BC88397003F1B75 /* NSManagedObjectContext+Simplenote.swift */; };
@@ -757,6 +758,7 @@
 		BA5A65942C09164100F605A6 /* MockStorageSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStorageSettings.swift; sourceTree = "<group>"; };
 		BA5A65962C091D0600F605A6 /* CoreDataValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataValidator.swift; sourceTree = "<group>"; };
 		BA5A65982C091E6000F605A6 /* MockStorageValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStorageValidator.swift; sourceTree = "<group>"; };
+		BA5CB2812C5ACBBB00FF5B55 /* CharacterCountLimiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCountLimiter.swift; sourceTree = "<group>"; };
 		BA5F020426BB57F000581E92 /* NSAlert+Simplenote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAlert+Simplenote.swift"; sourceTree = "<group>"; };
 		BA8CF21B2BFD20770087F33D /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		BA938CED26AD055400BE5A1D /* AccountVerificationController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountVerificationController+TestHelpers.swift"; sourceTree = "<group>"; };
@@ -1110,6 +1112,7 @@
 				376EE3EA202B748E00E3812E /* SPAboutTextField.swift */,
 				3700E97521C1E390004771C9 /* SPTextAttachment.swift */,
 				B57CB880244E421400BA7969 /* SPTextField.swift */,
+				BA5CB2812C5ACBBB00FF5B55 /* CharacterCountLimiter.swift */,
 				A667305325C9751B00090DE3 /* SearchMapView.swift */,
 			);
 			name = Views;
@@ -2043,6 +2046,7 @@
 			files = (
 				B58117C525B9D57F00927E0C /* AccountVerificationViewController.swift in Sources */,
 				B5AF76C824A3F00600B7D530 /* TagListState.swift in Sources */,
+				BA5CB2822C5ACBBB00FF5B55 /* CharacterCountLimiter.swift in Sources */,
 				B5469FD12587FCD9007ED7BE /* NSSortDescriptor+Simplenote.swift in Sources */,
 				B5D586D02C2396A900F3ADCC /* MagicLinkRequestedView.swift in Sources */,
 				466FFEA817CC10A800399652 /* main.m in Sources */,
