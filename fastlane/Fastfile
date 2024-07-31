@@ -140,7 +140,7 @@ lane :code_freeze do |options|
     from_branch: DEFAULT_BRANCH,
     to_branch: "release/#{new_version}"
   )
-  set_milestone_frozen_marker(
+  setfrozentag(
     repository: GITHUB_REPO,
     milestone: new_version
   )
