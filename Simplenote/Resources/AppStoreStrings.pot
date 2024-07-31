@@ -46,8 +46,9 @@ msgctxt "app_store_keywords"
 msgid "simplenote,note,notes,sync,syncing,list,todo,simple,markdown,ideas"
 msgstr ""
 
-msgctxt "v2.20-whats-new"
+msgctxt "v2.21-whats-new"
 msgid ""
-"• Behind-the-scenes reliability improvements\n"
+"- Added shortcuts to Simplenote Mac!!\n"
+"- New Magic Link Authentication support\n"
 msgstr ""
 
