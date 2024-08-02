@@ -1,0 +1,6 @@
+#include "Project.xcconfig"
+
+// Each target using this will interpolate its own computed value for the bundle id
+PROVISIONING_PROFILE_SPECIFIER = match AppStore $(PRODUCT_BUNDLE_IDENTIFIER) macos
+
+CODE_SIGN_IDENTITY = Apple Distribution: Automattic, Inc. (PZYM8XX95Q)

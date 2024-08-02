@@ -450,7 +450,9 @@
 		37F742EA202A382400A47D3A /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		39ACEAE8218A03C6C22DC662 /* Pods-Automattic-Simplenote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Automattic-Simplenote.release.xcconfig"; path = "Target Support Files/Pods-Automattic-Simplenote/Pods-Automattic-Simplenote.release.xcconfig"; sourceTree = "<group>"; };
 		3F1FC4212C0EBEF10066B187 /* Simplenote.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Simplenote.xctestplan; sourceTree = "<group>"; };
-		3F6C39912C33C11100776C37 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
+		3FD478252C5762250071B8B9 /* Project.Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Project.Release.xcconfig; path = config/Project.Release.xcconfig; sourceTree = "<group>"; };
+		3FD478262C5762350071B8B9 /* Project.Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Project.Debug.xcconfig; path = config/Project.Debug.xcconfig; sourceTree = "<group>"; };
+		3FD478272C5762400071B8B9 /* Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = config/Project.xcconfig; sourceTree = "<group>"; };
 		466FFF2F17CC10A800399652 /* Simplenote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Simplenote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		469512CB17CD23100014A2BF /* Simplenote-Info-Hockey.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Simplenote-Info-Hockey.plist"; sourceTree = "<group>"; };
 		46A0BEB8175BFD540050E864 /* Simplenote.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Simplenote.entitlements; sourceTree = SOURCE_ROOT; };
@@ -1134,7 +1136,9 @@
 				8C902F8C22D3EE350018D654 /* Version.public.xcconfig */,
 				8C902F8722D3ED910018D654 /* Simplenote.release.xcconfig */,
 				8C902F8E22D3EFE60018D654 /* Simplenote.debug.xcconfig */,
-				3F6C39912C33C11100776C37 /* Base.xcconfig */,
+				3FD478252C5762250071B8B9 /* Project.Release.xcconfig */,
+				3FD478262C5762350071B8B9 /* Project.Debug.xcconfig */,
+				3FD478272C5762400071B8B9 /* Project.xcconfig */,
 			);
 			name = config;
 			sourceTree = "<group>";
@@ -2573,11 +2577,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Beta";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Simplenote/SimplenoteDebug.entitlements;
-				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/External\"/**",
@@ -2606,8 +2608,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.SimplenoteMac.Development;
 				PRODUCT_NAME = Simplenote;
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "Simplenote Mac - Development";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "Simplenote Mac - Development";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2624,7 +2626,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Simplenote.entitlements;
-				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2655,9 +2656,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.SimplenoteMac;
 				PRODUCT_NAME = Simplenote;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=macosx*]" = "";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.automattic.SimplenoteMac macos";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = app;
@@ -2667,7 +2665,6 @@
 		B52D0EC6230DCAD7003F799D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Manual;
 				DEAD_CODE_STRIPPING = YES;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2677,7 +2674,6 @@
 		B52D0EC7230DCAD7003F799D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Manual;
 				DEAD_CODE_STRIPPING = YES;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2700,12 +2696,9 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = PZYM8XX95Q;
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = PZYM8XX95Q;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -2744,12 +2737,9 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = PZYM8XX95Q;
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = PZYM8XX95Q;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -2788,7 +2778,6 @@
 				CODE_SIGN_ENTITLEMENTS = "IntentsExtension/Support Files/IntentsExtensionDebug.entitlements";
 				CURRENT_PROJECT_VERSION = $BUILD_NUMBER;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -2837,7 +2826,6 @@
 				CODE_SIGN_ENTITLEMENTS = "IntentsExtension/Support Files/IntentsExtension.entitlements";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = $BUILD_NUMBER;
-				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -2859,7 +2847,6 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.automattic.SimplenoteMac.IntentsExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.automattic.SimplenoteMac.IntentsExtension macos";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APP_EXTENSION;
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -1,0 +1,3 @@
+#include "Project.xcconfig"
+
+CODE_SIGN_IDENTITY = Apple Development

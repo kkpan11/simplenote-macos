@@ -1,0 +1,7 @@
+#include "Version.public.xcconfig"
+
+DEVELOPMENT_TEAM = PZYM8XX95Q
+CODE_SIGN_STYLE = Manual
+
+// Required to export for Notarization
+ENABLE_HARDENED_RUNTIME = YES
