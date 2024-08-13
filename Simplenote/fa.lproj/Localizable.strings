@@ -1,4 +1,4 @@
-/* Translation-Revision-Date: 2023-04-21 02:10:08+0000 */
+/* Translation-Revision-Date: 2024-08-02 02:10:07+0000 */
 /* Plural-Forms: nplurals=1; plural=0; */
 /* Generator: GlotPress/2.4.0-alpha */
 /* Language: fa */
@@ -27,9 +27,13 @@
 /* Light theme name */
 "Light" = "روشن";
 
-/* Title of button for logging in
+/* LogIn Interface Title
+   Title of button for logging in
    Title of button for login */
 "Log In" = "ثبتِ ورود";
+
+/* Title of button for logging in */
+"Log in" = "ثبتِ ورود";
 
 /* Placeholder text for password field */
 "Password" = "گذرواژه";
@@ -50,8 +54,18 @@
 /* Password Reset: Proceed */
 "Reset" = "بازنشانی";
 
-/* Title of button for signing up */
+/* SignUp Interface Title
+   Title of button for signing up */
 "Sign Up" = "نام‌نویسی";
+
+/* Title of button for signing up */
+"Sign up" = "نام‌نویسی";
+
+/* LoginCode Expired Title */
+"Sorry!" = "پوزش!";
+
+/* Simplenote subtitle */
+"The simplest way to keep notes." = "ساده‌ترین روش برای حفظِ یادداشت‌ها.";
 
 /* Untagged Notes Title */
 "Untagged" = "برچسب‌نخورده";
