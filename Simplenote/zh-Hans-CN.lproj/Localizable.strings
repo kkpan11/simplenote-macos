@@ -1,4 +1,4 @@
-/* Translation-Revision-Date: 2023-04-25 11:54:03+0000 */
+/* Translation-Revision-Date: 2024-08-06 09:54:03+0000 */
 /* Plural-Forms: nplurals=1; plural=0; */
 /* Generator: GlotPress/2.4.0-alpha */
 /* Language: zh_CN */
@@ -17,6 +17,9 @@
 
 /* A link to more information about our privacy policy */
 "About Analytics and Privacy" = "关于分析和隐私";
+
+/* Accept Message */
+"Accept" = "接受";
 
 /* Email verification required alert title */
 "Account Verification Required" = "需要验证账户";
@@ -46,10 +49,8 @@
 /* Hiring Details */
 "Are you a developer? Automattic is Hiring." = "您是开发人员吗？ Automattic 正在招贤纳士。";
 
-/* Error for authorization failure */
-"Authorization failed" = "验证失败";
-
-/* Error for bad email or password */
+/* Error for authorization failure
+   Error for bad email or password */
 "Bad email or password" = "电子邮件或密码错误";
 
 /* Delete account confirmation alert message */
@@ -82,6 +83,9 @@
 /* Vefification sent alert title */
 "Check your Email" = "检查您的电子邮件";
 
+/* Placeholder text for code field */
+"Code" = "代码";
+
 /* Collaborate Menu Action */
 "Collaborate" = "协作";
 
@@ -99,6 +103,9 @@
 
 /* Placeholder text for confirmation field */
 "Confirm Password" = "确认密码";
+
+/* Continue with Password Action */
+"Continue with password" = "输入密码继续";
 
 /* Copy Link Menu Action */
 "Copy Internal Link" = "复制内部链接";
@@ -146,6 +153,15 @@
 /* Empty Trash Action */
 "Empty Trash" = "清空回收站";
 
+/* LogIn Interface Title */
+"Enter Code" = "输入代码";
+
+/* Enter Password fallback Action */
+"Enter password" = "输入密码";
+
+/* Header for Login With Password. Please preserve the {{EMAIL}} substring */
+"Enter the password for the account {{EMAIL}}" = "输入账户 {{EMAIL}} 的密码";
+
 /* Deletion Error Title */
 "Error" = "错误";
 
@@ -157,6 +173,9 @@
 
 /* Forgot Password Button */
 "Forgot your Password?" = "忘记了密码？";
+
+/* Forgot Password Button */
+"Forgot your password?" = "忘记密码？";
 
 /* Full line length button label */
 "Full" = "完整";
@@ -191,18 +210,40 @@
 /* Light theme name */
 "Light" = "明亮";
 
-/* Title of button for logging in
+/* LogIn Interface Title
+   Title of button for logging in
    Title of button for login */
 "Log In" = "登录";
+
+/* LogIn Interface Title */
+"Log In with Password" = "使用密码登录";
 
 /* Log out button label */
 "Log Out" = "注销";
 
-/* button title for wp.com sign in button */
+/* Title of button for logging in */
+"Log in" = "登录";
+
+/* Title of button for logging in */
+"Log in" = "登录";
+
+/* Title to use wordpress login instead of email */
 "Log in with WordPress.com" = "使用 WordPress.com 帐户登录";
+
+/* Title of button for logging in */
+"Log in with email" = "使用电子邮件登录";
+
+/* Header for Enter Password UI, when the user performed too many requests */
+"Log in with email failed, please enter the password for {{EMAIL}}" = "使用电子邮箱登录失败，请输入 {{EMAIL}} 的密码";
 
 /* Displayed temporarily while logging in */
 "Logging In..." = "正在登录…";
+
+/* Title of button for logging in */
+"Logging in..." = "正在登录…";
+
+/* Message displayed when a login code is too short */
+"Login Code is too short" = "登录代码过短";
 
 /* Markdown Menu Action */
 "Markdown" = "Markdown";
@@ -309,6 +350,9 @@
 /* Displayed during a Publish Operation */
 "Publishing..." = "正在发布...";
 
+/* Header to put on any files that need to be recovered */
+"Recovered Note Cotent - " = "已恢复注释内容 — ";
+
 /* References Title */
 "References" = "参考";
 
@@ -320,6 +364,9 @@
 
 /* Request error alert title */
 "Request Error" = "请求错误";
+
+/* Title of button for logging in */
+"Requesting email..." = "正在请求发送电子邮件…";
 
 /* Resend email button -> Verify your email screen */
 "Resend Email" = "重发电子邮件";
@@ -358,8 +405,15 @@
 /* macOS MenuItem that causes the Status Bar to be visible */
 "Show Status Bar" = "显示状态栏";
 
-/* Title of button for signing up */
+/* SignUp Interface Title
+   Title of button for signing up */
 "Sign Up" = "注册";
+
+/* Title of button for signing up */
+"Sign up" = "注册";
+
+/* Title of button for signing up */
+"Sign up" = "注册";
 
 /* Displayed temoprarily while signing up */
 "Signing Up..." = "正在注册…";
@@ -367,8 +421,14 @@
 /* Alert message displayed when an account has unsynced notes */
 "Signing out will delete any unsynced notes. Check your connection and verify your synced notes by signing in to the Web App." = "注销会删除所有未同步的备注。 您可以通过登录 Web 应用程序来检查连接并确认已同步的笔记。";
 
+/* Title of button for logging in */
+"Signing up..." = "正在注册…";
+
 /* Text to display on OSX cancel button */
 "Skip" = "跳过";
+
+/* LoginCode Expired Title */
+"Sorry!" = "抱歉！";
 
 /* Sort tags alphabetically checkbox label */
 "Sort Tags Alphabetically" = "按字母顺序排列标签";
@@ -387,6 +447,15 @@
 
 /* Error when address is in use */
 "That email is already being used" = "该电子邮件已被使用";
+
+/* LoginCode Expired Message */
+"The authentication code you've requested has expired. Please request a new one" = "您请求的验证码已过期。 请重新请求";
+
+/* Login po sCode Invalid Error */
+"The code you've entered is invalid." = "您输入的代码无效。";
+
+/* Simplenote subtitle */
+"The simplest way to keep notes." = "记录笔记最简单的方法。";
 
 /* Theme label */
 "Theme:" = "主题：";
@@ -442,6 +511,9 @@
 
 /* Generic error */
 "We're having problems. Please try again soon." = "我们遇到了问题。请稍后重试。";
+
+/* Header for the Login with Code UI. Please preserve the {{EMAIL}} string as is! */
+"We've sent a code to {{EMAIL}}. The code will be valid for a few minutes." = "我们已向 {{EMAIL}} 发送代码。 此代码将在几分钟后失效。";
 
 /* Confirmation that an email has been sent
    Message -> Verify your email screen. Parameter: %1$@ - email address */
