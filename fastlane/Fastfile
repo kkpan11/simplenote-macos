@@ -430,22 +430,16 @@ lane :build_and_upload_app_store do |options|
   upload_to_testflight(api_key: app_store_connect_api_key)
 end
 
-#############################################################################
-# trigger_release_build
-# ---------------------------------------------------------------------------
-# This lane triggers a build for App Store distribution on CI
-# ---------------------------------------------------------------------------
-# Usage:
-# bundle exec fastlane trigger_release_build [branch_to_build:<branch_name>]
-#############################################################################
-lane :trigger_release_build do |options|
-  push_to_git_remote(tags: false)
-  buildkite_trigger_build(
-    buildkite_organization: 'automattic',
-    buildkite_pipeline: 'simplenote-macos',
-    branch: options[:branch_to_build] || git_branch,
-    pipeline_file: 'release-builds.yml'
-  )
+lane :trigger_release_build do
+  UI.important('Will not trigger release build because Simplenote macOS was never configured to build in CI.')
+  # For future reference:
+  #
+  # buildkite_trigger_build(
+  #   buildkite_organization: 'automattic',
+  #   buildkite_pipeline: 'simplenote-macos',
+  #   branch: branch_to_build || git_branch,
+  #   pipeline_file: 'release-builds.yml'
+  # )
 end
 
 desc 'Updates the main `Localizable.strings` file — that will be imported by GlotPress'
