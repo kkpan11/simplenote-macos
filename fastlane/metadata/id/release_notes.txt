@@ -1,2 +1,2 @@
-- Telah memperbaiki masalah dengan potongan horisontal di mana karakter terakhir di akhir baris tidak ditampilkan secara lengkap
-- Langkah ukuran font telah diperkecil hingga 1pt
+- Penambahan pintasan ke Simplenote Mac
+- Dukungan Autentikasi Tautan Ajaib baru

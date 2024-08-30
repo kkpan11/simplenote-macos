@@ -1,2 +1,2 @@
-- Satır sonundaki son karakterin tam gösterilmediği yatay kırpma ile ilgili bir sorun düzeltildi.
-- Yazı tipi boyutu adımı 1 puntoya küçültüldü.
+- Simplenote Mac'e kısayollar eklendi!
+- Yeni Sihirli Bağlantı Doğrulama desteği

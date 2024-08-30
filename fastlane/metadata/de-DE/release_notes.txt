@@ -1,2 +1,2 @@
-- Problem mit horizontalem Clipping behoben, wodurch das Ende einer Zeile nicht vollständig angezeigt wurde
-- Schriftgrößenschritt wurde auf 1 pt reduziert
+- Kurzbefehle zu Simplenote für Mac hinzugefügt!
+- Neuer Authentifizierungssupport für magische Links

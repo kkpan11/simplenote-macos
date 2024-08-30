@@ -1,2 +1,2 @@
-- Added Spotlight search support for notes
-- Added multiple window support for editing notes
+- Added shortcuts to Simplenote Mac!!
+- New Magic Link Authentication support
