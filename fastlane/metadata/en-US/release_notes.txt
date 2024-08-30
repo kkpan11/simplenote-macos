@@ -1,2 +1,0 @@
-- Added spotlight search support for notes
-- Added multiple window support for editing notes

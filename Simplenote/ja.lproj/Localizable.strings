@@ -1,4 +1,4 @@
-/* Translation-Revision-Date: 2023-04-26 09:54:04+0000 */
+/* Translation-Revision-Date: 2024-08-07 09:54:03+0000 */
 /* Plural-Forms: nplurals=1; plural=0; */
 /* Generator: GlotPress/2.4.0-alpha */
 /* Language: ja_JP */
@@ -17,6 +17,9 @@
 
 /* A link to more information about our privacy policy */
 "About Analytics and Privacy" = "アナリティクスとプライバシーについて";
+
+/* Accept Message */
+"Accept" = "承認";
 
 /* Email verification required alert title */
 "Account Verification Required" = "アカウント認証が必要";
@@ -46,10 +49,8 @@
 /* Hiring Details */
 "Are you a developer? Automattic is Hiring." = "開発者の方ですか ? Automattic では人材を募集しています。";
 
-/* Error for authorization failure */
-"Authorization failed" = "認証に失敗しました";
-
-/* Error for bad email or password */
+/* Error for authorization failure
+   Error for bad email or password */
 "Bad email or password" = "メールアドレスまたはパスワードが正しくありません";
 
 /* Delete account confirmation alert message */
@@ -82,6 +83,9 @@
 /* Vefification sent alert title */
 "Check your Email" = "メールを確認";
 
+/* Placeholder text for code field */
+"Code" = "ソースコード";
+
 /* Collaborate Menu Action */
 "Collaborate" = "共同編集";
 
@@ -99,6 +103,9 @@
 
 /* Placeholder text for confirmation field */
 "Confirm Password" = "パスワード確認";
+
+/* Continue with Password Action */
+"Continue with password" = "パスワードで続行";
 
 /* Copy Link Menu Action */
 "Copy Internal Link" = "内部リンクをコピー";
@@ -146,6 +153,15 @@
 /* Empty Trash Action */
 "Empty Trash" = "ゴミ箱を空にする";
 
+/* LogIn Interface Title */
+"Enter Code" = "コードを入力";
+
+/* Enter Password fallback Action */
+"Enter password" = "パスワードを入力";
+
+/* Header for Login With Password. Please preserve the {{EMAIL}} substring */
+"Enter the password for the account {{EMAIL}}" = "アカウント {{EMAIL}} のパスワードを入力";
+
 /* Deletion Error Title */
 "Error" = "エラー";
 
@@ -157,6 +173,9 @@
 
 /* Forgot Password Button */
 "Forgot your Password?" = "パスワードをお忘れですか ?";
+
+/* Forgot Password Button */
+"Forgot your password?" = "パスワードを忘れた場合";
 
 /* Full line length button label */
 "Full" = "全幅";
@@ -191,18 +210,40 @@
 /* Light theme name */
 "Light" = "ライト";
 
-/* Title of button for logging in
+/* LogIn Interface Title
+   Title of button for logging in
    Title of button for login */
 "Log In" = "ログイン";
+
+/* LogIn Interface Title */
+"Log In with Password" = "パスワードでログイン";
 
 /* Log out button label */
 "Log Out" = "ログアウト";
 
-/* button title for wp.com sign in button */
+/* Title of button for logging in */
+"Log in" = "ログイン";
+
+/* Title of button for logging in */
+"Log in" = "ログイン";
+
+/* Title to use wordpress login instead of email */
 "Log in with WordPress.com" = "WordPress.com でログイン";
+
+/* Title of button for logging in */
+"Log in with email" = "メールアドレスでログイン";
+
+/* Header for Enter Password UI, when the user performed too many requests */
+"Log in with email failed, please enter the password for {{EMAIL}}" = "メールアドレスでのログインに失敗しました。{{EMAIL}} のパスワードを入力してください。 ";
 
 /* Displayed temporarily while logging in */
 "Logging In..." = "ログイン中…";
+
+/* Title of button for logging in */
+"Logging in..." = "ログイン中...";
+
+/* Message displayed when a login code is too short */
+"Login Code is too short" = "ログインコードが短すぎます";
 
 /* Markdown Menu Action */
 "Markdown" = "Markdown";
@@ -309,6 +350,9 @@
 /* Displayed during a Publish Operation */
 "Publishing..." = "公開中…";
 
+/* Header to put on any files that need to be recovered */
+"Recovered Note Cotent - " = "復元されたメモの内容 - ";
+
 /* References Title */
 "References" = "参考資料";
 
@@ -320,6 +364,9 @@
 
 /* Request error alert title */
 "Request Error" = "リクエストエラー";
+
+/* Title of button for logging in */
+"Requesting email..." = "メールをリクエスト中...";
 
 /* Resend email button -> Verify your email screen */
 "Resend Email" = "メールの再送";
@@ -358,8 +405,15 @@
 /* macOS MenuItem that causes the Status Bar to be visible */
 "Show Status Bar" = "ステータスバーを表示";
 
-/* Title of button for signing up */
+/* SignUp Interface Title
+   Title of button for signing up */
 "Sign Up" = "登録";
+
+/* Title of button for signing up */
+"Sign up" = "登録";
+
+/* Title of button for signing up */
+"Sign up" = "登録";
 
 /* Displayed temoprarily while signing up */
 "Signing Up..." = "登録中…";
@@ -367,8 +421,14 @@
 /* Alert message displayed when an account has unsynced notes */
 "Signing out will delete any unsynced notes. Check your connection and verify your synced notes by signing in to the Web App." = "ログアウトすると、同期されていないメモはすべて削除されます。 接続を確認し、Web アプリにログインして同期したメモを確認してください。";
 
+/* Title of button for logging in */
+"Signing up..." = "登録中…";
+
 /* Text to display on OSX cancel button */
 "Skip" = "スキップ";
+
+/* LoginCode Expired Title */
+"Sorry!" = "失礼しました。";
 
 /* Sort tags alphabetically checkbox label */
 "Sort Tags Alphabetically" = "タグをアルファベット順に並び替え";
@@ -387,6 +447,15 @@
 
 /* Error when address is in use */
 "That email is already being used" = "そのメールアドレスはすでに使用されています";
+
+/* LoginCode Expired Message */
+"The authentication code you've requested has expired. Please request a new one" = "リクエストした認証コードの有効期限が切れています。 新しいコードをリクエストしてください";
+
+/* Login po sCode Invalid Error */
+"The code you've entered is invalid." = "入力したコードが間違っています。";
+
+/* Simplenote subtitle */
+"The simplest way to keep notes." = "最も手軽にメモを残せる方法です。";
 
 /* Theme label */
 "Theme:" = "テーマ:";
@@ -442,6 +511,9 @@
 
 /* Generic error */
 "We're having problems. Please try again soon." = "問題が発生しました。すぐにもう一度実行してください。";
+
+/* Header for the Login with Code UI. Please preserve the {{EMAIL}} string as is! */
+"We've sent a code to {{EMAIL}}. The code will be valid for a few minutes." = "コードを {{EMAIL}} に送信しました。 コードは数分間有効です。";
 
 /* Confirmation that an email has been sent
    Message -> Verify your email screen. Parameter: %1$@ - email address */

@@ -1,2 +1,2 @@
-- Corrigimos um problema no recorte horizontal em que o último caractere da linha não era exibido completamente
-- A etapa de redimensionamento de fonte foi reduzida para uma parte
+- Atalhos adicionados ao Simplenote Mac
+- Suporte para nova autenticação com link mágico

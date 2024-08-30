@@ -1,2 +1,2 @@
-- Een probleem met horizontaal afsnijden opgelost waarbij het laatste teken op een regel niet helemaal werd weergegeven
-- De stap tussen lettergrootten is teruggebracht naar 1pt
+- Shortcuts zijn toegevoegd aan Simplenote Mac!!
+- Nieuwe ondersteuning voor authenticatie via magische link

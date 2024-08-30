@@ -1,2 +1,2 @@
-- Résolution d'un problème lié 
-- Font size step has been decreased to 1pt
+- Ajout de raccourcis à Simplenote Mac !!
+- Nouveauté : prise en charge de l’authentification par lien magique

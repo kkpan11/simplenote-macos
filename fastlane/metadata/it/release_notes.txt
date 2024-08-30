@@ -1,2 +1,2 @@
-- Risolto un problema con il ritaglio orizzontale per il quale l'ultimo carattere alla fine della riga non veniva visualizzato completamente
-- La fase del ridimensionamento del carattere è stata ridotta a 1 pt
+- Aggiunte scorciatoie a Simplenote Mac!
+- Nuovo supporto per l'autenticazione tramite link magico
