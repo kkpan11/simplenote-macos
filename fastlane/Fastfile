@@ -395,7 +395,7 @@ lane :build_and_upload_app_store do |options|
 
   setup_ci
 
-  configure_code_signing_release
+  configure_code_signing_app_store
 
   archive_path = File.join(BUILD_FOLDER, 'Simplenote-Mac.xcarchive')
   build_simplenote(
