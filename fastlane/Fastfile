@@ -9,6 +9,7 @@ UI.user_error!('Please run fastlane via `bundle exec`') unless FastlaneCore::Hel
 # Constants
 USER_ENV_FILE_PATH = File.join(Dir.home, '.simplenotemacos-env.default')
 PROJECT_FOLDER = Pathname.new(File.join(Dir.pwd, '..')).expand_path.to_s
+PROJECT_ROOT_FOLDER = PROJECT_FOLDER
 WORKSPACE = 'Simplenote.xcworkspace'
 INTERNAL_SCHEME = 'Simplenote'
 APP_STORE_SCHEME = 'Simplenote'
@@ -19,6 +20,38 @@ VERSION_FILE_PATH = File.join(PROJECT_FOLDER, 'config', 'Version.Public.xcconfig
 DEFAULT_BRANCH = 'trunk'
 GITHUB_REPO = 'Automattic/simplenote-macos'
 APPLE_TEAM_ID = 'PZYM8XX95Q'
+
+APP_RESOURCES_DIR = File.join(PROJECT_ROOT_FOLDER, 'Simplenote', 'Resources')
+RELEASE_NOTES_SOURCE_PATH = File.join(APP_RESOURCES_DIR, 'release_notes.txt')
+STORE_METADATA_FOLDER = File.join(PROJECT_ROOT_FOLDER, 'fastlane', 'metadata')
+
+GLOTPRESS_BASE_URL = 'https://translate.wordpress.com/projects'
+# Notice the trailing / is required.
+# Without it, GlotPress will redirect to the version with /
+GLOTPRESS_APP_STRINGS_PROJECT_URL = "#{GLOTPRESS_BASE_URL}/simplenote/macos/".freeze
+GLOTPRESS_STORE_METADATA_PROJECT_URL = "#{GLOTPRESS_APP_STRINGS_PROJECT_URL}release-notes/".freeze
+
+# Mapping of all locales which can be used for AppStore metadata (Glotpress code => AppStore Connect code)
+#
+# TODO: Replace with `LocaleHelper` once provided by release toolkit (https://github.com/wordpress-mobile/release-toolkit/pull/296)
+GLOTPRESS_TO_ASC_METADATA_LOCALE_CODES = {
+  'ar' => 'ar-SA',
+  'de' => 'de-DE',
+  'es' => 'es-ES',
+  'fr' => 'fr-FR',
+  'he' => 'he',
+  'id' => 'id',
+  'it' => 'it',
+  'ja' => 'ja',
+  'ko' => 'ko',
+  'nl' => 'nl-NL',
+  'pt-br' => 'pt-BR',
+  'ru' => 'ru',
+  'sv' => 'sv',
+  'tr' => 'tr',
+  'zh-cn' => 'zh-Hans',
+  'zh-tw' => 'zh-Hant'
+}.freeze
 
 ########################################################################
 # Environment
@@ -318,11 +351,10 @@ end
 # @option [Boolean] with_screenshots (default: false) If true, will also upload the latest screenshot files to ASC
 #
 desc 'Upload the localized metadata to App Store Connect, optionally including screenshots.'
-lane :update_metadata_on_app_store_connect do |options|
+lane :update_metadata_on_app_store_connect do |with_screenshots: false|
   # Skip screenshots by default. The naming is "with" to make it clear that
   # callers need to opt-in to adding screenshots. The naming of the deliver
   # (upload_to_app_store) parameter, on the other hand, uses the skip verb.
-  with_screenshots = options.fetch(:with_screenshots, false)
   skip_screenshots = !with_screenshots
 
   upload_to_app_store(
@@ -526,4 +558,76 @@ def configure_code_signing(type:, readonly: true)
     ],
     api_key: app_store_connect_api_key
   )
+end
+
+lane :download_localized_metadata_from_glotpress do
+  # FIXME: We should make the `fastlane/metadata/default/release_notes.txt` path be the source of truth for the original copies in the future.
+  # (will require changes in the `update_appstore_strings` lane, the Release Scenario, the MC tool to generate the announcement post…)
+  #
+  # In the meantime, just copy the file to the right place for `deliver` to find, for the `default` pseudo-locale which is used as fallback
+  FileUtils.cp(RELEASE_NOTES_SOURCE_PATH, File.join(STORE_METADATA_FOLDER, 'default', 'release_notes.txt'))
+
+  # FIXME: Replace this with a call to the future replacement of `gp_downloadmetadata` once it's implemented in the release-toolkit (see paaHJt-31O-p2).
+  target_files = {
+    "v#{release_version_current}-whats-new": { desc: 'release_notes.txt', max_size: 4000 },
+    app_store_name: { desc: 'name.txt', max_size: 30 },
+    app_store_subtitle: { desc: 'subtitle.txt', max_size: 30 },
+    app_store_desc: { desc: 'description.txt', max_size: 4000 },
+    app_store_keywords: { desc: 'keywords.txt', max_size: 100 }
+  }
+  gp_downloadmetadata(
+    project_url: GLOTPRESS_STORE_METADATA_PROJECT_URL,
+    target_files: target_files,
+    locales: GLOTPRESS_TO_ASC_METADATA_LOCALE_CODES,
+    download_path: STORE_METADATA_FOLDER
+  )
+
+  files_to_commit = [File.join(STORE_METADATA_FOLDER, '**', '*.txt')]
+
+  ensure_default_metadata_are_not_overridden(metadata_files_hash: target_files)
+
+  files_to_commit.append(*generate_gitkeep_for_empty_locale_folders)
+
+  git_add(path: files_to_commit, shell_escape: false)
+  git_commit(
+    path: files_to_commit,
+    message: 'Update App Store metadata translations',
+    allow_nothing_to_commit: true
+  )
+end
+
+# FIXME: Defined this way to ease transition to Versioning module while copying code ported from repos already using it
+def release_version_current
+  ios_get_app_version(public_version_xcconfig_file: VERSION_FILE_PATH)
+end
+
+# Ensure that none of the `.txt` files in `en-US` would accidentally override our originals in `default`
+def ensure_default_metadata_are_not_overridden(metadata_files_hash:)
+  metadata_files_hash.values.map { |t| t[:desc] }.each do |file|
+    en_file_path = File.join(STORE_METADATA_FOLDER, 'en-US', file)
+
+    override_not_allowed_message = <<~MSG
+      File `#{en_file_path}` would override the same one in `#{STORE_METADATA_FOLDER}/default`.
+      `default/` is the source of truth and we cannot allow it to change unintentionally.
+      Delete `#{en_file_path}`, ensure the version in `default/` has the expected original copy, and try again.
+    MSG
+    UI.user_error!(override_not_allowed_message) if File.exist?(en_file_path)
+  end
+end
+
+# Ensure even empty locale folders have an empty `.gitkeep` file.
+# This way, if we don't have any translation ready for those locales, we'll still have the folders in Git for clarity.
+def generate_gitkeep_for_empty_locale_folders
+  gitkeeps = []
+
+  GLOTPRESS_TO_ASC_METADATA_LOCALE_CODES.each_value do |locale|
+    gitkeep = File.join(STORE_METADATA_FOLDER, locale, '.gitkeep')
+    next if File.exist?(gitkeep)
+
+    FileUtils.mkdir_p(File.dirname(gitkeep))
+    FileUtils.touch(gitkeep)
+    gitkeeps.append(gitkeep)
+  end
+
+  gitkeeps
 end
