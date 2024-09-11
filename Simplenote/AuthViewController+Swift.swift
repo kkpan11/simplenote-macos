@@ -150,6 +150,8 @@ extension AuthViewController {
 
             if let title = descriptor.text {
                 actionView.title = title
+            } else if let attributedTitle = descriptor.attributedText {
+                actionView.attributedTitle = attributedTitle
             }
 
             actionView.action = descriptor.selector
@@ -225,6 +227,11 @@ extension AuthViewController {
 
     func pushCodeLoginView() {
         pushNewAuthViewController(with: .loginWithCode, state: state)
+    }
+
+    @objc
+    func pushUsernameAndPasswordView() {
+        pushNewAuthViewController(with: .loginWithUsernameAndPassword, state: state)
     }
 }
 

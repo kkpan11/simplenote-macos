@@ -142,7 +142,7 @@
                                 <font key="font" metaFont="systemMedium" size="13"/>
                             </buttonCell>
                             <constraints>
-                                <constraint firstAttribute="height" constant="20" id="HrL-ss-QSd"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="HrL-ss-QSd"/>
                             </constraints>
                         </button>
                         <customView appearanceType="darkAqua" translatesAutoresizingMaskIntoConstraints="NO" id="WI9-SH-Yrp" userLabel="Actions Separator View">
