@@ -169,6 +169,7 @@ extension AuthViewController {
         codeTextField.isHidden          = !inputElements.contains(.code)
         actionsSeparatorView.isHidden   = !inputElements.contains(.actionSeparator)
 
+        usernameField.stringValue = state.username
     }
 
     /// Drops any Errors onscreen
