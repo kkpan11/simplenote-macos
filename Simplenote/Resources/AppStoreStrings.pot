@@ -37,7 +37,7 @@ msgid ""
 "\n"
 "Privacy Policy: https://automattic.com/privacy/\n"
 "Terms of Service: https://simplenote.com/terms/\n"
-"California users privacy notice: https://wp.me/Pe4R-d/#california-consumer-privacy-act-ccpa\n"
+"Privacy Notice for California Users: https://automattic.com/privacy/#us-privacy-laws\n"
 msgstr ""
 
 #. translators: Keywords used in the App Store search engine to find the app.
