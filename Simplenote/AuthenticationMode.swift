@@ -127,7 +127,7 @@ extension AuthenticationMode {
     }
 
     static var loginWithUsernameAndPassword: AuthenticationMode {
-        buildLoginWithPasswordMode(header: LoginStrings.loginWithEmailEmailHeader, includeUsername: true)
+        buildLoginWithPasswordMode(header: nil, includeUsername: true)
     }
 
     /// Auth Mode: Login with Username + Password + Rate Limiting Header
@@ -138,7 +138,7 @@ extension AuthenticationMode {
 
     /// Builds the loginWithPassword Mode with the specified Header
     ///
-    private static func buildLoginWithPasswordMode(header: String, includeUsername: Bool = false) -> AuthenticationMode {
+    private static func buildLoginWithPasswordMode(header: String?, includeUsername: Bool = false) -> AuthenticationMode {
         let inputElements: AuthenticationInputElements = includeUsername ? [.username, .password] : [.password]
         return AuthenticationMode(title: NSLocalizedString("Log In with Password", comment: "LogIn Interface Title"),
                            header: header,
