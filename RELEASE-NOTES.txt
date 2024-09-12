@@ -1,6 +1,6 @@
 2.22
 -----
-
+- Updated link to privacy notice for California users
 
 2.21
 -----
