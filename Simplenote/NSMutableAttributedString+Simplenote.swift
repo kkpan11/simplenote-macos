@@ -21,8 +21,13 @@ extension NSMutableAttributedString {
 
     /// Appends the specified String
     ///
-    func append(string: String) {
-        let string = NSAttributedString(string: string)
+    func append(string: String, foregroundColor: NSColor? = nil) {
+        var attributes = [NSAttributedString.Key: Any]()
+        if let foregroundColor = foregroundColor {
+            attributes[.foregroundColor] = foregroundColor
+        }
+
+        let string = NSAttributedString(string: string, attributes: attributes)
         append(string)
     }
 

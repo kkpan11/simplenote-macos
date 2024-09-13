@@ -125,7 +125,11 @@ extension AuthenticationMode {
     static var loginWithPassword: AuthenticationMode {
         buildLoginWithPasswordMode(header: LoginStrings.loginWithEmailEmailHeader)
     }
-    
+
+    static var loginWithUsernameAndPassword: AuthenticationMode {
+        buildLoginWithPasswordMode(header: nil, includeUsername: true)
+    }
+
     /// Auth Mode: Login with Username + Password + Rate Limiting Header
     ///
     static var loginWithPasswordRateLimited: AuthenticationMode {
@@ -134,10 +138,11 @@ extension AuthenticationMode {
 
     /// Builds the loginWithPassword Mode with the specified Header
     ///
-    private static func buildLoginWithPasswordMode(header: String) -> AuthenticationMode {
-        AuthenticationMode(title: NSLocalizedString("Log In with Password", comment: "LogIn Interface Title"),
+    private static func buildLoginWithPasswordMode(header: String?, includeUsername: Bool = false) -> AuthenticationMode {
+        let inputElements: AuthenticationInputElements = includeUsername ? [.username, .password] : [.password]
+        return AuthenticationMode(title: NSLocalizedString("Log In with Password", comment: "LogIn Interface Title"),
                            header: header,
-                           inputElements: [.password],
+                           inputElements: inputElements,
                            actions: [
                             AuthenticationActionDescriptor(name: .primary,
                                                            selector: #selector(AuthViewController.pressedLogInWithPassword),
@@ -160,6 +165,10 @@ extension AuthenticationMode {
                             AuthenticationActionDescriptor(name: .primary,
                                                            selector: #selector(AuthViewController.pressedLoginWithMagicLink),
                                                            text: MagicLinkStrings.primaryAction),
+                            AuthenticationActionDescriptor(name: .secondary,
+                                                           selector: #selector(AuthViewController.pushUsernameAndPasswordView),
+                                                           text: nil,
+                                                           attributedText: LoginStrings.usernameAndPasswordOption),
                             AuthenticationActionDescriptor(name: .tertiary,
                                                            selector: #selector(AuthViewController.wordpressSSOAction),
                                                            text: LoginStrings.wordpressAction)
@@ -213,6 +222,23 @@ private enum LoginStrings {
     static let wordpressAction      = NSLocalizedString("Log in with WordPress.com", comment: "Title to use wordpress login instead of email")
     static let loginWithEmailEmailHeader = NSLocalizedString("Enter the password for the account {{EMAIL}}", comment: "Header for Login With Password. Please preserve the {{EMAIL}} substring")
     static let loginWithEmailLimitHeader = NSLocalizedString("Log in with email failed, please enter the password for {{EMAIL}}", comment: "Header for Enter Password UI, when the user performed too many requests")
+
+    /// Returns a formatted Secondary Action String for Optional Username and password login
+    ///
+    static var usernameAndPasswordOption: NSAttributedString {
+        let output = NSMutableAttributedString(string: String(), attributes: [
+            .font: NSFont.preferredFont(forTextStyle: .subheadline)
+        ])
+
+        let prefix = NSLocalizedString("We'll email you a code to log in, \nor you can", comment: "Option to login with username and password *PREFIX*: printed in dark color")
+        let suffix = NSLocalizedString("log in manually.", comment: "Option to login with username and password *SUFFIX*: Concatenated with a space, after the PREFIX, and printed in blue")
+
+        output.append(string: prefix, foregroundColor: NSColor(studioColor: ColorStudio.gray60))
+        output.append(string: " ")
+        output.append(string: suffix, foregroundColor: NSColor(studioColor: ColorStudio.spBlue60))
+
+        return output
+    }
 
 }
 

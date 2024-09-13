@@ -150,6 +150,8 @@ extension AuthViewController {
 
             if let title = descriptor.text {
                 actionView.title = title
+            } else if let attributedTitle = descriptor.attributedText {
+                actionView.attributedTitle = attributedTitle
             }
 
             actionView.action = descriptor.selector
@@ -167,6 +169,8 @@ extension AuthViewController {
         codeTextField.isHidden          = !inputElements.contains(.code)
         actionsSeparatorView.isHidden   = !inputElements.contains(.actionSeparator)
 
+        usernameField.stringValue = state.username
+        usernameField.textField?.nextResponder = passwordField.textField
     }
 
     /// Drops any Errors onscreen
@@ -225,6 +229,11 @@ extension AuthViewController {
 
     func pushCodeLoginView() {
         pushNewAuthViewController(with: .loginWithCode, state: state)
+    }
+
+    @objc
+    func pushUsernameAndPasswordView() {
+        pushNewAuthViewController(with: .loginWithUsernameAndPassword, state: state)
     }
 }
 
